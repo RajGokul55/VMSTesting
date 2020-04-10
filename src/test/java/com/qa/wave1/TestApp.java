@@ -4,6 +4,7 @@ import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 
 import java.util.List;
 
@@ -18,8 +19,8 @@ public class TestApp extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://www.flipkart.com/";
-	final String Username ="";
-	final String InvalidPassword = "hdgd@54";
+	final String Username ="987654321";
+	private String DecrptPassword;
 
 
 	/***************************** Test Cases *******************/
@@ -34,7 +35,11 @@ public class TestApp extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-
+	@BeforeSuite
+	void EncriptPassword() throws Exception {
+		DecrptPassword = decrypt("TncQ8Cleh9N6sZH3q5vfSQ==");
+	}
+	
 	@BeforeTest
 	public void beforeTest() {
 		launchbrowser(Browser, Url);
@@ -85,7 +90,7 @@ public class TestApp extends CommonMethods{
 		Username_Ipt.sendKeys(Username);
 
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
-		Password_Ipt.sendKeys(InvalidPassword);
+		Password_Ipt.sendKeys(DecrptPassword);
 
 		WebElement Submit_Btn = createWebElementBy(btn_Submit);
 		Submit_Btn.click();

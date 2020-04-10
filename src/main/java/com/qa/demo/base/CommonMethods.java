@@ -1,7 +1,11 @@
 package com.qa.demo.base;
 
+import java.security.Key;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+
+import javax.crypto.Cipher;
+import javax.crypto.spec.SecretKeySpec;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -17,6 +21,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+
+import sun.misc.BASE64Decoder;
+import sun.misc.BASE64Encoder;
 
 public class CommonMethods {
 	private static final String userDirectory = System.getProperty("user.dir");;
@@ -50,7 +57,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: To create web Element by passing locator.
 		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -65,7 +72,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: To create web Elements by passing locator.
 		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		WebDriverWait wait = new WebDriverWait(driver, 50);
@@ -79,7 +86,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: To highlight the web Element
 		 * Parameter: WebElement
-		 * Date: Apirl 2020
+		 * Date: April 2020
 		 */
 		JavascriptExecutor js=(JavascriptExecutor)driver; 
 		js.executeScript("arguments[0].setAttribute('style','border: solid 2px red')", element); 
@@ -92,7 +99,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: Hard wait
 		 * Parameter: Time in seconds but never use >5 
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		try {
@@ -108,7 +115,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: Waits for page load
 		 * Parameter: 
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		ExpectedCondition<Boolean> expectation = new
@@ -132,7 +139,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: to do mouse hover on element
 		 * Parameter: WebElement
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		Actions action = new Actions(driver);
@@ -143,7 +150,7 @@ public class CommonMethods {
 		 * Author: Balajee Palle
 		 * Description: to do safe click on element
 		 * Parameter: WebElement
-		 * Date: Apirl 2020 
+		 * Date: April 2020 
 		 * 
 		 */
 		try {
@@ -162,6 +169,42 @@ public class CommonMethods {
 			System.out.println("Unable to click on element "+ e.getStackTrace());
 		}
 	}
+	/*************************************************************************/
+	/* 
+	 * Author: Balajee Palle
+	 * Description: To Encrypt passwords to be used in Project
+	 * Parameter: 
+	 * Date: Apirl 2020 
+	 * 
+	 */	 
+	private static final byte[] keyValue = new byte[] { 'w', 'F', 'h', 'D',
+			'u', 'e', 'T', 'o', 'c', 'O', 'v', 'i', 'D', '1', '9', '*' };
+	private static final String Golf = "AES";		 
+	public static String decrypt(String encryptedData) throws Exception {
+		Key key = generateKey();
+		Cipher c = Cipher.getInstance(Golf);
+		c.init(Cipher.DECRYPT_MODE, key);
+		byte[] decordedValue = new BASE64Decoder().decodeBuffer(encryptedData);
+		byte[] decValue = c.doFinal(decordedValue);
+		String decryptedValue = new String(decValue);
+		return decryptedValue;
+	}
+
+	private static Key generateKey() throws Exception {
+		Key key = new SecretKeySpec(keyValue, Golf);
+		return key;
+	}
+
+	public static String encrypt(String Data) throws Exception {
+		Key key = generateKey();
+		Cipher c = Cipher.getInstance(Golf);
+		c.init(Cipher.ENCRYPT_MODE, key);
+		byte[] encVal = c.doFinal(Data.getBytes());
+		String encryptedValue = new BASE64Encoder().encode(encVal);
+		return encryptedValue;
+	}
+
+	/*******************************************************************************************/
 }
 
 

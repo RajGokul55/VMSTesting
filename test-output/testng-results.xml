@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+  <reporter-output>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="19549" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:18 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="19549" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:18 IST">
+      <class name="com.qa.wave1.TestApp">
+        <test-method status="PASS" signature="EncriptPassword()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="EncriptPassword" is-config="true" duration-ms="447" started-at="2020-04-10T23:39:58 IST" finished-at="2020-04-10T23:39:59 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- EncriptPassword -->
+        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="beforeTest" is-config="true" duration-ms="8110" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:07 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- beforeTest -->
+        <test-method status="PASS" signature="Filkart_05_Web_ValidateCredntails()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="Filkart_05_Web_ValidateCredntails" duration-ms="4699" started-at="2020-04-10T23:40:07 IST" finished-at="2020-04-10T23:40:12 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Filkart_05_Web_ValidateCredntails -->
+        <test-method status="PASS" signature="Filkart_03_Web_ValidatemenuItems()[pri:1, instance:com.qa.wave1.TestApp@131276c2]" name="Filkart_03_Web_ValidatemenuItems" duration-ms="5884" started-at="2020-04-10T23:40:12 IST" finished-at="2020-04-10T23:40:18 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- Filkart_03_Web_ValidatemenuItems -->
+        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="afterTest" is-config="true" duration-ms="802" started-at="2020-04-10T23:40:18 IST" finished-at="2020-04-10T23:40:18 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterTest -->
+      </class> <!-- com.qa.wave1.TestApp -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

@@ -96,7 +96,7 @@ public class TestApp extends CommonMethods{
 		Submit_Btn.click();
 
 		WebElement Error_Msg = createWebElementBy(msg_Warning);
-		Assert.assertEquals(Error_Msg.getText(), "Your username or password is incorrect");
+		Assert.assertEquals(Error_Msg.getText(), "Please enter valid Email ID/Mobile number");
 
 	}
 

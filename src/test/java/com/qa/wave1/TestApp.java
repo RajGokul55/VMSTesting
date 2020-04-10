@@ -18,7 +18,7 @@ public class TestApp extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://www.flipkart.com/";
-	final String Username ="8805485782";
+	final String Username ="";
 	final String InvalidPassword = "hdgd@54";
 
 

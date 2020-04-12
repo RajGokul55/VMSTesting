@@ -1,32 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="2" passed="2">
+<testng-results skipped="0" failed="1" ignored="2" total="3" passed="0">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="19549" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:18 IST">
+  <suite name="Default suite" duration-ms="26404" started-at="2020-04-12T18:09:58 IST" finished-at="2020-04-12T18:10:24 IST">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="19549" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:18 IST">
+    <test name="Default test" duration-ms="26404" started-at="2020-04-12T18:09:58 IST" finished-at="2020-04-12T18:10:24 IST">
       <class name="com.qa.wave1.TestApp">
-        <test-method status="PASS" signature="EncriptPassword()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="EncriptPassword" is-config="true" duration-ms="447" started-at="2020-04-10T23:39:58 IST" finished-at="2020-04-10T23:39:59 IST">
+        <test-method status="FAIL" signature="Amazon_01_Web_Validatedropdown()[pri:2, instance:com.qa.wave1.TestApp@131276c2]" name="Amazon_01_Web_Validatedropdown" duration-ms="26342" started-at="2020-04-12T18:09:58 IST" finished-at="2020-04-12T18:10:24 IST">
+          <exception class="org.openqa.selenium.StaleElementReferenceException">
+            <message>
+              <![CDATA[stale element reference: element is not attached to the page document
+  (Session info: chrome=78.0.3904.97)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'GVDIACN-2', ip: '10.20.12.191', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_191'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 78.0.3904.97, chrome: {chromedriverVersion: 77.0.3865.40 (f484704e052e0..., userDataDir: C:\Users\bpalle\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:64305}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 961f4c9240172a758e40e7c2cea392ed]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.StaleElementReferenceException: stale element reference: element is not attached to the page document
+  (Session info: chrome=78.0.3904.97)
+For documentation on this error, please visit: https://www.seleniumhq.org/exceptions/stale_element_reference.html
+Build info: version: '3.141.59', revision: 'e82be7d358', time: '2018-11-14T08:17:03'
+System info: host: 'GVDIACN-2', ip: '10.20.12.191', os.name: 'Windows 7', os.arch: 'amd64', os.version: '6.1', java.version: '1.8.0_191'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 78.0.3904.97, chrome: {chromedriverVersion: 77.0.3865.40 (f484704e052e0..., userDataDir: C:\Users\bpalle\AppData\Loc...}, goog:chromeOptions: {debuggerAddress: localhost:64305}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: XP, platformName: XP, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify}
+Session ID: 961f4c9240172a758e40e7c2cea392ed
+at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)
+at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)
+at java.lang.reflect.Constructor.newInstance(Unknown Source)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:187)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:122)
+at org.openqa.selenium.remote.http.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:49)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:158)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:552)
+at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:285)
+at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:84)
+at com.qa.demo.base.CommonMethods.selectDropdownValueByWebElements(CommonMethods.java:283)
+at com.qa.wave1.TestApp.TM_Amazon_01_Web_Validatedropdown(TestApp.java:162)
+at com.qa.wave1.TestApp.Amazon_01_Web_Validatedropdown(TestApp.java:60)
+at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+at java.lang.reflect.Method.invoke(Unknown Source)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.TestInvoker.invokeMethod(TestInvoker.java:584)
+at org.testng.internal.TestInvoker.invokeTestMethod(TestInvoker.java:172)
+at org.testng.internal.MethodRunner.runInSequence(MethodRunner.java:46)
+at org.testng.internal.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:804)
+at org.testng.internal.TestInvoker.invokeTestMethods(TestInvoker.java:145)
+at org.testng.internal.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:146)
+at org.testng.internal.TestMethodWorker.run(TestMethodWorker.java:128)
+at java.util.ArrayList.forEach(Unknown Source)
+at org.testng.TestRunner.privateRun(TestRunner.java:770)
+at org.testng.TestRunner.run(TestRunner.java:591)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:402)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:396)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:355)
+at org.testng.SuiteRunner.run(SuiteRunner.java:304)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1180)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1102)
+at org.testng.TestNG.runSuites(TestNG.java:1032)
+at org.testng.TestNG.run(TestNG.java:1000)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.StaleElementReferenceException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- EncriptPassword -->
-        <test-method status="PASS" signature="beforeTest()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="beforeTest" is-config="true" duration-ms="8110" started-at="2020-04-10T23:39:59 IST" finished-at="2020-04-10T23:40:07 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- beforeTest -->
-        <test-method status="PASS" signature="Filkart_05_Web_ValidateCredntails()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="Filkart_05_Web_ValidateCredntails" duration-ms="4699" started-at="2020-04-10T23:40:07 IST" finished-at="2020-04-10T23:40:12 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Filkart_05_Web_ValidateCredntails -->
-        <test-method status="PASS" signature="Filkart_03_Web_ValidatemenuItems()[pri:1, instance:com.qa.wave1.TestApp@131276c2]" name="Filkart_03_Web_ValidatemenuItems" duration-ms="5884" started-at="2020-04-10T23:40:12 IST" finished-at="2020-04-10T23:40:18 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Filkart_03_Web_ValidatemenuItems -->
-        <test-method status="PASS" signature="afterTest()[pri:0, instance:com.qa.wave1.TestApp@131276c2]" name="afterTest" is-config="true" duration-ms="802" started-at="2020-04-10T23:40:18 IST" finished-at="2020-04-10T23:40:18 IST">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- afterTest -->
+        </test-method> <!-- Amazon_01_Web_Validatedropdown -->
       </class> <!-- com.qa.wave1.TestApp -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->

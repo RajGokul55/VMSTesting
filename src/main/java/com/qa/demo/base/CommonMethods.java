@@ -17,8 +17,10 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
@@ -31,7 +33,7 @@ public class CommonMethods {
 
 
 
-	public void launchbrowser(String browser, String url) {
+	public void launchBrowser(String browser, String url) {
 
 		if(browser.equalsIgnoreCase("Chrome")) {
 			System.setProperty("webdriver.chrome.driver",userDirectory+"\\src\\main\\java\\com\\qa\\demo\\config\\chromedriver_v78.exe");
@@ -205,6 +207,87 @@ public class CommonMethods {
 	}
 
 	/*******************************************************************************************/
+	
+	public void scrollBehaviorByPixels(int X_Pixels, int Y_Pixels) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To move horizontally or Vertically within  HTML page 
+		 * Parameter: X_Pixels and Y_Pixels example 0, 250 to vertically down and -250 to scroll up.
+		 * Date: April 2020 
+		 * 
+		 */
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("scroll("+X_Pixels+","+Y_Pixels+")");
+	}
+
+	public void scrollToWebElement(WebElement element) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To move to WebElement within  HTML page 
+		 * Parameter: WebElement
+		 * Date: April 2020 
+		 * 
+		 */
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", element );
+	}
+	
+	public void scrollToBottomOfHTML() {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: to move to Bottom of  HTML page 
+		 * Parameter: 
+		 * Date: April 2020 
+		 * 
+		 */
+		JavascriptExecutor js = (JavascriptExecutor)driver;
+		js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+	}
+	
+	public void scrollWithinWebElement(String CssSelector, int Pixels) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: to scroll within WebElement say Div section, webTable or any sub section
+		 * Parameter: Css selector of section to be scrolled.
+		 * Date: April 2020 
+		 * 
+		 */
+		String syntx= "document.querySelector("+"'"+ CssSelector +"'"+").scrollTop="+Pixels+"";
+		EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
+		//eventFiringWebDriver.executeScript("document.querySelector("+"'"+ CssSelector +"'"+").scrollTop="+Pixels+"");
+		eventFiringWebDriver.executeScript(syntx);
+	}
+	
+	public void selectDropdownValue(WebElement element, String value) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To select Dropdown value, locator has to be with 'Select' tag.
+		 * Parameter: WebElement
+		 * Date: April 2020 
+		 * 
+		 */
+		element.click();
+		wait(2);
+		Select select = new Select(element);
+		select.selectByVisibleText(value);
+	}
+	
+	public void selectDropdownValueByWebElements(WebElement dropdown, WebElement value) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Drop down value by Javascript
+		 * Parameter: drop down WebElement and value WebElement
+		 * Date: April 2020 
+		 * 
+		 */
+		dropdown.click();	
+		wait(3);
+		//JavascriptExecutor js = (JavascriptExecutor) driver;
+		//js.executeScript("arguments[0].click();", value);
+		value.click();
+		
+	}
+
 }
 
 

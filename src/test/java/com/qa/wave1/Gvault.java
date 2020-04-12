@@ -35,7 +35,7 @@ public class Gvault extends CommonMethods{
 
 	@BeforeTest
 	public void beforeTest() {
-		launchbrowser(Browser, Url);
+		launchBrowser(Browser, Url);
 	}
 
 	@Test(priority=0, enabled=true)

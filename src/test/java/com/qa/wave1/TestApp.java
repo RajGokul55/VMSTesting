@@ -35,14 +35,14 @@ public class TestApp extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	@BeforeSuite
+	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
 		DecrptPassword = decrypt("TncQ8Cleh9N6sZH3q5vfSQ==");
 	}
-	
-	@BeforeTest
+
+	@BeforeTest(enabled=true)
 	public void beforeTest() {
-		launchbrowser(Browser, Url);
+		launchBrowser(Browser, Url);
 	}
 
 	@Test(priority=0, enabled=true)
@@ -54,8 +54,13 @@ public class TestApp extends CommonMethods{
 	public void Filkart_03_Web_ValidatemenuItems() {
 		TM_Filkart_03_Web_ValidatemenuItems();
 	}
+	
+	@Test(priority=2, enabled=false)
+	public void Amazon_01_Web_Validatedropdown() {
+		TM_Amazon_01_Web_Validatedropdown();
+	}
 
-	@AfterTest
+	@AfterTest(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -80,6 +85,11 @@ public class TestApp extends CommonMethods{
 	By btn_Close = By.cssSelector("button[class='_2AkmmA _29YdH8']");
 	By menu_TVAppliance= By.cssSelector("li:nth-child(2)>span[class='_1QZ6fC _3Lgyp8']");
 	By lnk_Samsung= By.cssSelector("a[title='Samsung'][href^='/televisions/pr']");
+	By img_Help = By.cssSelector("img[alt='Buying Guide']");
+	By slt_Dropdown = By.cssSelector("select[aria-describedby='searchDropdownDescription']");
+	By slt_dropwn = By.cssSelector("div[id='nav-search-dropdown-card']");
+	By opt_AmazonFresh = By.cssSelector("select[title='Search in']>option[value$='amazonfresh']");
+	
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
@@ -116,11 +126,43 @@ public class TestApp extends CommonMethods{
 		WebElement Samsung_lnk = createWebElementBy(lnk_Samsung);
 		//Samsung_lnk.click();
 		domClick(Samsung_lnk);
-
+		
 		waitForPageLoaded();
+		
+		WebElement Help_Img = createWebElementBy(img_Help);
+		scrollToWebElement(Help_Img);
+		
+		scrollBehaviorByPixels(0, -400);
+		
+		wait(2);
+		
+		Help_Img.click();
+		
+		waitForPageLoaded();
+		
+		scrollToBottomOfHTML();
 
 	}
-
+	
+	void TM_Amazon_01_Web_Validatedropdown(){
+		launchBrowser(Browser, "https://www.amazon.com/");
+		
+		wait(4);
+				
+		//WebElement Dropwn_Slt = createWebElementBy(slt_dropwn);
+		//Dropwn_Slt.click();
+		WebElement Dropdown_Slt = createWebElementBy(slt_Dropdown);
+		selectDropdownValue(Dropdown_Slt, "Amazon Fresh");
+		
+		driver.navigate().refresh();
+		
+		wait(4);
+		
+		WebElement AmazonFresh_Opt = createWebElementBy(opt_AmazonFresh);
+		selectDropdownValueByWebElements(Dropdown_Slt, AmazonFresh_Opt);
+		
+		
+	}
 
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here

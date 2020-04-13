@@ -37,7 +37,7 @@ public class TestApp extends CommonMethods{
 	 */
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("TncQ8Cleh9N6sZH3q5vfSQ==");
+		DecrptPassword = decrypt("MGhWvRKRMdkF0pu8i/E6pA==");
 	}
 
 	@BeforeTest(enabled=true)
@@ -166,4 +166,6 @@ public class TestApp extends CommonMethods{
 
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
+	
+	
 }

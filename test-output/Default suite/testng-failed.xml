@@ -5,8 +5,8 @@
     <classes>
       <class name="com.qa.wave1.TestApp">
         <methods>
-          <include name="Filkart_05_Web_ValidateCredntails"/>
           <include name="EncriptPassword"/>
+          <include name="Amazon_01_Web_Validatedropdown"/>
           <include name="afterTest"/>
           <include name="beforeTest"/>
         </methods>

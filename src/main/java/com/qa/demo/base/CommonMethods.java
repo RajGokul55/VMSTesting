@@ -176,7 +176,7 @@ public class CommonMethods {
 	 * Author: Balajee Palle
 	 * Description: To Encrypt passwords to be used in Project
 	 * Parameter: 
-	 * Date: Apirl 2020 
+	 * Date: April 2020 
 	 * 
 	 */	 
 	private static final byte[] keyValue = new byte[] { 'w', 'F', 'h', 'D',
@@ -186,6 +186,7 @@ public class CommonMethods {
 		Key key = generateKey();
 		Cipher c = Cipher.getInstance(Golf);
 		c.init(Cipher.DECRYPT_MODE, key);
+		@SuppressWarnings("restriction")
 		byte[] decordedValue = new BASE64Decoder().decodeBuffer(encryptedData);
 		byte[] decValue = c.doFinal(decordedValue);
 		String decryptedValue = new String(decValue);
@@ -202,6 +203,7 @@ public class CommonMethods {
 		Cipher c = Cipher.getInstance(Golf);
 		c.init(Cipher.ENCRYPT_MODE, key);
 		byte[] encVal = c.doFinal(Data.getBytes());
+		@SuppressWarnings("restriction")
 		String encryptedValue = new BASE64Encoder().encode(encVal);
 		return encryptedValue;
 	}

@@ -114,7 +114,5 @@ public class Metasploit extends CommonMethods{
 		System.out.println("loginBtn field is displayed = " +Login_btn);
 		
 		
-		//boolean Username = driver.findElement(By.xpath(prop.getProperty("locatorXpath_username"))).isDisplayed();
-		
-}
+	}
 }

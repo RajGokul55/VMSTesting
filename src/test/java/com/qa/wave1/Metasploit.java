@@ -112,7 +112,6 @@ public class Metasploit extends CommonMethods{
 		
 		boolean Login_btn = isElementExit(login_button);
 		System.out.println("loginBtn field is displayed = " +Login_btn);
-		
-		
+				
 	}
 }

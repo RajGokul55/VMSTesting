@@ -18,7 +18,7 @@ public class Gvault extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://sb-gilead-it.veevavault.com";
-	final String Username ="psonawane@gvault.gilead.com";
+	final String Username ="bpalle@gvault.gilead.com";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -71,7 +71,8 @@ public class Gvault extends CommonMethods{
 	By menu_Documents = By.xpath("//*[@class='children' and contains(text(),'Documents')]"); 
 	By menu_ViewAll = By.xpath("//*[@class='viewAllCategories vv_view_all']");
 	By menu_MediaFills = By.xpath("//*[@class='categoryTerm docClass vv_doc_class' and contains(text(), 'Media Fills')]");
-	
+	By lnk_Doc = By.cssSelector("div[class^='vm_container vv_vm']");
+	By iframe_Doc = By.cssSelector("div[class^='vm_container vv_vm']>iframe");
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
@@ -84,22 +85,38 @@ public class Gvault extends CommonMethods{
 
 		WebElement Continue_Btn = createWebElementBy(btn_Continue);
 		Continue_Btn.click();
-
+		
+		//wait(2);
+		//driver.navigate().refresh();
+		//wait(2);
+		
 		WebElement Library_menu = createWebElementBy(menu_Library);
 		Library_menu.click();
-
-		WebElement Documents_menu = createWebElementBy(menu_Documents);
-		mouseHover(Documents_menu);
-		wait(2);
-		Documents_menu.click();
-
-		WebElement ViewAll_menu = createWebElementBy(menu_ViewAll);
-		ViewAll_menu.click();
 		
-		WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
-		scrollToWebElement(MediaFills_menu);
-		MediaFills_menu.click();
+		wait(2);
 
+		WebElement Documents_menu = driver.findElement(lnk_Doc);
+		mouseHover(Documents_menu);
+		
+		Documents_menu.click();
+		//WebElement Doc_iframe = driver.findElement(lnk_Doc); // //createWebElementBy(menu_Documents);
+		
+		wait(2);
+		
+		//driver.switchTo().frame(Doc_iframe);
+		
+		//Documents_menu.click();
+
+		
+		  WebElement ViewAll_menu = createWebElementBy(menu_ViewAll);
+		  ViewAll_menu.click();
+		  
+		
+		  WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
+		  //scrollToWebElement(MediaFills_menu); 
+		  MediaFills_menu.click();
+		 
+		 
 	}
 
 	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {

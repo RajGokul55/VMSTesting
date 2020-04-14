@@ -2,19 +2,16 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import com.qa.demo.util.TestUtil;
-
 import org.testng.annotations.BeforeTest;
 import java.util.ArrayList;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeSuite;
 
 public class GDLPdevTest extends CommonMethods {
 	
@@ -23,7 +20,7 @@ public class GDLPdevTest extends CommonMethods {
 	final String Browser= "Chrome";
 	final String Url= "https://gdlp-dev.gilead.com";
 	final String username = "NA\\graj";
-	final String pass = "";
+	private String DecrptPassword;
 	
 	/************Fields for which inputs are required to run Test case 2************/
 	String name = "VMS Test policy"; //give new name every time for creating a new policy
@@ -45,45 +42,61 @@ public class GDLPdevTest extends CommonMethods {
 	
 	/***************************** Test Cases *******************/
 	/*
-	 * Test case ‘Test Name’ naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
+	 * Test case â€˜Test Nameâ€™ naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
 	Definitions of terms:     
-•	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
-•	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
-•	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB …]
-•	Title: short title of test case based on context of test case  ie., ValidateCredntails
+â€¢	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
+â€¢	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
+â€¢	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB â€¦]
+â€¢	Title: short title of test case based on context of test case  ie., ValidateCredntails
   	Test Name Example: Filkart_05_Web_ValidateCredntails.
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeTest
+	@BeforeSuite(enabled=true)
+	void EncriptPassword() throws Exception {
+		DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");
+	}
+	
+	@BeforeTest(enabled=true)
 	  	public void beforeMethod() {
 		launchBrowser(Browser, Url);
 	  }	
 	
 	
-	@Test(priority=0, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void GDLP_TC01_Web_login_verifyserver() {
 		TM_GDLP_TC01_Web_login_verifyserver();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=2, enabled=true)
 	public void GDLP_TC02_Web_create_policy() {
 		TM_GDLP_TC02_Web_create_policy();
 	}
 	
-	@Test(priority=2, enabled=true)
+	@Test(priority=3, enabled=true)
 	public void GDLP_TC03_Web_edit_rule() {
 		TM_GDLP_TC03_Web_edit_rule();
 	}
 	
-	@Test(priority=3, enabled=true)
+	@Test(priority=4, enabled=true)
 	public void GDLP_TC04_Web_create_target() {
 		TM_GDLP_TC04_Web_create_target();
 	}
 	
+	@Test(priority=5, enabled=true)
+	public void GDLP_TC05_Web_scan_target() {
+		TM_GDLP_TC05_Web_scan_target();
+	}
+	
+	@Test(priority=6, enabled=true)
+	public void GDLP_TC06_Web_view_incidents() {
+		TM_GDLP_TC06_Web_view_incidents();
+	}
+	
 	@AfterTest
 		public void afterMethod() {
+		driver.quit();
   }
 	
 	/***************************** Locators *******************/
@@ -324,7 +337,8 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		selectDropdownByValue(severitydrp, "2");
 		WebElement okbtn = createWebElementBy(btn_ok);
 		okbtn.click();
-		System.out.println(ruleNamerdo.getText());
+		//System.out.println(ruleNamerdo.getText());
+		wait(3);
 		WebElement savebtn = createWebElementBy(btn_save);
 		savebtn.click();
 		
@@ -355,6 +369,8 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		policyCDPrdo.click();
 		WebElement policyDPGrdo = createWebElementBy(rdo_policyDPG);
 		policyDPGrdo.click();
+		WebElement targettabbtn = createWebElementBy(btn_targetTab);
+		targettabbtn.click();
 		WebElement svrTargetrdo = createWebElementBy(rdo_serverTarget);
 		svrTargetrdo.click();
 		WebElement scannedContentbtn = createWebElementBy(btn_scannedConTab);
@@ -365,16 +381,16 @@ public void TM_GDLP_TC02_Web_create_policy() {
 			WebElement userNameipt = createWebElementBy(ipt_userName);
 			userNameipt.sendKeys(username);
 			WebElement passwordipt = createWebElementBy(ipt_password);
-			passwordipt.sendKeys(pass);
+			passwordipt.sendKeys(DecrptPassword);
 			WebElement cnfpasswordipt = createWebElementBy(ipt_cnfpassword);
-			cnfpasswordipt.sendKeys(pass);
+			cnfpasswordipt.sendKeys(DecrptPassword);
 		}else {
 			WebElement userNameipt = createWebElementBy(ipt_userName);
 			userNameipt.sendKeys(username);
 			WebElement passwordipt = createWebElementBy(ipt_password);
-			passwordipt.sendKeys(pass);
+			passwordipt.sendKeys(DecrptPassword);
 			WebElement cnfpasswordipt = createWebElementBy(ipt_cnfpassword);
-			cnfpasswordipt.sendKeys(pass);
+			cnfpasswordipt.sendKeys(DecrptPassword);
 		}
 		
 		WebElement filePathrdo = createWebElementBy(rdo_fromFile);
@@ -387,7 +403,10 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		WebElement uploadbtn = createWebElementBy(btn_upload);
 		uploadbtn.click();
 		wait(1);
-		scannedContentbtn.click();
+		WebElement scannedContentbtn1 = createWebElementBy(btn_scannedConTab);
+		scannedContentbtn1.click();
+		WebElement contselet1 = createWebElementBy(rdo_contentSelect);
+		contselet1.click();		
 		WebElement savebtn = createWebElementBy(btn_save);
 		savebtn.click();
 	}

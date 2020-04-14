@@ -43,14 +43,14 @@ public class Gvault extends CommonMethods{
 		TM_Gvault_03_Web_ValidateDescribanciesCreation();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void Gvault_04_Web_ValidateDescribanciesEdit() {
 		TM_Gvault_04_Web_ValidateDescribanciesEdit();
 	}
 
 	@AfterTest
 	public void afterTest() {
-		driver.quit();
+		//driver.quit();
 	}
 
 	/***************************** Locators *******************/
@@ -68,29 +68,16 @@ public class Gvault extends CommonMethods{
 	By ipt_Username= By.name("j_username");
 	By btn_Continue = By.name("continue");
 	By menu_Library= By.name("libraries__c");
-	By menu_Documents = By.className("children");
-	By menu_AllDocuments = By.className("facetGroupLabel");
-	By menu_ViewAll = By.className("viewAllCategories vv_view_all");
+	By menu_Documents = By.xpath("//*[@class='children' and contains(text(),'Documents')]"); 
+	By menu_ViewAll = By.xpath("//*[@class='viewAllCategories vv_view_all']");
+	By menu_MediaFills = By.xpath("//*[@class='categoryTerm docClass vv_doc_class' and contains(text(), 'Media Fills')]");
+	
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
 
 	void TM_Gvault_03_Web_ValidateDescribanciesCreation() {
-
-		TM_Gvault_ApllicationCommonFlow();
-	}
-
-	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {
-
-		TM_Gvault_ApllicationCommonFlow();
-	}
-
-
-	/*****************************Application Interaction Methods *******************/
-	// if any code re-usability is there specific to this Application then that should be maintained here
-
-	void TM_Gvault_ApllicationCommonFlow() {
 
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
@@ -102,9 +89,27 @@ public class Gvault extends CommonMethods{
 		Library_menu.click();
 
 		WebElement Documents_menu = createWebElementBy(menu_Documents);
+		mouseHover(Documents_menu);
+		wait(2);
 		Documents_menu.click();
 
-		WebElement AllDocuments_menu = createWebElementBy(menu_AllDocuments);
-		AllDocuments_menu.click();
+		WebElement ViewAll_menu = createWebElementBy(menu_ViewAll);
+		ViewAll_menu.click();
+		
+		WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
+		scrollToWebElement(MediaFills_menu);
+		MediaFills_menu.click();
+
 	}
+
+	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {
+
+		// Can have test cases here itself
+	}
+
+
+	/*****************************Application Interaction Methods *******************/
+	// if any code re-usability is there specific to this Application then that should be maintained here
+
+
 }

@@ -1,20 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
-<suite guice-stage="DEVELOPMENT" name="Failed suite [Automation]">
-  <listeners>
-    <listener class-name="com.qa.demo.reports.ExtentReporterNG"/>
-  </listeners>
-  <test thread-count="5" name="Automation Test(failed)">
+<suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
+  <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.wave1.TestApp">
+      <class name="com.qa.wave1.Gvault">
         <methods>
-          <include name="Filkart_05_Web_ValidateCredntails"/>
-          <include name="EncriptPassword"/>
           <include name="afterTest"/>
-          <include name="Filkart_03_Web_ValidatemenuItems"/>
           <include name="beforeTest"/>
+          <include name="Gvault_01_Web_ValidateDescribanciesCreation"/>
         </methods>
-      </class> <!-- com.qa.wave1.TestApp -->
+      </class> <!-- com.qa.wave1.Gvault -->
     </classes>
-  </test> <!-- Automation Test(failed) -->
-</suite> <!-- Failed suite [Automation] -->
+  </test> <!-- Default test(failed) -->
+</suite> <!-- Failed suite [Default suite] -->

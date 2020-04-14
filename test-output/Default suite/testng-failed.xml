@@ -3,14 +3,13 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default suite]">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.qa.wave1.TestApp">
+      <class name="com.qa.wave1.Gvault">
         <methods>
-          <include name="EncriptPassword"/>
-          <include name="Amazon_01_Web_Validatedropdown"/>
           <include name="afterTest"/>
           <include name="beforeTest"/>
+          <include name="Gvault_01_Web_ValidateDescribanciesCreation"/>
         </methods>
-      </class> <!-- com.qa.wave1.TestApp -->
+      </class> <!-- com.qa.wave1.Gvault -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

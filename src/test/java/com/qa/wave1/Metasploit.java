@@ -79,8 +79,8 @@ public class Metasploit extends CommonMethods{
 
 	public  boolean isElementExit(By locator) {
 		/* 
-		 * Author: Balajee Palle
-		 * Description: To create web Element by passing locator.
+		 * Author: Arun Raj
+		 * Description: To check web Element is displayed by passing locator.
 		 * Parameter: Xpath or Css Syntax example: 
 		 * Date: April 2020 
 		 * 

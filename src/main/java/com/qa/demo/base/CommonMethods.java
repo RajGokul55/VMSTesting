@@ -288,6 +288,31 @@ public class CommonMethods {
 		value.click();
 		
 	}
+	
+	public void switchToFrameByLocator(WebElement element) {
+		/* 
+		 * Author: Abhishek Bhatt
+		 * Description: To switch control to frame in the UI
+		 * Parameter: frame webelement
+		 * Date: April 2020 
+		 * 
+		 */
+		driver.switchTo().frame(element);
+	}
+		
+	public boolean IsDisplayed_IsEnabled(WebElement element){
+		/* 
+		 * Author: Abhishek Bhatt
+		 * Description: To verify that element is displayed and is enabled in the UI
+		 * Parameter:Webelement
+		 * Date: April 2020 
+		 * 
+		 */
+		return element.isDisplayed() && element.isEnabled();
+		
+	}
+
+
 
 }
 

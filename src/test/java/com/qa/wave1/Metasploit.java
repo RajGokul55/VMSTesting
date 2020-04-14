@@ -15,7 +15,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 
-
 public class Metasploit extends CommonMethods{
 
 	/***************************** Test Data*******************/

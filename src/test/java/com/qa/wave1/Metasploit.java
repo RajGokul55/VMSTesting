@@ -13,6 +13,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 public class Metasploit extends CommonMethods{
 
@@ -72,15 +73,26 @@ public class Metasploit extends CommonMethods{
 
 
 	void TM_Metasploit_01_Web_VerifyWebConsole() {
+		
+		WebElement Username_Field = createWebElementBy(field_Username);
+		IsDisplayed_IsEnabled(Username_Field);
+		
+		WebElement Password_Field = createWebElementBy(field_Password);
+		IsDisplayed_IsEnabled(Password_Field);
+		
+		WebElement Login_btn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(Login_btn);
 
-		boolean Username_Field = isElementExit(field_Username);
-		System.out.println("Username field is displayed = " +Username_Field);
-		
-		boolean Password_Field = isElementExit(field_Password);
-		System.out.println("Password field is displayed = " +Password_Field);
-		
-		boolean Login_btn = isElementExit(login_button);
-		System.out.println("loginBtn field is displayed = " +Login_btn);
+		/*
+		 * boolean Username_Field = isElementExit(field_Username);
+		 * Reporter.log("Username field is displayed = " +Username_Field);
+		 * 
+		 * boolean Password_Field = isElementExit(field_Password);
+		 * Reporter.log("Password field is displayed = " +Password_Field);
+		 * 
+		 * boolean Login_btn = isElementExit(login_button);
+		 * Reporter.log("loginBtn field is displayed = " +Login_btn);
+		 */
 				
 	
 	}

@@ -23,6 +23,8 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.Reporter;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -65,6 +67,7 @@ public class CommonMethods {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element =  driver.findElement(locator);
+		Reporter.log("Mouse control is on locator: "+locator.toString()+ "On Web App: "+driver.getTitle()+ "Mouse control navigated to Web Object whose tagname is: " +element.getTagName());
 		highLightElement(element);
 		return element;
 	}
@@ -301,7 +304,7 @@ public class CommonMethods {
 		driver.switchTo().frame(element);
 	}
 		
-	public boolean IsDisplayed_IsEnabled(WebElement element){
+	public void IsDisplayed_IsEnabled(WebElement element){
 		/* 
 		 * Author: Abhishek Bhatt
 		 * Description: To verify that element is displayed and is enabled in the UI
@@ -309,7 +312,10 @@ public class CommonMethods {
 		 * Date: April 2020 
 		 * 
 		 */
-		return element.isDisplayed() && element.isEnabled();
+		boolean result = element.isDisplayed() && element.isEnabled();
+		Assert.assertEquals(true, result);
+		Reporter.log("Is Web Object is displayed: " +result);
+		//return element.isDisplayed() && element.isEnabled();
 		
 	}
 

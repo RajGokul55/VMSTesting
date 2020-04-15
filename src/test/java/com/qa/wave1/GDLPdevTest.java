@@ -23,7 +23,7 @@ public class GDLPdevTest extends CommonMethods {
 	private String DecrptPassword;
 	
 	/************Fields for which inputs are required to run Test case 2************/
-	String name = "VMS Test policy 1"; //give new name every time for creating a new policy
+	String name = "VMS Test policy"; //give new name every time for creating a new policy
 	String ruleName = "VMS rule";
 	String descriptionText = "Testing for creating new policy";
 	String policyGroup = "VMS Testing Group";
@@ -64,39 +64,39 @@ public class GDLPdevTest extends CommonMethods {
 	  }	
 	
 	
-	@Test(priority=1, enabled=true)
-	public void GDLP_TC01_Web_login_verifyserver() {
-		TM_GDLP_TC01_Web_login_verifyserver();
+	@Test(priority=1, enabled=false)
+	public void GDLP_S01_Web_login_verifyserver() {
+		TM_GDLP_S01_Web_login_verifyserver();
 	}
 
-	@Test(priority=2, enabled=true)
-	public void GDLP_TC02_Web_create_policy() {
-		TM_GDLP_TC02_Web_create_policy();
+	@Test(priority=2, enabled=false)
+	public void GDLP_S02_Web_create_policy() {
+		TM_GDLP_S02_Web_create_policy();
 	}
 	
-	@Test(priority=3, enabled=true)
-	public void GDLP_TC03_Web_edit_rule() {
-		TM_GDLP_TC03_Web_edit_rule();
+	@Test(priority=3, enabled=false)
+	public void GDLP_S03_Web_edit_rule() {
+		TM_GDLP_S03_Web_edit_rule();
 	}
 	
 	@Test(priority=4, enabled=true)
-	public void GDLP_TC04_Web_create_target() {
-		TM_GDLP_TC04_Web_create_target();
+	public void GDLP_S04_Web_create_target() {
+		TM_GDLP_S04_Web_create_target();
 	}
 	
-	@Test(priority=5, enabled=true)
-	public void GDLP_TC05_Web_scan_target() {
-		TM_GDLP_TC05_Web_scan_target();
+	@Test(priority=5, enabled=false)
+	public void GDLP_S05_Web_scan_target() {
+		TM_GDLP_S05_Web_scan_target();
 	}
 	
-	@Test(priority=6, enabled=true)
-	public void GDLP_TC06_Web_view_incidents() {
-		TM_GDLP_TC06_Web_view_incidents();
+	@Test(priority=6, enabled=false)
+	public void GDLP_S06_Web_view_incidents() {
+		TM_GDLP_S06_Web_view_incidents();
 	}
 	
 	@AfterTest
 		public void afterMethod() {
-		driver.quit();
+		//driver.quit();
   }
 	
 	/***************************** Locators *******************/
@@ -160,12 +160,13 @@ public class GDLPdevTest extends CommonMethods {
 	By tbl_policyTable   =     By.xpath("//*[@id=\"policy-table-table\"]/tbody/tr");
 	By tbl_disTable      =     By.xpath("//*[@id=\"discoverTargetListTable\"]/tbody/tr");
 	By btn_allIncidents  =	   By.xpath("//table[4]/tbody[1]/tr[4]/td[1]/span[1]");
+	By msg_saveSuccess   =     By.cssSelector("#web-status-message-155.message-content");
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 	
 	
-	public void TM_GDLP_TC01_Web_login_verifyserver() {
+	public void TM_GDLP_S01_Web_login_verifyserver() {
 		
 		WebElement System_btn = createWebElementBy(btn_system);
 		mouseHover(System_btn);
@@ -208,71 +209,71 @@ public class GDLPdevTest extends CommonMethods {
 		
 	}
 	
-public void TM_GDLP_TC02_Web_create_policy() {
+public void TM_GDLP_S02_Web_create_policy() {
 		
 		
-		WebElement managebtn = createWebElementBy(btn_manage);
-		mouseHover(managebtn);
-		WebElement policiesbtn = createWebElementBy(btn_policies);
-		mouseHover(policiesbtn);
-		WebElement policyListbtn = createWebElementBy(btn_policyList);
-		mouseHover(policyListbtn);
-		policyListbtn.click();
+		WebElement Manage_Btn = createWebElementBy(btn_manage);
+		mouseHover(Manage_Btn);
+		WebElement Policies_Btn = createWebElementBy(btn_policies);
+		mouseHover(Policies_Btn);
+		WebElement PolicyList_Btn = createWebElementBy(btn_policyList);
+		mouseHover(PolicyList_Btn);
+		PolicyList_Btn.click();
 		
-		WebElement newbtn = createWebElementBy(btn_new);
-		newbtn.click();
-		WebElement nextbtn = createWebElementBy(btn_next);
-		nextbtn.click();
-		WebElement policyNameipt = createWebElementBy(ipt_policyName);
-		policyNameipt.clear();
-		policyNameipt.sendKeys(name);
-		WebElement descriptionipt = createWebElementBy(itp_description);
-		descriptionipt.clear();
-		descriptionipt.sendKeys(descriptionText);
-		WebElement policyGroupipt = createWebElementBy(itp_policyGroup);		
-		policyGroupipt.clear();
-		policyGroupipt.sendKeys(policyGroup);
+		WebElement New_Btn = createWebElementBy(btn_new);
+		New_Btn.click();
+		WebElement Next_Btn = createWebElementBy(btn_next);
+		Next_Btn.click();
+		WebElement PolicyName_Ipt = createWebElementBy(ipt_policyName);
+		PolicyName_Ipt.clear();
+		PolicyName_Ipt.sendKeys(name);
+		WebElement Description_Ipt = createWebElementBy(itp_description);
+		Description_Ipt.clear();
+		Description_Ipt.sendKeys(descriptionText);
+		WebElement PolicyGroup_Ipt = createWebElementBy(itp_policyGroup);		
+		PolicyGroup_Ipt.clear();
+		PolicyGroup_Ipt.sendKeys(policyGroup);
 
-		WebElement policydropdown = createWebElementBy(drp_policyGroup);
-		selectDropdownByText(policydropdown, "Default Policy Group" );
+		WebElement Policy_Drp = createWebElementBy(drp_policyGroup);
+		selectDropdownByText(Policy_Drp, "Default Policy Group" );
 		
-		WebElement addRulebtn = createWebElementBy(btn_addRule);
-		addRulebtn.click();
+		WebElement AddRule_Ipt = createWebElementBy(btn_addRule);
+		AddRule_Ipt.click();
 		
 		
 		
 		if (rule == 1) {
-			WebElement selectRule1rdo = createWebElementBy(rdo_selectRule1);
-			selectRule1rdo.click();
-			WebElement nextbtn1 = createWebElementBy(btn_next);
-			nextbtn1.click();
-			WebElement ruleNameipt = createWebElementBy(ipt_ruleName);
-			ruleNameipt.sendKeys(ruleName);
+			WebElement SelectRule1_Rdo = createWebElementBy(rdo_selectRule1);
+			SelectRule1_Rdo.click();
+			WebElement Next_Btn1 = createWebElementBy(btn_next);
+			Next_Btn1.click();
+			WebElement RuleName_Ipt = createWebElementBy(ipt_ruleName);
+			RuleName_Ipt.sendKeys(ruleName);
 
-			WebElement severitydrp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(severitydrp, "3");
-			WebElement selectAlllnk = createWebElementBy(lnk_selectAll);
-			selectAlllnk.click();
-			WebElement okbtn = createWebElementBy(btn_ok);
-			okbtn.click();
+			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
+			selectDropdownByValue(Severity_Drp, "3");
+			WebElement SelectAll_Lnk = createWebElementBy(lnk_selectAll);
+			SelectAll_Lnk.click();
+			WebElement Ok_Btn = createWebElementBy(btn_ok);
+			Ok_Btn.click();
 		}else if(rule == 2) {
-			WebElement selectRule1rdo = createWebElementBy(rdo_selectRule2);
-			selectRule1rdo.click();
-			WebElement nextbtn1 = createWebElementBy(btn_next);
-			nextbtn1.click();
-			WebElement ruleNameipt = createWebElementBy(ipt_ruleName);
-			ruleNameipt.sendKeys(ruleName);
+			WebElement SelectRule1_Rdo = createWebElementBy(rdo_selectRule2);
+			SelectRule1_Rdo.click();
+			WebElement Next_Btn1 = createWebElementBy(btn_next);
+			Next_Btn1.click();
+			WebElement RuleName_Ipt = createWebElementBy(ipt_ruleName);
+			RuleName_Ipt.sendKeys(ruleName);
 
-			WebElement severitydrp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(severitydrp, "3");
-			WebElement textAreaipt = createWebElementBy(ipt_textArea);
-			textAreaipt.sendKeys(text_Area);
-			WebElement okbtn = createWebElementBy(btn_ok);
-			okbtn.click();
+			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
+			selectDropdownByValue(Severity_Drp, "3");
+			WebElement TestArea_Ipt = createWebElementBy(ipt_textArea);
+			TestArea_Ipt.sendKeys(text_Area);
+			WebElement Ok_Btn = createWebElementBy(btn_ok);
+			Ok_Btn.click();
 		}
 		
-		WebElement savebtn = createWebElementBy(btn_save);
-		savebtn.click();
+		WebElement Save_Btn = createWebElementBy(btn_save);
+		Save_Btn.click();
 		
 		//Get the number of rows of policy list		
 		List<WebElement> allRows = createWebElementsBy(tbl_policyTable);
@@ -291,20 +292,20 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		if (result) 
 			System.out.println("The new policy is created and policy name is: "+name);
 		else
-			System.out.println("The new policy name was not found");
+			Assert.fail("The policy is not created/not found");
 
 		
 	}
 
-	public void TM_GDLP_TC03_Web_edit_rule() {
+	public void TM_GDLP_S03_Web_edit_rule() {
 		
-		WebElement managebtn = createWebElementBy(btn_manage);
-		mouseHover(managebtn);
-		WebElement policiesbtn = createWebElementBy(btn_policies);
-		mouseHover(policiesbtn);
-		WebElement policyListbtn = createWebElementBy(btn_policyList);
-		mouseHover(policyListbtn);
-		policyListbtn.click();
+		WebElement Manage_Btn = createWebElementBy(btn_manage);
+		mouseHover(Manage_Btn);
+		WebElement Policies_Btn = createWebElementBy(btn_policies);
+		mouseHover(Policies_Btn);
+		WebElement PolicyList_Btn = createWebElementBy(btn_policyList);
+		mouseHover(PolicyList_Btn);
+		PolicyList_Btn.click();
 		waitForPageLoaded();
 		
 		List<WebElement> allRows = createWebElementsBy(tbl_policyTable);
@@ -328,31 +329,36 @@ public void TM_GDLP_TC02_Web_create_policy() {
 			}
 		}
 		
-		WebElement ruleNamerdo = createWebElementBy(rdo_ruleTitle);
-		ruleNamerdo.click();
-		WebElement ruleNameipt = createWebElementBy(ipt_ruleName);
-		ruleNameipt.sendKeys(editRuleName);
+		WebElement RuleName_Rdo = createWebElementBy(rdo_ruleTitle);
+		RuleName_Rdo.click();
+		WebElement RuleName_Ipt = createWebElementBy(ipt_ruleName);
+		RuleName_Ipt.sendKeys(editRuleName);
 
-		WebElement severitydrp = createWebElementBy(drp_selectSeverity);
-		selectDropdownByValue(severitydrp, "2");
-		WebElement okbtn = createWebElementBy(btn_ok);
-		okbtn.click();
-		//System.out.println(ruleNamerdo.getText());
+		WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
+		selectDropdownByValue(Severity_Drp, "3");
+		WebElement Ok_Btn = createWebElementBy(btn_ok);
+		Ok_Btn.click();
+		//System.out.println(RuleName_Rdo.getText());
 		wait(3);
-		WebElement savebtn = createWebElementBy(btn_save);
-		savebtn.click();
+		WebElement Save_Btn = createWebElementBy(btn_save);
+		Save_Btn.click();
+		
+		WebElement SaveSuccess_Msg = createWebElementBy(msg_saveSuccess);
+		System.out.println(SaveSuccess_Msg.getText());
+		Assert.assertEquals(SaveSuccess_Msg.getText(), "The policy '"+name+"' was saved successfully.");
+		
 		
 	}
 	
-	public void TM_GDLP_TC04_Web_create_target() {
+	public void TM_GDLP_S04_Web_create_target() {
 		
-		WebElement managebtn = createWebElementBy(btn_manage);
-		mouseHover(managebtn);
-		WebElement discoverScanbtn = createWebElementBy(btn_dicoveryScan);
-		mouseHover(discoverScanbtn);
-		WebElement disTargetbtn = createWebElementBy(btn_distarget);
-		mouseHover(disTargetbtn);
-		disTargetbtn.click();
+		WebElement Manage_Btn = createWebElementBy(btn_manage);
+		mouseHover(Manage_Btn);
+		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
+		mouseHover(DiscoveryScan_Btn);
+		WebElement DisTarget_Btn = createWebElementBy(btn_distarget);
+		mouseHover(DisTarget_Btn);
+		DisTarget_Btn.click();
 		
 		waitForPageLoaded();
 		
@@ -407,19 +413,42 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		scannedContentbtn1.click();
 		WebElement contselet1 = createWebElementBy(rdo_contentSelect);
 		contselet1.click();		
-		WebElement savebtn = createWebElementBy(btn_save);
-		savebtn.click();
+		WebElement Save_Btn = createWebElementBy(btn_save);
+		Save_Btn.click();
+		
+		List<WebElement> allRows = createWebElementsBy(tbl_disTable);
+		int numberOfRows = allRows.size();
+		List<WebElement> targetNames = new ArrayList<WebElement>();
+		
+		//Get the number of rows from the table 
+		for(int i=1;i<=numberOfRows;i++) {
+			WebElement names = driver.findElement(By.xpath("//tbody[1]/tr["+i+"]/td[2]/a[1]/span[1]")); // need to update
+			targetNames.add(names);
+		}
+
+		
+		//Created a loop so that the Target created by the VMS is the only element selected and not any other target
+		//the targetName field is the input for the validation 
+		for(int j=0;j<targetNames.size();j++) {
+			String verify = targetNames.get(j).getText();
+			if(verify.equals(targetName)) {  
+				break; 
+			}else {
+				Assert.fail("The Target was not created and does not exist in the table");
+			}
+		}
+		
 	}
 	
-	public void TM_GDLP_TC05_Web_scan_target() {
+	public void TM_GDLP_S05_Web_scan_target() {
 		
-		WebElement managebtn = createWebElementBy(btn_manage);
-		mouseHover(managebtn);
-		WebElement discoverScanbtn = createWebElementBy(btn_dicoveryScan);
-		mouseHover(discoverScanbtn);
-		WebElement disTargetbtn = createWebElementBy(btn_distarget);
-		mouseHover(disTargetbtn);
-		disTargetbtn.click();
+		WebElement Manage_Btn = createWebElementBy(btn_manage);
+		mouseHover(Manage_Btn);
+		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
+		mouseHover(DiscoveryScan_Btn);
+		WebElement DisTarget_Btn = createWebElementBy(btn_distarget);
+		mouseHover(DisTarget_Btn);
+		DisTarget_Btn.click();
 		waitForPageLoaded();
 		
 		WebElement selectNumberOfEntries = driver.findElement(By.xpath("//form[1]/div[2]/div[1]/div[4]/label[1]/select"));
@@ -456,9 +485,9 @@ public void TM_GDLP_TC02_Web_create_policy() {
 		js.executeScript("window.scrollBy(0,-500)", "");
 
 		driver.findElement(By.xpath("//*[@id=\"discover_targets.learn_more.message\"]")).click();
-		WebElement startScanbtn = createWebElementBy(btn_startScan);
-		Assert.assertTrue(startScanbtn.isEnabled());
-		startScanbtn.click();
+		WebElement StartScan_Btn = createWebElementBy(btn_startScan);
+		Assert.assertTrue(StartScan_Btn.isEnabled());
+		StartScan_Btn.click();
 		wait(2);
 		
 		//After the scan is started the elements are changed therefore created a loop to update and use for validating the status of scan
@@ -481,24 +510,23 @@ public void TM_GDLP_TC02_Web_create_policy() {
 					System.out.println(status);
 					break;
 				}else {
-					System.out.println("The status is not changed or the start scan is not successfully executed");
-					throw new AssertionError();
+					Assert.fail("The status is not changed or the start scan is not successfully executed");
 				}
 			}
 			j++;
 		}
 	}
 	
-	public void TM_GDLP_TC06_Web_view_incidents() {
+	public void TM_GDLP_S06_Web_view_incidents() {
 		
-		WebElement incidentsbtn = createWebElementBy(btn_incidents);
-		mouseHover(incidentsbtn);
-		WebElement allReportsbtn = createWebElementBy(btn_allReports);
-		mouseHover(allReportsbtn);
-		allReportsbtn.click();
+		WebElement Incidents_Btn = createWebElementBy(btn_incidents);
+		mouseHover(Incidents_Btn);
+		WebElement AllReports_Btn = createWebElementBy(btn_allReports);
+		mouseHover(AllReports_Btn);
+		AllReports_Btn.click();
 		waitForPageLoaded();
-		WebElement allIncidentsbtn = createWebElementBy(btn_allIncidents);
-		allIncidentsbtn.click();
+		WebElement AllIncidents_Btn = createWebElementBy(btn_allIncidents);
+		AllIncidents_Btn.click();
 		String verify = driver.findElement(By.partialLinkText("Incidents - All")).getText();
 		Assert.assertEquals(verify, "Incidents - All");
 	}

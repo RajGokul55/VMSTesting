@@ -40,7 +40,7 @@ public class Metasploit extends CommonMethods{
 	}
 
 	@Test(priority=0, enabled=true)
-	public void Metasploit_TC01_Web_Verify_Metasploit_Web_console() {
+	public void Metasploit_S01_Web_Verify_Metasploit_Web_console() {
 		TM_Metasploit_01_Web_VerifyWebConsole();
 		
 	}
@@ -73,8 +73,22 @@ public class Metasploit extends CommonMethods{
 
 	void TM_Metasploit_01_Web_VerifyWebConsole() {
 
-		TM_Metasploit_ApllicationCommonFlow();
+		boolean Username_Field = isElementExit(field_Username);
+		System.out.println("Username field is displayed = " +Username_Field);
+		
+		boolean Password_Field = isElementExit(field_Password);
+		System.out.println("Password field is displayed = " +Password_Field);
+		
+		boolean Login_btn = isElementExit(login_button);
+		System.out.println("loginBtn field is displayed = " +Login_btn);
+				
+	
 	}
+
+	
+
+	/*****************************Application Interaction Methods *******************/
+	// if any code re-usability is there specific to this Application then that should be maintained here
 
 	public  boolean isElementExit(By locator) {
 		/* 
@@ -96,21 +110,5 @@ public class Metasploit extends CommonMethods{
 		{
 			return false;
 		}
-	}
-
-	/*****************************Application Interaction Methods *******************/
-	// if any code re-usability is there specific to this Application then that should be maintained here
-
-	void TM_Metasploit_ApllicationCommonFlow() {
-
-		boolean Username_Field = isElementExit(field_Username);
-		System.out.println("Username field is displayed = " +Username_Field);
-		
-		boolean Password_Field = isElementExit(field_Password);
-		System.out.println("Password field is displayed = " +Password_Field);
-		
-		boolean Login_btn = isElementExit(login_button);
-		System.out.println("loginBtn field is displayed = " +Login_btn);
-				
-	}
+	}	
 }

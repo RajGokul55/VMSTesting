@@ -1,16 +1,23 @@
 package com.qa.demo.base;
 
+import java.io.File;
+import java.io.IOException;
 import java.security.Key;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -23,6 +30,9 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.IClass;
+import org.testng.ITestResult;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -50,7 +60,7 @@ public class CommonMethods {
 		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
-	
+
 
 
 
@@ -209,7 +219,7 @@ public class CommonMethods {
 	}
 
 	/*******************************************************************************************/
-	
+
 	public void scrollBehaviorByPixels(int X_Pixels, int Y_Pixels) {
 		/* 
 		 * Author: Balajee Palle
@@ -233,7 +243,7 @@ public class CommonMethods {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("arguments[0].scrollIntoView(true);", element );
 	}
-	
+
 	public void scrollToBottomOfHTML() {
 		/* 
 		 * Author: Balajee Palle
@@ -245,7 +255,7 @@ public class CommonMethods {
 		JavascriptExecutor js = (JavascriptExecutor)driver;
 		js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 	}
-	
+
 	public void scrollWithinWebElement(String CssSelector, int Pixels) {
 		/* 
 		 * Author: Balajee Palle
@@ -259,7 +269,7 @@ public class CommonMethods {
 		//eventFiringWebDriver.executeScript("document.querySelector("+"'"+ CssSelector +"'"+").scrollTop="+Pixels+"");
 		eventFiringWebDriver.executeScript(syntx);
 	}
-	
+
 	public void selectDropdownValue(WebElement element, String value) {
 		/* 
 		 * Author: Balajee Palle
@@ -273,7 +283,7 @@ public class CommonMethods {
 		Select select = new Select(element);
 		select.selectByVisibleText(value);
 	}
-	
+
 	public void selectDropdownValueByWebElements(WebElement dropdown, WebElement value) {
 		/* 
 		 * Author: Balajee Palle
@@ -287,9 +297,9 @@ public class CommonMethods {
 		//JavascriptExecutor js = (JavascriptExecutor) driver;
 		//js.executeScript("arguments[0].click();", value);
 		value.click();
-		
+
 	}
-	
+
 	public void switchToFrameByLocator(WebElement element) {
 		/* 
 		 * Author: Abhishek Bhatt
@@ -300,7 +310,7 @@ public class CommonMethods {
 		 */
 		driver.switchTo().frame(element);
 	}
-		
+
 	public boolean IsDisplayed_IsEnabled(WebElement element){
 		/* 
 		 * Author: Abhishek Bhatt
@@ -310,7 +320,7 @@ public class CommonMethods {
 		 * 
 		 */
 		return element.isDisplayed() && element.isEnabled();
-		
+
 	}
 
 
@@ -335,7 +345,7 @@ public class CommonMethods {
 		 */
 		return driver.getCurrentUrl();
 	}	
-	
+
 	public void clickLink(String link) {		
 		/* 
 		 * Author: Sakshi Gupta
@@ -345,6 +355,47 @@ public class CommonMethods {
 		 * 
 		 */
 		driver.findElement(By.linkText(link)).click();
+	}
+
+	public static void takeScreenshotAtEndOfTest() throws IOException {
+		/* 
+		 * Author: Pravin Sonawane
+		 * Description: To Take screenshot of page
+		 * Parameter: 
+		 * Date: April 2020 
+		 * 
+		 */
+		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(scrFile, new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png"));	
+	}
+	
+	public void selectRadio(List<WebElement> locator,String exvalue) {
+		/* 
+		 * Author: Pravin Sonawane
+		 * Description: To Select radio button.
+		 * Parameter: Locator for radio and value for selection
+		 * Date: April 2020 
+		 * 
+		 */
+		for(WebElement temp : locator) {
+			if(temp.getAttribute("value").equalsIgnoreCase(exvalue)) {
+				temp.click();
+			}
+		}
+	}
+	
+	public static void windowhandle() {
+		/* 
+		 * Author: Pravin Sonawane
+		 * Description: To switch to child window
+		 * Parameter: Locator for radio and value for selection
+		 * Date: April 2020 
+		 */
+		Set<String> allwindow = driver.getWindowHandles();
+		Iterator<String> it = allwindow.iterator();
+		String ParentWindow = it.next();
+		String ChildWindow = it.next();
+		driver.switchTo().window(ChildWindow);
 	}
 }
 

@@ -2,9 +2,12 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
+import com.qa.demo.util.Retry;
+
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterTest;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -18,7 +21,7 @@ public class Gvault extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://sb-gilead-it.veevavault.com";
-	final String Username ="bpalle@gvault.gilead.com";
+	final String Username ="psonawane@gvault.gilead.com";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -38,12 +41,12 @@ public class Gvault extends CommonMethods{
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=true)
-	public void Gvault_01_Web_ValidateDescribanciesCreation() {
+	@Test(priority=0, enabled=true, retryAnalyzer = Retry.class)
+	public void Gvault_01_Web_ValidateDescribanciesCreation() throws IOException {
 		TM_Gvault_03_Web_ValidateDescribanciesCreation();
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=false,retryAnalyzer = Retry.class)
 	public void Gvault_04_Web_ValidateDescribanciesEdit() {
 		TM_Gvault_04_Web_ValidateDescribanciesEdit();
 	}
@@ -67,56 +70,42 @@ public class Gvault extends CommonMethods{
 
 	By ipt_Username= By.name("j_username");
 	By btn_Continue = By.name("continue");
-	By menu_Library= By.name("libraries__c");
-	By menu_Documents = By.xpath("//*[@class='children' and contains(text(),'Documents')]"); 
+	By menu_Library= By.name("libraries__c"); 
 	By menu_ViewAll = By.xpath("//*[@class='viewAllCategories vv_view_all']");
 	By menu_MediaFills = By.xpath("//*[@class='categoryTerm docClass vv_doc_class' and contains(text(), 'Media Fills')]");
 	By lnk_Doc = By.cssSelector("div[class^='vm_container vv_vm']");
-	By iframe_Doc = By.cssSelector("div[class^='vm_container vv_vm']>iframe");
 
-	/*****************************Test Case Methods *******************/
+	/*****************************Test Case Methods 
+	 * @throws IOException *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
 
-	void TM_Gvault_03_Web_ValidateDescribanciesCreation() {
+	void TM_Gvault_03_Web_ValidateDescribanciesCreation() throws IOException {
 
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
 		WebElement Continue_Btn = createWebElementBy(btn_Continue);
 		Continue_Btn.click();
-		
-		//wait(2);
-		//driver.navigate().refresh();
-		//wait(2);
-		
+
 		WebElement Library_menu = createWebElementBy(menu_Library);
 		Library_menu.click();
-		
+
 		wait(2);
 
 		WebElement Documents_menu = driver.findElement(lnk_Doc);
-		mouseHover(Documents_menu);
-		
+		mouseHover(Documents_menu);	
 		Documents_menu.click();
-		//WebElement Doc_iframe = driver.findElement(lnk_Doc); // //createWebElementBy(menu_Documents);
-		
-		wait(2);
-		
-		//driver.switchTo().frame(Doc_iframe);
-		
-		//Documents_menu.click();
 
-		
-		  WebElement ViewAll_menu = createWebElementBy(menu_ViewAll);
-		  ViewAll_menu.click();
-		  
-		
-		  WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
-		  //scrollToWebElement(MediaFills_menu); 
-		  MediaFills_menu.click();
-		 
-		 
+		wait(2);
+
+		WebElement ViewAll_menu = createWebElementBy(menu_ViewAll);
+		ViewAll_menu.click();
+
+		WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
+		MediaFills_menu.click();
+		takeScreenshotAtEndOfTest();
+
 	}
 
 	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {

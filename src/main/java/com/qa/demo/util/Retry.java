@@ -5,16 +5,18 @@ import java.io.IOException;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
+import com.qa.demo.base.CommonMethods;
+
 public class Retry implements IRetryAnalyzer{
 
     private int count = 0;
-    private static int maxTry = 1;
+    private static int maxTry = 2;
     
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {                      //Check if test not succeed
         	
         	try {
-				TestUtil.takeScreenshotAtEndOfTest(iTestResult.getName(), iTestResult.getTestClass());        //Take screenshot on failure
+				CommonMethods.takeScreenshotAtEndOfTest();        //Take screenshot on failure
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

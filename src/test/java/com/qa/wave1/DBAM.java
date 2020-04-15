@@ -18,6 +18,7 @@ import org.testng.Assert;
 
 public class DBAM extends CommonMethods{
 
+	private static final String WebElementDrop = null;
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= " https://sjdbamappdevg03.na.gilead.com:8443/#";
@@ -54,7 +55,7 @@ public class DBAM extends CommonMethods{
 
 		
 
-	@AfterTest(enabled=true)
+	@AfterTest(enabled=false)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -83,6 +84,11 @@ public class DBAM extends CommonMethods{
 	By btn_datasourceok = By.xpath("(//span[contains(text(),'OK')])[3]");
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
+	
+	
+	By drp_Dropdown = By.cssSelector("td div[class='dijitInline'] tbody[role='presentation']:nth-child(1)");
+	
+	//div[class='dijitPopup dijitMenuPopup'] tr:nth-child(3)
 
 	/*****************************Test Case Methods *******************/
 	@SuppressWarnings("null")
@@ -99,6 +105,8 @@ public class DBAM extends CommonMethods{
 
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
+		
+		waitForPageLoaded();
 
 		/*By msg_Warning = null;
 		WebElement Error_Msg = createWebElementBy(msg_Warning);
@@ -128,13 +136,13 @@ public class DBAM extends CommonMethods{
 		
 		scrollBehaviorByPixels(0, -506);
 		
-		wait(2);
+		//wait(2);
 		
 		//Help_Img.click();
 		
-		waitForPageLoaded();
+		//waitForPageLoaded();
 		
-		scrollToBottomOfHTML();
+		//scrollToBottomOfHTML();
 
 	
 		
@@ -146,38 +154,65 @@ public class DBAM extends CommonMethods{
 		runtimeparameters_btn.click();
 		
 		
-		@SuppressWarnings("unused")
-		WebElement Dropdownreports_Slt = createWebElementBy(slt_Dropdownreports);
-		Dropdownreports_Slt.click();
-	
-		@SuppressWarnings("unused")
-		WebElement dropdowndatasource_slt = createWebElementBy(slt_dropdowndatasource);
+		wait(2);
 		
-		WebElement Dropdown_Slt = null;
-		selectDropdownValue(Dropdown_Slt, "sjdbamappdevg01.na.gilead.com");
-		
-		driver.navigate().refresh();
-		
-		wait(4);
-		
-		@SuppressWarnings("unused")
-		WebElement dropdowndatasource_slt1 = createWebElementBy(slt_dropdowndatasource);
-		
-		selectDropdownValue(Dropdown_Slt, "sjdbamappdevg02.na.gilead.com");
+		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
+		SelectDropdownValueByIndex(Dropdown_Drp, 3);
 		
 		
-	
 		
 		
-		WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
-		Reviewonly_Btn.click();
 		
-		WebElement Signout_Btn = createWebElementBy(btn_Signout);
-		Signout_Btn.click();
+		/*
+		 * @SuppressWarnings("unused") WebElement Dropdownreports_Slt =
+		 * createWebElementBy(slt_Dropdownreports); Dropdownreports_Slt.click();
+		 * 
+		 * @SuppressWarnings("unused") WebElement dropdowndatasource_slt =
+		 * createWebElementBy(slt_dropdowndatasource);
+		 * 
+		 * WebElement Dropdown_Slt = null; selectDropdownValue(Dropdown_Slt,
+		 * "sjdbamappdevg01.na.gilead.com");
+		 * 
+		 * driver.navigate().refresh();
+		 * 
+		 * wait(4);
+		 * 
+		 * @SuppressWarnings("unused") WebElement dropdowndatasource_slt1 =
+		 * createWebElementBy(slt_dropdowndatasource);
+		 * 
+		 * selectDropdownValue(Dropdown_Slt, "sjdbamappdevg02.na.gilead.com");
+		 * 
+		 * 
+		 * 
+		 * 
+		 * 
+		 * WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
+		 * Reviewonly_Btn.click();
+		 * 
+		 * WebElement Signout_Btn = createWebElementBy(btn_Signout);
+		 * Signout_Btn.click();
+		 */
 		
 	}
 	
 
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
+	
+	void SelectDropdownValueByIndex(WebElement element, int i) {
+		
+		int position = i+1;		
+		
+		String Csspath = "div[class='dijitPopup dijitMenuPopup'] tr:nth-child("+position+")";
+		element.click();
+		wait(2);
+		
+		WebElement DropValue = driver.findElement(By.cssSelector(Csspath));
+		DropValue.click();
+		wait(2);
+		
+	}
+	
+	
+	
 }

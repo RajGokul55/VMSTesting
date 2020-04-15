@@ -3,7 +3,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 
@@ -30,24 +32,24 @@ public class GEAR_Test extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	@BeforeTest
+	@BeforeMethod
 	public void beforeTest() {
 		launchBrowser(Browser, Url_GileadInterface);
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 0, enabled = true)
 	public void Gear_TC03_Web_GileadInterface_Tab_Availability() {
 		TM_Gear_TC03_Web_GileadInterface_Tab_Availability();
 	
 	}
 	
-	@Test(priority = 0, enabled= true)
+	@Test(priority = 1, enabled= true)
 	public void Gear_TC04_Web_GileadInterface_Navigation_Verification() {
 		
 		TM_Gear_TC04_Web_GileadInterface_Navigation_Verification();
 	}
 
-	@AfterTest
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -80,6 +82,7 @@ public class GEAR_Test extends CommonMethods {
 		  List<WebElement> Items_Menu = createWebElementsBy(lnk_tabs);
 		  for(int i=0;i<Items_Menu.size(); i++) {
 		  System.out.println("Menu item "+Items_Menu.get(i).getText()+" is displayed"); 
+		  Assert.assertTrue(IsDisplayed_IsEnabled(Items_Menu.get(i)));
 		  
 		  }
 

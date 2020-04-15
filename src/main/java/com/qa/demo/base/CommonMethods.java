@@ -313,7 +313,38 @@ public class CommonMethods {
 	}
 
 
+	public String getTitle() {
+		/* 
+		 * Author: Sakshi Gupta
+		 * Description: To Get the Title of the page
+		 * Parameter: 
+		 * Date: April 2020 
+		 * 
+		 */
+		return driver.getTitle();
+	}
 
+	public String getURL() {
+		/* 
+		 * Author: Sakshi Gupta
+		 * Description: To Get the Current URL of the page
+		 * Parameter: 
+		 * Date: April 2020 
+		 * 
+		 */
+		return driver.getCurrentUrl();
+	}	
+	
+	public void clickLink(String link) {		
+		/* 
+		 * Author: Sakshi Gupta
+		 * Description: To click on the link on the page
+		 * Parameter: Link which needs to be clicked on
+		 * Date: April 2020 
+		 * 
+		 */
+		driver.findElement(By.linkText(link)).click();
+	}
 }
 
 

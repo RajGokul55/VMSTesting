@@ -3,7 +3,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -34,7 +36,7 @@ public class Metasploit extends CommonMethods{
 	 */
 
 	
-	@BeforeTest
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
@@ -46,7 +48,7 @@ public class Metasploit extends CommonMethods{
 	}
 
 	
-	@AfterTest
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -73,16 +75,16 @@ public class Metasploit extends CommonMethods{
 
 	void TM_Metasploit_01_Web_VerifyWebConsole() {
 
-		boolean Username_Field = isElementExit(field_Username);
-		System.out.println("Username field is displayed = " +Username_Field);
 		
-		boolean Password_Field = isElementExit(field_Password);
-		System.out.println("Password field is displayed = " +Password_Field);
+		WebElement UsernameFld = createWebElementBy(field_Username);
+		IsDisplayed_IsEnabled(UsernameFld);
 		
-		boolean Login_btn = isElementExit(login_button);
-		System.out.println("loginBtn field is displayed = " +Login_btn);
-				
-	
+		WebElement PasswordFld = createWebElementBy(field_Password);
+		IsDisplayed_IsEnabled(PasswordFld);
+		
+		WebElement LoginBtn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(LoginBtn);
+			
 	}
 
 	
@@ -90,25 +92,5 @@ public class Metasploit extends CommonMethods{
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
 
-	public  boolean isElementExit(By locator) {
-		/* 
-		 * Author: Arun Raj
-		 * Description: To check web Element is displayed by passing locator.
-		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: April 2020 
-		 * 
-		 */
-		
-		try
-		{
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		boolean element =  driver.findElement(locator).isDisplayed();
-		System.out.println(element);
-		return true;
-	}
-		catch (NoSuchElementException ex)
-		{
-			return false;
-		}
-	}	
+	
 }

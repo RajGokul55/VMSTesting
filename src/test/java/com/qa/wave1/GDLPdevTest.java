@@ -23,7 +23,7 @@ public class GDLPdevTest extends CommonMethods {
 	private String DecrptPassword;
 	
 	/************Fields for which inputs are required to run Test case 2************/
-	String name = "VMS Test policy"; //give new name every time for creating a new policy
+	String name = "VMS Test policy new"; //give new name every time for creating a new policy
 	String ruleName = "VMS rule";
 	String descriptionText = "Testing for creating new policy";
 	String policyGroup = "VMS Testing Group";

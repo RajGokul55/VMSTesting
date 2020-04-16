@@ -56,17 +56,17 @@ public class SDEA extends CommonMethods {
 		TM_SDEA_S02_Web_Sort_Verification();
 	}
 
-	@Test(priority=2, enabled=true)
+	@Test(priority=2, enabled=false)
 	public void SDEA_S03_Web_Filter_Verification() {
 		TM_SDEA_S03_Web_Filter_Verification();
 	}
 
-	@Test(priority=3, enabled=true)
+	@Test(priority=3, enabled=false)
 	public void SDEA_S04_Web_Filter_Verification() {
 		TM_SDEA_S04_Web_Filter_Verification();
 	}
 
-	@Test(priority=4, enabled=true)
+	@Test(priority=4, enabled=false)
 	public void SDEA_S05_Web_Filter_Verification() {
 		TM_SDEA_S05_Web_Filter_Verification();
 	}

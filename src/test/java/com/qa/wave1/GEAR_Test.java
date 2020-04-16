@@ -18,6 +18,7 @@ public class GEAR_Test extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
 	final String Url_GileadInterface = "https://fcmegapptstn01.na.gilead.com/published";
+	final String Url_HopexInterface= "https://fcmegapptstn01.na.gilead.com/hopex/";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -32,20 +33,35 @@ public class GEAR_Test extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	@BeforeMethod
-	public void beforeTest() {
-		launchBrowser(Browser, Url_GileadInterface);
+	/*
+	 * @BeforeMethod public void beforeTest() {
+	 * 
+	 * }
+	 */
+	
+	@Test(priority = 0, enabled = true)
+	public void Gear_S01_Web_HopexInterface_Module_Verification() {
+		launchBrowser(Browser, Url_HopexInterface);
+		TM_Gear_S01_Web_HopexInterface_Module_Verification();
+	
+	}
+	@Test(priority = 1, enabled = true)
+	public void Gear_S02_Web_HopexInterface_LinksUnderHomeTab_Verification() {
+		launchBrowser(Browser, Url_HopexInterface);
+		TM_Gear_S02_Web_HopexInterface_LinksUnderHomeTab_Verification();
+	
 	}
 
-	@Test(priority = 0, enabled = true)
-	public void Gear_TC03_Web_GileadInterface_Tab_Availability() {
+	@Test(priority = 2, enabled = true)
+	public void Gear_S03_Web_GileadInterface_Tab_Availability() {
+		launchBrowser(Browser, Url_GileadInterface);
 		TM_Gear_TC03_Web_GileadInterface_Tab_Availability();
 	
 	}
 	
-	@Test(priority = 1, enabled= true)
-	public void Gear_TC04_Web_GileadInterface_Navigation_Verification() {
-		
+	@Test(priority = 3, enabled= true)
+	public void Gear_S04_Web_GileadInterface_Navigation_Verification() {
+		launchBrowser(Browser, Url_GileadInterface);
 		TM_Gear_TC04_Web_GileadInterface_Navigation_Verification();
 	}
 
@@ -70,10 +86,42 @@ public class GEAR_Test extends CommonMethods {
 	By txt_systemList= By.xpath("//span[text()='Systems List']");
 	By msg_heading = By.cssSelector(".bg h1");
 	By lnk_gear = By.linkText("GEAR");
-
+	
+	By id_submitButton= By.cssSelector("#focusedsubmit");
+	By lnk_tiles= By.xpath("//div[contains(text(),'All')]");
+	By lnk_hometabs= By.xpath("//span[contains(@id,'header_hd-textEl')]");
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
+	
+	
+	
+		void TM_Gear_S01_Web_HopexInterface_Module_Verification() {
+		WebElement submitButton= createWebElementBy(id_submitButton);
+		submitButton.click();
+		waitForPageLoaded();
+		
+		
+		List<WebElement> Items_Menu = createWebElementsBy(lnk_tiles);
+		for(int i=0; i<Items_Menu.size(); i++) {
+			scrollToWebElement(Items_Menu.get(i));
+			System.out.println("Menu item "+Items_Menu.get(i).getText()+" is displayed" );
+			IsDisplayed_IsEnabled(Items_Menu.get(i));
+			
+		}
+
+	}
+	void TM_Gear_S02_Web_HopexInterface_LinksUnderHomeTab_Verification() {
+		WebElement submitButton= createWebElementBy(id_submitButton);
+		submitButton.click();
+		waitForPageLoaded();
+		List<WebElement> Home_tabs = createWebElementsBy(lnk_hometabs);
+		for(int i=0; i<8; i++) {
+			System.out.println("Menu item "+Home_tabs.get(i).getText()+" is displayed" );
+			IsDisplayed_IsEnabled(Home_tabs.get(i));
+		
+	}
+	}
 
 	void TM_Gear_TC03_Web_GileadInterface_Tab_Availability() {
 		WebElement frame = createWebElementBy(frm_frame);

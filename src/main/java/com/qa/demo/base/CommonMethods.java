@@ -346,17 +346,6 @@ public class CommonMethods {
 		return driver.getCurrentUrl();
 	}	
 
-	public void clickLink(String link) {		
-		/* 
-		 * Author: Sakshi Gupta
-		 * Description: To click on the link on the page
-		 * Parameter: Link which needs to be clicked on
-		 * Date: April 2020 
-		 * 
-		 */
-		driver.findElement(By.linkText(link)).click();
-	}
-
 	public static void takeScreenshotAtEndOfTest() throws IOException {
 		/* 
 		 * Author: Pravin Sonawane

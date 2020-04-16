@@ -62,14 +62,14 @@ public class GSECTest extends CommonMethods{
 	  
 	
 	  @Test(priority=2, enabled=true) 
-	  public void GSEC_TC04_Check_Computers_Tab_functionalities() { 
-		  TM_GSEC_TC04_Check_Computers_Tab_functionalities();
+	  public void GSEC_TC03_Check_Computers_Tab_functionalities() { 
+		  TM_GSEC_TC03_Check_Computers_Tab_functionalities();
 		  
 	  }
 	 
 	  @Test(priority=3, enabled=true)
-		public void GSEC_TC05_user_Login_using_wrong_credentials() {
-		  TM_GSEC_TC05_user_Login_using_wrong_credentials();
+		public void GSEC_TC04_user_Login_using_wrong_credentials() {
+		  TM_GSEC_TC04_user_Login_using_wrong_credentials();
 		}
 	
 	@AfterMethod(enabled=true)
@@ -193,7 +193,7 @@ public class GSECTest extends CommonMethods{
 
 	}
 
-	public void TM_GSEC_TC04_Check_Computers_Tab_functionalities() {
+	public void TM_GSEC_TC03_Check_Computers_Tab_functionalities() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -234,7 +234,7 @@ public class GSECTest extends CommonMethods{
 
 	}
 
-	public void TM_GSEC_TC05_user_Login_using_wrong_credentials() {
+	public void TM_GSEC_TC04_user_Login_using_wrong_credentials() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 

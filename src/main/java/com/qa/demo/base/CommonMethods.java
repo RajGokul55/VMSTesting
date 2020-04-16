@@ -386,6 +386,26 @@ public class CommonMethods {
 		String ChildWindow = it.next();
 		driver.switchTo().window(ChildWindow);
 	}
+	
+	public boolean isFileDownloaded(String downloadPath, String fileName) {
+		/* 
+		 * Author: Gokul Raj
+		 * Description: To validate the file is downloaded or not 
+		 * Parameter: download path and the expected download file name
+		 * Usage : add a assert.assertrue statement and call this method
+		 * Date: 16th April 2020 
+		 */
+		boolean flag = false;
+		File dir = new File(downloadPath);
+		File[] dir_contents = dir.listFiles();
+
+		for (int i = 0; i < dir_contents.length; i++) {
+			if (dir_contents[i].getName().equals(fileName))
+				return flag=true;
+		}
+
+		return flag;
+	}
 }
 
 

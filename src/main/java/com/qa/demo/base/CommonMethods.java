@@ -397,7 +397,6 @@ public class CommonMethods {
 		String ChildWindow = it.next();
 		driver.switchTo().window(ChildWindow);
 	}
-	
 }
 
 

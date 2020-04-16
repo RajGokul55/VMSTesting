@@ -4,24 +4,23 @@ import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import com.qa.demo.util.Retry;
 
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
-
-
 
 public class Gvault extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://sb-gilead-it.veevavault.com";
-	final String Username ="psonawane@gvault.gilead.com";
+	final String Url= "https://sb-gilead-qualitydocs.veevavault.com";
+	//final String Url_Dev= "https://sb-gilead-qualitydocs.veevavault.com";
+	//final String Url_Test= "https://sb-gilead-it.veevavault.com"
+	//final String Url_Val= "https://val-gilead.veevavault.com"
+	final String Username ="psonawane@sb-gilead.com";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -36,24 +35,24 @@ public class Gvault extends CommonMethods{
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeTest
-	public void beforeTest() {
+	@BeforeMethod
+	public void beforeMethod() {
 		launchBrowser(Browser, Url);
 	}
 
 	@Test(priority=0, enabled=true, retryAnalyzer = Retry.class)
-	public void Gvault_01_Web_ValidateDescribanciesCreation() throws IOException {
+	public void Gvault_01_Web_ValidateDescribanciesCreation(){
 		TM_Gvault_03_Web_ValidateDescribanciesCreation();
 	}
 
-	@Test(priority=1, enabled=false,retryAnalyzer = Retry.class)
-	public void Gvault_04_Web_ValidateDescribanciesEdit() {
+	@Test(priority=1, enabled=true, retryAnalyzer = Retry.class)
+	public void Gvault_04_Web_ValidateDescribanciesEdit(){
 		TM_Gvault_04_Web_ValidateDescribanciesEdit();
 	}
 
-	@AfterTest
-	public void afterTest() {
-		//driver.quit();
+	@AfterMethod
+	public void afterMethod() {
+		driver.quit();
 	}
 
 	/***************************** Locators *******************/
@@ -74,15 +73,33 @@ public class Gvault extends CommonMethods{
 	By menu_ViewAll = By.xpath("//*[@class='viewAllCategories vv_view_all']");
 	By menu_MediaFills = By.xpath("//*[@class='categoryTerm docClass vv_doc_class' and contains(text(), 'Media Fills')]");
 	By lnk_Doc = By.cssSelector("div[class^='vm_container vv_vm']");
+	By menu_Action = By.cssSelector(".doc_info_more_actions_menu.tourTarget.vv_button.vv_button_dropdown.tourTarget.DOCINFO_TOUR.DOCINFO_WKFLOWHIST_V7");
+	By menu_ManageD = By.cssSelector(".menuTextTarget.vv_menu_text");
+	
+	
 
 	/*****************************Test Case Methods 
 	 * @throws IOException *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
 
-	void TM_Gvault_03_Web_ValidateDescribanciesCreation() throws IOException {
+	void TM_Gvault_03_Web_ValidateDescribanciesCreation(){
 
-		WebElement Username_Ipt = createWebElementBy(ipt_Username);
+		Gvault_CommonFlow();
+	}
+
+	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {
+
+		Gvault_CommonFlow();
+	}
+
+
+	/*****************************Application Interaction Methods 
+	 * @throws IOException *******************/
+	// if any code re-usability is there specific to this Application then that should be maintained here
+
+    void Gvault_CommonFlow() {
+    	WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
 		WebElement Continue_Btn = createWebElementBy(btn_Continue);
@@ -104,18 +121,6 @@ public class Gvault extends CommonMethods{
 
 		WebElement MediaFills_menu = createWebElementBy(menu_MediaFills);
 		MediaFills_menu.click();
-		takeScreenshotAtEndOfTest();
-
-	}
-
-	void TM_Gvault_04_Web_ValidateDescribanciesEdit() {
-
-		// Can have test cases here itself
-	}
-
-
-	/*****************************Application Interaction Methods *******************/
-	// if any code re-usability is there specific to this Application then that should be maintained here
-
-
+    	
+    }
 }

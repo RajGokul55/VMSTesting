@@ -2,11 +2,7 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-
 import org.testng.annotations.BeforeTest;
-
-import java.io.File;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -26,6 +22,8 @@ public class SDEA extends CommonMethods {
 	final String productText = "V";
 	final String countryText = "Al";
 	final String protocolText= "G";
+	
+	//Make sure that the below files are not present in the downloadPath
 	public String pdfFile = "CTSRPs.pdf";
 	public String excelFile = "CTSRPs.xls";
 
@@ -48,22 +46,22 @@ public class SDEA extends CommonMethods {
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=false)
+	@Test(priority=0, enabled=true)
 	public void SDEA_S01_Web_Sort_Verification() {
 		TM_SDEA_TC01_Web_Sort_Verification();
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void SDEA_S02_Web_Sort_Verification() {
 		TM_SDEA_S02_Web_Sort_Verification();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void SDEA_S03_Web_Filter_Verification() {
 		TM_SDEA_S03_Web_Filter_Verification();
 	}
 
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void SDEA_S04_Web_Filter_Verification() {
 		TM_SDEA_S04_Web_Filter_Verification();
 	}
@@ -75,7 +73,7 @@ public class SDEA extends CommonMethods {
 
 	@AfterTest(enabled=true)
 	public void afterTest() {
-
+		driver.quit();
 	}
 
 	/***************************** Locators *******************/

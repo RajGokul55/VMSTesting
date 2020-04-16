@@ -32,7 +32,7 @@ public class GEAR_Test extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	@BeforeMethod
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url_GileadInterface);
 	}
@@ -45,8 +45,8 @@ public class GEAR_Test extends CommonMethods {
 	
 	@Test(priority = 1, enabled= true)
 	public void Gear_TC04_Web_GileadInterface_Navigation_Verification() {
-		
-		TM_Gear_TC04_Web_GileadInterface_Navigation_Verification();
+	TM_Gear_TC04_Web_GileadInterface_Navigation_Verification();
+	
 	}
 
 	@AfterMethod(enabled=true)
@@ -81,9 +81,7 @@ public class GEAR_Test extends CommonMethods {
 
 		  List<WebElement> Items_Menu = createWebElementsBy(lnk_tabs);
 		  for(int i=0;i<Items_Menu.size(); i++) {
-		  System.out.println("Menu item "+Items_Menu.get(i).getText()+" is displayed"); 
-		  Assert.assertTrue(IsDisplayed_IsEnabled(Items_Menu.get(i)));
-		  
+			  IsDisplayed_IsEnabled(Items_Menu.get(i));	  
 		  }
 
 	}
@@ -102,7 +100,8 @@ public class GEAR_Test extends CommonMethods {
 		Assert.assertEquals(pageHeading.getText(), "Alphabetical list of Systems");
 		
 		WebElement gearLink= createWebElementBy(lnk_gear);
-		Assert.assertTrue(IsDisplayed_IsEnabled(gearLink));
+		
+		IsDisplayed_IsEnabled(gearLink);
 
 	}
 

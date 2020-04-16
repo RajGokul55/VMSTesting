@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 
@@ -20,23 +21,14 @@ public class DBAM extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= " https://sjdbamappdevg03.na.gilead.com:8443/#";
+	final String Url= "https://sjdbamappdevg03.na.gilead.com:8443/#";
 	final String Username ="nnereddula";
 	private String DecrptPassword;
 
 
 	/***************************** Test Cases *******************/
-	/*
-	 * Test case \u2018Test Name\u2019 naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
-	Definitions of terms:     
-\u2022	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
-\u2022	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
-\u2022	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB \u2026]
-\u2022	Title: short title of test case based on context of test case  ie., ValidateCredntails
-  	Test Name Example: Filkart_05_Web_ValidateCredntails.
-
-	 * Test method name must be same as test case appended with TM example: 
-	 */
+	
+  	/*Test Name Example: Filkart_05_Web_ValidateCredntails */
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
 		DecrptPassword = decrypt("ZAzQ3KUtxVu2ss3Wyzp1Ng==");
@@ -52,8 +44,7 @@ public class DBAM extends CommonMethods{
 		TM_DBAM_01_Web_BuildingReports();
 	}
 
-		
-
+	
 	@AfterTest(enabled=true)
 	public void afterTest() {
 		driver.quit();
@@ -79,7 +70,8 @@ public class DBAM extends CommonMethods{
 	By btn_sqlreports = By.xpath("//div[contains(text(),'-SQLActivity')]");
 	By icn_runtimeparameters= By.xpath("//span[contains(@class,'dijitReset dijitInline dijitIcon configureIcon')]");
 	By slt_Dropdownreports = By.xpath("//div[@id='idx_widget_Dialog_0']");
-	By slt_dropdowndatasource = By.xpath("((//div[contains(@class,'dijitReset dijitArrowButtonChar')])[2]");
+	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_14']");
+	By slt_dropdowndatasource = By.xpath("(//span[contains(@class,'dojoxEllipsis')][contains(text(),'sjdbamappdevg01.na.gilead.com')])[5]");
 	By btn_datasourceok = By.xpath("(//span[contains(text(),'OK')])[3]");
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
@@ -100,17 +92,7 @@ public class DBAM extends CommonMethods{
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
 
-		/*By msg_Warning = null;
-		WebElement Error_Msg = createWebElementBy(msg_Warning);
-		Assert.assertEquals(Error_Msg.getText(), "Please enter valid Email ID/Mobile number");*/
-
-
-		/*WebElement Close_Btn = createWebElementBy(btn_Close);
-		Close_Btn.click();*/
 		
-				/*List<WebElement> Items_Menu = createWebElementsBy(btn_reportsmenu);
-		for(int i=0; i<Items_Menu.size(); i++) {
-			System.out.println("Menu item "+Items_Menu.get(i).getText()+" is displayed" );*/
 		
 		/******************building sql reports****************************/
 		WebElement reports_Btn = createWebElementBy(btn_reportsmenu);
@@ -119,22 +101,15 @@ public class DBAM extends CommonMethods{
 		WebElement Realtimereports_Btn = createWebElementBy(btn_realtimereports);
 		Realtimereports_Btn.click();
 
-		
-	
 		waitForPageLoaded();
 		
-		/*WebElement Help_Img = createWebElementBy(img_Help);
-		scrollToWebElement(Help_Img);*/
-		
-		scrollBehaviorByPixels(0, -506);
+		/*scrollBehaviorByPixels(0, -506);
 		
 		wait(2);
 		
-		//Help_Img.click();
-		
 		waitForPageLoaded();
 		
-		scrollToBottomOfHTML();
+		scrollToBottomOfHTML();*/
 
 	
 		
@@ -146,10 +121,16 @@ public class DBAM extends CommonMethods{
 		runtimeparameters_btn.click();
 		
 		
-		@SuppressWarnings("unused")
+		/*@SuppressWarnings("unused")
 		WebElement Dropdownreports_Slt = createWebElementBy(slt_Dropdownreports);
-		Dropdownreports_Slt.click();
-	
+		Dropdownreports_Slt.click();*/
+		
+		@SuppressWarnings("unused")
+		WebElement dropdowndataclick_slt = createWebElementBy(slt_dropdowndataclick);
+		WebElement dropdowndataclick_Slt = null;
+		/*selectDropdownValue(Dropdownclick_Slt, "sjdbamappdevg01.na.gilead.com");*/
+		
+		
 		@SuppressWarnings("unused")
 		WebElement dropdowndatasource_slt = createWebElementBy(slt_dropdowndatasource);
 		
@@ -160,13 +141,12 @@ public class DBAM extends CommonMethods{
 		
 		wait(4);
 		
+		
 		@SuppressWarnings("unused")
 		WebElement dropdowndatasource_slt1 = createWebElementBy(slt_dropdowndatasource);
 		
 		selectDropdownValue(Dropdown_Slt, "sjdbamappdevg02.na.gilead.com");
 		
-		
-	
 		
 		
 		WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);

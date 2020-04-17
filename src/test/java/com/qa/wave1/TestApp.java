@@ -3,7 +3,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.util.List;
@@ -21,6 +23,7 @@ public class TestApp extends CommonMethods{
 	final String Url= "https://www.flipkart.com/";
 	final String Username ="987654321";
 	private String DecrptPassword;
+	String EncryptPassword = "MGhWvRKRMdkF0pu8i/E6pA==";
 
 
 	/***************************** Test Cases *******************/
@@ -35,12 +38,9 @@ public class TestApp extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("MGhWvRKRMdkF0pu8i/E6pA==");
-	}
 
-	@BeforeTest(enabled=true)
+
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
@@ -60,7 +60,7 @@ public class TestApp extends CommonMethods{
 		TM_Amazon_01_Web_Validatedropdown();
 	}
 
-	@AfterTest(enabled=true)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -98,6 +98,13 @@ public class TestApp extends CommonMethods{
 
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
+		
+		try {
+			DecrptPassword = decrypt(EncryptPassword);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);

@@ -4,7 +4,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.util.List;
@@ -31,7 +33,7 @@ public class Inova extends CommonMethods{
 		DecrptPassword = decrypt("Am9YI5J0dBK0RW1AK2utqw==");
 	}
 
-	@BeforeTest(enabled=true)
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
@@ -42,7 +44,7 @@ public class Inova extends CommonMethods{
 	}
 
 
-	@AfterTest(enabled=true)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -164,7 +166,6 @@ public class Inova extends CommonMethods{
 		WebElement Home_btn3 = createWebElementBy(btn_Home);
 		Home_btn3.click();
 		
-		wait(2);
 			
 		WebElement Logout_Btn = createWebElementBy(btn_Logout);
 		Logout_Btn.click();

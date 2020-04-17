@@ -45,10 +45,9 @@ public class DBAM extends CommonMethods{
 		TM_DBAM_01_Web_BuildingReports();
 	}
 
-
 		
 
-	@AfterTest(enabled=false)
+	@AfterTest(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -73,24 +72,26 @@ public class DBAM extends CommonMethods{
 	By btn_sqlreports = By.xpath("//div[contains(text(),'-SQLActivity')]");
 	By icn_runtimeparameters= By.xpath("//span[contains(@class,'dijitReset dijitInline dijitIcon configureIcon')]");
 	By slt_Dropdownreports = By.xpath("//div[@id='idx_widget_Dialog_0']");
-	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_14']");
+	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_16']");
 	By slt_dropdowndatasource = By.xpath("(//span[contains(@class,'dojoxEllipsis')][contains(text(),'sjdbamappdevg01.na.gilead.com')])[5]");
-	By btn_datasourceok = By.xpath("(//span[contains(text(),'OK')])[3]");
+	By btn_datasourceok = By.xpath("//span[contains(text(),'OK')][1]");
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
 	
 	
 	By drp_Dropdown = By.cssSelector("td div[class='dijitInline'] tbody[role='presentation']:nth-child(1)");
-	
+	//CssSelector = span[@class='idxDialogActionBarEnd']>span:nth-child(1)
 	//div[class='dijitPopup dijitMenuPopup'] tr:nth-child(3)
 
 	/*****************************Test Case Methods *******************/
 	@SuppressWarnings("null")
 	//For all WebElements may append type Example: Submit_Btn
 
-	void TM_DBAM_01_Web_BuildingReports() {
+	
 	
 /*******************Login page****************/
+	
+	void TM_DBAM_01_Web_BuildingReports() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -113,25 +114,7 @@ public class DBAM extends CommonMethods{
 
 		waitForPageLoaded();
 		
-		/*scrollBehaviorByPixels(0, -506);
-		
-		//wait(2);
-		
-<<<<<<< HEAD
-		waitForPageLoaded();
-=======
-		//Help_Img.click();
-		
-		//waitForPageLoaded();
->>>>>>> branch 'master' of \\SJHPALAPPTSTN01\Git_Server\SeleniumAutomationV0.1.git
-		
-<<<<<<< HEAD
-		scrollToBottomOfHTML();*/
-
-		//scrollToBottomOfHTML();
-
-	
-		
+				
 		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
 		sqlreports_btn.click();
 				
@@ -139,69 +122,36 @@ public class DBAM extends CommonMethods{
 		WebElement runtimeparameters_btn = createWebElementBy(icn_runtimeparameters);
 		runtimeparameters_btn.click();
 		
-		
-
-		/*@SuppressWarnings("unused")
-		WebElement Dropdownreports_Slt = createWebElementBy(slt_Dropdownreports);
-		Dropdownreports_Slt.click();*/
-		
-		@SuppressWarnings("unused")
-		WebElement dropdowndataclick_slt = createWebElementBy(slt_dropdowndataclick);
-		WebElement dropdowndataclick_Slt = null;
-		/*selectDropdownValue(Dropdownclick_Slt, "sjdbamappdevg01.na.gilead.com");*/
-		
-		
-		@SuppressWarnings("unused")
-		WebElement dropdowndatasource_slt = createWebElementBy(slt_dropdowndatasource);
-
-		wait(2);
-
-		WebElement Dropdown_Slt = null;
-		selectDropdownValue(Dropdown_Slt, "sjdbamappdevg01.na.gilead.com");
-		
-		driver.navigate().refresh();
-		
-		wait(4);
-		
-		
-		@SuppressWarnings("unused")
-		WebElement dropdowndatasource_slt1 = createWebElementBy(slt_dropdowndatasource);
-		
-		selectDropdownValue(Dropdown_Slt, "sjdbamappdevg02.na.gilead.com");
-
 		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
-		SelectDropdownValueByIndex(Dropdown_Drp, 3);
+		SelectDropdownValueByIndex(Dropdown_Drp, 2);
+		 
+		
+		//driver.findElement(By.xpath("//span[@id='dijit_form_Button_17_label']")).click();
+		
+		/*WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
+		datasourceok_btn.click();
+		wait(2);*/
+		
+		runtimeparameters_btn.click();
+		
+
+		
+		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
+		SelectDropdownValueByIndex(Dropdown_Drp1, 3);
 		
 		
-		/*
-		 * @SuppressWarnings("unused") WebElement Dropdownreports_Slt =
-		 * createWebElementBy(slt_Dropdownreports); Dropdownreports_Slt.click();
-		 * 
-		 * @SuppressWarnings("unused") WebElement dropdowndatasource_slt =
-		 * createWebElementBy(slt_dropdowndatasource);
-		 * 
-		 * WebElement Dropdown_Slt = null; selectDropdownValue(Dropdown_Slt,
-		 * "sjdbamappdevg01.na.gilead.com");
-		 * 
-		 * driver.navigate().refresh();
-		 * 
-		 * wait(4);
-		 * 
-		 * @SuppressWarnings("unused") WebElement dropdowndatasource_slt1 =
-		 * createWebElementBy(slt_dropdowndatasource);
-		 * 
-		 * selectDropdownValue(Dropdown_Slt, "sjdbamappdevg02.na.gilead.com");
-		 * 
-		 * 
-		 * 
-		 * 
-		 * 
-		 * WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
-		 * Reviewonly_Btn.click();
-		 * 
-		 * WebElement Signout_Btn = createWebElementBy(btn_Signout);
-		 * Signout_Btn.click();
-		 */
+		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
+		datasourceok_btn1.click();
+		
+		
+		 WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
+		 Reviewonly_Btn.click();
+		  
+		  WebElement Signout_Btn = createWebElementBy(btn_Signout);
+		 Signout_Btn.click();
+		 
+		 
+		
 		
 	}
 	

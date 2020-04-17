@@ -25,17 +25,7 @@ public class Inova extends CommonMethods{
 
 
 	/***************************** Test Cases *******************/
-	/*
-	 * Test case \u2018Test Name\u2019 naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
-	Definitions of terms:     
-\u2022	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
-\u2022	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
-\u2022	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB \u2026]
-\u2022	Title: short title of test case based on context of test case  ie., ValidateCredntails
-  	Test Name Example: Filkart_05_Web_ValidateCredntails.
-
-	 * Test method name must be same as test case appended with TM example: 
-	 */
+	/*Test Name Example: Filkart_05_Web_ValidateCredntails */
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
 		DecrptPassword = decrypt("Am9YI5J0dBK0RW1AK2utqw==");
@@ -128,6 +118,8 @@ public class Inova extends CommonMethods{
 
 		WebElement Home_btn = createWebElementBy(btn_Home);
 		Home_btn.click();
+		
+		wait(2);
 
 		
 		WebElement products_icn = createWebElementBy(icn_Products);
@@ -136,13 +128,14 @@ public class Inova extends CommonMethods{
 		
 		WebElement NewProducts_btn = createWebElementBy(btn_NewProducts);
 		NewProducts_btn.click();
-		
+		wait(2);
 		
 		WebElement cancel_btn = createWebElementBy(btn_Cancel);
 		cancel_btn.click();
 		
 		WebElement Home_btn1 = createWebElementBy(btn_Home);
 		Home_btn1.click();
+		wait(2);
 		
 		
 		WebElement companies_btn = createWebElementBy(btn_Companies);
@@ -150,23 +143,28 @@ public class Inova extends CommonMethods{
 		
 		WebElement NewCompany_btn = createWebElementBy(btn_NewCompany);
 		NewCompany_btn.click();
+		wait(2);
 		WebElement cancel_btn1 = createWebElementBy(btn_Cancel);
 		cancel_btn1.click();
 		
 		WebElement Home_btn2 = createWebElementBy(btn_Home);
 		Home_btn2.click();
 		
+		wait(2);
+		
 		WebElement contacts_btn = createWebElementBy(btn_Contacts);
 		contacts_btn.click();
 		
 		WebElement editcontacts_btn = createWebElementBy(btn_editContacts);
 		editcontacts_btn.click();
+		wait(2);
 		
 		WebElement cancel_btn2 = createWebElementBy(btn_Cancel);
 		cancel_btn2.click();
 		WebElement Home_btn3 = createWebElementBy(btn_Home);
 		Home_btn3.click();
 		
+		wait(2);
 			
 		WebElement Logout_Btn = createWebElementBy(btn_Logout);
 		Logout_Btn.click();

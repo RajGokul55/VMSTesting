@@ -23,6 +23,7 @@ public class GSECTest extends CommonMethods{
 	final String Username ="sgupta27";
 	final String PasswordNegative = "hdgd@54";
 	private String DecrptPassword;
+	String EncryptPassword = "7bkbl6+1a3eQscQR5BmjQA==";
 	private String title;
 	private String text;
 	private int num;
@@ -40,36 +41,37 @@ public class GSECTest extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("7bkbl6+1a3eQscQR5BmjQA==");
-	}
-
+	
 	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
+		try {
+			DecrptPassword = decrypt(EncryptPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	@Test(priority=0, enabled=true)
-	public void GSEC_TC01_Web_Login_GSEC_Application() {
-		TM_GSEC_TC01_Web_Login_GSEC_Application();
+	public void GSEC_S01_Web_Login_GSEC_Application() {
+		TM_GSEC_S01_Web_Login_GSEC_Application();
 	}
 	
 	  @Test(priority=1, enabled=true)
-	  public void GSEC_TC02_Web_OER_SystemHealthCheck() {
-		  TM_GSEC_TC02_Web_OER_SystemHealthCheck();
+	  public void GSEC_S02_Web_OER_SystemHealthCheck() {
+		  TM_GSEC_S02_Web_OER_SystemHealthCheck();
 	  	  }
 	  
 	
 	  @Test(priority=2, enabled=true) 
-	  public void GSEC_TC03_Check_Computers_Tab_functionalities() { 
-		  TM_GSEC_TC03_Check_Computers_Tab_functionalities();
+	  public void GSEC_S03_Check_Computers_Tab_functionalities() { 
+		  TM_GSEC_S03_Check_Computers_Tab_functionalities();
 		  
 	  }
 	 
 	  @Test(priority=3, enabled=true)
-		public void GSEC_TC04_user_Login_using_wrong_credentials() {
-		  TM_GSEC_TC04_user_Login_using_wrong_credentials();
+		public void GSEC_S04_user_Login_using_wrong_credentials() {
+		  TM_GSEC_S04_user_Login_using_wrong_credentials();
 		}
 	
 	@AfterMethod(enabled=true)
@@ -116,7 +118,7 @@ public class GSECTest extends CommonMethods{
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
-	public void TM_GSEC_TC01_Web_Login_GSEC_Application() {
+	public void TM_GSEC_S01_Web_Login_GSEC_Application() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -132,7 +134,7 @@ public class GSECTest extends CommonMethods{
 
 	}
 
-	public void TM_GSEC_TC02_Web_OER_SystemHealthCheck() {
+	public void TM_GSEC_S02_Web_OER_SystemHealthCheck() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -193,7 +195,7 @@ public class GSECTest extends CommonMethods{
 
 	}
 
-	public void TM_GSEC_TC03_Check_Computers_Tab_functionalities() {
+	public void TM_GSEC_S03_Check_Computers_Tab_functionalities() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -234,7 +236,7 @@ public class GSECTest extends CommonMethods{
 
 	}
 
-	public void TM_GSEC_TC04_user_Login_using_wrong_credentials() {
+	public void TM_GSEC_S04_user_Login_using_wrong_credentials() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 

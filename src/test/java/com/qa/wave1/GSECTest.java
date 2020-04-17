@@ -1,5 +1,6 @@
 package com.qa.wave1;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -53,24 +54,24 @@ public class GSECTest extends CommonMethods{
 	}
 	
 	@Test(priority=0, enabled=true)
-	public void GSEC_S01_Web_Login_GSEC_Application() {
+	public void GSEC_S01_Web_Login_GSEC_Application() throws IOException {
 		TM_GSEC_S01_Web_Login_GSEC_Application();
 	}
 	
 	  @Test(priority=1, enabled=true)
-	  public void GSEC_S02_Web_OER_SystemHealthCheck() {
+	  public void GSEC_S02_Web_OER_SystemHealthCheck() throws IOException {
 		  TM_GSEC_S02_Web_OER_SystemHealthCheck();
 	  	  }
 	  
 	
 	  @Test(priority=2, enabled=true) 
-	  public void GSEC_S03_Check_Computers_Tab_functionalities() { 
+	  public void GSEC_S03_Check_Computers_Tab_functionalities() throws IOException { 
 		  TM_GSEC_S03_Check_Computers_Tab_functionalities();
 		  
 	  }
 	 
 	  @Test(priority=3, enabled=true)
-		public void GSEC_S04_user_Login_using_wrong_credentials() {
+		public void GSEC_S04_user_Login_using_wrong_credentials() throws IOException {
 		  TM_GSEC_S04_user_Login_using_wrong_credentials();
 		}
 	
@@ -115,11 +116,12 @@ public class GSECTest extends CommonMethods{
 	By img_ResourcesOnSqlGraph = By.cssSelector("div>svg>g[transform^='translate']");
 	
 
-	/*****************************Test Case Methods *******************/
+	/*****************************Test Case Methods 
+	 * @throws IOException *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
 	
-	public void TM_GSEC_S01_Web_Login_GSEC_Application() {
+	public void TM_GSEC_S01_Web_Login_GSEC_Application() throws IOException {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -132,10 +134,13 @@ public class GSECTest extends CommonMethods{
 		Login_Btn.click();
 		title = getTitle();
 		Assert.assertEquals(title, "Cb Protection - Dashboard");
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 
 	}
 
-	public void TM_GSEC_S02_Web_OER_SystemHealthCheck() {
+	public void TM_GSEC_S02_Web_OER_SystemHealthCheck() throws IOException {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -152,6 +157,9 @@ public class GSECTest extends CommonMethods{
 
 		WebElement OER_Tab = createWebElementBy(tab_OER);
 		OER_Tab.click();
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 		
 		WebElement OERSum_Tab = createWebElementBy(tab_OERSum);
 		OERSum_Tab.click();
@@ -171,6 +179,9 @@ public class GSECTest extends CommonMethods{
 		WebElement OERSumStatus4_Tbl = createWebElementBy(tbl_OERSumStatus4);
 		text = OERSumStatus4_Tbl.getText();
 		Assert.assertTrue(text.contains("OK"));
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 	
 		WebElement ResourcesOnSql_Tab = createWebElementBy(tab_ResourcesOnSql);
 		ResourcesOnSql_Tab.click();
@@ -179,12 +190,18 @@ public class GSECTest extends CommonMethods{
 		
 		IsDisplayed_IsEnabled(Icons.get(0));
 		IsDisplayed_IsEnabled(Icons.get(1));
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 
 		WebElement RAMForSql_Tab = createWebElementBy(tab_RAMForSql);
 		RAMForSql_Tab.click();
 		List<WebElement> Icon = createWebElementsBy(img_ResourcesOnSqlGraph);
 		
 		IsDisplayed_IsEnabled(Icon.get(2));
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 		
 		WebElement RAMForSqlStatus1_Tbl = createWebElementBy(tbl_RAMForSqlStatus1);
 		text = RAMForSqlStatus1_Tbl.getText();
@@ -193,10 +210,13 @@ public class GSECTest extends CommonMethods{
 		WebElement RAMForSqlStatus2_Tbl = createWebElementBy(tbl_RAMForSqlStatus2);
 		text = RAMForSqlStatus2_Tbl.getText();
 		Assert.assertTrue(text.contains("OK"));
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 
 	}
 
-	public void TM_GSEC_S03_Check_Computers_Tab_functionalities() {
+	public void TM_GSEC_S03_Check_Computers_Tab_functionalities() throws IOException {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -235,9 +255,12 @@ public class GSECTest extends CommonMethods{
 		num = Integer.parseInt(text);
 		Assert.assertTrue(num >= 1);
 
+		wait(5);
+		takeScreenshotAtEndOfTest();
+
 	}
 
-	public void TM_GSEC_S04_user_Login_using_wrong_credentials() {
+	public void TM_GSEC_S04_user_Login_using_wrong_credentials() throws IOException {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
@@ -248,6 +271,9 @@ public class GSECTest extends CommonMethods{
 
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
+		
+		wait(5);
+		takeScreenshotAtEndOfTest();
 		title = getTitle();
 		Assert.assertEquals(title, "Cb Protection - Login");
 

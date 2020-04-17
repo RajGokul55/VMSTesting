@@ -114,6 +114,8 @@ public class TestApp extends CommonMethods{
 
 		WebElement Error_Msg = createWebElementBy(msg_Warning);
 		Assert.assertEquals(Error_Msg.getText(), "Please enter valid Email ID/Mobile number");
+		
+		takeScreenshotAtEndOfTest();
 
 	}
 

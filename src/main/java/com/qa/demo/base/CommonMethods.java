@@ -352,7 +352,7 @@ public class CommonMethods {
 		return driver.getCurrentUrl();
 	}	
 
-	public static void takeScreenshotAtEndOfTest() throws IOException {
+	public static void takeScreenshotAtEndOfTest()  {
 		/* 
 		 * Author: Pravin Sonawane
 		 * Description: To Take screenshot of page
@@ -361,7 +361,15 @@ public class CommonMethods {
 		 * 
 		 */
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png"));	
+		File screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
+		try {
+			FileUtils.copyFile(scrFile,screenShotName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		Reporter.log("<br><img src='"+screenShotName+"' height='300' width='300'/><br>");  
+		  	
 	}
 	
 	public void selectRadio(List<WebElement> locator,String exvalue) {

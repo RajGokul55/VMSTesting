@@ -39,12 +39,13 @@ public class DBAM extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	@BeforeSuite(enabled=true)
+	
+	
+	@BeforeMethod(enabled=true)
 	void EncriptPassword() throws Exception {
 		DecrptPassword = decrypt("ZAzQ3KUtxVu2ss3Wyzp1Ng==");
 	}
 
-	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}

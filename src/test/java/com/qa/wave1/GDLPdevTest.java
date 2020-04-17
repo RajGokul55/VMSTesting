@@ -21,9 +21,10 @@ public class GDLPdevTest extends CommonMethods {
 	final String Url= "https://gdlp-dev.gilead.com";
 	final String username = "NA\\graj";
 	private String DecrptPassword;
+	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
 	
 	/************Fields for which inputs are required to run Test case 2************/
-	String name = "VMS Test policy"; //give new name every time for creating a new policy
+	String name = "VMS Test policy new"; //give new name every time for creating a new policy
 	String ruleName = "VMS rule";
 	String descriptionText = "Testing for creating new policy";
 	String policyGroup = "VMS Testing Group";
@@ -53,11 +54,7 @@ public class GDLPdevTest extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");
-	}
-	
+		
 	@BeforeTest(enabled=true)
 	  	public void beforeMethod() {
 		launchBrowser(Browser, Url);
@@ -96,7 +93,7 @@ public class GDLPdevTest extends CommonMethods {
 	
 	@AfterTest
 		public void afterMethod() {
-		//driver.quit();
+		driver.quit();
   }
 	
 	/***************************** Locators *******************/
@@ -381,6 +378,13 @@ public void TM_GDLP_S02_Web_create_policy() {
 		svrTargetrdo.click();
 		WebElement scannedContentbtn = createWebElementBy(btn_scannedConTab);
 		scannedContentbtn.click();
+		
+		try {
+			DecrptPassword = decrypt(EncryptPassword);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		WebElement manualUserrdo = createWebElementBy(rdo_manualUser);
 		if(manualUserrdo.isSelected()) {

@@ -3,7 +3,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -13,7 +15,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.Reporter;
 
 public class Metasploit extends CommonMethods{
 
@@ -35,7 +36,7 @@ public class Metasploit extends CommonMethods{
 	 */
 
 	
-	@BeforeTest
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
@@ -47,7 +48,7 @@ public class Metasploit extends CommonMethods{
 	}
 
 	
-	@AfterTest
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -73,28 +74,17 @@ public class Metasploit extends CommonMethods{
 
 
 	void TM_Metasploit_01_Web_VerifyWebConsole() {
-		
-		WebElement Username_Field = createWebElementBy(field_Username);
-		IsDisplayed_IsEnabled(Username_Field);
-		
-		WebElement Password_Field = createWebElementBy(field_Password);
-		IsDisplayed_IsEnabled(Password_Field);
-		
-		WebElement Login_btn = createWebElementBy(login_button);
-		IsDisplayed_IsEnabled(Login_btn);
 
-		/*
-		 * boolean Username_Field = isElementExit(field_Username);
-		 * Reporter.log("Username field is displayed = " +Username_Field);
-		 * 
-		 * boolean Password_Field = isElementExit(field_Password);
-		 * Reporter.log("Password field is displayed = " +Password_Field);
-		 * 
-		 * boolean Login_btn = isElementExit(login_button);
-		 * Reporter.log("loginBtn field is displayed = " +Login_btn);
-		 */
-				
-	
+		
+		WebElement UsernameFld = createWebElementBy(field_Username);
+		IsDisplayed_IsEnabled(UsernameFld);
+		
+		WebElement PasswordFld = createWebElementBy(field_Password);
+		IsDisplayed_IsEnabled(PasswordFld);
+		
+		WebElement LoginBtn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(LoginBtn);
+			
 	}
 
 	
@@ -102,25 +92,5 @@ public class Metasploit extends CommonMethods{
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
 
-	public  boolean isElementExit(By locator) {
-		/* 
-		 * Author: Arun Raj
-		 * Description: To check web Element is displayed by passing locator.
-		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: April 2020 
-		 * 
-		 */
-		
-		try
-		{
-		WebDriverWait wait = new WebDriverWait(driver, 50);
-		boolean element =  driver.findElement(locator).isDisplayed();
-		System.out.println(element);
-		return true;
-	}
-		catch (NoSuchElementException ex)
-		{
-			return false;
-		}
-	}	
+	
 }

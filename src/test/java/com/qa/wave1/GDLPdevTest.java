@@ -11,7 +11,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 
 public class GDLPdevTest extends CommonMethods {
 	
@@ -32,7 +31,7 @@ public class GDLPdevTest extends CommonMethods {
 	
 	/*************Fields for which inputs are required to run Test case 3***********/
 	String editRuleName = "VMS rule1";  //use the value of ruleName and suffix it with any integer
-	int rule = 2; // Use Rule 1 or 2 
+	int rule = 1; // Use Rule 1 or 2 
 	String text_Area = "Testing";
 	/*-----------------------------------------------------------------------------*/
 	
@@ -61,17 +60,17 @@ public class GDLPdevTest extends CommonMethods {
 	  }	
 	
 	
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void GDLP_S01_Web_login_verifyserver() {
 		TM_GDLP_S01_Web_login_verifyserver();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void GDLP_S02_Web_create_policy() {
 		TM_GDLP_S02_Web_create_policy();
 	}
 	
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void GDLP_S03_Web_edit_rule() {
 		TM_GDLP_S03_Web_edit_rule();
 	}
@@ -81,12 +80,12 @@ public class GDLPdevTest extends CommonMethods {
 		TM_GDLP_S04_Web_create_target();
 	}
 	
-	@Test(priority=5, enabled=false)
+	@Test(priority=5, enabled=true)
 	public void GDLP_S05_Web_scan_target() {
 		TM_GDLP_S05_Web_scan_target();
 	}
 	
-	@Test(priority=6, enabled=false)
+	@Test(priority=6, enabled=true)
 	public void GDLP_S06_Web_view_incidents() {
 		TM_GDLP_S06_Web_view_incidents();
 	}
@@ -248,7 +247,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 			RuleName_Ipt.sendKeys(ruleName);
 
 			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(Severity_Drp, "3");
+			selectDropdownByValue(Severity_Drp, "2");
 			WebElement SelectAll_Lnk = createWebElementBy(lnk_selectAll);
 			SelectAll_Lnk.click();
 			WebElement Ok_Btn = createWebElementBy(btn_ok);
@@ -262,7 +261,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 			RuleName_Ipt.sendKeys(ruleName);
 
 			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(Severity_Drp, "3");
+			selectDropdownByValue(Severity_Drp, "2");
 			WebElement TestArea_Ipt = createWebElementBy(ipt_textArea);
 			TestArea_Ipt.sendKeys(text_Area);
 			WebElement Ok_Btn = createWebElementBy(btn_ok);

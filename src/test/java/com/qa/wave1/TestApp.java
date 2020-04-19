@@ -1,18 +1,25 @@
 package com.qa.wave1;
 
-import org.testng.annotations.Test;
-import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import com.qa.demo.base.CommonMethods;
 
 
 
@@ -40,17 +47,17 @@ public class TestApp extends CommonMethods{
 	 */
 
 
-	@BeforeMethod(enabled=true)
+	@BeforeMethod(enabled=false)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=true)
+	@Test(priority=0, enabled=false)
 	public void Filkart_05_Web_ValidateCredntails() {
 		TM_Filkart_05_Web_ValidateCredntails();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void Filkart_03_Web_ValidatemenuItems() {
 		TM_Filkart_03_Web_ValidatemenuItems();
 	}
@@ -60,7 +67,17 @@ public class TestApp extends CommonMethods{
 		TM_Amazon_01_Web_Validatedropdown();
 	}
 
-	@AfterMethod(enabled=true)
+	@Test(priority=3, enabled = false)
+	public void RandomNumber() {
+	TM_RandomNumber();	
+	}
+	
+	@Test(priority=4, enabled = true)
+	public void ExcelReadandWrite() {
+	TM_ExcelReadandWrite();	
+	}
+	
+	@AfterMethod(enabled=false)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -172,54 +189,95 @@ public class TestApp extends CommonMethods{
 		
 		
 	}
+	
+	void TM_RandomNumber(){
+		String  rndNo = getAlphaNumericString(10);
+		System.out.println("AlphaNumaric Random number: "+ rndNo);
+		
+	}
 
-	/*****************************Application Interaction Methods *******************/
+
+	void TM_ExcelReadandWrite() {
+		//readExcel("C:\\Users\\bpalle\\Documents", "EmpData.xls", "sheet1");
+		writeExcel("C:\\Users\\bpalle\\Documents", "EmpData.xls", "sheet1");
+		
+	}
+	/*****************************Application Interaction Methods *********************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
 	
-	public static String getAlphaNumericString(int n) { 
+	public void readExcel(String filePath, String fileName, String sheetName) {
+		File file= new File(filePath+"\\"+fileName);
+		Workbook myWorkBook = null;
+		try {
+			FileInputStream inputStream = new FileInputStream(file);
+			myWorkBook = new HSSFWorkbook(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Sheet mySheet = myWorkBook.getSheet(sheetName);
 
-		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-									+ "0123456789"
-									+ "abcdefghijklmnopqrstuvxyz"; 
-
-		StringBuilder sb = new StringBuilder(n); 
-
-		for (int i = 0; i < n; i++) { 
-
-			int index 
-				= (int)(AlphaNumericString.length() 
-						* Math.random()); 
-
-			
-			sb.append(AlphaNumericString 
-						.charAt(index)); 
-		} 
-
-		return sb.toString(); 
-	} 
-	
-	 
-		public static String getAlphaNumericString1(int n) { 
-
-				String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-											+ "0123456789"
-											+ "abcdefghijklmnopqrstuvxyz"; 
-
-				StringBuilder sb = new StringBuilder(n); 
-
-				for (int i = 0; i < n; i++) { 
-
-					int index 
-						= (int)(AlphaNumericString.length() 
-								* Math.random()); 
-
-					
-					sb.append(AlphaNumericString 
-								.charAt(index)); 
-				} 
-
-				return sb.toString(); 
-			}  
+		int rowno = 1;
+		int colno = 2;
+		Row rowNo = mySheet.getRow(rowno);
+		int rowCount = mySheet.getLastRowNum()- mySheet.getFirstRowNum();
+		System.out.println("Excel sheet cell value :" +rowNo.getCell(colno).getStringCellValue()+" with no of rows: "+rowCount);
+		
+	}
 		 
-		String password = getAlphaNumericString(10) ;
+	
+
+	public void writeExcel(String filePath, String fileName, String sheetName) {
+		File file= new File(filePath+"\\"+fileName);
+		Workbook myWorkBook = null;
+		try {
+			FileInputStream inputStream = new FileInputStream(file);
+			myWorkBook = new HSSFWorkbook(inputStream);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Sheet mySheet = myWorkBook.getSheet(sheetName);
+
+		int rowNo = 1;
+		int colNo = 1;
+
+	    Row newRow = mySheet.createRow(rowNo);
+	    Cell cell = newRow.createCell(colNo);
+
+        cell.setCellValue("Welcome");
+
+		FileOutputStream outputStream;
+		try {
+			outputStream = new FileOutputStream(file);
+			//write data in the excel file
+
+			try {
+				myWorkBook.write(outputStream);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+
+			try {
+				outputStream.close();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+
+
+	}
+	
+	
+
+
+	
 }

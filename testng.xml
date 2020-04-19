@@ -5,7 +5,9 @@
 	</listeners>
 	<test name="Automation Test">
 		<classes>
-			<class name="com.qa.wave1.TestApp"></class>
+			<class name="com.qa.wave1.Metasploit"></class>
+			<class name="com.qa.wave1.GSECTest"></class>
+			<class name="com.qa.wave1.Inova"></class>
 		</classes>
 	</test>
 </suite>

@@ -2,14 +2,11 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
-
-import java.io.IOException;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class SDEA extends CommonMethods {
 	/***************************** Test Data*******************/
@@ -45,17 +42,17 @@ public class SDEA extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeTest(enabled=true)
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=true)
+	@Test(priority=0, enabled=false)
 	public void SDEA_S01_Web_Sort_Verification() {
 		TM_SDEA_TC01_Web_Sort_Verification();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void SDEA_S02_Web_Sort_Verification() {
 		TM_SDEA_S02_Web_Sort_Verification();
 	}
@@ -70,12 +67,12 @@ public class SDEA extends CommonMethods {
 		TM_SDEA_S04_Web_Filter_Verification();
 	}
 
-	@Test(priority=4, enabled=true)
+	@Test(priority=4, enabled=false)
 	public void SDEA_S05_Web_Filter_Verification() {
 		TM_SDEA_S05_Web_Filter_Verification();
 	}
 
-	@AfterTest(enabled=true)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -200,7 +197,7 @@ public class SDEA extends CommonMethods {
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
-
+		
 		takeScreenshotAtEndOfTest();
 		WebElement ActiveThirdParty_Msg = createWebElementBy(msg_actThirdPartAgree);
 		Assert.assertEquals(ActiveThirdParty_Msg.getText(), ActiveWinThirdPartyText);

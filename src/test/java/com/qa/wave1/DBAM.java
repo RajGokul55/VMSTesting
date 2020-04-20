@@ -45,6 +45,10 @@ public class DBAM extends CommonMethods{
 	public void DBAM_01_Web_BuildingReports() {
 		TM_DBAM_S01_Web_BuildingReports();
 	}
+
+		
+	
+
 		
 	@AfterMethod(enabled=true)
 	public void afterTest() {
@@ -74,10 +78,20 @@ public class DBAM extends CommonMethods{
 
 	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_16']");
 	//By slt_dropdowndatasource = By.xpath("(//span[contains(@class,'dojoxEllipsis')][contains(text(),'sjdbamappdevg01.na.gilead.com')])[5]");
+
 	//By btn_datasourceok = By.cssSelector("(//span[@class='idxDialogActionBarEnd']>span:nth-child(1)");
 
+
+	//By btn_datasourceok = By.xpath("//span[contains(text(),'OK')][1]");
+
+
 	By slt_dropdowndatasource = By.xpath("((//div[contains(@class,'dijitReset dijitArrowButtonChar')])[2]");
+
 	By btn_datasourceok = By.cssSelector("span[class='idxDialogActionBarEnd']>span:nth-child(1)");
+
+
+	//By btn_datasourceok = By.xpath("(//span[contains(text(),'OK')])[3]");
+
 
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
@@ -117,6 +131,23 @@ public class DBAM extends CommonMethods{
 		Realtimereports_Btn.click();
 	
 		waitForPageLoaded();
+
+		
+		/*WebElement Help_Img = createWebElementBy(img_Help);
+		scrollToWebElement(Help_Img);*/
+		
+		scrollBehaviorByPixels(0, -506);
+		
+		wait(2);
+		
+		//Help_Img.click();
+		
+		waitForPageLoaded();
+		
+		scrollToBottomOfHTML();
+
+	
+
 		
 
 		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
@@ -142,8 +173,13 @@ public class DBAM extends CommonMethods{
 
 		
 		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
+
 		SelectDropdownValueByIndex(Dropdown_Drp1, 3);
 		wait(2);
+
+		//SelectDropdownValueByIndex(Dropdown_Drp1, 3);
+
+
 		
 		//WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
 		datasourceok_btn.click();
@@ -155,6 +191,7 @@ public class DBAM extends CommonMethods{
 		  WebElement Signout_Btn = createWebElementBy(btn_Signout);
 		 Signout_Btn.click();
 		 
+
 	}
 	
 

@@ -2,19 +2,20 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class SDEA extends CommonMethods {
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "http://fcsgrappdev01/sdea/default.aspx";
+	final String prodUrl = "http://fcsgrappprod01/agreementrepository/default.aspx";
 	final String ActiveWinThirdPartyText = "Active Third Party Agreements";
 	final String ActiveClinicalText = "Active Clinical Trial Safety Reporting Procedures";
-	private static String downloadPath = "C:\\Users\\graj\\Downloads";
+	final String downloadPath = "C:\\Users\\graj\\Downloads";
 
 	// input the values for the filter to search
 	final String orgText = "A";
@@ -41,27 +42,27 @@ public class SDEA extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeTest(enabled=true)
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=true)
+	@Test(priority=0, enabled=false)
 	public void SDEA_S01_Web_Sort_Verification() {
 		TM_SDEA_TC01_Web_Sort_Verification();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void SDEA_S02_Web_Sort_Verification() {
 		TM_SDEA_S02_Web_Sort_Verification();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void SDEA_S03_Web_Filter_Verification() {
 		TM_SDEA_S03_Web_Filter_Verification();
 	}
 
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void SDEA_S04_Web_Filter_Verification() {
 		TM_SDEA_S04_Web_Filter_Verification();
 	}
@@ -71,7 +72,7 @@ public class SDEA extends CommonMethods {
 		TM_SDEA_S05_Web_Filter_Verification();
 	}
 
-	@AfterTest(enabled=true)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -128,7 +129,9 @@ public class SDEA extends CommonMethods {
 		WebElement PharmaAgreements_Lnk = createWebElementBy(lnk_pharmaAgreements);
 		PharmaAgreements_Lnk.click();
 		waitForPageLoaded();
-
+		
+		takeScreenshotAtEndOfTest();
+		
 		WebElement PharmaAgreements_Msg = createWebElementBy(msg_validText);
 		String text = "Showing All Active Pharmacovigilance Agreements";
 		Assert.assertEquals(PharmaAgreements_Msg.getText(), text);
@@ -194,8 +197,8 @@ public class SDEA extends CommonMethods {
 		for(String winHandle : driver.getWindowHandles()){
 			driver.switchTo().window(winHandle);
 		}
-
-		// Perform the actions on new window
+		
+		takeScreenshotAtEndOfTest();
 		WebElement ActiveThirdParty_Msg = createWebElementBy(msg_actThirdPartAgree);
 		Assert.assertEquals(ActiveThirdParty_Msg.getText(), ActiveWinThirdPartyText);
 
@@ -241,7 +244,7 @@ public class SDEA extends CommonMethods {
 			driver.switchTo().window(winHandle);
 		}
 
-		// Perform the actions on new window
+		takeScreenshotAtEndOfTest();
 		WebElement ActiveClinicalProc_Msg = createWebElementBy(msg_actClinicalProc);
 		Assert.assertEquals(ActiveClinicalProc_Msg.getText(), ActiveClinicalText);
 
@@ -287,9 +290,11 @@ public class SDEA extends CommonMethods {
 			driver.switchTo().window(winHandle);
 		}
 		
+		takeScreenshotAtEndOfTest();
+		
 		WebElement ExcelDownload_Lnk = createWebElementBy(lnk_excelLink);
 		ExcelDownload_Lnk.click();
-		wait(3);
+		wait(4);
 		Assert.assertTrue(isFileDownloaded(downloadPath, excelFile), "Failed to download Expected document");
 		
 		WebElement PDFDownload_Lnk = createWebElementBy(lnk_pdfLink);
@@ -314,9 +319,11 @@ public class SDEA extends CommonMethods {
 		WebElement AscSort_Btn = createWebElementBy(btn_ascSort);
 		AscSort_Btn.click();
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 		WebElement DescSort_Btn = createWebElementBy(btn_descSort);
 		DescSort_Btn.click();
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 	}
 
 	public void orgFilter() {
@@ -327,6 +334,7 @@ public class SDEA extends CommonMethods {
 		StartsWith_Btn.click();
 		WebElement OrgFilter1_Btn = createWebElementBy(btn_orgFilter);
 		OrgFilter1_Btn.click();
+		takeScreenshotAtEndOfTest();
 		WebElement NoFilter_Btn = createWebElementBy(btn_noFilter);
 		mouseHover(NoFilter_Btn);
 		NoFilter_Btn.click();
@@ -340,6 +348,7 @@ public class SDEA extends CommonMethods {
 		StartsWith_Btn.click();
 		WebElement TypeFilter1_Btn = createWebElementBy(btn_typeFilter);
 		TypeFilter1_Btn.click();
+		takeScreenshotAtEndOfTest();
 		WebElement NoFilter_Btn = createWebElementBy(btn_noFilter);
 		mouseHover(NoFilter_Btn);
 		NoFilter_Btn.click();
@@ -353,6 +362,7 @@ public class SDEA extends CommonMethods {
 		StartsWith_Btn.click();
 		WebElement ProductFilter1_Btn = createWebElementBy(btn_productFilter);
 		ProductFilter1_Btn.click();
+		takeScreenshotAtEndOfTest();
 		WebElement NoFilter_Btn = createWebElementBy(btn_noFilter);
 		mouseHover(NoFilter_Btn);
 		NoFilter_Btn.click();
@@ -366,6 +376,7 @@ public class SDEA extends CommonMethods {
 		StartsWith_Btn.click();
 		WebElement CountryFilter1_Btn = createWebElementBy(btn_countryFilter);
 		CountryFilter1_Btn.click();
+		takeScreenshotAtEndOfTest();
 		WebElement NoFilter_Btn = createWebElementBy(btn_noFilter);
 		mouseHover(NoFilter_Btn);
 		NoFilter_Btn.click();
@@ -379,6 +390,7 @@ public class SDEA extends CommonMethods {
 		StartsWith_Btn.click();
 		WebElement ProtocolFilter1_Btn = createWebElementBy(btn_protocolFilter);
 		ProtocolFilter1_Btn.click();
+		takeScreenshotAtEndOfTest();
 		WebElement NoFilter_Btn = createWebElementBy(btn_noFilter);
 		mouseHover(NoFilter_Btn);
 		NoFilter_Btn.click();

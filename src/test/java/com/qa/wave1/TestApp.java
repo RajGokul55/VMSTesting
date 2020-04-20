@@ -47,22 +47,22 @@ public class TestApp extends CommonMethods{
 	 */
 
 
-	@BeforeMethod(enabled=false)
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=false)
+	@Test(priority=0, enabled=true)
 	public void Filkart_05_Web_ValidateCredntails() {
 		TM_Filkart_05_Web_ValidateCredntails();
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void Filkart_03_Web_ValidatemenuItems() {
 		TM_Filkart_03_Web_ValidatemenuItems();
 	}
 	
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void Amazon_01_Web_Validatedropdown() {
 		TM_Amazon_01_Web_Validatedropdown();
 	}
@@ -72,12 +72,12 @@ public class TestApp extends CommonMethods{
 	TM_RandomNumber();	
 	}
 	
-	@Test(priority=4, enabled = true)
+	@Test(priority=4, enabled = false)
 	public void ExcelReadandWrite() {
 	TM_ExcelReadandWrite();	
 	}
 	
-	@AfterMethod(enabled=false)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -167,6 +167,8 @@ public class TestApp extends CommonMethods{
 		waitForPageLoaded();
 		
 		scrollToBottomOfHTML();
+		
+		takeScreenshotAtEndOfTest();
 
 	}
 	
@@ -186,6 +188,8 @@ public class TestApp extends CommonMethods{
 		
 		WebElement AmazonFresh_Opt = createWebElementBy(opt_AmazonFresh);
 		selectDropdownValueByWebElements(Dropdown_Slt, AmazonFresh_Opt);
+		
+		takeScreenshotAtEndOfTest();
 		
 		
 	}

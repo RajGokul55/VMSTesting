@@ -76,7 +76,7 @@ public class CommonMethods {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element =  driver.findElement(locator);
-		Reporter.log("Mouse Control is on "+locator.toString() +" on Web App: "+driver.getTitle() );
+		Reporter.log("Mouse Control is on "+locator.toString() +" on Web App URL: "+driver.getCurrentUrl() );
 		highLightElement(element);
 		return element;
 	}

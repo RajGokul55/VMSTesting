@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.security.Key;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
@@ -439,6 +440,53 @@ public class CommonMethods {
 
 		return sb.toString(); 
 	} 
+	
+	public String RSA_Authentication(String UserID) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To generate GPV Password by Entering Gilead ID & RSA Token.
+		 * Parameter: Gilead ID
+		 * Date: April 2020 
+		 */
+		
+		launchBrowser("Chrome", "https://gpv.gilead.com/");
+
+		By btn_Go = By.cssSelector("input[type='submit']");
+		WebElement Go_Btn = createWebElementBy(btn_Go);
+		Go_Btn.click();
+		
+		By ipt_Username = By.cssSelector("input[id$='_ctrlLogon_txtUsername']");
+		WebElement UserID_Ipt = createWebElementBy(ipt_Username);
+		UserID_Ipt.sendKeys(UserID);
+		
+		String inputRSACode;
+		Scanner scanner = new Scanner(System.in);
+		System.out.println("Enter or Copy Paste RSA Token Code Here: ");
+		inputRSACode = scanner.nextLine();
+		
+		By ipt_Passcode = By.cssSelector("input[id$='_ctrlLogon_txtPassword']");
+		WebElement PassCode_Ipt = createWebElementBy(ipt_Passcode);
+		PassCode_Ipt.sendKeys(inputRSACode);
+		
+		By btn_SignIn = By.cssSelector("input[id$='_ctrlLogon_btnLogon']");
+		WebElement SignIn_Btn = createWebElementBy(btn_SignIn);
+		SignIn_Btn.click();
+		
+		
+		By btn_ShowPwd = By.cssSelector("div[id='Recently'] img[title='Show password']");
+		WebElement ShowPwd_Btn = createWebElementBy(btn_ShowPwd);
+		ShowPwd_Btn.click();
+		
+		By Fld_Password = By.cssSelector("label[class^= ' account-password-display']");
+		WebElement Pwd_Fld = createWebElementBy(Fld_Password);
+		String password = Pwd_Fld.getText();
+
+		System.out.println("Entered RSA Token Code : " +inputRSACode+ " Fectched Password: "+ password);
+		driver.close();
+		
+		return password;
+	}
+
 }
 
 

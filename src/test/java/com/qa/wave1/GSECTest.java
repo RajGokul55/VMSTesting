@@ -211,6 +211,8 @@ public class GSECTest extends CommonMethods{
 		text = RAMForSqlStatus2_Tbl.getText();
 		Assert.assertTrue(text.contains("OK"));
 		
+		scrollToBottomOfHTML();
+		
 		wait(5);
 		takeScreenshotAtEndOfTest();
 

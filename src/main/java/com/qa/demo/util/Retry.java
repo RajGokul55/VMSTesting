@@ -15,12 +15,8 @@ public class Retry implements IRetryAnalyzer{
     public boolean retry(ITestResult iTestResult) {
         if (!iTestResult.isSuccess()) {                      //Check if test not succeed
         	
-        	try {
-				CommonMethods.takeScreenshotAtEndOfTest();        //Take screenshot on failure
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+        	
+        	CommonMethods.takeScreenshotAtEndOfTest(); 		// Take ScreenShot
         	
             if (count < maxTry) {                            //Check if maxtry count is reached
                 count++;                                     //Increase the maxTry count by 1

@@ -3,15 +3,18 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ListIterator;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeSuite;
 
 public class GDLPdevTest extends CommonMethods {
 	
@@ -24,20 +27,20 @@ public class GDLPdevTest extends CommonMethods {
 	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
 	
 	/************Fields for which inputs are required to run Test case 2************/
-	String name = "VMS Test policy new"; //give new name every time for creating a new policy
-	String ruleName = "VMS rule";
+	String name = "Post Patching Test Policy"; //give new name every time for creating a new policy
+	String ruleName = "Post Patch Rule";
 	String descriptionText = "Testing for creating new policy";
 	String policyGroup = "VMS Testing Group";
 	/*-----------------------------------------------------------------------------*/
 	
 	/*************Fields for which inputs are required to run Test case 3***********/
-	String editRuleName = "VMS rule1";  //use the value of ruleName and suffix it with any integer
+	String editRuleName = "Post Patch Rule";  //use the value of ruleName and suffix it with any integer
 	int rule = 2; // Use Rule 1 or 2 
-	String text_Area = "Testing";
+	String text_Area = "shvbgeuueiubyui";
 	/*-----------------------------------------------------------------------------*/
 	
 	/*************Fields for which inputs are required to run Test case 4***********/
-	String targetName = "VMS Target"; //Set target name
+	String targetName = "New Target VMS"; //Set target name
 	String pathFile = "P:\\\\DLPTest\\\\Confidential\\\\Confidential_High_Test2.txt"; // Update the file path accordingly
 	/*-----------------------------------------------------------------------------*/
 	
@@ -61,17 +64,17 @@ public class GDLPdevTest extends CommonMethods {
 	  }	
 	
 	
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void GDLP_S01_Web_login_verifyserver() {
 		TM_GDLP_S01_Web_login_verifyserver();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void GDLP_S02_Web_create_policy() {
 		TM_GDLP_S02_Web_create_policy();
 	}
 	
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void GDLP_S03_Web_edit_rule() {
 		TM_GDLP_S03_Web_edit_rule();
 	}
@@ -81,17 +84,17 @@ public class GDLPdevTest extends CommonMethods {
 		TM_GDLP_S04_Web_create_target();
 	}
 	
-	@Test(priority=5, enabled=false)
+	@Test(priority=5, enabled=true)
 	public void GDLP_S05_Web_scan_target() {
 		TM_GDLP_S05_Web_scan_target();
 	}
 	
-	@Test(priority=6, enabled=false)
+	@Test(priority=6, enabled=true)
 	public void GDLP_S06_Web_view_incidents() {
 		TM_GDLP_S06_Web_view_incidents();
 	}
 	
-	@AfterTest
+	@AfterTest(enabled=true)
 		public void afterMethod() {
 		driver.quit();
   }
@@ -176,6 +179,7 @@ public class GDLPdevTest extends CommonMethods {
 		Overview_btn.click();
 		
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 		
 		List<String> expectedresult = new ArrayList<String>();
 		List<String> allservers = new ArrayList<String>();
@@ -248,7 +252,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 			RuleName_Ipt.sendKeys(ruleName);
 
 			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(Severity_Drp, "3");
+			selectDropdownByValue(Severity_Drp, "2");
 			WebElement SelectAll_Lnk = createWebElementBy(lnk_selectAll);
 			SelectAll_Lnk.click();
 			WebElement Ok_Btn = createWebElementBy(btn_ok);
@@ -262,7 +266,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 			RuleName_Ipt.sendKeys(ruleName);
 
 			WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
-			selectDropdownByValue(Severity_Drp, "3");
+			selectDropdownByValue(Severity_Drp, "2");
 			WebElement TestArea_Ipt = createWebElementBy(ipt_textArea);
 			TestArea_Ipt.sendKeys(text_Area);
 			WebElement Ok_Btn = createWebElementBy(btn_ok);
@@ -271,6 +275,8 @@ public void TM_GDLP_S02_Web_create_policy() {
 		
 		WebElement Save_Btn = createWebElementBy(btn_save);
 		Save_Btn.click();
+		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 		
 		//Get the number of rows of policy list		
 		List<WebElement> allRows = createWebElementsBy(tbl_policyTable);
@@ -339,6 +345,9 @@ public void TM_GDLP_S02_Web_create_policy() {
 		wait(3);
 		WebElement Save_Btn = createWebElementBy(btn_save);
 		Save_Btn.click();
+		
+		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 		
 		WebElement SaveSuccess_Msg = createWebElementBy(msg_saveSuccess);
 		System.out.println(SaveSuccess_Msg.getText());
@@ -419,28 +428,26 @@ public void TM_GDLP_S02_Web_create_policy() {
 		contselet1.click();		
 		WebElement Save_Btn = createWebElementBy(btn_save);
 		Save_Btn.click();
+		waitForPageLoaded();
+		scrollToBottomOfHTML();
+		takeScreenshotAtEndOfTest();
 		
 		List<WebElement> allRows = createWebElementsBy(tbl_disTable);
 		int numberOfRows = allRows.size();
-		List<WebElement> targetNames = new ArrayList<WebElement>();
+		ArrayList<String> targetNames = new ArrayList<String>();
 		
 		//Get the number of rows from the table 
 		for(int i=1;i<=numberOfRows;i++) {
 			WebElement names = driver.findElement(By.xpath("//tbody[1]/tr["+i+"]/td[2]/a[1]/span[1]")); // need to update
-			targetNames.add(names);
+			targetNames.add(names.getText());
 		}
-
 		
-		//Created a loop so that the Target created by the VMS is the only element selected and not any other target
-		//the targetName field is the input for the validation 
-		for(int j=0;j<targetNames.size();j++) {
-			String verify = targetNames.get(j).getText();
-			if(verify.equals(targetName)) {  
-				break; 
-			}else {
-				Assert.fail("The Target was not created and does not exist in the table");
-			}
+		if(targetNames.contains(targetName)) {
+			System.out.println("The Target was created");
+		}else {
+			Assert.fail("The Target file was not found in the table");
 		}
+		
 		
 	}
 	
@@ -532,6 +539,9 @@ public void TM_GDLP_S02_Web_create_policy() {
 		WebElement AllIncidents_Btn = createWebElementBy(btn_allIncidents);
 		AllIncidents_Btn.click();
 		String verify = driver.findElement(By.partialLinkText("Incidents - All")).getText();
+		
+		takeScreenshotAtEndOfTest();
+		
 		Assert.assertEquals(verify, "Incidents - All");
 	}
 	

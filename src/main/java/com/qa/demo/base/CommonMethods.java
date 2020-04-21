@@ -76,7 +76,7 @@ public class CommonMethods {
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
 		WebElement element =  driver.findElement(locator);
-		Reporter.log("Mouse Control is on "+locator.toString() +" on Web App: "+driver.getTitle() );
+		Reporter.log("Mouse Control is on "+locator.toString() +" on Web App URL: "+driver.getCurrentUrl() );
 		highLightElement(element);
 		return element;
 	}
@@ -278,7 +278,6 @@ public class CommonMethods {
 		 * Description: To select Dropdown value, locator has to be with 'Select' tag.
 		 * Parameter: WebElement
 		 * Date: April 2020 
-		 * 
 		 */
 		element.click();
 		wait(2);
@@ -315,8 +314,8 @@ public class CommonMethods {
 
 	public void IsDisplayed_IsEnabled(WebElement element){
 		/* 
-		 * Author: Abhishek Bhatt
-		 * Description: To verify that element is displayed and is enabled in the UI
+		 * Author: Abhishek Bhatt, Balajee Palle
+		 * Description: To verify that element is displayed and is enabled in the UI and added Reporter.log after assertion 
 		 * Parameter:Webelement
 		 * Date: April 2020 
 		 * 
@@ -351,17 +350,26 @@ public class CommonMethods {
 		 */
 		return driver.getCurrentUrl();
 	}	
+	
 
-	public static void takeScreenshotAtEndOfTest() throws IOException {
+	public static void takeScreenshotAtEndOfTest()  {
 		/* 
-		 * Author: Pravin Sonawane
-		 * Description: To Take screenshot of page
+		 * Author: Pravin Sonawane, Balajee Palle
+		 * Description: To Take screenshot of page, Screenshot added to Reporter.log
 		 * Parameter: 
 		 * Date: April 2020 
 		 * 
 		 */
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-		FileUtils.copyFile(scrFile, new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png"));	
+		File screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
+		try {
+			FileUtils.copyFile(scrFile,screenShotName);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}	
+		Reporter.log("<br><img src='"+screenShotName+"' height='300' width='300'/><br>");  
+		  	
 	}
 	
 	public void selectRadio(List<WebElement> locator,String exvalue) {
@@ -412,6 +420,25 @@ public class CommonMethods {
 
 		return flag;
 	}
+	
+	public static String getAlphaNumericString(int n) { 
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To generate AlphaNumaric String with numbers.
+		 * Parameter: Integer with number of characters
+		 * Date: April 2020 
+		 */
+
+		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz"; 
+		StringBuilder sb = new StringBuilder(n); 
+
+		for (int i = 0; i < n; i++) { 
+			int index = (int)(AlphaNumericString.length() * Math.random()); 
+			sb.append(AlphaNumericString.charAt(index)); 
+		} 
+
+		return sb.toString(); 
+	} 
 }
 
 

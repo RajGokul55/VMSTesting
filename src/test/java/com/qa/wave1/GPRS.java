@@ -82,19 +82,29 @@ public class GPRS extends CommonMethods{
 	By ipt_Username= By.xpath("//input[@id='editUserID']");
 	By ipt_Passwrod= By.xpath("//input[@id='idx_app_LoginFrame_0Password']");
 	By drp_Domain = By.xpath("//select[@id='listDomains']");
-	By drp_DomainValue = By.xpath("(//option[contains(text(),'QUALNA')]");
+	By btn_DomainValue = By.xpath("(//option[contains(text(),'QUALNA')]");
 	By btn_Agree = By.xpath("(//input[@id='btnTextIAgree'])");
-	By btn_forgotPWD= By.xpath("(//img[@id='imgForgotPassword']");
-	By btn_ChangePWD=By.xpath("//img[@id='imgChangePassword']");
-	By btn_enrollment = By.xpath("//input[@id='btnEnroll']");
+	By img_forgotPWD= By.xpath("(//img[@id='imgForgotPassword']");
+	By btn_yesfrgtpwd=By.xpath("//input[@id='ButtonYes']");
+	
+	By img_ChangePWD=By.xpath("//img[@id='imgChangePassword']");
+	By img_enrollment = By.xpath("//input[@id='btnEnroll']");
 	By ipt_oldpassword= By.xpath("//input[@id='textOldPassword']");
 	By ipt_Newpassword= By.xpath("//input[@id='textNewPassword']");
 	By ipt_confirmpassword= By.xpath("//input[@id='textConfirm']");
+	By ipt_enrollPwd=By.xpath("//input[@id='txtPassword']");
 	By btn_continue= By.xpath("//input[@id='ButtonTextContinue']");
 	By btn_cancel= By.xpath("//input[@id='ButtonTextCancel']']");
-	
+	By icn_homepage = By.xpath("//div[@class='logo PS']");
+	By drp_enrlquestion1 = By.xpath("//select[@id='EnrollQuestions_listQuestion1']");
+	By drp_enrlquestion2 = By.xpath("//select[@id='EnrollQuestions_listQuestion2']");
+	By drp_enrlquestion3 = By.xpath("//select[@id='EnrollQuestions_listQuestion3']");
 	By btn_enrlpassword= By.xpath("//input[@id='txtPassword']");
 	
+	By ipt_enrlanswer1= By.xpath("input[@id='EnrollQuestions_textAnswer1']");
+	By ipt_enrlanswer2= By.xpath("input[@id='EnrollQuestions_textAnswer2']");
+	By ipt_enrlanswer3= By.xpath("input[@id='EnrollQuestions_textAnswer3']");
+
 	By btn_Signout = By.xpath("//div[@class='signOutText']");
 	
 	
@@ -108,18 +118,14 @@ public class GPRS extends CommonMethods{
 /*******************Login page****************/
 	
 	void TM_GPRS_S03_Web_Testurlaccessible() {
-		WebElement drp_domain = createWebElementBy(drp_Domain);
-		SelectDropdownValueByIndex(drp_domain, 2);
 		
-		WebElement drp_domainvalue = createWebElementBy(drp_DomainValue);
-		drp_domainvalue.click();
+		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
+		dropdown.selectByVisibleText("QUALNA");  
+		
 		
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
-
-		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
-		Password_Ipt.sendKeys(DecrptPassword);
-
+		
 		WebElement Agree_Btn = createWebElementBy(btn_Agree);
 		Agree_Btn.click();
 		
@@ -127,109 +133,92 @@ public class GPRS extends CommonMethods{
 
 	}
 		
-		/*****************PASSWORD CHANGE****************************/
+
+		/***************** FORGOT PASSWORD ****************************/
 		
 		void TM_GPRS_S16_Web_Passwordchange() {
-			WebElement drp_domain = createWebElementBy(drp_Domain);
-		//	SelectDropdownValueByIndex(drp_domain, 2);
+			WebElement forgotpwd_img = createWebElementBy(img_forgotPWD);
+			forgotpwd_img.click();
 
 			
-			WebElement Username_Ipt = createWebElementBy(ipt_Username);
+			WebElement Username_Ipt = createWebElementBy(btn_yesfrgtpwd);
 			Username_Ipt.sendKeys(Username);
 
-			WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
-			Password_Ipt.sendKeys(DecrptPassword);
-
-			WebElement Agree_Btn = createWebElementBy(btn_Agree);
-			Agree_Btn.click();
+			WebElement OldPassword_Ipt = createWebElementBy(ipt_oldpassword);
+			OldPassword_Ipt.sendKeys(DecrptPassword);
+			
+			WebElement homepage_icn = createWebElementBy(icn_homepage);
+			homepage_icn.click();
+			
+			
+			/*WebElement Newpassword_Ipt = createWebElementBy(ipt_Newpassword);
+			Newpassword_Ipt.sendKeys(DecrptPassword);
+			
+			WebElement ConfirmPassword_Ipt = createWebElementBy(ipt_confirmpassword);
+			ConfirmPassword_Ipt.sendKeys(DecrptPassword);
 			
 			waitForPageLoaded();
-		}
 			
+			WebElement Continue_Btn = createWebElementBy(btn_continue);
+			Continue_Btn.click();*/
+		}
+		
+			
+		/**********************PASSWORD CHANGE****************************/
 			void TM_GPRS_S17_Web_PasswordReset() {
-				WebElement drp_domain = createWebElementBy(drp_Domain);
-				//SelectDropdownValueByIndex(drp_domain, 2);
+				WebElement changePWD_img = createWebElementBy(img_ChangePWD);
+				changePWD_img.click();
+
+				WebElement homepage_icn = createWebElementBy(icn_homepage);
+				homepage_icn.click();
+				
+				/*WebElement OldPassword_Ipt = createWebElementBy(ipt_oldpassword);
+				OldPassword_Ipt.sendKeys(DecrptPassword);
 
 				
-				WebElement Username_Ipt = createWebElementBy(ipt_Username);
-				Username_Ipt.sendKeys(Username);
-
-				WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
-				Password_Ipt.sendKeys(DecrptPassword);
-
-				WebElement Agree_Btn = createWebElementBy(btn_Agree);
-				Agree_Btn.click();
+				WebElement Newpassword_Ipt = createWebElementBy(ipt_Newpassword);
+				Newpassword_Ipt.sendKeys(DecrptPassword);
+				
+				WebElement ConfirmPassword_Ipt = createWebElementBy(ipt_confirmpassword);
+				ConfirmPassword_Ipt.sendKeys(DecrptPassword);
 				
 				waitForPageLoaded();
 				
+				WebElement Continue_Btn = createWebElementBy(btn_continue);
+				Continue_Btn.click();*/
+				
 			}
-
+/*********************ENROLLMENT FUNCTIONALITY**************************/
 				
 				void TM_GPRS_S18_Web_EnrollmentFunctionality() {
-					WebElement drp_domain = createWebElementBy(drp_Domain);
-					//SelectDropdownValueByIndex(drp_domain, 2);
-
+					WebElement enrollment_img = createWebElementBy(img_enrollment);
+					enrollment_img.click();
 					
-					WebElement Username_Ipt = createWebElementBy(ipt_Username);
-					Username_Ipt.sendKeys(Username);
-
-					WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
-					Password_Ipt.sendKeys(DecrptPassword);
-
-					WebElement Agree_Btn = createWebElementBy(btn_Agree);
-					Agree_Btn.click();
+					Select dropdown = new Select(driver.findElement(By.id("EnrollQuestions_listQuestion1")));  
+					dropdown.selectByVisibleText("What is the name of your favorite sports team?");  
 					
-					waitForPageLoaded();
+					Select dropdown1 = new Select(driver.findElement(By.id("EnrollQuestions_listQuestion2")));  
+					dropdown1.selectByVisibleText("What is the name of your favorite television series?");  
+					
+					Select dropdown2 = new Select(driver.findElement(By.id("EnrollQuestions_listQuestion3")));  
+					dropdown2.selectByVisibleText("What is the name of your favorite restaurant?"); 
+					
+					WebElement homepage_icn = createWebElementBy(icn_homepage);
+					homepage_icn.click();
 
+					/*WebElement enrollpwd_Ipt = createWebElementBy(ipt_enrollPwd);
+					enrollpwd_Ipt.sendKeys(DecrptPassword);
+
+					WebElement Continue_Btn = createWebElementBy(btn_continue);
+					Continue_Btn.click();
+					
+					waitForPageLoaded();*/
+					
+					WebElement signout_Btn = createWebElementBy(btn_Signout);
+					signout_Btn.click();
+					
 				
-		/*WebElement reports_Btn = createWebElementBy(btn_reportsmenu);
-		 
-		reports_Btn.click();
-
-		WebElement Realtimereports_Btn = createWebElementBy(btn_realtimereports);
-		Realtimereports_Btn.click();
-
-		waitForPageLoaded();
-		
-				
-		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
-		sqlreports_btn.click();
-				
-		
-		WebElement runtimeparameters_btn = createWebElementBy(icn_runtimeparameters);
-		runtimeparameters_btn.click();
-		
-		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
-		SelectDropdownValueByIndex(Dropdown_Drp, 2);
-		
-		driver.findElement(By.xpath("//span[@id='dijit_form_Button_17_label']")).click();
-		
-		/*WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
-		datasourceok_btn.click();
-		wait(2);*/
-		
-		/*runtimeparameters_btn.click();
-		
-
-		
-		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
-		SelectDropdownValueByIndex(Dropdown_Drp1, 3);
-		
-		
-		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
-		datasourceok_btn1.click();
-		
-		
-		 WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
-		 Reviewonly_Btn.click();
-		  
-		  WebElement Signout_Btn = createWebElementBy(btn_Signout);
-		 Signout_Btn.click();*/
-		 
-		 
-		
-		
-	}
+			}
 	
 
 	/*****************************Application Interaction Methods *******************/
@@ -250,6 +239,7 @@ public class GPRS extends CommonMethods{
 		
 	}
 	
-	
-	
 }
+	
+
+

@@ -2,15 +2,8 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.AfterTest;
-
-import static org.testng.Assert.assertEquals;
-
-import java.util.List;
-
+import org.testng.annotations.AfterMethod;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
@@ -18,48 +11,156 @@ public class GVDGS2 extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	final String Url = "http://fcgvdappuat01/gvd";
+	final String UAT_Url = "http://fcgvdappuat01/gvd";
+	final String TestURL ="http://fcgvdapptest01/gvd/DataBrowser.aspx";
+	final String ValURL ="http://drgvdgs2appval1/gvd/DataBrowser.aspx";
+	final String DevURL ="http://fcgvdappdev01/gvd/";
+	final String ProdURL ="http://FCGVDGS2APPPRD1/GVD/ ";
 
 	/***************************** Test Cases *******************/
-
-	@BeforeTest
-	public void beforeTest() {
-		launchBrowser(Browser, Url);
+	@AfterMethod
+	public void afterTest() {
+		driver.quit();
 	}
-
+	
+	/*****************************UAT Url*******************/
 	@Test(priority = 0, enabled = true)
-	public void GVD_GS2_TC01_Web_User_Login() {
-		TM_TC01_Web_User_Login();
+	public void GVDGS2_S01_Web_UAT_UserLogin() {
+		TM_GVDGS2_S01_Web_UAT_UserLogin(UAT_Url);
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void GVD_GS2_TC02_Web_Options_in_Menu_System_Accessible() {
-		TM__TC02_Web_Options_in_Menu_System_Accessible();
+	public void GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible() {
+		TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(UAT_Url);
 	}
 
-	
-	  @Test(priority=2, enabled=true) 
-	  public void GVD_GS2_TC03_Web_Pages_in_Menu_System_Accessible() {
-	  TM_TC03_Web_Pages_in_Menu_System_Accessible(); 
-	  }
-	  
-	  
-	/*
-	 * @Test(priority=3, enabled=true) public void
-	 * GVD_GS2_TC04_Web_Tabs_under_Data_Browser_Accessible() {
-	 * TM_TC04_Web_Tabs_under_Data_Browser_Accessible(); }
-	 * 
-	 * 
-	 * @Test(priority=4, enabled=true) public void
-	 * GVD_GS2_TC05_Web_Filters_applied_for_Tabs_Data_Browser() {
-	 * TM_TC05_Web_Filters_applied_for_Tabs_Data_Browser(); }
-	 */
-	  
-	 
+	@Test(priority=2, enabled=true) 
+	public void GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible() {
+		TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(UAT_Url); 
+	}
 
-	@AfterTest
-	public void afterTest() {
-		driver.quit();
+	@Test(priority=3, enabled=true) 
+	public void GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible() {
+		//TM_GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible(UAT_Url); 
+
+	}
+
+	@Test(priority=4, enabled=true) 
+	public void GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser() {
+		//TM_GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser(UAT_Url); 
+
+	}
+
+	/*****************************TestURL *******************/
+	@Test(priority = 5, enabled = true)
+	public void GVDGS2_S06_Web_UAT_UserLogin() {
+		TM_GVDGS2_S01_Web_UAT_UserLogin(TestURL);
+	}
+
+	@Test(priority = 6, enabled = true)
+	public void GVDGS2_S07_Web_UAT_OptionsMenuSystemAccessible() {
+		TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(TestURL);
+	}
+
+	@Test(priority=7, enabled=true) 
+	public void GVDGS2_S08_Web_UAT_PagesMenuSystemAccessible() {
+		TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(TestURL); 
+	}
+
+	@Test(priority=8, enabled=true) 
+	public void GVDGS2_S09_Web_UAT_TabUnderDataBrowserAccessible() {
+		//TM_GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible(TestURL); 
+
+	}
+
+	@Test(priority=9, enabled=true) 
+	public void GVDGS2_S10_Web_UAT_FiltersAppliedTabsDataBrowser() {
+		//TM_GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser(TestURL); 
+
+	}
+
+	/*****************************ValURL *******************/
+	@Test(priority = 10, enabled = true)
+	public void GVDGS2_S11_Web_UAT_UserLogin() {
+		TM_GVDGS2_S01_Web_UAT_UserLogin(ValURL);
+	}
+
+	@Test(priority = 11, enabled = true)
+	public void GVDGS2_S12_Web_UAT_OptionsMenuSystemAccessible() {
+		TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(ValURL);
+	}
+
+	@Test(priority=12, enabled=true) 
+	public void GVDGS2_S13_Web_UAT_PagesMenuSystemAccessible() {
+		TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(ValURL); 
+	}
+
+	@Test(priority=13, enabled=true) 
+	public void GVDGS2_S14_Web_UAT_TabUnderDataBrowserAccessible() {
+		//TM_GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible(ValURL); 
+
+	}
+
+	@Test(priority=14, enabled=true) 
+	public void GVDGS2_S15_Web_UAT_FiltersAppliedTabsDataBrowser() {
+		//TM_GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser(ValURL); 
+
+	}
+	
+	/*****************************DevURL *******************/
+	@Test(priority = 15, enabled = true)
+	public void GVDGS2_S16_Web_UAT_UserLogin() {
+		TM_GVDGS2_S01_Web_UAT_UserLogin(DevURL);
+	}
+
+	@Test(priority = 16, enabled = true)
+	public void GVDGS2_S17_Web_UAT_OptionsMenuSystemAccessible() {
+		TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(DevURL);
+	}
+
+	@Test(priority=17, enabled=true) 
+	public void GVDGS2_S18_Web_UAT_PagesMenuSystemAccessible() {
+		TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(DevURL); 
+	}
+
+	@Test(priority=18, enabled=true) 
+	public void GVDGS2_S19_Web_UAT_TabUnderDataBrowserAccessible() {
+		//TM_GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible(DevURL); 
+
+	}
+
+	@Test(priority=19, enabled=true) 
+	public void GVDGS2_S20_Web_UAT_FiltersAppliedTabsDataBrowser() {
+		//TM_GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser(DevURL); 
+
+	}
+	
+	/*****************************ProdURL *******************/
+	@Test(priority = 20, enabled = true)
+	public void GVDGS2_S21_Web_UAT_UserLogin() {
+		TM_GVDGS2_S01_Web_UAT_UserLogin(ProdURL);
+	}
+
+	@Test(priority = 21, enabled = true)
+	public void GVDGS2_S22_Web_UAT_OptionsMenuSystemAccessible() {
+		TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(ProdURL);
+	}
+
+	@Test(priority=22, enabled=true) 
+	public void GVDGS2_S23_Web_UAT_PagesMenuSystemAccessible() {
+		TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(ProdURL); 
+	}
+
+	@Test(priority=23, enabled=true) 
+	public void GVDGS2_S24_Web_UAT_TabUnderDataBrowserAccessible() {
+		//TM_GVDGS2_S04_Web_UAT_TabUnderDataBrowserAccessible(ProdURL); 
+
+	}
+
+	@Test(priority=24, enabled=true) 
+	public void GVDGS2_S25_Web_UAT_FiltersAppliedTabsDataBrowser() {
+		//TM_GVDGS2_S05_Web_UAT_FiltersAppliedTabsDataBrowser(ProdURL); 
+
 	}
 
 	/***************************** Locators *******************/
@@ -77,125 +178,62 @@ public class GVDGS2 extends CommonMethods {
 	By lnk_Help = By.xpath("//span[contains(text(),'Help')]");
 	By lnk_SLE = By.xpath("//span[contains(text(),'Sample Listing Export')]");
 	By lnk_Sequences = By.xpath("//span[contains(text(),'Sequences')]");
-	
+
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	public void TM_TC01_Web_User_Login() {
+	void TM_GVDGS2_S01_Web_UAT_UserLogin(String url) {
 
-		String ActualTitle = driver.getTitle();
-		String ExpectedTitle = "Gilead Virology Database (GVD)";
-		Assert.assertEquals(ActualTitle, ExpectedTitle);
-		if (ActualTitle.equalsIgnoreCase(ExpectedTitle))
-			System.out.println("Title matched");
-		else
-			System.out.println("Title is not matched");
+		launchBrowser(Browser, url);
+
+		Assert.assertEquals(driver.getTitle(), "Gilead Virology Database (GVD)");
+	}
+
+	void TM_GVDGS2_S02_Web_UAT_OptionsMenuSystemAccessible(String url) {
+		launchBrowser(Browser,url );
+
+		WebElement Home_lnk = createWebElementBy(lnk_Home);
+		IsDisplayed_IsEnabled(Home_lnk);
+
+		WebElement Reports_lnk = createWebElementBy(lnk_Reports);
+		IsDisplayed_IsEnabled(Reports_lnk);
+
+
+		WebElement Metadatas_lnk = createWebElementBy(lnk_Metadatas);
+		IsDisplayed_IsEnabled(Metadatas_lnk);
+
+		WebElement AuditTrail_lnk = createWebElementBy(lnk_AuditTrail);
+		IsDisplayed_IsEnabled(AuditTrail_lnk);
+
+		WebElement PSV_lnk = createWebElementBy(lnk_PSV);
+		IsDisplayed_IsEnabled(PSV_lnk);
+
+		WebElement Help_lnk = createWebElementBy(lnk_Help);
+		IsDisplayed_IsEnabled(Help_lnk);
 
 	}
 
-	public void TM__TC02_Web_Options_in_Menu_System_Accessible() {
-		  {
-	 
-	        WebElement Home_lnk = createWebElementBy(lnk_Home);
-	        if(Home_lnk.isDisplayed() && Home_lnk.isEnabled())
-	        {
-	        	System.out.println("Home link is displayed and Enabled");
-	        	}
-	        else {
-	        	System.out.println("Home link is not displayed");
-	        }
-	        
-			
-			
-			WebElement Reports_lnk = createWebElementBy(lnk_Reports);
-			if(Reports_lnk.isDisplayed() && Reports_lnk.isEnabled()) {
-				 
-			        	System.out.println("Reports link is displayed and Enabled");
-			        	}
-			        else {
-			        	System.out.println("Reports link is not displayed");
-			        }
-			
-			
-				
-			WebElement Metadatas_lnk = createWebElementBy(lnk_Metadatas);
-			if(Metadatas_lnk.isDisplayed() && Metadatas_lnk.isEnabled()) {
-				 
-			        	System.out.println("Metadatas link is displayed and Enabled");
-			        	}
-			        else {
-			        	System.out.println("Metadatas link is not displayed");
-			        }
-			
-			WebElement AuditTrail_lnk = createWebElementBy(lnk_AuditTrail);
-			if(AuditTrail_lnk.isDisplayed() && AuditTrail_lnk.isEnabled()) {
-				 
-			        	System.out.println("AuditTrail link is displayed and Enabled");
-			        	}
-			        else {
-			        	System.out.println("AuditTrail link is not displayed");
-			        }
-			WebElement PSV_lnk = createWebElementBy(lnk_PSV);
-			if(PSV_lnk.isDisplayed() && PSV_lnk.isEnabled()) {
-				 
-			        	System.out.println("PSV link is displayed and Enabled");
-			        	}
-			        else {
-			        	System.out.println("PSV link is not displayed");
-			        }
-			WebElement Help_lnk = createWebElementBy(lnk_Help);
-			if(Help_lnk.isDisplayed() && Help_lnk.isEnabled()) {
-				 
-			        	System.out.println("Help link is displayed and Enabled");
-			        	}
-			        else {
-			        	System.out.println("Help link is not displayed");
-			        }
-			}
-			
+
+	public void TM_GVDGS2_S03_Web_UAT_PagesMenuSystemAccessible(String url) { 
+		launchBrowser(Browser, url);
+		
+		WebElement Reports_lnk = createWebElementBy(lnk_Reports);
+		mouseHover(Reports_lnk);
+
+		WebElement SLE_lnk=createWebElementBy(lnk_SLE);
+		SLE_lnk.click();
+		
+		waitForPageLoaded();
+		
+		String ActTitle =driver.getTitle();
+		Assert.assertEquals(ActTitle,"Sample Listing Export Utility", "Sample Listing Export page not displayed");
+
 	}
 
+	
 
-  public void TM_TC03_Web_Pages_in_Menu_System_Accessible() 
-  {
-  
-  WebElement Reports_lnk = createWebElementBy(lnk_Reports);
-  mouseHover(Reports_lnk);
-  
-  WebElement SLE_lnk=createWebElementBy(lnk_SLE);
-  SLE_lnk.click();
-  String ActTitle =driver.getTitle();
-  Assert.assertEquals(ActTitle,"Sample Listing Export Utility", "Sample Listing Export page not displayed");
-  System.out.println("Sample Listing Export page displayed");
-  
-  }
-  
-  {
-	  
-	  WebElement Reports_lnk = createWebElementBy(lnk_Reports);
-	  mouseHover(Reports_lnk);
-	  
-	  WebElement SLE_lnk=createWebElementBy(lnk_SLE);
-	  SLE_lnk.click();
-	  String ActTitle =driver.getTitle();
-	  Assert.assertEquals(ActTitle,"Sample Listing Export Utility", "Sample Listing Export page not displayed");
-	  System.out.println("Sample Listing Export page displayed");
-	  
-	  }
-  
-  
-  
-	/*
-	 * public void TM_TC04_Web_Tabs_under_Data_Browser_Accessible() { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 * 
-	 * public void TM_TC05_Web_Filters_applied_for_Tabs_Data_Browser() { // TODO
-	 * Auto-generated method stub
-	 * 
-	 * }
-	 */
+
+	
 }
 

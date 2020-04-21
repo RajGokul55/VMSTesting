@@ -39,8 +39,8 @@ public class Inova extends CommonMethods{
 	}
 
 	@Test(priority=0, enabled=true)
-	public void Inova_03_PostPatch_Testing() {
-		TM_Inova_03_PostPatch_Testing();
+	public void Inova_S03_PostPatch_Testing() {
+		TM_Inova_S03_PostPatch_Testing();
 	}
 
 
@@ -92,11 +92,13 @@ public class Inova extends CommonMethods{
 
 	
 	
+	
 /*******************Login page****************/
 	
-	void TM_Inova_03_PostPatch_Testing() {
+	void TM_Inova_S03_PostPatch_Testing() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
+		
 
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);

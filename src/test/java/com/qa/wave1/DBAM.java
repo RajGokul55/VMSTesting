@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 
@@ -29,12 +30,6 @@ public class DBAM extends CommonMethods{
 
 	/***************************** Test Cases *******************/
 
-	
-	
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("ZAzQ3KUtxVu2ss3Wyzp1Ng==");
-	}
 
 	@BeforeMethod(enabled=true)
 	public void beforeTest() {
@@ -46,8 +41,6 @@ public class DBAM extends CommonMethods{
 		TM_DBAM_S01_Web_BuildingReports();
 	}
 
-		
-	
 
 		
 	@AfterMethod(enabled=true)
@@ -77,30 +70,19 @@ public class DBAM extends CommonMethods{
 	By slt_Dropdownreports = By.xpath("//div[@id='idx_widget_Dialog_0']");
 
 	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_16']");
-	//By slt_dropdowndatasource = By.xpath("(//span[contains(@class,'dojoxEllipsis')][contains(text(),'sjdbamappdevg01.na.gilead.com')])[5]");
-
-	//By btn_datasourceok = By.cssSelector("(//span[@class='idxDialogActionBarEnd']>span:nth-child(1)");
-
-
-	//By btn_datasourceok = By.xpath("//span[contains(text(),'OK')][1]");
-
+	
 
 	By slt_dropdowndatasource = By.xpath("((//div[contains(@class,'dijitReset dijitArrowButtonChar')])[2]");
 
 	By btn_datasourceok = By.cssSelector("span[class='idxDialogActionBarEnd']>span:nth-child(1)");
 
 
-	//By btn_datasourceok = By.xpath("(//span[contains(text(),'OK')])[3]");
-
-
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
-
-	
 	
 	By drp_Dropdown = By.cssSelector("td div[class='dijitInline'] tbody[role='presentation']:nth-child(1)");
 	
-	//div[class='dijitPopup dijitMenuPopup'] tr:nth-child(3)
+	
 
 	/*****************************Test Case Methods *******************/
 	@SuppressWarnings("null")
@@ -113,7 +95,14 @@ public class DBAM extends CommonMethods{
 	void TM_DBAM_S01_Web_BuildingReports() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
-
+		try {
+			DecrptPassword = decrypt("ZAzQ3KUtxVu2ss3Wyzp1Ng==");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);
 
@@ -132,24 +121,6 @@ public class DBAM extends CommonMethods{
 	
 		waitForPageLoaded();
 
-		
-		/*WebElement Help_Img = createWebElementBy(img_Help);
-		scrollToWebElement(Help_Img);*/
-		
-		scrollBehaviorByPixels(0, -506);
-		
-		wait(2);
-		
-		//Help_Img.click();
-		
-		waitForPageLoaded();
-		
-		scrollToBottomOfHTML();
-
-	
-
-		
-
 		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
 		sqlreports_btn.click();
 				
@@ -159,37 +130,33 @@ public class DBAM extends CommonMethods{
 		
 
 		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
-		SelectDropdownValueByIndex(Dropdown_Drp, 2);
-		 
+		SelectDropdownValueByIndex(Dropdown_Drp, "sjdbamappdevg01.na.gilead.com");
 		
-		//driver.findElement(By.xpath("//span[@id='dijit_form_Button_17_label']")).click();
 		
 		WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
 		datasourceok_btn.click();
 		wait(2);
 		
 		runtimeparameters_btn.click();
-		
-
-		
+	
 		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
-
-		SelectDropdownValueByIndex(Dropdown_Drp1, 3);
-		wait(2);
-
-		//SelectDropdownValueByIndex(Dropdown_Drp1, 3);
-
-
+		SelectDropdownValueByIndex(Dropdown_Drp1,"sjdbamappdevg02.na.gilead.com");
 		
-		//WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
-		datasourceok_btn.click();
+	
+		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
+		datasourceok_btn1.click();
+		
+		WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
+		 Reviewonly_Btn.click();
 		
 			
-		 WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
-		 Reviewonly_Btn.click();
-		  
+		Select dropdown = new Select(driver.findElement(By.cssSelector("dijitReset dijitMenuItemAccelKey")));  
+		dropdown.selectByVisibleText("Sign Out");  
+		
+		 
+		 /* 
 		  WebElement Signout_Btn = createWebElementBy(btn_Signout);
-		 Signout_Btn.click();
+		 Signout_Btn.click();*/
 		 
 
 	}
@@ -198,21 +165,26 @@ public class DBAM extends CommonMethods{
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
 
-void SelectDropdownValueByIndex(WebElement element, int i) {
-	
-	int position = i+1;		
-	
-	String Csspath = "div[class='dijitPopup dijitMenuPopup'] tr:nth-child("+position+")";
-	element.click();
-	wait(2);
-	
+	void SelectDropdownValueByIndex(WebElement element,String value) {
 
-	WebElement DropValue = driver.findElement(By.cssSelector(Csspath));
-	DropValue.click();
-	wait(2);
-	
+		element.click();
+
+
+		By dropdownvalue = By.cssSelector("div[class='dijitPopup dijitMenuPopup'] tr");
+
+		List<WebElement>  dropvalue= createWebElementsBy(dropdownvalue);
+
+		for (WebElement dropVl: dropvalue) {
+			System.out.println("Dropdown valu is : "+ dropVl.getText());
+			if(dropVl.getText().equalsIgnoreCase(value)) {
+				dropVl.click();	
+				break;
+			}
+		}
+	}
+
 }
 
 
 
-}
+

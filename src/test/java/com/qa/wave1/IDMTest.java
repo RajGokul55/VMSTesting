@@ -23,6 +23,7 @@ public class IDMTest extends CommonMethods{
 	final String Url= "http://sjidmapptstg01.na.gilead.com:8080/identityiq/login.jsf?prompt=true";
 	final String Username ="sgupta27";
 	private String DecrptPassword;
+	String EncryptPassword = "tYAZwEkYPz68EUeic62TFw==";
 	private String title;
 	private String url;
 
@@ -39,39 +40,40 @@ public class IDMTest extends CommonMethods{
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("tYAZwEkYPz68EUeic62TFw==");
-	}
-
+	
 	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
+		try {
+			DecrptPassword = decrypt(EncryptPassword);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Test(priority=0, enabled=true)
-	public void IDM_TC01_Web_AccessRequest_Verification() {
-		TM_IDM_TC01_Web_AccessRequest_Verification();
+	public void IDM_S01_Web_AccessRequest_Verification() {
+		TM_IDM_S01_Web_AccessRequest_Verification();
 	}
 
 	@Test(priority=1, enabled=true)
-	public void IDM_TC02_Web_TrackRequest_Verification() {
-		TM_IDM_TC02_Web_TrackRequest_Verification();
+	public void IDM_S02_Web_TrackRequest_Verification() {
+		TM_IDM_S02_Web_TrackRequest_Verification();
 	}
 	
 	@Test(priority=2, enabled=true)
-	public void IDM_TC03_Web_Approvals_Verification() {
-		TM_IDM_TC03_Web_Approvals_Verification();
+	public void IDM_S03_Web_Approvals_Verification() {
+		TM_IDM_S03_Web_Approvals_Verification();
 	}
 	
 	@Test(priority=3, enabled=true)
-	public void IDM_TC04_Web_Reports_Verification() {
-		TM_IDM_TC04_Web_Reports_Verification();
+	public void IDM_S04_Web_Reports_Verification() {
+		TM_IDM_S04_Web_Reports_Verification();
 	}
 
 	@Test(priority=4, enabled=true)
-	public void IDM_TC06_Web_TEST_URL_Verification() {
-		TM_IDM_TC06_Web_TEST_URL_Verification();
+	public void IDM_S05_Web_TEST_URL_Verification() {
+		TM_IDM_S05_Web_TEST_URL_Verification();
 	}
 
 	@AfterMethod(enabled=true)
@@ -119,7 +121,8 @@ public class IDMTest extends CommonMethods{
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
-	public void TM_IDM_TC01_Web_AccessRequest_Verification() {
+	public void TM_IDM_S01_Web_AccessRequest_Verification() {
+		
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		  
@@ -171,7 +174,7 @@ public class IDMTest extends CommonMethods{
 		
 	}
 	
-	public void TM_IDM_TC02_Web_TrackRequest_Verification() {
+	public void TM_IDM_S02_Web_TrackRequest_Verification() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		  
@@ -209,7 +212,7 @@ public class IDMTest extends CommonMethods{
 		
 	}
 	
-	public void TM_IDM_TC03_Web_Approvals_Verification() {
+	public void TM_IDM_S03_Web_Approvals_Verification() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		  
@@ -256,7 +259,7 @@ public class IDMTest extends CommonMethods{
 		
 	}
 	
-	public void TM_IDM_TC04_Web_Reports_Verification() {
+	public void TM_IDM_S04_Web_Reports_Verification() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		  
@@ -287,7 +290,7 @@ public class IDMTest extends CommonMethods{
 	
 	}
 
-	public void TM_IDM_TC06_Web_TEST_URL_Verification() {
+	public void TM_IDM_S05_Web_TEST_URL_Verification() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		  

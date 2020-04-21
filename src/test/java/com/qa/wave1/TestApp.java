@@ -106,6 +106,7 @@ public class TestApp extends CommonMethods{
 	By slt_Dropdown = By.cssSelector("select[aria-describedby='searchDropdownDescription']");
 	By slt_dropwn = By.cssSelector("div[id='nav-search-dropdown-card']");
 	By opt_AmazonFresh = By.cssSelector("select[title='Search in']>option[value$='amazonfresh']");
+	By id_amazontab= By.cssSelector("#1234s");
 	
 
 	/*****************************Test Case Methods *******************/

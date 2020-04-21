@@ -361,6 +361,20 @@ public class CommonMethods {
 		 * Date: April 2020 
 		 * 
 		 */
+		
+		ExpectedCondition<Boolean> expectation = new
+				ExpectedCondition<Boolean>() {
+			public Boolean apply(WebDriver driver) {
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+			}
+		};
+		try {
+			WebDriverWait wait = new WebDriverWait(driver, 30);
+			wait.until(expectation);
+		} catch (Throwable error) {
+			Assert.fail("Timeout waiting for Page Load Request to complete.");
+		}
+		
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
 		try {
@@ -369,7 +383,7 @@ public class CommonMethods {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		Reporter.log("<br><img src='"+screenShotName+"' height='300' width='300'/><br>");  
+		Reporter.log("<br><img src='"+screenShotName+"' height='300' width='500'/><br>");  
 		  	
 	}
 	

@@ -76,7 +76,7 @@ public class Inova extends CommonMethods{
 	By btn_NewProducts=By.xpath("//span[contains(text(),'New Product')]");
 	By btn_Save=By.xpath("(//span[@class='ui-button-text'][contains(text(),'Save')])[1]");
 	
-	By btn_Companies = By.xpath("//span[contains(text(),'Companies')]");
+	By btn_Companies = By.xpath("//span[@class='icon-label'][contains(text(),'Companies')]");
 	By btn_NewCompany=By.xpath("//span[contains(text(),'New Company')]");
 	
 	By btn_parentCompany=By.xpath("//div[@id='inova_qc_0']");
@@ -114,16 +114,14 @@ public class Inova extends CommonMethods{
 		
 		
 		/******************validating tabs****************************/
-		/*WebElement alliances_icn = createWebElementBy(img_Alliances);
-		alliances_icn.click();*/
-
+		
 		WebElement alliances_btn = createWebElementBy(icn_Alliances);
 		alliances_btn.click();
+		wait(3);
 
 		WebElement Home_btn = createWebElementBy(btn_Home);
 		Home_btn.click();
-		
-		wait(2);
+		wait(3);
 
 		
 		WebElement products_icn = createWebElementBy(icn_Products);
@@ -132,41 +130,36 @@ public class Inova extends CommonMethods{
 		
 		WebElement NewProducts_btn = createWebElementBy(btn_NewProducts);
 		NewProducts_btn.click();
-		wait(2);
+		wait(3);
 		
 		WebElement cancel_btn = createWebElementBy(btn_Cancel);
 		cancel_btn.click();
-		
-		WebElement Home_btn1 = createWebElementBy(btn_Home);
-		Home_btn1.click();
 		wait(2);
 		
+	
 		
 		WebElement companies_btn = createWebElementBy(btn_Companies);
 		companies_btn.click();
 		
 		WebElement NewCompany_btn = createWebElementBy(btn_NewCompany);
 		NewCompany_btn.click();
-		wait(2);
+		wait(3);
+		
 		WebElement cancel_btn1 = createWebElementBy(btn_Cancel);
 		cancel_btn1.click();
-		
-		WebElement Home_btn2 = createWebElementBy(btn_Home);
-		Home_btn2.click();
-		
-		wait(2);
+		wait(3);
 		
 		WebElement contacts_btn = createWebElementBy(btn_Contacts);
 		contacts_btn.click();
 		
 		WebElement editcontacts_btn = createWebElementBy(btn_editContacts);
 		editcontacts_btn.click();
-		wait(2);
+		wait(3);
 		
 		WebElement cancel_btn2 = createWebElementBy(btn_Cancel);
 		cancel_btn2.click();
-		WebElement Home_btn3 = createWebElementBy(btn_Home);
-		Home_btn3.click();
+		wait(3);
+		
 		
 			
 		WebElement Logout_Btn = createWebElementBy(btn_Logout);

@@ -37,7 +37,7 @@ public class DBAM extends CommonMethods{
 	}
 
 	@Test(priority=0, enabled=true)
-	public void DBAM_01_Web_BuildingReports() {
+	public void DBAM_S01_Web_BuildingReports() {
 		TM_DBAM_S01_Web_BuildingReports();
 	}
 
@@ -78,7 +78,7 @@ public class DBAM extends CommonMethods{
 
 
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
-	By btn_Signout = By.cssSelector("dijitReset dijitMenuItemAccelKey");
+	By btn_Signout = By.cssSelector("dijit_form_DropDownButton_37");
 	
 	By drp_Dropdown = By.cssSelector("td div[class='dijitInline'] tbody[role='presentation']:nth-child(1)");
 	
@@ -123,6 +123,7 @@ public class DBAM extends CommonMethods{
 
 		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
 		sqlreports_btn.click();
+		waitForPageLoaded();
 				
 		
 		WebElement runtimeparameters_btn = createWebElementBy(icn_runtimeparameters);
@@ -132,34 +133,30 @@ public class DBAM extends CommonMethods{
 		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
 		SelectDropdownValueByIndex(Dropdown_Drp, "sjdbamappdevg01.na.gilead.com");
 		
+		waitForPageLoaded();
 		
 		WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
 		datasourceok_btn.click();
-		wait(2);
+		wait(5);
 		
 		runtimeparameters_btn.click();
 	
 		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
 		SelectDropdownValueByIndex(Dropdown_Drp1,"sjdbamappdevg02.na.gilead.com");
-		
+		waitForPageLoaded();
 	
 		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
 		datasourceok_btn1.click();
+		wait(5);
 		
-		WebElement Reviewonly_Btn = createWebElementBy(btn_reviewonly);
-		 Reviewonly_Btn.click();
-		
-			
-		Select dropdown = new Select(driver.findElement(By.cssSelector("dijitReset dijitMenuItemAccelKey")));  
-		dropdown.selectByVisibleText("Sign Out");  
 		
 		 
-		 /* 
-		  WebElement Signout_Btn = createWebElementBy(btn_Signout);
-		 Signout_Btn.click();*/
-		 
+		 WebElement Dropdown_signout = createWebElementBy(btn_reviewonly);		
+			SelectDropdownValueByIndex(Dropdown_signout,"Sign Out");
+			waitForPageLoaded();
 
-	}
+			
+			}
 	
 
 	/*****************************Application Interaction Methods *******************/

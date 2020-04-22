@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class SDEA extends CommonMethods {
 	/***************************** Test Data*******************/
@@ -40,56 +41,39 @@ public class SDEA extends CommonMethods {
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
+	
+	 String URL = devUrl;
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		launchBrowser(Browser, URL);
+	}
 
 	@Test(priority=0, enabled=false)
-	public void SDEA_S01_DEV_Web_Sort_Verification() {
-		TM_SDEA_TC01_Web_Sort_Verification(devUrl);
+	public void SDEA_S01_Web_Sort_Verification() {
+		TM_SDEA_TC01_Web_Sort_Verification();
 	}
 
 	@Test(priority=1, enabled=false)
-	public void SDEA_S02_DEV_Web_Sort_Verification() {
-		TM_SDEA_S02_Web_Sort_Verification(devUrl);
+	public void SDEA_S02_Web_Sort_Verification() {
+		TM_SDEA_S02_Web_Sort_Verification();
 	}
 
 	@Test(priority=2, enabled=false)
-	public void SDEA_S03_DEV_Web_Filter_Verification() {
-		TM_SDEA_S03_Web_Filter_Verification(devUrl);
+	public void SDEA_S03_Web_Filter_Verification() {
+		TM_SDEA_S03_Web_Filter_Verification();
 	}
 
 	@Test(priority=3, enabled=false)
-	public void SDEA_S04_DEV_Web_Filter_Verification() {
-		TM_SDEA_S04_Web_Filter_Verification(devUrl);
+	public void SDEA_S04_Web_Filter_Verification() {
+		TM_SDEA_S04_Web_Filter_Verification();
 	}
 
 	@Test(priority=4, enabled=false)
-	public void SDEA_S05_DEV_Web_Filter_Verification() {
-		TM_SDEA_S05_Web_Filter_Verification(devUrl);
+	public void SDEA_S05_Web_Filter_Verification() {
+		TM_SDEA_S05_Web_Filter_Verification();
 	}
 	
-	@Test(priority=5, enabled=false)
-	public void SDEA_S01_PRD_Web_Sort_Verification() {
-		TM_SDEA_TC01_Web_Sort_Verification(prdUrl);
-	}
-
-	@Test(priority=6, enabled=false)
-	public void SDEA_S02_PRD_Web_Sort_Verification() {
-		TM_SDEA_S02_Web_Sort_Verification(prdUrl);
-	}
-
-	@Test(priority=7, enabled=false)
-	public void SDEA_S03_PRD_Web_Filter_Verification() {
-		TM_SDEA_S03_Web_Filter_Verification(prdUrl);
-	}
-
-	@Test(priority=8, enabled=false)
-	public void SDEA_S04_PRD_Web_Filter_Verification() {
-		TM_SDEA_S04_Web_Filter_Verification(prdUrl);
-	}
-
-	@Test(priority=9, enabled=false)
-	public void SDEA_S05_PRD_Web_Filter_Verification() {
-		TM_SDEA_S05_Web_Filter_Verification(prdUrl);
-	}
 
 	@AfterMethod(enabled=true)
 	public void afterTest() {
@@ -143,8 +127,8 @@ public class SDEA extends CommonMethods {
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
-	public void TM_SDEA_TC01_Web_Sort_Verification(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_SDEA_TC01_Web_Sort_Verification() {
+		
 		WebElement PharmaAgreements_Lnk = createWebElementBy(lnk_pharmaAgreements);
 		PharmaAgreements_Lnk.click();
 		waitForPageLoaded();
@@ -173,8 +157,8 @@ public class SDEA extends CommonMethods {
 
 	}
 
-	public void TM_SDEA_S02_Web_Sort_Verification(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_SDEA_S02_Web_Sort_Verification() {
+		
 		WebElement ClinicalTrail_Lnk = createWebElementBy(lnk_clinicalTrail);
 		ClinicalTrail_Lnk.click();
 		waitForPageLoaded();
@@ -201,8 +185,8 @@ public class SDEA extends CommonMethods {
 
 	}
 
-	public void TM_SDEA_S03_Web_Filter_Verification(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_SDEA_S03_Web_Filter_Verification() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
@@ -248,8 +232,8 @@ public class SDEA extends CommonMethods {
 		driver.switchTo().window(winHandleBefore);
 	}
 
-	public void TM_SDEA_S04_Web_Filter_Verification(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_SDEA_S04_Web_Filter_Verification() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
@@ -295,8 +279,8 @@ public class SDEA extends CommonMethods {
 		driver.switchTo().window(winHandleBefore);
 	}
 
-	public void TM_SDEA_S05_Web_Filter_Verification(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_SDEA_S05_Web_Filter_Verification() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 

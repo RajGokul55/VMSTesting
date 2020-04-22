@@ -12,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 public class GDLP extends CommonMethods {
 	
@@ -56,45 +57,43 @@ public class GDLP extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 	
+	String URL = devUrl;
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		launchBrowser(Browser, URL);
+	}
+	
 	@Test(priority=1, enabled=true)
-	public void GDLP_S01_DEV_Web_login_verifyserver() {
-		TM_GDLP_S01_Web_login_verifyserver(devUrl);
+	public void GDLP_S01_Web_login_verifyserver() {
+		TM_GDLP_S01_Web_login_verifyserver();
 	}
 
 	@Test(priority=2, enabled=true)
-	public void GDLP_S02_DEV_Web_create_policy() {
-		TM_GDLP_S02_Web_create_policy(devUrl);
+	public void GDLP_S02_Web_create_policy() {
+		TM_GDLP_S02_Web_create_policy();
 	}
 	
 	@Test(priority=3, enabled=true)
-	public void GDLP_S03_DEV_Web_edit_rule() {
-		TM_GDLP_S03_Web_edit_rule(devUrl);
+	public void GDLP_S03_Web_edit_rule() {
+		TM_GDLP_S03_Web_edit_rule();
 	}
 	
 	@Test(priority=4, enabled=true)
-	public void GDLP_S04_DEV_Web_create_target() {
-		TM_GDLP_S04_Web_create_target(devUrl);
+	public void GDLP_S04_Web_create_target() {
+		TM_GDLP_S04_Web_create_target();
 	}
 	
 	@Test(priority=5, enabled=true)
-	public void GDLP_S05_DEV_Web_scan_target() {
-		TM_GDLP_S05_Web_scan_target(devUrl);
+	public void GDLP_S05_Web_scan_target() {
+		TM_GDLP_S05_Web_scan_target();
 	}
 	
 	@Test(priority=6, enabled=true)
-	public void GDLP_S06_DEV_Web_view_incidents() {
-		TM_GDLP_S06_Web_view_incidents(devUrl);
+	public void GDLP_S06_Web_view_incidents() {
+		TM_GDLP_S06_Web_view_incidents();
 	}
 	
-	@Test(priority=7, enabled=true)
-	public void GDLP_S06_NA_Web_view_incidents() {
-		TM_GDLP_S06_Web_view_incidents(naUrl);
-	}
-	
-	@Test(priority=8, enabled=true)
-	public void GDLP_S06_EU_Web_view_incidents() {
-		TM_GDLP_S06_Web_view_incidents(euUrl);
-	}
 	
 	@AfterMethod(enabled=true)
 		public void afterMethod() {
@@ -169,8 +168,8 @@ public class GDLP extends CommonMethods {
 	//For all WebElements may append type Example: Submit_Btn
 	
 	
-	public void TM_GDLP_S01_Web_login_verifyserver(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_GDLP_S01_Web_login_verifyserver() {
+		
 		WebElement System_btn = createWebElementBy(btn_system);
 		mouseHover(System_btn);
 		
@@ -213,8 +212,8 @@ public class GDLP extends CommonMethods {
 		
 	}
 	
-public void TM_GDLP_S02_Web_create_policy(String Url) {
-		launchBrowser(Browser, Url);
+public void TM_GDLP_S02_Web_create_policy() {
+		
 		
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
@@ -303,8 +302,8 @@ public void TM_GDLP_S02_Web_create_policy(String Url) {
 		
 	}
 
-	public void TM_GDLP_S03_Web_edit_rule(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_GDLP_S03_Web_edit_rule() {
+		
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement Policies_Btn = createWebElementBy(btn_policies);
@@ -359,8 +358,8 @@ public void TM_GDLP_S02_Web_create_policy(String Url) {
 		
 	}
 	
-	public void TM_GDLP_S04_Web_create_target(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_GDLP_S04_Web_create_target() {
+		
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
@@ -454,8 +453,8 @@ public void TM_GDLP_S02_Web_create_policy(String Url) {
 		
 	}
 	
-	public void TM_GDLP_S05_Web_scan_target(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_GDLP_S05_Web_scan_target() {
+		
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
@@ -531,8 +530,8 @@ public void TM_GDLP_S02_Web_create_policy(String Url) {
 		}
 	}
 	
-	public void TM_GDLP_S06_Web_view_incidents(String Url) {
-		launchBrowser(Browser, Url);
+	public void TM_GDLP_S06_Web_view_incidents() {
+		
 		WebElement Incidents_Btn = createWebElementBy(btn_incidents);
 		mouseHover(Incidents_Btn);
 		WebElement AllReports_Btn = createWebElementBy(btn_allReports);

@@ -2,26 +2,25 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
 
-public class GDLPdevTest extends CommonMethods {
+public class GDLP extends CommonMethods {
 	
 	
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://gdlp-dev.gilead.com";
+	final String devUrl= "https://gdlp-dev.gilead.com";
+	final String naUrl = "https://gdlp-na.gilead.com";
+	final String euUrl = "https://gdlp-eu.gilead.com";
 	final String username = "NA\\graj";
 	private String DecrptPassword;
 	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
@@ -56,45 +55,48 @@ public class GDLPdevTest extends CommonMethods {
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-
-		
-	@BeforeTest(enabled=true)
-	  	public void beforeMethod() {
-		launchBrowser(Browser, Url);
-	  }	
-	
 	
 	@Test(priority=1, enabled=true)
-	public void GDLP_S01_Web_login_verifyserver() {
-		TM_GDLP_S01_Web_login_verifyserver();
+	public void GDLP_S01_DEV_Web_login_verifyserver() {
+		TM_GDLP_S01_Web_login_verifyserver(devUrl);
 	}
 
 	@Test(priority=2, enabled=true)
-	public void GDLP_S02_Web_create_policy() {
-		TM_GDLP_S02_Web_create_policy();
+	public void GDLP_S02_DEV_Web_create_policy() {
+		TM_GDLP_S02_Web_create_policy(devUrl);
 	}
 	
 	@Test(priority=3, enabled=true)
-	public void GDLP_S03_Web_edit_rule() {
-		TM_GDLP_S03_Web_edit_rule();
+	public void GDLP_S03_DEV_Web_edit_rule() {
+		TM_GDLP_S03_Web_edit_rule(devUrl);
 	}
 	
 	@Test(priority=4, enabled=true)
-	public void GDLP_S04_Web_create_target() {
-		TM_GDLP_S04_Web_create_target();
+	public void GDLP_S04_DEV_Web_create_target() {
+		TM_GDLP_S04_Web_create_target(devUrl);
 	}
 	
 	@Test(priority=5, enabled=true)
-	public void GDLP_S05_Web_scan_target() {
-		TM_GDLP_S05_Web_scan_target();
+	public void GDLP_S05_DEV_Web_scan_target() {
+		TM_GDLP_S05_Web_scan_target(devUrl);
 	}
 	
 	@Test(priority=6, enabled=true)
-	public void GDLP_S06_Web_view_incidents() {
-		TM_GDLP_S06_Web_view_incidents();
+	public void GDLP_S06_DEV_Web_view_incidents() {
+		TM_GDLP_S06_Web_view_incidents(devUrl);
 	}
 	
-	@AfterTest(enabled=true)
+	@Test(priority=7, enabled=true)
+	public void GDLP_S06_NA_Web_view_incidents() {
+		TM_GDLP_S06_Web_view_incidents(naUrl);
+	}
+	
+	@Test(priority=8, enabled=true)
+	public void GDLP_S06_EU_Web_view_incidents() {
+		TM_GDLP_S06_Web_view_incidents(euUrl);
+	}
+	
+	@AfterMethod(enabled=true)
 		public void afterMethod() {
 		driver.quit();
   }
@@ -161,13 +163,14 @@ public class GDLPdevTest extends CommonMethods {
 	By tbl_disTable      =     By.xpath("//*[@id=\"discoverTargetListTable\"]/tbody/tr");
 	By btn_allIncidents  =	   By.xpath("//table[4]/tbody[1]/tr[4]/td[1]/span[1]");
 	By msg_saveSuccess   =     By.cssSelector("#web-status-message-155.message-content");
+	By lnk_allincidents	 =	   By.partialLinkText("Incidents - All");
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 	
 	
-	public void TM_GDLP_S01_Web_login_verifyserver() {
-		
+	public void TM_GDLP_S01_Web_login_verifyserver(String Url) {
+		launchBrowser(Browser, Url);
 		WebElement System_btn = createWebElementBy(btn_system);
 		mouseHover(System_btn);
 		
@@ -210,8 +213,8 @@ public class GDLPdevTest extends CommonMethods {
 		
 	}
 	
-public void TM_GDLP_S02_Web_create_policy() {
-		
+public void TM_GDLP_S02_Web_create_policy(String Url) {
+		launchBrowser(Browser, Url);
 		
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
@@ -300,8 +303,8 @@ public void TM_GDLP_S02_Web_create_policy() {
 		
 	}
 
-	public void TM_GDLP_S03_Web_edit_rule() {
-		
+	public void TM_GDLP_S03_Web_edit_rule(String Url) {
+		launchBrowser(Browser, Url);
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement Policies_Btn = createWebElementBy(btn_policies);
@@ -356,8 +359,8 @@ public void TM_GDLP_S02_Web_create_policy() {
 		
 	}
 	
-	public void TM_GDLP_S04_Web_create_target() {
-		
+	public void TM_GDLP_S04_Web_create_target(String Url) {
+		launchBrowser(Browser, Url);
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
@@ -451,8 +454,8 @@ public void TM_GDLP_S02_Web_create_policy() {
 		
 	}
 	
-	public void TM_GDLP_S05_Web_scan_target() {
-		
+	public void TM_GDLP_S05_Web_scan_target(String Url) {
+		launchBrowser(Browser, Url);
 		WebElement Manage_Btn = createWebElementBy(btn_manage);
 		mouseHover(Manage_Btn);
 		WebElement DiscoveryScan_Btn = createWebElementBy(btn_dicoveryScan);
@@ -528,8 +531,8 @@ public void TM_GDLP_S02_Web_create_policy() {
 		}
 	}
 	
-	public void TM_GDLP_S06_Web_view_incidents() {
-		
+	public void TM_GDLP_S06_Web_view_incidents(String Url) {
+		launchBrowser(Browser, Url);
 		WebElement Incidents_Btn = createWebElementBy(btn_incidents);
 		mouseHover(Incidents_Btn);
 		WebElement AllReports_Btn = createWebElementBy(btn_allReports);
@@ -538,10 +541,9 @@ public void TM_GDLP_S02_Web_create_policy() {
 		waitForPageLoaded();
 		WebElement AllIncidents_Btn = createWebElementBy(btn_allIncidents);
 		AllIncidents_Btn.click();
-		String verify = driver.findElement(By.partialLinkText("Incidents - All")).getText();
-		
+		WebElement AllIncidents_Lnk = createWebElementBy(lnk_allincidents);
+		String verify = AllIncidents_Lnk.getText();
 		takeScreenshotAtEndOfTest();
-		
 		Assert.assertEquals(verify, "Incidents - All");
 	}
 	

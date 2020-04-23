@@ -53,25 +53,14 @@ public class GSIDPROD extends CommonMethods {
 	}
 
 	@Test(priority=3, enabled=true)
-	public void GSID_S04_Web_Process_Search_Validate() {
-		TM_GSID_S04_Web_Process_Search_Validate();
-	}
-
-	@Test(priority=4, enabled=true)
-	public void GSID_S05_Web_Search_Binaries_Validate() {
-		TM_GSID_S05_Web_Search_Binaries_Validate();
+	public void GSID_S04_Web_Search_Binaries_Process_Search_Validate() {
+		TM_GSID_S04_Web_Search_Binaries_Process_Search_Validate();
 	}
 
 	@Test(priority=5, enabled=true)
-	public void GSID_S06_Web_Investigations_Validate() {
-		TM_GSID_S06_Web_Investigations_Validate();
+	public void GSID_S05_Web_Investigations_Sensors_Validate() {
+		TM_GSID_S05_Web_Investigations_Sensors_Validate();
 	}
-
-	@Test(priority=6, enabled=true)
-	public void GSID_S07_Web_Sensors_Validate() {
-		TM_GSID_S07_Web_Sensors_Validate();
-	}
-
 
 	@AfterMethod
 	public void afterMethod() {
@@ -144,7 +133,7 @@ public class GSIDPROD extends CommonMethods {
 
 	}
 
-	public void TM_GSID_S04_Web_Process_Search_Validate() {
+	public void TM_GSID_S04_Web_Search_Binaries_Process_Search_Validate() {
 
 		loginWithSSO();
 		WebElement ProcessSearch_Btn = createWebElementBy(btn_processSearch);
@@ -153,23 +142,18 @@ public class GSIDPROD extends CommonMethods {
 		WebElement Title_Msg = createWebElementBy(msg_title);
 		Assert.assertEquals(Title_Msg.getText(), "Process Search");
 		takeScreenshotAtEndOfTest();
-
-	}
-
-	public void TM_GSID_S05_Web_Search_Binaries_Validate() {
-
-		loginWithSSO();
 		WebElement SearchBinaries_Btn = createWebElementBy(btn_searchBinaries);
 		SearchBinaries_Btn.click();
 		waitForPageLoaded();
-		WebElement Title_Msg = createWebElementBy(msg_title);
-		Assert.assertEquals(Title_Msg.getText(), "Search Binaries");
+		WebElement Title_Msg1 = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg1.getText(), "Search Binaries");
 		takeScreenshotAtEndOfTest();
 		WebElement SearchBinaries_Tbl = createWebElementBy(tbl_searchbin);
 		Assert.assertTrue(SearchBinaries_Tbl.isDisplayed(), "The search binary table is not displayed");
+
 	}
 
-	public void TM_GSID_S06_Web_Investigations_Validate() {
+	public void TM_GSID_S05_Web_Investigations_Sensors_Validate() {
 
 		loginWithSSO();
 		WebElement Investigations_Btn = createWebElementBy(btn_investigations);
@@ -180,21 +164,17 @@ public class GSIDPROD extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 		WebElement Graph_Img = createWebElementBy(img_graph);
 		Assert.assertTrue(Graph_Img.isDisplayed(), "The image graph was not displayed");
-
-	}
-
-	public void TM_GSID_S07_Web_Sensors_Validate() {
-
-		loginWithSSO();
 		WebElement Sensors_Btn = createWebElementBy(btn_sensors);
 		Sensors_Btn.click();
 		waitForPageLoaded();
-		WebElement Title_Msg = createWebElementBy(msg_title);
-		Assert.assertEquals(Title_Msg.getText(), "Sensors");
+		WebElement Title_Msg1 = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg1.getText(), "Sensors");
 		takeScreenshotAtEndOfTest();
 		WebElement SensorList_Tbl = createWebElementBy(tbl_sensorList);
 		Assert.assertTrue(SensorList_Tbl.isDisplayed(), "The sensor table was not displayed");
+
 	}
+
 
 	/******************************* Methods ***************************/
 	public void loginWithSSO() {

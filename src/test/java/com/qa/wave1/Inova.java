@@ -106,11 +106,14 @@ public class Inova extends CommonMethods{
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
 		
+		takeScreenshotAtEndOfTest();
 		WebElement PopupOk_Btn = createWebElementBy(btn_PopupOK);
 		PopupOk_Btn.click();
+		takeScreenshotAtEndOfTest();
 		
 		WebElement PopupHome_Btn = createWebElementBy(btn_PopupHome);
 		PopupHome_Btn.click();
+		takeScreenshotAtEndOfTest();
 		
 		
 		/******************validating tabs****************************/
@@ -119,6 +122,7 @@ public class Inova extends CommonMethods{
 		alliances_btn.click();
 		wait(3);
 
+		takeScreenshotAtEndOfTest();
 		WebElement Home_btn = createWebElementBy(btn_Home);
 		Home_btn.click();
 		wait(3);
@@ -126,23 +130,29 @@ public class Inova extends CommonMethods{
 		
 		WebElement products_icn = createWebElementBy(icn_Products);
 		products_icn.click();
+		takeScreenshotAtEndOfTest();
 				
 		
 		WebElement NewProducts_btn = createWebElementBy(btn_NewProducts);
 		NewProducts_btn.click();
+		takeScreenshotAtEndOfTest();
 		wait(3);
 		
 		WebElement cancel_btn = createWebElementBy(btn_Cancel);
 		cancel_btn.click();
+		takeScreenshotAtEndOfTest();
 		wait(2);
 		
 	
 		
 		WebElement companies_btn = createWebElementBy(btn_Companies);
 		companies_btn.click();
+		takeScreenshotAtEndOfTest();
+		
 		
 		WebElement NewCompany_btn = createWebElementBy(btn_NewCompany);
 		NewCompany_btn.click();
+		takeScreenshotAtEndOfTest();
 		wait(3);
 		
 		WebElement cancel_btn1 = createWebElementBy(btn_Cancel);
@@ -151,9 +161,11 @@ public class Inova extends CommonMethods{
 		
 		WebElement contacts_btn = createWebElementBy(btn_Contacts);
 		contacts_btn.click();
+		takeScreenshotAtEndOfTest();
 		
 		WebElement editcontacts_btn = createWebElementBy(btn_editContacts);
 		editcontacts_btn.click();
+		takeScreenshotAtEndOfTest();
 		wait(3);
 		
 		WebElement cancel_btn2 = createWebElementBy(btn_Cancel);
@@ -164,6 +176,7 @@ public class Inova extends CommonMethods{
 			
 		WebElement Logout_Btn = createWebElementBy(btn_Logout);
 		Logout_Btn.click();
+		takeScreenshotAtEndOfTest();
 		
 	}
 	

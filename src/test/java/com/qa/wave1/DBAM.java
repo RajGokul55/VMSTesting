@@ -68,15 +68,9 @@ public class DBAM extends CommonMethods{
 	By btn_sqlreports = By.xpath("//div[contains(text(),'-SQLActivity')]");
 	By icn_runtimeparameters= By.xpath("//span[@class='dijitReset dijitInline dijitIcon configureIcon']");
 	By slt_Dropdownreports = By.xpath("//div[@id='idx_widget_Dialog_0']");
-
 	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_16']");
-	
-
 	By slt_dropdowndatasource = By.xpath("((//div[contains(@class,'dijitReset dijitArrowButtonChar')])[2]");
-
 	By btn_datasourceok = By.cssSelector("span[class='idxDialogActionBarEnd']>span:nth-child(1)");
-
-
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijit_form_DropDownButton_37");
 	
@@ -120,6 +114,7 @@ public class DBAM extends CommonMethods{
 		Realtimereports_Btn.click();
 	
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 
 		WebElement sqlreports_btn = createWebElementBy(btn_sqlreports);
 		sqlreports_btn.click();
@@ -128,22 +123,25 @@ public class DBAM extends CommonMethods{
 		
 		WebElement runtimeparameters_btn = createWebElementBy(icn_runtimeparameters);
 		runtimeparameters_btn.click();
-		
+		takeScreenshotAtEndOfTest();
 
 		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
 		SelectDropdownValueByIndex(Dropdown_Drp, "sjdbamappdevg01.na.gilead.com");
 		
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 		
 		WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
 		datasourceok_btn.click();
 		wait(5);
+		
 		
 		runtimeparameters_btn.click();
 	
 		WebElement Dropdown_Drp1 = createWebElementBy(drp_Dropdown);		
 		SelectDropdownValueByIndex(Dropdown_Drp1,"sjdbamappdevg02.na.gilead.com");
 		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
 	
 		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
 		datasourceok_btn1.click();
@@ -153,6 +151,7 @@ public class DBAM extends CommonMethods{
 		 
 		 WebElement Dropdown_signout = createWebElementBy(btn_reviewonly);		
 			SelectDropdownValueByIndex(Dropdown_signout,"Sign Out");
+			takeScreenshotAtEndOfTest();
 			waitForPageLoaded();
 
 			

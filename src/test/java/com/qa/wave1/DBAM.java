@@ -68,9 +68,13 @@ public class DBAM extends CommonMethods{
 	By btn_sqlreports = By.xpath("//div[contains(text(),'-SQLActivity')]");
 	By icn_runtimeparameters= By.xpath("//span[@class='dijitReset dijitInline dijitIcon configureIcon']");
 	By slt_Dropdownreports = By.xpath("//div[@id='idx_widget_Dialog_0']");
+
 	By slt_dropdowndataclick = By.xpath("//table[@id='idx_form_Select_16']");
 	By slt_dropdowndatasource = By.xpath("((//div[contains(@class,'dijitReset dijitArrowButtonChar')])[2]");
-	By btn_datasourceok = By.cssSelector("span[class='idxDialogActionBarEnd']>span:nth-child(1)");
+
+
+		By btn_datasourceok = By.cssSelector("span[class='idxDialogActionBarEnd']>span:nth-child(1)");
+
 	By btn_reviewonly = By.xpath("//span[contains(text(),'review-only')]");
 	By btn_Signout = By.cssSelector("dijit_form_DropDownButton_37");
 	

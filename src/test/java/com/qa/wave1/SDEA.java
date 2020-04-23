@@ -11,11 +11,10 @@ import org.testng.annotations.BeforeMethod;
 public class SDEA extends CommonMethods {
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "http://fcsgrappdev01/sdea/default.aspx";
-	final String prodUrl = "http://fcsgrappprod01/agreementrepository/default.aspx";
+	final String devUrl= "http://fcsgrappdev01/sdea/default.aspx";
+	final String prdUrl = "http://fcsgrappprod01/agreementrepository/default.aspx";
 	final String ActiveWinThirdPartyText = "Active Third Party Agreements";
 	final String ActiveClinicalText = "Active Clinical Trial Safety Reporting Procedures";
-	final String downloadPath = "C:\\Users\\graj\\Downloads";
 
 	// input the values for the filter to search
 	final String orgText = "A";
@@ -23,10 +22,6 @@ public class SDEA extends CommonMethods {
 	final String productText = "V";
 	final String countryText = "Al";
 	final String protocolText= "G";
-	
-	//Make sure that the below files are not present in the downloadPath
-	public String pdfFile = "CTSRPs.pdf";
-	public String excelFile = "CTSRPs.xls";
 
 
 	/***************************** Test Cases *******************/
@@ -41,36 +36,39 @@ public class SDEA extends CommonMethods {
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-
-	@BeforeMethod(enabled=true)
-	public void beforeTest() {
-		launchBrowser(Browser, Url);
+	
+	 String URL = devUrl;
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		launchBrowser(Browser, URL);
 	}
 
 	@Test(priority=0, enabled=false)
-	public void SDEA_S01_Web_Sort_Verification() {
-		TM_SDEA_TC01_Web_Sort_Verification();
+	public void SDEA_S01_Web_Sort_Pharmacovigilance_Agreements() {
+		TM_SDEA_S01_Web_Sort_Pharmacovigilance_Agreements();
 	}
 
 	@Test(priority=1, enabled=false)
-	public void SDEA_S02_Web_Sort_Verification() {
-		TM_SDEA_S02_Web_Sort_Verification();
+	public void SDEA_S02_Web_Sort_Clinical_Trail_Safety() {
+		TM_SDEA_S02_Web_Sort_Clinical_Trail_Safety();
 	}
 
-	@Test(priority=2, enabled=true)
-	public void SDEA_S03_Web_Filter_Verification() {
-		TM_SDEA_S03_Web_Filter_Verification();
+	@Test(priority=2, enabled=false)
+	public void SDEA_S03_Web_Third_Party_Agreements() {
+		TM_SDEA_S03_Web_Third_Party_Agreements();
 	}
 
-	@Test(priority=3, enabled=true)
-	public void SDEA_S04_Web_Filter_Verification() {
-		TM_SDEA_S04_Web_Filter_Verification();
+	@Test(priority=3, enabled=false)
+	public void SDEA_S04_Web_Clinical_Trail_Safety() {
+		TM_SDEA_S04_Web_Clinical_Trail_Safety();
 	}
 
 	@Test(priority=4, enabled=false)
-	public void SDEA_S05_Web_Filter_Verification() {
-		TM_SDEA_S05_Web_Filter_Verification();
+	public void SDEA_S05_Web_Export_Options_Clinical_Trail_Safety() {
+		TM_SDEA_S05_Web_Export_Options_Clinical_Trail_Safety();
 	}
+	
 
 	@AfterMethod(enabled=true)
 	public void afterTest() {
@@ -124,8 +122,8 @@ public class SDEA extends CommonMethods {
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
-	public void TM_SDEA_TC01_Web_Sort_Verification() {
-
+	public void TM_SDEA_S01_Web_Sort_Pharmacovigilance_Agreements() {
+		
 		WebElement PharmaAgreements_Lnk = createWebElementBy(lnk_pharmaAgreements);
 		PharmaAgreements_Lnk.click();
 		waitForPageLoaded();
@@ -154,7 +152,8 @@ public class SDEA extends CommonMethods {
 
 	}
 
-	public void TM_SDEA_S02_Web_Sort_Verification() {
+	public void TM_SDEA_S02_Web_Sort_Clinical_Trail_Safety() {
+		
 		WebElement ClinicalTrail_Lnk = createWebElementBy(lnk_clinicalTrail);
 		ClinicalTrail_Lnk.click();
 		waitForPageLoaded();
@@ -181,8 +180,8 @@ public class SDEA extends CommonMethods {
 
 	}
 
-	public void TM_SDEA_S03_Web_Filter_Verification() {
-
+	public void TM_SDEA_S03_Web_Third_Party_Agreements() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
@@ -228,7 +227,8 @@ public class SDEA extends CommonMethods {
 		driver.switchTo().window(winHandleBefore);
 	}
 
-	public void TM_SDEA_S04_Web_Filter_Verification() {
+	public void TM_SDEA_S04_Web_Clinical_Trail_Safety() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
@@ -274,7 +274,8 @@ public class SDEA extends CommonMethods {
 		driver.switchTo().window(winHandleBefore);
 	}
 
-	public void TM_SDEA_S05_Web_Filter_Verification() {
+	public void TM_SDEA_S05_Web_Export_Options_Clinical_Trail_Safety() {
+		
 		// Store the current window handle
 		String winHandleBefore = driver.getWindowHandle();
 
@@ -293,14 +294,10 @@ public class SDEA extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 		
 		WebElement ExcelDownload_Lnk = createWebElementBy(lnk_excelLink);
-		ExcelDownload_Lnk.click();
-		wait(4);
-		Assert.assertTrue(isFileDownloaded(downloadPath, excelFile), "Failed to download Expected document");
+		Assert.assertTrue(ExcelDownload_Lnk.isDisplayed(), "The Excel option is not available");
 		
 		WebElement PDFDownload_Lnk = createWebElementBy(lnk_pdfLink);
-		PDFDownload_Lnk.click();
-		wait(3);
-		Assert.assertTrue(isFileDownloaded(downloadPath, pdfFile), "Failed to download Expected document");
+		Assert.assertTrue(PDFDownload_Lnk.isDisplayed(), "The PDF option is not available");
 		
 		// Close the new window, if that window no more required
 		driver.close();

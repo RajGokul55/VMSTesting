@@ -2,26 +2,26 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.ListIterator;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
-import org.testng.annotations.AfterTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
-public class GDLPdevTest extends CommonMethods {
+public class GDLP extends CommonMethods {
 	
 	
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://gdlp-dev.gilead.com";
+	final String devUrl= "https://gdlp-dev.gilead.com";
+	final String naUrl = "https://gdlp-na.gilead.com";
+	final String euUrl = "https://gdlp-eu.gilead.com";
 	final String username = "NA\\graj";
 	private String DecrptPassword;
 	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
@@ -56,13 +56,13 @@ public class GDLPdevTest extends CommonMethods {
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-
-		
-	@BeforeTest(enabled=true)
-	  	public void beforeMethod() {
-		launchBrowser(Browser, Url);
-	  }	
 	
+	String URL = devUrl;
+	
+	@BeforeMethod
+	public void beforeMethod() {
+		launchBrowser(Browser, URL);
+	}
 	
 	@Test(priority=1, enabled=true)
 	public void GDLP_S01_Web_login_verifyserver() {
@@ -94,7 +94,8 @@ public class GDLPdevTest extends CommonMethods {
 		TM_GDLP_S06_Web_view_incidents();
 	}
 	
-	@AfterTest(enabled=true)
+	
+	@AfterMethod(enabled=true)
 		public void afterMethod() {
 		driver.quit();
   }
@@ -161,6 +162,7 @@ public class GDLPdevTest extends CommonMethods {
 	By tbl_disTable      =     By.xpath("//*[@id=\"discoverTargetListTable\"]/tbody/tr");
 	By btn_allIncidents  =	   By.xpath("//table[4]/tbody[1]/tr[4]/td[1]/span[1]");
 	By msg_saveSuccess   =     By.cssSelector("#web-status-message-155.message-content");
+	By lnk_allincidents	 =	   By.partialLinkText("Incidents - All");
 
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
@@ -538,10 +540,9 @@ public void TM_GDLP_S02_Web_create_policy() {
 		waitForPageLoaded();
 		WebElement AllIncidents_Btn = createWebElementBy(btn_allIncidents);
 		AllIncidents_Btn.click();
-		String verify = driver.findElement(By.partialLinkText("Incidents - All")).getText();
-		
+		WebElement AllIncidents_Lnk = createWebElementBy(lnk_allincidents);
+		String verify = AllIncidents_Lnk.getText();
 		takeScreenshotAtEndOfTest();
-		
 		Assert.assertEquals(verify, "Incidents - All");
 	}
 	

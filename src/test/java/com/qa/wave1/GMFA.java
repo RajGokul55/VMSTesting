@@ -35,6 +35,8 @@ public class GMFA extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
+	//Test, Prod, Qual are Up  But Dev is down
+	
 	String URL = Test;
 	
 	@BeforeMethod(enabled=true)
@@ -55,9 +57,9 @@ public class GMFA extends CommonMethods {
 	
 	/***************************** Locators**************************************/
 	
-	By ipt_UserName = By.cssSelector("input[id='pageContent_txtUsername']");
-	By ipt_Password = By.cssSelector("input[id='pageContent_txtPassword']");
-	By btn_SignIn = By.cssSelector("input[id='pageContent_btnLogin']");
+	By ipt_UserName = By.cssSelector("input[id$='_txtUsername']"); //pageContent
+	By ipt_Password = By.cssSelector("input[id$='_txtPassword']");
+	By btn_SignIn = By.cssSelector("input[id$='_btnLogin']");
 	
 	
 	void TM_GMFA_S01_Web_ValidateCredntails() {

@@ -131,6 +131,7 @@ public class DBAM extends CommonMethods{
 
 		WebElement Dropdown_Drp = createWebElementBy(drp_Dropdown);		
 		SelectDropdownValueByIndex(Dropdown_Drp, "sjdbamappdevg01.na.gilead.com");
+	
 		
 		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
@@ -138,7 +139,7 @@ public class DBAM extends CommonMethods{
 		WebElement datasourceok_btn = createWebElementBy(btn_datasourceok);
 		datasourceok_btn.click();
 		wait(5);
-		
+		takeScreenshotAtEndOfTest();
 		
 		runtimeparameters_btn.click();
 	
@@ -150,7 +151,7 @@ public class DBAM extends CommonMethods{
 		WebElement datasourceok_btn1 = createWebElementBy(btn_datasourceok);
 		datasourceok_btn1.click();
 		wait(5);
-		
+		takeScreenshotAtEndOfTest();
 		
 		 
 		 WebElement Dropdown_signout = createWebElementBy(btn_reviewonly);		

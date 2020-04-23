@@ -3,13 +3,11 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
+
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
+
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
-
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -27,11 +25,8 @@ public class Inova extends CommonMethods{
 
 
 	/***************************** Test Cases *******************/
-	/*Test Name Example: Filkart_05_Web_ValidateCredntails */
-	@BeforeSuite(enabled=true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("Am9YI5J0dBK0RW1AK2utqw==");
-	}
+	
+	
 
 	@BeforeMethod(enabled=true)
 	public void beforeTest() {
@@ -66,7 +61,7 @@ public class Inova extends CommonMethods{
 	By btn_Login = By.xpath("//span[@class='ui-button-text']");
 	
 	By btn_PopupOK = By.xpath("//span[contains(text(),'Ok')]");
-	By btn_PopupHome = By.xpath("//table[@class='main_page_layout']//a[1]");
+By btn_PopupHome = By.xpath("//table[@class='main_page_layout']//a[1]");
 	By btn_Home = By.xpath("//a[contains(text(),'Home')]");
 	
 	By img_Alliances= By.xpath("(//span[@id='groupImage_alliances']");
@@ -98,7 +93,12 @@ public class Inova extends CommonMethods{
 	void TM_Inova_S03_PostPatch_Testing() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
-		
+		try {
+			DecrptPassword = decrypt("Am9YI5J0dBK0RW1AK2utqw==");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);
@@ -106,14 +106,16 @@ public class Inova extends CommonMethods{
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
 		
-		takeScreenshotAtEndOfTest();
+		
 		WebElement PopupOk_Btn = createWebElementBy(btn_PopupOK);
-		PopupOk_Btn.click();
 		takeScreenshotAtEndOfTest();
+		PopupOk_Btn.click();
+		
 		
 		WebElement PopupHome_Btn = createWebElementBy(btn_PopupHome);
-		PopupHome_Btn.click();
 		takeScreenshotAtEndOfTest();
+		PopupHome_Btn.click();
+		
 		
 		
 		/******************validating tabs****************************/
@@ -135,12 +137,11 @@ public class Inova extends CommonMethods{
 		
 		WebElement NewProducts_btn = createWebElementBy(btn_NewProducts);
 		NewProducts_btn.click();
-		takeScreenshotAtEndOfTest();
 		wait(3);
+		takeScreenshotAtEndOfTest();
 		
 		WebElement cancel_btn = createWebElementBy(btn_Cancel);
 		cancel_btn.click();
-		takeScreenshotAtEndOfTest();
 		wait(2);
 		
 	
@@ -148,13 +149,10 @@ public class Inova extends CommonMethods{
 		WebElement companies_btn = createWebElementBy(btn_Companies);
 		companies_btn.click();
 		takeScreenshotAtEndOfTest();
-		
-		
 		WebElement NewCompany_btn = createWebElementBy(btn_NewCompany);
 		NewCompany_btn.click();
-		takeScreenshotAtEndOfTest();
 		wait(3);
-		
+		takeScreenshotAtEndOfTest();
 		WebElement cancel_btn1 = createWebElementBy(btn_Cancel);
 		cancel_btn1.click();
 		wait(3);
@@ -162,12 +160,10 @@ public class Inova extends CommonMethods{
 		WebElement contacts_btn = createWebElementBy(btn_Contacts);
 		contacts_btn.click();
 		takeScreenshotAtEndOfTest();
-		
 		WebElement editcontacts_btn = createWebElementBy(btn_editContacts);
 		editcontacts_btn.click();
-		takeScreenshotAtEndOfTest();
 		wait(3);
-		
+		takeScreenshotAtEndOfTest();
 		WebElement cancel_btn2 = createWebElementBy(btn_Cancel);
 		cancel_btn2.click();
 		wait(3);
@@ -176,7 +172,6 @@ public class Inova extends CommonMethods{
 			
 		WebElement Logout_Btn = createWebElementBy(btn_Logout);
 		Logout_Btn.click();
-		takeScreenshotAtEndOfTest();
 		
 	}
 	

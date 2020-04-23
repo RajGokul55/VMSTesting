@@ -5,7 +5,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.nio.channels.ByteChannel;
@@ -32,14 +34,22 @@ public class GPRS extends CommonMethods{
 	
 	/***************************** Test Cases *******************/
 	
-  	/*Test Name Example: Filkart_03_Web_ValidateCredntails */
-	@BeforeSuite(enabled=true)
+  	
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("maF92iz73RYQ2imnwwuCsA==");
+		WebElement Username_Ipt = createWebElementBy(ipt_Username);
+		Username_Ipt.sendKeys(Username);
+		try {
+			DecrptPassword = decrypt("maF92iz73RYQ2imnwwuCsA==");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		
 	}
 
-	@BeforeTest(enabled=true)
+	@BeforeMethod(enabled=true)
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
 		
@@ -60,7 +70,7 @@ public class GPRS extends CommonMethods{
 		TM_GPRS_S01_Web_Testurlaccessible(CorporateUrl);
 	}
 
-	@AfterTest(enabled=true)
+	@AfterMethod(enabled=true)
 	public void afterTest() {
 		driver.quit();
 	}

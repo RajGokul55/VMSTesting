@@ -3,7 +3,9 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,7 +22,10 @@ public class GSAV extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
+	//Dev Environment
 	final String Url= "https://sjgsavappdevn01.na.gilead.com/webapp/login.html";
+	//Prod Environment
+	final String Url1= "https://sjgsavappprdn01.na.gilead.com/WebApp/index.html";
 	
 	/***************************** Test Cases *******************/
 	/*
@@ -35,9 +40,10 @@ public class GSAV extends CommonMethods{
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@BeforeTest
+	@BeforeMethod
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
+		login_verifyScreen();
 	}
 
 	@Test(priority=0, enabled=true)
@@ -55,7 +61,7 @@ public class GSAV extends CommonMethods{
 		TM_GSAV_003_verifyServerStatus();
 	}
 
-	@AfterTest
+	@AfterMethod
 	public void afterTest() {
 		driver.quit();
 	}
@@ -92,23 +98,22 @@ public class GSAV extends CommonMethods{
 
 	void TM_GSAV_01_Web_verifyDashboadScreen() throws InterruptedException {
 
-		WebElement Login_Btn = createWebElementBy(login_button);
-		Login_Btn.click();
-		waitForPageLoaded();
-		WebElement frames = navigatingToFrames();
+		takeScreenshotAtEndOfTest();
+		navigatingToFrames();
 		
 		WebElement OperationCenter = createWebElementBy(Operation_Center);
 		OperationCenter.click();
 		
 		boolean CriticalThreatsText = isElementExit(OperationCenter_CriticalThreatsText);
 		System.out.println("Critical Threats text is displayed = " +CriticalThreatsText);
-		
-		
+		takeScreenshotAtEndOfTest();		
 		
 	}
 
 	void TM_GSAV_002_verifySummaryScreen()throws Exception {
 
+		takeScreenshotAtEndOfTest();
+		navigatingToFrames();
 		WebElement Summary_Btn = createWebElementBy(summary_Btn);
 		Summary_Btn.click();
 		System.out.println("Summary is clicked ");
@@ -120,10 +125,22 @@ public class GSAV extends CommonMethods{
 		scrollToBottomOfHTML();
 		System.out.println("Scroll done ");
 		wait(5);
+		takeScreenshotAtEndOfTest();
 		}
 	
 	void TM_GSAV_003_verifyServerStatus()throws Exception {
 
+		takeScreenshotAtEndOfTest();
+		navigatingToFrames();
+		wait(3);
+		WebElement Summary_Btn = createWebElementBy(summary_Btn);
+		Summary_Btn.click();
+		System.out.println("Summary is clicked ");
+		waitForPageLoaded();
+		wait(3);
+		scrollToBottomOfHTML();
+		System.out.println("Scroll done ");
+		wait(5);
 		boolean ProductconnectionText = isElementExit(productConnectionText);
 		System.out.println("product Connection Text is displayed = " +ProductconnectionText);
 		
@@ -133,6 +150,23 @@ public class GSAV extends CommonMethods{
 		WebElement TogetRows = createWebElementBy(table);
 		List<WebElement> TotalRowsList = TogetRows.findElements(By.xpath("//*[@class='grid-row']"));
 		System.out.println("Total number of Rows in the table are : "+ TotalRowsList.size());
+		
+		//Taking count of active & abnormal status
+		List<WebElement> TotalAbnormalStatus = TogetRows.findElements(By.xpath("//*[@class='grid-row']//*[@class='statusIcon abnormalIcon']"));
+		int CurrentAbnormalStatus = TotalAbnormalStatus.size();
+		System.out.println("Total number of Abnormal Status in Production connection status is : "+ CurrentAbnormalStatus);
+		Assert.assertEquals(CurrentAbnormalStatus, 1);
+		List<WebElement> TotalActiveStatus = TogetRows.findElements(By.xpath("//*[@class='grid-row']//*[@class='statusIcon onlineIcon']"));
+		int CurrentActiveStatus = TotalActiveStatus.size();
+		System.out.println("Total number of Active Status in Production connection status is : "+ CurrentActiveStatus);
+		takeScreenshotAtEndOfTest();
+		
+		//Pord Env
+		/*
+		List<WebElement> TotalActiveStatus = TogetRows.findElements(By.xpath("//*[@class='grid-row']//*[@class='statusIcon onlineIcon']"));
+		int CurrentActiveStatus = TotalActiveStatus.size();
+		System.out.println("Total number of Active Status in Production connection status is : "+ CurrentActiveStatus);
+		Assert.assertEquals(CurrentActiveStatus, 1);
 		
 		/*String status = driver.findElement(By.xpath(prop.getProperty("locatorXpath_Active"))).getText();
 		System.out.println("Server Status : "+ status);
@@ -180,6 +214,13 @@ public class GSAV extends CommonMethods{
 		{
 			return false;
 		}
+	}
+	
+	public void login_verifyScreen() {
+		
+		WebElement Login_Btn = createWebElementBy(login_button);
+		Login_Btn.click();
+		waitForPageLoaded();
 	}
 
 	public WebElement navigatingToFrames() throws InterruptedException {

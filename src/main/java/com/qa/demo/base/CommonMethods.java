@@ -39,7 +39,7 @@ import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
 public class CommonMethods {
-	private static final String userDirectory = System.getProperty("user.dir");;
+	private static final String userDirectory = System.getProperty("user.dir");
 	public static WebDriver driver;
 
 

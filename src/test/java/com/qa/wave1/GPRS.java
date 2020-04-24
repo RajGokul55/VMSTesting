@@ -27,33 +27,13 @@ public class GPRS extends CommonMethods{
 	final String CorporateUrl= "https://reset.gilead.com/aims/ps/Main.aspx";
 
 	final String Username ="nnereddula";
-
 	private String DecrptPassword;
+	String EncryptPwd = "maF92iz73RYQ2imnwwuCsA==";
 
 
 
 	/***************************** Test Cases *******************/
 
-
-	void EncriptPassword() throws Exception {
-		WebElement Username_Ipt = createWebElementBy(ipt_Username);
-		Username_Ipt.sendKeys(Username);
-		try {
-			DecrptPassword = decrypt("maF92iz73RYQ2imnwwuCsA==");
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-
-
-	}
-
-	@BeforeMethod(enabled=true)
-	public void beforeTest() {
-		launchBrowser(Browser,Url);
-
-	}
 
 	@Test(priority=1, enabled=true)
 	public void GPRS_S03_Web_Testurlaccessible() {
@@ -62,14 +42,13 @@ public class GPRS extends CommonMethods{
 
 	@Test(priority=2, enabled=true)
 	public void GPRS_S18_Web_EnrollmentFunctionality() {
-		TM_GPRS_S18_Web_EnrollmentFunctionality();
+		TM_GPRS_S18_Web_EnrollmentFunctionality(Url);
 	}
 
 	@Test(priority=0, enabled=true)
 	public void GPRS_S01_Web_Testurlaccessible() {
 		TM_GPRS_S01_Web_Testurlaccessible(CorporateUrl);
 	}
-
 
 
 	@AfterMethod(enabled=true)
@@ -121,6 +100,8 @@ public class GPRS extends CommonMethods{
 	/*******************Login page****************/
 
 	void TM_GPRS_S03_Web_Testurlaccessible(String Url) {
+		
+		launchBrowser(Browser,Url);
 
 		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
 		dropdown.selectByVisibleText("QUALNA"); 
@@ -140,10 +121,30 @@ public class GPRS extends CommonMethods{
 
 	/*********************ENROLLMENT FUNCTIONALITY**************************/
 
-	void TM_GPRS_S18_Web_EnrollmentFunctionality() {
+	void TM_GPRS_S18_Web_EnrollmentFunctionality(String Url) {
+		launchBrowser(Browser,Url);
+		
+		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
+		dropdown.selectByVisibleText("QUALNA"); 
+
+
+		WebElement Username_Ipt = createWebElementBy(ipt_Username);
+		Username_Ipt.sendKeys(Username);
+		takeScreenshotAtEndOfTest();
+
+		WebElement Agree_Btn = createWebElementBy(btn_Agree);
+		Agree_Btn.click();
+		
 		WebElement enrollment_img = createWebElementBy(img_enrollment);
 		enrollment_img.click();
 		waitForPageLoaded();
+		
+		try {
+			DecrptPassword = decrypt(EncryptPwd);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		WebElement enroll_Ipt = createWebElementBy(ipt_enrollPwd);
 		enroll_Ipt.sendKeys(DecrptPassword);
@@ -171,9 +172,9 @@ public class GPRS extends CommonMethods{
 
 
 
-	void TM_GPRS_S01_Web_Testurlaccessible(String Url) {
+	void TM_GPRS_S01_Web_Testurlaccessible(String CroUrl) {
 
-		launchBrowser(Browser,Url );  
+		launchBrowser(Browser,CroUrl );  
 
 		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
 		dropdown.selectByVisibleText("NA");  
@@ -193,22 +194,10 @@ public class GPRS extends CommonMethods{
 
 		signout_Btn.click();
 
-
 	}
 
 
 	/*****************************Application Interaction Methods *******************/
 	// if any code re-usability is there specific to this Application then that should be maintained here
 
-	public static String getAlphaNumericString(int n) { 
-		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz"; 
-		StringBuilder sb = new StringBuilder(n); 
-
-		for (int i = 0; i < n; i++) { 
-			int index = (int)(AlphaNumericString.length() * Math.random()); 
-			sb.append(AlphaNumericString.charAt(index)); 
-		} 
-
-		return sb.toString(); 
-	} 
 }

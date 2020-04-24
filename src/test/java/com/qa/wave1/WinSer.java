@@ -25,7 +25,7 @@ public class WinSer extends CommonMethods{
 	public void createBatFile(String serName, String UserID) {
 
 		String GPVpwd = null;
-		//GPVpwd = RSA_Authentication(UserID);
+		GPVpwd = RSA_Authentication(UserID);
 
 		String  path = userDirectory+"\\AutoFiles\\"; //= userDirectory+"\\AutoFiles";
 		String pathFile = path+"Run.bat";
@@ -55,7 +55,7 @@ public class WinSer extends CommonMethods{
 		
 		wait(5);
 		
-		fileObj.delete();
+		//fileObj.delete();
 
 	}
 

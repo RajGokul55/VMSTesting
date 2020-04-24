@@ -26,6 +26,8 @@ public class Gvault extends CommonMethods{
 	//final String Url_Dev= "https://sb-gilead-qualitydocs.veevavault.com";
 	//final String Url_Test= "https://sb-gilead-it.veevavault.com"
 	//final String Url_Val= "https://val-gilead.veevavault.com"
+	//final String Url_Val= "https://val-gilead.com"
+	
 	final String Username ="psonawane@sb-gilead.com";
 
 	/***************************** Test Cases *******************/
@@ -54,6 +56,11 @@ public class Gvault extends CommonMethods{
 	@Test(priority=1, enabled=true, retryAnalyzer = Retry.class)
 	public void Gvault_TC04_Web_Edit_Discrepancy(){
 		TM_Gvault_TC04_Web_Edit_Discrepancy();
+	}
+	
+	@Test(priority=1, enabled=false, retryAnalyzer = Retry.class)
+	public void Gvault_TC05_Web_verifyValUrl(){
+		TM_Gvault_TC05_Web_verifyValUrl();
 	}
 
 	@AfterMethod
@@ -95,6 +102,7 @@ public class Gvault extends CommonMethods{
 	By text_DiscrepancyDetails = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test')]");
 	By btn_Delete = By.xpath("//*[@type='button' and contains(text(), 'Delete')]");
 	By btn_DeletePopUp = By.cssSelector("button#delete");
+	By text_MyVault = By.cssSelector(".Seleniumn-View-Title.viewTitle");
 	
 	/*****************************Test Case Methods 
 	 * @throws IOException *******************/
@@ -156,6 +164,14 @@ public class Gvault extends CommonMethods{
 		WebElement Delete_PopUp = createWebElementBy(btn_DeletePopUp);
 		Delete_PopUp.click();
 		wait(3);
+	}
+	
+	public void TM_Gvault_TC05_Web_verifyValUrl() {
+		
+		WebElement MyVault_text = createWebElementBy(text_MyVault);
+		String MyVaultText = MyVault_text.getText();
+		
+		Assert.assertEquals(MyVaultText, "My Vaults", "Test case failed");
 	}
 
 

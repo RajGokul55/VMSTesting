@@ -79,9 +79,6 @@ public class GPRS extends CommonMethods{
 
 	By img_ChangePWD=By.xpath("//img[@id='imgChangePassword']");
 	By img_enrollment = By.xpath("//input[@id='btnEnroll']");
-	By ipt_oldpassword= By.xpath("//input[@id='textOldPassword']");
-	By ipt_Newpassword= By.xpath("//input[@id='textNewPassword']");
-	By ipt_confirmpassword= By.xpath("//input[@id='textConfirm']");
 	By ipt_enrollPwd=By.xpath("//input[@id='txtPassword']");
 	By btn_continue= By.xpath("//input[@id='ButtonTextContinue']");
 	By btn_cancel= By.xpath("//input[@id='ButtonTextCancel']']");
@@ -147,7 +144,7 @@ public class GPRS extends CommonMethods{
 		}
 
 		WebElement enroll_Ipt = createWebElementBy(ipt_enrollPwd);
-		enroll_Ipt.sendKeys(DecrptPassword);
+		enroll_Ipt.sendKeys(DecrptPassword);	
 		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 

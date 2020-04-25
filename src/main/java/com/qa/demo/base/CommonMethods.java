@@ -1,6 +1,8 @@
 package com.qa.demo.base;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.security.Key;
 import java.util.Iterator;
@@ -12,6 +14,7 @@ import java.util.concurrent.TimeUnit;
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -356,7 +359,7 @@ public class CommonMethods {
 	public static void takeScreenshotAtEndOfTest()  {
 		/* 
 		 * Author: Pravin Sonawane, Balajee Palle
-		 * Description: To Take screenshot of page, Screenshot added to Reporter.log
+		 * Description: To Take screenshot of page, Screenshot added to Reporter.log, Added steps to save image into Reporter.
 		 * Parameter: 
 		 * Date: April 2020 
 		 * 
@@ -383,7 +386,26 @@ public class CommonMethods {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}	
-		Reporter.log("<br><img src='"+screenShotName+"' height='300' width='500'/><br>");  
+		//Reporter.log("<br><img src='"+screenShotName.toString()+"' height='300' width='500'/><br>");  
+		
+		FileInputStream fTptStrm = null;
+		String encodedBase64 = null;
+	 
+		try {
+			fTptStrm = new FileInputStream(screenShotName);
+			byte[] bytes = new byte[(int)screenShotName.length()];
+			fTptStrm.read(bytes);
+			encodedBase64 = new String(Base64.encodeBase64(bytes));
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		String result = "data:image/png;base64, "+encodedBase64;
+		
+		Reporter.log("<br><img src='"+result+"' height='300' width='500'/><br>");
 		  	
 	}
 	

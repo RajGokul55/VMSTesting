@@ -44,29 +44,30 @@ public class SDEA extends CommonMethods {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority=0, enabled=false)
+	@Test(priority=0, enabled=true)
 	public void SDEA_S01_Web_Sort_Pharmacovigilance_Agreements() {
 		TM_SDEA_S01_Web_Sort_Pharmacovigilance_Agreements();
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void SDEA_S02_Web_Sort_Clinical_Trail_Safety() {
 		TM_SDEA_S02_Web_Sort_Clinical_Trail_Safety();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void SDEA_S03_Web_Third_Party_Agreements() {
 		TM_SDEA_S03_Web_Third_Party_Agreements();
 	}
 
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void SDEA_S04_Web_Clinical_Trail_Safety() {
 		TM_SDEA_S04_Web_Clinical_Trail_Safety();
 	}
 
-	@Test(priority=4, enabled=false)
+	@Test(priority=4, enabled=true)
 	public void SDEA_S05_Web_Export_Options_Clinical_Trail_Safety() {
 		TM_SDEA_S05_Web_Export_Options_Clinical_Trail_Safety();
+		
 	}
 	
 

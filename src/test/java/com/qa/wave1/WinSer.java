@@ -25,25 +25,23 @@ public class WinSer extends CommonMethods{
 	public void createBatFile(String serName, String UserID) {
 
 		String GPVpwd = null;
-		GPVpwd = RSA_Authentication(UserID);
+		//GPVpwd = RSA_Authentication(UserID);
 
 		String  path = userDirectory+"\\AutoFiles\\"; //= userDirectory+"\\AutoFiles";
 		String pathFile = path+"Run.bat";
 
-		String commands = "Welcome User: "+UserID+" with Password: "+GPVpwd+" Server Name: "+serName; 
-
-		File fileObj = new File(pathFile);
-		try {
-			fileObj.createNewFile();
-			FileWriter myWriter = new FileWriter(pathFile);
-
-			myWriter.write("notepad");
-			myWriter.close();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		/*
+		 * String commands =
+		 * "Welcome User: "+UserID+" with Password: "+GPVpwd+" Server Name: "+serName;
+		 * 
+		 * File fileObj = new File(pathFile); try { fileObj.createNewFile(); FileWriter
+		 * myWriter = new FileWriter(pathFile);
+		 * 
+		 * myWriter.write("notepad"); myWriter.close();
+		 * 
+		 * } catch (IOException e) { // TODO Auto-generated catch block
+		 * e.printStackTrace(); }
+		 */
 		
 		try {
 			Runtime.getRuntime().exec("cmd /C start "+pathFile);

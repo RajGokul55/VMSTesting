@@ -51,7 +51,7 @@ public class WinSer extends CommonMethods {
 		String resout = path + "Output.txt";
 		String runbat = path + "Run.bat";
 		
-		createNeededFiles("SJCONAPPPRDN02", "wuauserv");
+		createNeededFiles("SJCONAPPPRDN02", "arc_druva_insync_flexfolder");
 		
 		//String password = RSA_Authentication("nnereddula");
 		String password = "pjBElwPk$7V*"; 
@@ -59,7 +59,7 @@ public class WinSer extends CommonMethods {
 		runWindowsServerCheckBat(runbat);
 		sikuliEnterCredentails("ADM_nnereddula", password);
 		
-		verifyServiceStatus(resout, "wuauserv", "Stopped");
+		verifyServiceStatus(resout, "arc_druva_insync_flexfolder", "Running");
 	}
 	
 	

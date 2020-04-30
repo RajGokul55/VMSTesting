@@ -539,15 +539,16 @@ public class CommonMethods {
 		 * Date: May 2020 
 		 * 
 		 */
-
+		//String service = "'"+service1+"'";
 		String path = userDirectory + "\\AutoFiles\\";
 		String pathFile1 = path + "computers.txt";
 		String runps1 = path + "Run.ps1";
 		String resout = path + "Output.txt";
 
 		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
-				+ " $computer = get-content " + pathFile1 +"\r\n"	
-				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq '"+service1+"'} | Out-File -FilePath "
+				+"$servename = '"+ service1 +"' \r\n"
+				+ "$computer = get-content " + pathFile1 +"\r\n"	
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
 				+ resout;
 
 		File fileObj = new File(pathFile1);
@@ -590,8 +591,10 @@ public class CommonMethods {
 		String resout = path + "Output.txt";
 
 		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
-				+ " $computer = get-content " + pathFile1 +"\r\n"	
-				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq '"+service1+" , "+service2+"'} | Out-File -FilePath "
+				+"$servename1 = '"+ service1 +"' \r\n"
+				+"$servename2 = '"+ service2 +"' \r\n"
+				+"$computer = get-content " + pathFile1 +"\r\n"	
+				+"Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1, $servename2 } | Out-File -FilePath "
 				+ resout;
 
 		File fileObj = new File(pathFile1);
@@ -675,7 +678,7 @@ public class CommonMethods {
 		BufferedReader br = null;
 		String line = null;
 		String expected= "State     : "+Status;
-
+		boolean flag = false;
 		try {
 			try {
 				br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-16"));
@@ -694,6 +697,7 @@ public class CommonMethods {
 						System.out.println("The service: "+service+" displayed as "+line);
 						Reporter.log("The service: "+service+" displayed as "+line);
 						Assert.assertTrue(line.equalsIgnoreCase(expected));
+						flag= true;
 						break;
 					}
 					line = br.readLine();
@@ -705,6 +709,7 @@ public class CommonMethods {
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
+		Assert.assertTrue(flag);
 	}
 
 

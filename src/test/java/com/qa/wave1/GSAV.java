@@ -23,7 +23,7 @@ public class GSAV extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	//Dev Environment
-	final String Url= "https://sjgsavappdevn01.na.gilead.com/webapp/login.html";
+	final String Url= "https://sjgsavappdevn01.na.gilead.com/webapp/login.html"; 
 	//Prod Environment
 	final String Url1= "https://sjgsavappprdn01.na.gilead.com/WebApp/index.html";
 	

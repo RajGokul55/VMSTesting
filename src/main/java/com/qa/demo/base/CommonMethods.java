@@ -1,9 +1,13 @@
 package com.qa.demo.base;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.security.Key;
 import java.util.Iterator;
 import java.util.List;
@@ -33,6 +37,9 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.IClass;
 import org.testng.ITestResult;
@@ -324,7 +331,7 @@ public class CommonMethods {
 		 * Date: April 2020 
 		 * 
 		 */
-		
+
 		boolean actual = element.isDisplayed() && element.isEnabled();
 		Assert.assertEquals(actual, true);
 		Reporter.log("Is WebElement  " +element.getText()+" is displayed: "+actual);
@@ -354,7 +361,7 @@ public class CommonMethods {
 		 */
 		return driver.getCurrentUrl();
 	}	
-	
+
 
 	public static void takeScreenshotAtEndOfTest()  {
 		/* 
@@ -364,7 +371,7 @@ public class CommonMethods {
 		 * Date: April 2020 
 		 * 
 		 */
-		
+
 		ExpectedCondition<Boolean> expectation = new
 				ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
@@ -377,7 +384,7 @@ public class CommonMethods {
 		} catch (Throwable error) {
 			Assert.fail("Timeout waiting for Page Load Request to complete.");
 		}
-		
+
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
 		try {
@@ -387,10 +394,10 @@ public class CommonMethods {
 			e.printStackTrace();
 		}	
 		//Reporter.log("<br><img src='"+screenShotName.toString()+"' height='300' width='500'/><br>");  
-		
+
 		FileInputStream fTptStrm = null;
 		String encodedBase64 = null;
-	 
+
 		try {
 			fTptStrm = new FileInputStream(screenShotName);
 			byte[] bytes = new byte[(int)screenShotName.length()];
@@ -404,11 +411,11 @@ public class CommonMethods {
 			e.printStackTrace();
 		}
 		String result = "data:image/png;base64, "+encodedBase64;
-		
+
 		Reporter.log("<br><img src='"+result+"' height='300' width='500'/><br>");
-		  	
+
 	}
-	
+
 	public void selectRadio(List<WebElement> locator,String exvalue) {
 		/* 
 		 * Author: Pravin Sonawane
@@ -423,7 +430,7 @@ public class CommonMethods {
 			}
 		}
 	}
-	
+
 	public static void windowhandle() {
 		/* 
 		 * Author: Pravin Sonawane
@@ -437,7 +444,7 @@ public class CommonMethods {
 		String ChildWindow = it.next();
 		driver.switchTo().window(ChildWindow);
 	}
-	
+
 	public boolean isFileDownloaded(String downloadPath, String fileName) {
 		/* 
 		 * Author: Gokul Raj
@@ -457,7 +464,7 @@ public class CommonMethods {
 
 		return flag;
 	}
-	
+
 	public static String getAlphaNumericString(int n) { 
 		/* 
 		 * Author: Balajee Palle
@@ -476,7 +483,7 @@ public class CommonMethods {
 
 		return sb.toString(); 
 	} 
-	
+
 	public String RSA_Authentication(String UserID) {
 		/* 
 		 * Author: Balajee Palle
@@ -484,44 +491,223 @@ public class CommonMethods {
 		 * Parameter: Gilead ID
 		 * Date: April 2020 
 		 */
-		
+
 		launchBrowser("Chrome", "https://gpv.gilead.com/");
 
 		By btn_Go = By.cssSelector("input[type='submit']");
 		WebElement Go_Btn = createWebElementBy(btn_Go);
 		Go_Btn.click();
-		
+
 		By ipt_Username = By.cssSelector("input[id$='_ctrlLogon_txtUsername']");
 		WebElement UserID_Ipt = createWebElementBy(ipt_Username);
 		UserID_Ipt.sendKeys(UserID);
-		
+
 		String inputRSACode;
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Enter or Copy Paste RSA Token Code Here: ");
 		inputRSACode = scanner.nextLine();
-		
+
 		By ipt_Passcode = By.cssSelector("input[id$='_ctrlLogon_txtPassword']");
 		WebElement PassCode_Ipt = createWebElementBy(ipt_Passcode);
 		PassCode_Ipt.sendKeys(inputRSACode);
-		
+
 		By btn_SignIn = By.cssSelector("input[id$='_ctrlLogon_btnLogon']");
 		WebElement SignIn_Btn = createWebElementBy(btn_SignIn);
 		SignIn_Btn.click();
-		
-		
+
+
 		By btn_ShowPwd = By.cssSelector("div[id='Recently'] img[title='Show password']");
 		WebElement ShowPwd_Btn = createWebElementBy(btn_ShowPwd);
 		ShowPwd_Btn.click();
-		
+
 		By Fld_Password = By.cssSelector("label[class^= ' account-password-display']");
 		WebElement Pwd_Fld = createWebElementBy(Fld_Password);
 		String password = Pwd_Fld.getText();
 
 		System.out.println("Entered RSA Token Code : " +inputRSACode+ " Fectched Password: "+ password);
 		driver.close();
-		
+
 		return password;
 	}
+
+
+	public void createNeededFiles(String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+ " $computer = get-content " + pathFile1 +"\r\n"	
+				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq " +service1+"} | Out-File -FilePath "
+				+ resout;
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+	public void createNeededFiles(String serName, String service1, String service2) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute with 2 services method override 
+		 * Parameter: Server host name and Service name, Service name2 
+		 * Date: May 2020 
+		 * 
+		 */
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+ " $computer = get-content " + pathFile1 +"\r\n"	
+				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq " +service1+" , "+service2+"} | Out-File -FilePath "
+				+ resout;
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
+	public void runWindowsServerCheckBat(String batfile) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To run .bat file 
+		 * Parameter: bat file path
+		 * Date: May 2020 
+		 * 
+		 */
+		try {
+			Runtime.getRuntime().exec("cmd /C start " + batfile);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		wait(4);
+	}
+	public void sikuliEnterCredentails(String username, String Pasword)  {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To enter user name and password on windows powershell using Sikuli
+		 * Parameter: ADM account and password 
+		 * Date: May 2020 
+		 * 
+		 */
+		String path = userDirectory + "\\AutoFiles\\SiKuli\\"; 
+
+		Screen s = new Screen();
+		Pattern UserNameInput = new Pattern(path + "Username.PNG");
+		Pattern PasswordInput = new Pattern(path + "Password.PNG");
+		Pattern openButton = new Pattern(path + "OkButton.PNG");
+
+
+		try {
+			s.wait(UserNameInput, 20);
+			s.type(UserNameInput, username);
+			s.type(PasswordInput, Pasword);
+			s.click(openButton);
+		} catch (FindFailed e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public void verifyServiceStatus(String filePath, String service, String Status) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Validate Service name and its status 
+		 * Parameter: Result file path, service name and expected status
+		 * Date: May 2020 
+		 * 
+		 */
+		BufferedReader br = null;
+		String line = null;
+		String expected= "State     : "+Status;
+
+		try {
+			try {
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-16"));
+			} catch (UnsupportedEncodingException e1) {
+				e1.printStackTrace();
+			}
+			try {
+				line = br.readLine();
+				while(line != null) {
+					if(line.endsWith(service)) {
+						line = br.readLine();
+						line = br.readLine();
+						System.out.println("The service: "+service+" displayed as "+line);
+						Reporter.log("The service: "+service+" displayed as "+line);
+						line = br.readLine();
+						System.out.println("The service: "+service+" displayed as "+line);
+						Reporter.log("The service: "+service+" displayed as "+line);
+						Assert.assertTrue(line.equalsIgnoreCase(expected));
+						break;
+					}
+					line = br.readLine();
+				} 
+			}catch (IOException e) {
+				e.printStackTrace();
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+
+
 
 }
 

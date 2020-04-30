@@ -62,6 +62,7 @@ public class GDLP extends CommonMethods {
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);
+		waitForPageLoaded();
 	}
 	
 	@Test(priority=1, enabled=true)
@@ -95,7 +96,7 @@ public class GDLP extends CommonMethods {
 	}
 	
 	
-	@AfterMethod(enabled=true)
+	@AfterMethod
 		public void afterMethod() {
 		driver.quit();
   }
@@ -531,7 +532,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 	}
 	
 	public void TM_GDLP_S06_Web_view_incidents() {
-		
+		takeScreenshotAtEndOfTest();
 		WebElement Incidents_Btn = createWebElementBy(btn_incidents);
 		mouseHover(Incidents_Btn);
 		WebElement AllReports_Btn = createWebElementBy(btn_allReports);
@@ -540,6 +541,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 		waitForPageLoaded();
 		WebElement AllIncidents_Btn = createWebElementBy(btn_allIncidents);
 		AllIncidents_Btn.click();
+		waitForPageLoaded();
 		WebElement AllIncidents_Lnk = createWebElementBy(lnk_allincidents);
 		String verify = AllIncidents_Lnk.getText();
 		takeScreenshotAtEndOfTest();

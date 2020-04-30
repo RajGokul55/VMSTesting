@@ -18,7 +18,7 @@ public class IDMTest extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	final String Url = "http://sjidmapptstg01.na.gilead.com:8080/identityiq/";
+	final String Url = "https://idm.gilead.com";
 	final String Url1 = "https://idm.gilead.com";
 	final String Username = "sgupta27";
 	private String DecrptPassword;

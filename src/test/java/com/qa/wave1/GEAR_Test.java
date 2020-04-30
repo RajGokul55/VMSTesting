@@ -102,7 +102,7 @@ public class GEAR_Test extends CommonMethods {
 			waitForPageLoaded();
 			WebElement submitButton = createWebElementBy(id_submitButton);
 			submitButton.click();
-			wait(5);
+			wait(10);
 			waitForPageLoaded();
 		}
 
@@ -121,7 +121,7 @@ public class GEAR_Test extends CommonMethods {
 			waitForPageLoaded();
 			WebElement submitButton = createWebElementBy(id_submitButton);
 			submitButton.click();
-			wait(5);
+			wait(10);
 			waitForPageLoaded();
 		}
 		List<WebElement> Home_tabs = createWebElementsBy(lnk_hometabs);

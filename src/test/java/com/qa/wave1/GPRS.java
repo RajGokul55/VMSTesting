@@ -108,6 +108,7 @@ public class GPRS extends CommonMethods{
 		Username_Ipt.sendKeys(Username);
 		takeScreenshotAtEndOfTest();
 
+		
 		WebElement Agree_Btn = createWebElementBy(btn_Agree);
 		Agree_Btn.click();
 

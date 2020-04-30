@@ -547,7 +547,7 @@ public class CommonMethods {
 
 		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
 				+ " $computer = get-content " + pathFile1 +"\r\n"	
-				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq " +service1+"} | Out-File -FilePath "
+				+ " Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq\" wuauserv\"} | Out-File -FilePath "
 				+ resout;
 
 		File fileObj = new File(pathFile1);

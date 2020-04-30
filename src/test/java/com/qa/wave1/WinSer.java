@@ -53,8 +53,8 @@ public class WinSer extends CommonMethods {
 		
 		createNeededFiles("SJCONAPPPRDN02", "wuauserv");
 		
-		String password = RSA_Authentication("bpalle");
-		//String password = ""; // enter temporary password
+		//String password = RSA_Authentication("nnereddula");
+		String password = "pjBElwPk$7V*"; 
 		
 		runWindowsServerCheckBat(runbat);
 		sikuliEnterCredentails("ADM_nnereddula", password);

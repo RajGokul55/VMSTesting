@@ -51,13 +51,14 @@ public class WinSer extends CommonMethods {
 		String resout = path + "Output.txt";
 		String runbat = path + "Run.bat";
 		
-		createNeededFiles("SJCONAPPPRDN02", "arc_druva_insync_flexfolder");
+		//createNeededFiles("SJCONAPPPRDN02", "arc_druva_insync_flexfolder");
 		
-		//String password = RSA_Authentication("nnereddula");
-		String password = "pjBElwPk$7V*"; 
+		String password = RSA_Authentication("bpalle"); //nnereddula
+		//String password = "pjBElwPk$7V*"; 
+		createPowerShellFile("ADM_bpalle", password, "SJCONAPPPRDN02", "arc_druva_insync_flexfolder" );
 		
 		runWindowsServerCheckBat(runbat);
-		sikuliEnterCredentails("ADM_nnereddula", password);
+		//sikuliEnterCredentails("ADM_nnereddula", password);
 		
 		verifyServiceStatus(resout, "arc_druva_insync_flexfolder", "Running");
 	}
@@ -67,7 +68,46 @@ public class WinSer extends CommonMethods {
 		// fileObj.delete();
 		// fileObj1.delete();
 
-	
+	public void createPowerShellFile(String username, String password, String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		 //"$cred = get-Credential -credential administrator \r\n" 
+		String pscmds = "$Username = '"+ username +"' \r\n"
+				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+				+ "$computer = '"+ serName +"' \r\n"
+				+ "$servename = '"+ service1 +"' \r\n"
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+		
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
 	
 
 	/****************************** Interaction Methods	***********************************/

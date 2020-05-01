@@ -51,17 +51,18 @@ public class WinSer extends CommonMethods {
 		String resout = path + "Output.txt";
 		String runbat = path + "Run.bat";
 		
-		//createNeededFiles("SJCONAPPPRDN02", "arc_druva_insync_flexfolder");
+		createNeededFiles("SJWSUSAPPPRDN01", "wuauserv");
 		
-		String password = RSA_Authentication("bpalle"); //nnereddula
-		//String password = "pjBElwPk$7V*"; 
-		createPowerShellFile("ADM_bpalle", password, "SJCONAPPPRDN02", "arc_druva_insync_flexfolder" );
+		//String password = RSA_Authentication("bpalle"); //nnereddula
+		String password = "q%wNs8R#zJwS"; 
+		//createPowerShellFile("ADM_srla", password, "SJWSUSAPPPRDN01", "wuauserv" );
 		
 		runWindowsServerCheckBat(runbat);
-		//sikuliEnterCredentails("ADM_nnereddula", password);
+		sikuliEnterCredentails("ADM_srla", password);
 		
-		verifyServiceStatus(resout, "arc_druva_insync_flexfolder", "Running");
+		verifyServiceStatus(resout, "wuauserv", "Running");
 	}
+	
 	
 	
 
@@ -109,6 +110,101 @@ public class WinSer extends CommonMethods {
 		wait(5);
 	}
 	
+	public void createNeededFiles(String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+		//String service = "'"+service1+"'";
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+"$servename = '"+ service1 +"' \r\n"
+				+ "$computer = get-content " + pathFile1 +"\r\n"	
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+	public void createNeededFiles(String serName, String service1, String service2) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute with 2 services method override 
+		 * Parameter: Server host name and Service name, Service name2 
+		 * Date: May 2020 
+		 * 
+		 */
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+"$servename1 = '"+ service1 +"' \r\n"
+				+"$servename2 = '"+ service2 +"' \r\n"
+				+"$computer = get-content " + pathFile1 +"\r\n"	
+				+"Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1, $servename2 } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
 
 	/****************************** Interaction Methods	***********************************/
 

@@ -12,6 +12,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -42,7 +44,7 @@ public class WinSer extends CommonMethods {
 	@Test(priority = 0, enabled = true)
 	public void AppName_TC01_WinServer() {
 		TM_AppName_TC01_WinServer();
-		
+
 	}
 
 	/***************************** * Test Methods	 ************************************/
@@ -50,50 +52,165 @@ public class WinSer extends CommonMethods {
 		String path = userDirectory + "\\AutoFiles\\";
 		String resout = path + "Output.txt";
 		String runbat = path + "Run.bat";
-		
-		createNeededFiles("SJWSUSAPPPRDN01", "wuauserv");
-		
+
+		//createNeededFiles("SJWSUSAPPPRDN01", "wuauserv");
+
 		//String password = RSA_Authentication("bpalle"); //nnereddula
-		String password = "q%wNs8R#zJwS"; 
-		//createPowerShellFile("ADM_srla", password, "SJWSUSAPPPRDN01", "wuauserv" );
-		
+		String password = "Obo8N@ZEzUiW"; 
+		//createPowerShellFile("adm_bgambhir", password, "SJB9APPDEVN01", "AppReadiness", "ParityReporter", "ParityServer" );
+		createPSMultipleServices("adm_bgambhir", password, "SJB9APPDEVN01", "AppReadiness , ParityReporter, ParityServer");
 		runWindowsServerCheckBat(runbat);
-		sikuliEnterCredentails("ADM_srla", password);
-		
-		verifyServiceStatus(resout, "wuauserv", "Running");
+		//sikuliEnterCredentails("ADM_srla", password);
+
+		verifyServiceStatus(resout, "AppReadiness", "Stopped");
+		verifyServiceStatus(resout, "ParityReporter", "Running");
+		verifyServiceStatus(resout, "ParityServer", "Running");
 	}
-	
-	
-	
 
-		// fileObj.delete();
-		// fileObj1.delete();
 
-	public void createPowerShellFile(String username, String password, String serName, String service1) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To Create local file for Server and .PS1 file for commands to execute 
-		 * Parameter: Server host name and Service name 
-		 * Date: May 2020 
-		 * 
-		 */
-
+	public void createPSMultipleServices(String username, String password, String serName, String services) {
 		String path = userDirectory + "\\AutoFiles\\";
-		String pathFile1 = path + "computers.txt";
 		String runps1 = path + "Run.ps1";
+		String pscmds = null;
 		String resout = path + "Output.txt";
+		String[] values = services.split(",");
+		ArrayList<String> list = new ArrayList<>(Arrays.asList(values));
+		int count = list.size();
+		String service1 =null;
+		String service2 =null;
+		String service3 =null;
+		String service4 =null;
+		String service5 =null;
+		String service6 =null;
+		String service7 =null;
 
-		 //"$cred = get-Credential -credential administrator \r\n" 
-		String pscmds = "$Username = '"+ username +"' \r\n"
-				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
-				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-				+ "$computer = '"+ serName +"' \r\n"
-				+ "$servename = '"+ service1 +"' \r\n"
-				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
-				+ resout
-				+ "\r\n PAUSE";
+		switch(count) {
+		case 1:
+			service1 = list.get(0).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename = '"+ service1 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			break;
+		case 2:
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 } | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			break;
+		case 3:
 
-		
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			service3 = list.get(2).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3  } | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+
+			break;
+		case 4:
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			service3 = list.get(2).trim();
+			service4 = list.get(3).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "$servename4 = '"+ service4 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 } | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			
+			break;
+		case 5:
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			service3 = list.get(2).trim();
+			service4 = list.get(3).trim();
+			service5 = list.get(4).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "$servename4 = '"+ service4 +"' \r\n"
+					+ "$servename5 = '"+ service5 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 } | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			break;
+		case 6:
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			service3 = list.get(2).trim();
+			service4 = list.get(3).trim();
+			service5 = list.get(4).trim();
+			service6 = list.get(5).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "$servename4 = '"+ service4 +"' \r\n"
+					+ "$servename5 = '"+ service5 +"' \r\n"
+					+ "$servename6 = '"+ service6 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6} | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			break;
+		case 7:
+			service1 = list.get(0).trim();
+			service2 = list.get(1).trim();
+			service3 = list.get(2).trim();
+			service4 = list.get(3).trim();
+			service5 = list.get(4).trim();
+			service6 = list.get(5).trim();
+			service7 = list.get(6).trim();
+			pscmds = "$Username = '"+ username +"' \r\n"
+					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+					+ "$computer = '"+ serName +"' \r\n"
+					+ "$servename1 = '"+ service1 +"' \r\n"
+					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "$servename4 = '"+ service4 +"' \r\n"
+					+ "$servename5 = '"+ service5 +"' \r\n"
+					+ "$servename6 = '"+ service6 +"' \r\n"
+					+ "$servename7 = '"+ service7 +"' \r\n"
+					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6 -or  $_.Name -eq $servename7} | Out-File -FilePath "
+					+ resout
+					+ "\r\n PAUSE";
+			break;
+		default:
+			System.out.println("As of now this method can be used maximum 7 Services only per Service.");
+		}
+
 		File fileObj1 = new File(runps1);
 		try {
 			fileObj1.createNewFile();
@@ -109,7 +226,94 @@ public class WinSer extends CommonMethods {
 
 		wait(5);
 	}
-	
+
+	// fileObj.delete();
+	// fileObj1.delete();
+
+	public void createPowerShellFile(String username, String password, String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		//"$cred = get-Credential -credential administrator \r\n" 
+		String pscmds = "$Username = '"+ username +"' \r\n"
+				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+				+ "$computer = '"+ serName +"' \r\n"
+				+ "$servename = '"+ service1 +"' \r\n"
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
+	public void createPowerShellFile(String username, String password, String serName, String service1, String service2, String service3) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		//"$cred = get-Credential -credential administrator \r\n" 
+		String pscmds = "$Username = '"+ username +"' \r\n"
+				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+				+ "$computer = '"+ serName +"' \r\n"
+				+ "$servename1 = '"+ service1 +"' \r\n"
+				+ "$servename2 = '"+ service2 +"' \r\n"
+				+ "$servename3 = '"+ service3 +"' \r\n"
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3  } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
 	public void createNeededFiles(String serName, String service1) {
 		/* 
 		 * Author: Balajee Palle
@@ -242,7 +446,7 @@ public class WinSer extends CommonMethods {
 	}
 
 
-	
+
 
 	void verifyServiceStatus(String filePath) {
 		File file = new File(filePath); 
@@ -262,7 +466,7 @@ public class WinSer extends CommonMethods {
 
 	}
 
-	
+
 	void advanceReader(String filepath) {
 		List<String> lines = Collections.emptyList();
 

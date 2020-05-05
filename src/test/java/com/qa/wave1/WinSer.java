@@ -12,6 +12,8 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
@@ -28,6 +30,7 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
 import org.testng.Reporter;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.demo.base.CommonMethods;
@@ -37,38 +40,221 @@ public class WinSer extends CommonMethods {
 	/***************************** Test Data ************************************/
 
 	static final String userDirectory = System.getProperty("user.dir");
+	
+	String path = userDirectory + "\\AutoFiles\\";
+	String resout = path + "Output.txt";
+	String runbat = path + "Run.bat";
+	String ADM_UserID = null;
+	String password = null;
 
 	/***************************** Test ************************************/
+	@BeforeMethod(enabled = true)
+	public void BeforeRunningTest() {
+		
+		ADM_UserID = "adm_bgambhir";
+		//password = RSA_Authentication("bpalle"); //nnereddula
+		password = "Obo8N@ZEzUiW"; 
+
+	}
+	
 	@Test(priority = 0, enabled = true)
 	public void AppName_TC01_WinServer() {
 		TM_AppName_TC01_WinServer();
-		
+
 	}
 
 	/***************************** * Test Methods	 ************************************/
 	void TM_AppName_TC01_WinServer() {
-		String path = userDirectory + "\\AutoFiles\\";
-		String resout = path + "Output.txt";
-		String runbat = path + "Run.bat";
-		
-		createNeededFiles("SJCONAPPPRDN02", "arc_druva_insync_flexfolder");
-		
-		//String password = RSA_Authentication("nnereddula");
-		String password = "pjBElwPk$7V*"; 
-		
+
+		createPS1HostnameServices(ADM_UserID, password, "SJB9APPDEVN01", "AppReadiness , ParityReporter, ParityServer");
 		runWindowsServerCheckBat(runbat);
-		sikuliEnterCredentails("ADM_nnereddula", password);
-		
-		verifyServiceStatus(resout, "arc_druva_insync_flexfolder", "Running");
+
+		verifyServiceStatus(resout, "AppReadiness", "Stopped");
+		verifyServiceStatus(resout, "ParityReporter", "Running");
+		verifyServiceStatus(resout, "ParityServer", "Running");
 	}
-	
-	
 
-		// fileObj.delete();
-		// fileObj1.delete();
 
 	
-	
+	public void createPowerShellFile(String username, String password, String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		//"$cred = get-Credential -credential administrator \r\n" 
+		String pscmds = "$Username = '"+ username +"' \r\n"
+				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+				+ "$computer = '"+ serName +"' \r\n"
+				+ "$servename = '"+ service1 +"' \r\n"
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
+	public void createPowerShellFile(String username, String password, String serName, String service1, String service2, String service3) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		//"$cred = get-Credential -credential administrator \r\n" 
+		String pscmds = "$Username = '"+ username +"' \r\n"
+				+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+				+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
+				+ "$computer = '"+ serName +"' \r\n"
+				+ "$servename1 = '"+ service1 +"' \r\n"
+				+ "$servename2 = '"+ service2 +"' \r\n"
+				+ "$servename3 = '"+ service3 +"' \r\n"
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3  } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
+	public void createNeededFiles(String serName, String service1) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute 
+		 * Parameter: Server host name and Service name 
+		 * Date: May 2020 
+		 * 
+		 */
+		//String service = "'"+service1+"'";
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+"$servename = '"+ service1 +"' \r\n"
+				+ "$computer = get-content " + pathFile1 +"\r\n"	
+				+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+	public void createNeededFiles(String serName, String service1, String service2) {
+		/* 
+		 * Author: Balajee Palle
+		 * Description: To Create local file for Server and .PS1 file for commands to execute with 2 services method override 
+		 * Parameter: Server host name and Service name, Service name2 
+		 * Date: May 2020 
+		 * 
+		 */
+		String path = userDirectory + "\\AutoFiles\\";
+		String pathFile1 = path + "computers.txt";
+		String runps1 = path + "Run.ps1";
+		String resout = path + "Output.txt";
+
+		String pscmds = "$cred = get-Credential -credential administrator \r\n" 
+				+"$servename1 = '"+ service1 +"' \r\n"
+				+"$servename2 = '"+ service2 +"' \r\n"
+				+"$computer = get-content " + pathFile1 +"\r\n"	
+				+"Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1, $servename2 } | Out-File -FilePath "
+				+ resout
+				+ "\r\n PAUSE";
+
+		File fileObj = new File(pathFile1);
+		try {
+			fileObj.createNewFile();
+			FileWriter myWriter = new FileWriter(pathFile1);
+			myWriter.write(serName);
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		File fileObj1 = new File(runps1);
+		try {
+			fileObj1.createNewFile();
+			FileWriter myWriter = new FileWriter(runps1);
+
+			myWriter.write(pscmds);
+
+			myWriter.close();
+
+		} catch (IOException e) { 
+			e.printStackTrace();
+		}
+
+		wait(5);
+	}
+
 
 	/****************************** Interaction Methods	***********************************/
 
@@ -106,7 +292,7 @@ public class WinSer extends CommonMethods {
 	}
 
 
-	
+
 
 	void verifyServiceStatus(String filePath) {
 		File file = new File(filePath); 
@@ -126,7 +312,7 @@ public class WinSer extends CommonMethods {
 
 	}
 
-	
+
 	void advanceReader(String filepath) {
 		List<String> lines = Collections.emptyList();
 

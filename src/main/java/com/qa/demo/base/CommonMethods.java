@@ -22,8 +22,10 @@ import javax.crypto.spec.SecretKeySpec;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -54,18 +56,19 @@ public class CommonMethods {
 	private static final String userDirectory = System.getProperty("user.dir");
 	public static WebDriver driver;
 
-
-
 	public void launchBrowser(String browser, String url) {
 
-		if(browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver",userDirectory+"\\src\\main\\java\\com\\qa\\demo\\config\\chromedriver_v78.exe");
+		if (browser.equalsIgnoreCase("Chrome")) {
+			System.setProperty("webdriver.chrome.driver",
+					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\chromedriver_v78.exe");
 			driver = new ChromeDriver();
-		}else if(browser.equalsIgnoreCase("IE")){
-			System.setProperty("webdriver.ie.driver",userDirectory+"\\src\\main\\java\\com\\qa\\demo\\config\\IEDriverServer.exe");
+		} else if (browser.equalsIgnoreCase("IE")) {
+			System.setProperty("webdriver.ie.driver",
+					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
-		}else {
-			System.setProperty("webdriver.gecko.driver",userDirectory+"\\src\\main\\java\\com\\qa\\demo\\config\\GeckoDriver.exe");
+		} else {
+			System.setProperty("webdriver.gecko.driver",
+					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\GeckoDriver.exe");
 			driver = new FirefoxDriver();
 		}
 
@@ -75,62 +78,51 @@ public class CommonMethods {
 		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 	}
 
-
-
-
-	public  WebElement createWebElementBy(By locator) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To create web Element by passing locator.
-		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: April 2020 
+	public WebElement createWebElementBy(By locator) {
+		/*
+		 * Author: Balajee Palle Description: To create web Element by passing locator.
+		 * Parameter: Xpath or Css Syntax example: Date: April 2020
 		 * 
 		 */
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-		WebElement element =  driver.findElement(locator);
-		Reporter.log("Mouse Control is on "+locator.toString() +" on Web App URL: "+driver.getCurrentUrl() );
+		WebElement element = driver.findElement(locator);
+		Reporter.log("Mouse Control is on " + locator.toString() + " on Web App URL: " + driver.getCurrentUrl());
 		highLightElement(element);
 		return element;
 	}
 
-	public  List<WebElement> createWebElementsBy(By locator) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To create web Elements by passing locator.
-		 * Parameter: Xpath or Css Syntax example: 
-		 * Date: April 2020 
+	public List<WebElement> createWebElementsBy(By locator) {
+		/*
+		 * Author: Balajee Palle Description: To create web Elements by passing locator.
+		 * Parameter: Xpath or Css Syntax example: Date: April 2020
 		 * 
 		 */
 		WebDriverWait wait = new WebDriverWait(driver, 50);
 		wait.until(ExpectedConditions.presenceOfElementLocated(locator));
-		List<WebElement> elements =  driver.findElements(locator);
+		List<WebElement> elements = driver.findElements(locator);
 		return elements;
 	}
 
-	public void highLightElement(WebElement element){
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To highlight the web Element
-		 * Parameter: WebElement
-		 * Date: April 2020
+	public void highLightElement(WebElement element) {
+		/*
+		 * Author: Balajee Palle Description: To highlight the web Element Parameter:
+		 * WebElement Date: April 2020
 		 */
-		JavascriptExecutor js=(JavascriptExecutor)driver; 
-		js.executeScript("arguments[0].setAttribute('style','border: solid 2px red')", element); 
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].setAttribute('style','border: solid 2px red')", element);
 		wait(1);
-		js.executeScript("arguments[0].setAttribute('style','border: solid 2px white')", element); 
+		js.executeScript("arguments[0].setAttribute('style','border: solid 2px white')", element);
 	}
 
 	public void wait(int sec) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: Hard wait
-		 * Parameter: Time in seconds but never use >5 
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: Hard wait Parameter: Time in seconds but
+		 * never use >5 Date: April 2020
 		 * 
 		 */
 		try {
-			Thread.sleep(sec*1000);
+			Thread.sleep(sec * 1000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -138,17 +130,15 @@ public class CommonMethods {
 	}
 
 	public void waitForPageLoaded() {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: Waits for page load
-		 * Parameter: 
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: Waits for page load Parameter: Date: April
+		 * 2020
 		 * 
 		 */
-		ExpectedCondition<Boolean> expectation = new
-				ExpectedCondition<Boolean>() {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+						.equals("complete");
 			}
 		};
 		try {
@@ -160,24 +150,20 @@ public class CommonMethods {
 		}
 	}
 
-
 	public void mouseHover(WebElement element) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: to do mouse hover on element
-		 * Parameter: WebElement
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: to do mouse hover on element Parameter:
+		 * WebElement Date: April 2020
 		 * 
 		 */
 		Actions action = new Actions(driver);
 		action.moveToElement(element).perform();
 	}
-	public void domClick(WebElement element){
-		/* 
-		 * Author: Balajee Palle
-		 * Description: to do safe click on element
-		 * Parameter: WebElement
-		 * Date: April 2020 
+
+	public void domClick(WebElement element) {
+		/*
+		 * Author: Balajee Palle Description: to do safe click on element Parameter:
+		 * WebElement Date: April 2020
 		 * 
 		 */
 		try {
@@ -189,24 +175,24 @@ public class CommonMethods {
 				System.out.println("Unable to click on element");
 			}
 		} catch (StaleElementReferenceException e) {
-			System.out.println("Element is not attached to the page document "+ e.getStackTrace());
+			System.out.println("Element is not attached to the page document " + e.getStackTrace());
 		} catch (NoSuchElementException e) {
-			System.out.println("Element was not found in DOM "+ e.getStackTrace());
+			System.out.println("Element was not found in DOM " + e.getStackTrace());
 		} catch (Exception e) {
-			System.out.println("Unable to click on element "+ e.getStackTrace());
+			System.out.println("Unable to click on element " + e.getStackTrace());
 		}
 	}
+
 	/*************************************************************************/
-	/* 
-	 * Author: Balajee Palle
-	 * Description: To Encrypt passwords to be used in Project
-	 * Parameter: 
-	 * Date: April 2020 
+	/*
+	 * Author: Balajee Palle Description: To Encrypt passwords to be used in Project
+	 * Parameter: Date: April 2020
 	 * 
-	 */	 
-	private static final byte[] keyValue = new byte[] { 'w', 'F', 'h', 'D',
-			'u', 'e', 'T', 'o', 'c', 'O', 'v', 'i', 'D', '1', '9', '*' };
-	private static final String Golf = "AES";		 
+	 */
+	private static final byte[] keyValue = new byte[] { 'w', 'F', 'h', 'D', 'u', 'e', 'T', 'o', 'c', 'O', 'v', 'i', 'D',
+			'1', '9', '*' };
+	private static final String Golf = "AES";
+
 	public static String decrypt(String encryptedData) throws Exception {
 		Key key = generateKey();
 		Cipher c = Cipher.getInstance(Golf);
@@ -236,61 +222,55 @@ public class CommonMethods {
 	/*******************************************************************************************/
 
 	public void scrollBehaviorByPixels(int X_Pixels, int Y_Pixels) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To move horizontally or Vertically within  HTML page 
-		 * Parameter: X_Pixels and Y_Pixels example 0, 250 to vertically down and -250 to scroll up.
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: To move horizontally or Vertically within
+		 * HTML page Parameter: X_Pixels and Y_Pixels example 0, 250 to vertically down
+		 * and -250 to scroll up. Date: April 2020
 		 * 
 		 */
-		JavascriptExecutor js = (JavascriptExecutor)driver;
-		js.executeScript("scroll("+X_Pixels+","+Y_Pixels+")");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("scroll(" + X_Pixels + "," + Y_Pixels + ")");
 	}
 
 	public void scrollToWebElement(WebElement element) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To move to WebElement within  HTML page 
-		 * Parameter: WebElement
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: To move to WebElement within HTML page
+		 * Parameter: WebElement Date: April 2020
 		 * 
 		 */
-		JavascriptExecutor js = (JavascriptExecutor)driver;
-		js.executeScript("arguments[0].scrollIntoView(true);", element );
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].scrollIntoView(true);", element);
 	}
 
 	public void scrollToBottomOfHTML() {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: to move to Bottom of  HTML page 
-		 * Parameter: 
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: to move to Bottom of HTML page Parameter:
+		 * Date: April 2020
 		 * 
 		 */
-		JavascriptExecutor js = (JavascriptExecutor)driver;
-		js.executeScript("window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript(
+				"window.scrollTo(0,Math.max(document.documentElement.scrollHeight,document.body.scrollHeight,document.documentElement.clientHeight));");
 	}
 
 	public void scrollWithinWebElement(String CssSelector, int Pixels) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: to scroll within WebElement say Div section, webTable or any sub section
-		 * Parameter: Css selector of section to be scrolled.
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: to scroll within WebElement say Div
+		 * section, webTable or any sub section Parameter: Css selector of section to be
+		 * scrolled. Date: April 2020
 		 * 
 		 */
-		String syntx= "document.querySelector("+"'"+ CssSelector +"'"+").scrollTop="+Pixels+"";
+		String syntx = "document.querySelector(" + "'" + CssSelector + "'" + ").scrollTop=" + Pixels + "";
 		EventFiringWebDriver eventFiringWebDriver = new EventFiringWebDriver(driver);
-		//eventFiringWebDriver.executeScript("document.querySelector("+"'"+ CssSelector +"'"+").scrollTop="+Pixels+"");
+		// eventFiringWebDriver.executeScript("document.querySelector("+"'"+ CssSelector
+		// +"'"+").scrollTop="+Pixels+"");
 		eventFiringWebDriver.executeScript(syntx);
 	}
 
 	public void selectDropdownValue(WebElement element, String value) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To select Dropdown value, locator has to be with 'Select' tag.
-		 * Parameter: WebElement
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: To select Dropdown value, locator has to
+		 * be with 'Select' tag. Parameter: WebElement Date: April 2020
 		 */
 		element.click();
 		wait(2);
@@ -299,85 +279,73 @@ public class CommonMethods {
 	}
 
 	public void selectDropdownValueByWebElements(WebElement dropdown, WebElement value) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To Drop down value by Javascript
-		 * Parameter: drop down WebElement and value WebElement
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: To Drop down value by Javascript
+		 * Parameter: drop down WebElement and value WebElement Date: April 2020
 		 * 
 		 */
-		dropdown.click();	
+		dropdown.click();
 		wait(3);
-		//JavascriptExecutor js = (JavascriptExecutor) driver;
-		//js.executeScript("arguments[0].click();", value);
+		// JavascriptExecutor js = (JavascriptExecutor) driver;
+		// js.executeScript("arguments[0].click();", value);
 		value.click();
 
 	}
 
 	public void switchToFrameByLocator(WebElement element) {
-		/* 
-		 * Author: Abhishek Bhatt
-		 * Description: To switch control to frame in the UI
-		 * Parameter: frame webelement
-		 * Date: April 2020 
+		/*
+		 * Author: Abhishek Bhatt Description: To switch control to frame in the UI
+		 * Parameter: frame webelement Date: April 2020
 		 * 
 		 */
 		driver.switchTo().frame(element);
 	}
 
-	public void IsDisplayed_IsEnabled(WebElement element){
-		/* 
-		 * Author: Abhishek Bhatt, Balajee Palle
-		 * Description: To verify that element is displayed and is enabled in the UI and added Reporter.log after assertion 
-		 * Parameter:Webelement
-		 * Date: April 2020 
+	public void IsDisplayed_IsEnabled(WebElement element) {
+		/*
+		 * Author: Abhishek Bhatt, Balajee Palle Description: To verify that element is
+		 * displayed and is enabled in the UI and added Reporter.log after assertion
+		 * Parameter:Webelement Date: April 2020
 		 * 
 		 */
 
 		boolean actual = element.isDisplayed() && element.isEnabled();
 		Assert.assertEquals(actual, true);
-		Reporter.log("Is WebElement  " +element.getText()+" is displayed: "+actual);
-		//return element.isDisplayed() && element.isEnabled();
+		Reporter.log("Is WebElement  " + element.getText() + " is displayed: " + actual);
+		// return element.isDisplayed() && element.isEnabled();
 
 	}
 
-
 	public String getTitle() {
-		/* 
-		 * Author: Sakshi Gupta
-		 * Description: To Get the Title of the page
-		 * Parameter: 
-		 * Date: April 2020 
+		/*
+		 * Author: Sakshi Gupta Description: To Get the Title of the page Parameter:
+		 * Date: April 2020
 		 * 
 		 */
 		return driver.getTitle();
 	}
 
 	public String getURL() {
-		/* 
-		 * Author: Sakshi Gupta
-		 * Description: To Get the Current URL of the page
-		 * Parameter: 
-		 * Date: April 2020 
+		/*
+		 * Author: Sakshi Gupta Description: To Get the Current URL of the page
+		 * Parameter: Date: April 2020
 		 * 
 		 */
 		return driver.getCurrentUrl();
-	}	
+	}
 
-
-	public static void takeScreenshotAtEndOfTest()  {
-		/* 
-		 * Author: Pravin Sonawane, Balajee Palle
-		 * Description: To Take screenshot of page, Screenshot added to Reporter.log, Added steps to save image into Reporter.
-		 * Parameter: 
-		 * Date: April 2020 
+	public static void takeScreenshotAtEndOfTest() {
+		/*
+		 * Author: Pravin Sonawane, Balajee Palle Description: To Take screenshot of
+		 * page, Screenshot added to Reporter.log, Added steps to save image into
+		 * Reporter. Parameter: Date: April 2020
 		 * 
 		 */
 
-		ExpectedCondition<Boolean> expectation = new
-				ExpectedCondition<Boolean>() {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
 			public Boolean apply(WebDriver driver) {
-				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+				return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+						.equals("complete");
 			}
 		};
 		try {
@@ -390,19 +358,20 @@ public class CommonMethods {
 		File scrFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
 		try {
-			FileUtils.copyFile(scrFile,screenShotName);
+			FileUtils.copyFile(scrFile, screenShotName);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
-		//Reporter.log("<br><img src='"+screenShotName.toString()+"' height='300' width='500'/><br>");  
+		}
+		// Reporter.log("<br><img src='"+screenShotName.toString()+"' height='300'
+		// width='500'/><br>");
 
 		FileInputStream fTptStrm = null;
 		String encodedBase64 = null;
 
 		try {
 			fTptStrm = new FileInputStream(screenShotName);
-			byte[] bytes = new byte[(int)screenShotName.length()];
+			byte[] bytes = new byte[(int) screenShotName.length()];
 			fTptStrm.read(bytes);
 			encodedBase64 = new String(Base64.encodeBase64(bytes));
 		} catch (FileNotFoundException e) {
@@ -412,33 +381,29 @@ public class CommonMethods {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		String result = "data:image/png;base64, "+encodedBase64;
+		String result = "data:image/png;base64, " + encodedBase64;
 
-		Reporter.log("<br><img src='"+result+"' height='300' width='500'/><br>");
+		Reporter.log("<br><img src='" + result + "' height='300' width='500'/><br>");
 
 	}
 
-	public void selectRadio(List<WebElement> locator,String exvalue) {
-		/* 
-		 * Author: Pravin Sonawane
-		 * Description: To Select radio button.
-		 * Parameter: Locator for radio and value for selection
-		 * Date: April 2020 
+	public void selectRadio(List<WebElement> locator, String exvalue) {
+		/*
+		 * Author: Pravin Sonawane Description: To Select radio button. Parameter:
+		 * Locator for radio and value for selection Date: April 2020
 		 * 
 		 */
-		for(WebElement temp : locator) {
-			if(temp.getAttribute("value").equalsIgnoreCase(exvalue)) {
+		for (WebElement temp : locator) {
+			if (temp.getAttribute("value").equalsIgnoreCase(exvalue)) {
 				temp.click();
 			}
 		}
 	}
 
 	public static void windowhandle() {
-		/* 
-		 * Author: Pravin Sonawane
-		 * Description: To switch to child window
-		 * Parameter: Locator for radio and value for selection
-		 * Date: April 2020 
+		/*
+		 * Author: Pravin Sonawane Description: To switch to child window Parameter:
+		 * Locator for radio and value for selection Date: April 2020
 		 */
 		Set<String> allwindow = driver.getWindowHandles();
 		Iterator<String> it = allwindow.iterator();
@@ -448,12 +413,10 @@ public class CommonMethods {
 	}
 
 	public boolean isFileDownloaded(String downloadPath, String fileName) {
-		/* 
-		 * Author: Gokul Raj
-		 * Description: To validate the file is downloaded or not 
-		 * Parameter: download path and the expected download file name
-		 * Usage : add a assert.assertrue statement and call this method
-		 * Date: 16th April 2020 
+		/*
+		 * Author: Gokul Raj Description: To validate the file is downloaded or not
+		 * Parameter: download path and the expected download file name Usage : add a
+		 * assert.assertrue statement and call this method Date: 16th April 2020
 		 */
 		boolean flag = false;
 		File dir = new File(downloadPath);
@@ -461,37 +424,33 @@ public class CommonMethods {
 
 		for (int i = 0; i < dir_contents.length; i++) {
 			if (dir_contents[i].getName().equals(fileName))
-				return flag=true;
+				return flag = true;
 		}
 
 		return flag;
 	}
 
-	public static String getAlphaNumericString(int n) { 
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To generate AlphaNumaric String with numbers.
-		 * Parameter: Integer with number of characters
-		 * Date: April 2020 
+	public static String getAlphaNumericString(int n) {
+		/*
+		 * Author: Balajee Palle Description: To generate AlphaNumaric String with
+		 * numbers. Parameter: Integer with number of characters Date: April 2020
 		 */
 
-		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz"; 
-		StringBuilder sb = new StringBuilder(n); 
+		String AlphaNumericString = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvxyz";
+		StringBuilder sb = new StringBuilder(n);
 
-		for (int i = 0; i < n; i++) { 
-			int index = (int)(AlphaNumericString.length() * Math.random()); 
-			sb.append(AlphaNumericString.charAt(index)); 
-		} 
+		for (int i = 0; i < n; i++) {
+			int index = (int) (AlphaNumericString.length() * Math.random());
+			sb.append(AlphaNumericString.charAt(index));
+		}
 
-		return sb.toString(); 
-	} 
+		return sb.toString();
+	}
 
 	public String RSA_Authentication(String UserID) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To generate GPV Password by Entering Gilead ID & RSA Token.
-		 * Parameter: Gilead ID
-		 * Date: April 2020 
+		/*
+		 * Author: Balajee Palle Description: To generate GPV Password by Entering
+		 * Gilead ID & RSA Token. Parameter: Gilead ID Date: April 2020
 		 */
 
 		launchBrowser("Chrome", "https://gpv.gilead.com/");
@@ -517,7 +476,6 @@ public class CommonMethods {
 		WebElement SignIn_Btn = createWebElementBy(btn_SignIn);
 		SignIn_Btn.click();
 
-
 		By btn_ShowPwd = By.cssSelector("div[id='Recently'] img[title='Show password']");
 		WebElement ShowPwd_Btn = createWebElementBy(btn_ShowPwd);
 		ShowPwd_Btn.click();
@@ -526,20 +484,16 @@ public class CommonMethods {
 		WebElement Pwd_Fld = createWebElementBy(Fld_Password);
 		String password = Pwd_Fld.getText();
 
-		System.out.println("Entered RSA Token Code : " +inputRSACode+ " Fectched Password: "+ password);
+		System.out.println("Entered RSA Token Code : " + inputRSACode + " Fectched Password: " + password);
 		driver.close();
 
 		return password;
 	}
 
-
-	
 	public void runWindowsServerCheckBat(String batfile) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To run .bat file 
-		 * Parameter: bat file path
-		 * Date: May 2020 
+		/*
+		 * Author: Balajee Palle Description: To run .bat file Parameter: bat file path
+		 * Date: May 2020
 		 * 
 		 */
 		try {
@@ -550,21 +504,19 @@ public class CommonMethods {
 		}
 		wait(4);
 	}
-	public void sikuliEnterCredentails(String username, String Pasword)  {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To enter user name and password on windows powershell using Sikuli
-		 * Parameter: ADM account and password 
-		 * Date: May 2020 
+
+	public void sikuliEnterCredentails(String username, String Pasword) {
+		/*
+		 * Author: Balajee Palle Description: To enter user name and password on windows
+		 * powershell using Sikuli Parameter: ADM account and password Date: May 2020
 		 * 
 		 */
-		String path = userDirectory + "\\AutoFiles\\SiKuli\\"; 
+		String path = userDirectory + "\\AutoFiles\\SiKuli\\";
 
 		Screen s = new Screen();
 		Pattern UserNameInput = new Pattern(path + "Username.PNG");
 		Pattern PasswordInput = new Pattern(path + "Password.PNG");
 		Pattern openButton = new Pattern(path + "OkButton.PNG");
-
 
 		try {
 			s.wait(UserNameInput, 20);
@@ -578,41 +530,39 @@ public class CommonMethods {
 	}
 
 	public void verifyServiceStatus(String filePath, String service, String Status) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To Validate Service name and its status 
-		 * Parameter: Result file path, service name and expected status
-		 * Date: May 2020 
+		/*
+		 * Author: Balajee Palle Description: To Validate Service name and its status
+		 * Parameter: Result file path, service name and expected status Date: May 2020
 		 * 
 		 */
 		BufferedReader br = null;
 		String line = null;
-		String expected= "State     : "+Status;
+		String expected = "State     : " + Status;
 		boolean flag = false;
 		try {
 			try {
-				br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath),"UTF-16"));
+				br = new BufferedReader(new InputStreamReader(new FileInputStream(filePath), "UTF-16"));
 			} catch (UnsupportedEncodingException e1) {
 				e1.printStackTrace();
 			}
 			try {
 				line = br.readLine();
-				while(line != null) {
-					if(line.endsWith(service)) {
+				while (line != null) {
+					if (line.endsWith(service)) {
 						line = br.readLine();
 						line = br.readLine();
-						System.out.println("The service: "+service+" displayed as "+line);
-						Reporter.log("The service: "+service+" displayed as "+line);
+						System.out.println("The service: " + service + " displayed as " + line);
+						Reporter.log("The service: " + service + " displayed as " + line);
 						line = br.readLine();
-						System.out.println("The service: "+service+" displayed as "+line);
-						Reporter.log("The service: "+service+" displayed as "+line);
+						System.out.println("The service: " + service + " displayed as " + line);
+						Reporter.log("The service: " + service + " displayed as " + line);
 						Assert.assertTrue(line.equalsIgnoreCase(expected));
-						flag= true;
+						flag = true;
 						break;
 					}
 					line = br.readLine();
-				} 
-			}catch (IOException e) {
+				}
+			} catch (IOException e) {
 				e.printStackTrace();
 			}
 
@@ -623,11 +573,10 @@ public class CommonMethods {
 	}
 
 	public void createPS1HostnameServices(String username, String password, String serName, String services) {
-		/* 
-		 * Author: Balajee Palle
-		 * Description: To PS 1 File with Username , password and Hostname and with Services to be fetched
-		 * Parameter: Username, Password, Hostname, and comma separate Services names
-		 * Date: May 2020 
+		/*
+		 * Author: Balajee Palle Description: To PS 1 File with Username , password and
+		 * Hostname and with Services to be fetched Parameter: Username, Password,
+		 * Hostname, and comma separate Services names Date: May 2020
 		 * 
 		 */
 		String path = userDirectory + "\\AutoFiles\\";
@@ -637,54 +586,47 @@ public class CommonMethods {
 		String[] values = services.split(",");
 		ArrayList<String> list = new ArrayList<>(Arrays.asList(values));
 		int count = list.size();
-		String service1 =null;
-		String service2 =null;
-		String service3 =null;
-		String service4 =null;
-		String service5 =null;
-		String service6 =null;
-		String service7 =null;
+		String service1 = null;
+		String service2 = null;
+		String service3 = null;
+		String service4 = null;
+		String service5 = null;
+		String service6 = null;
+		String service7 = null;
 
-		switch(count) {
+		switch (count) {
 		case 1:
 			service1 = list.get(0).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename = '"+ service1 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename = '" + service1 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 			break;
 		case 2:
 			service1 = list.get(0).trim();
 			service2 = list.get(1).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 } | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 			break;
 		case 3:
 
 			service1 = list.get(0).trim();
 			service2 = list.get(1).trim();
 			service3 = list.get(2).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
-					+ "$servename3 = '"+ service3 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3  } | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 
 			break;
 		case 4:
@@ -692,18 +634,15 @@ public class CommonMethods {
 			service2 = list.get(1).trim();
 			service3 = list.get(2).trim();
 			service4 = list.get(3).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
-					+ "$servename3 = '"+ service3 +"' \r\n"
-					+ "$servename4 = '"+ service4 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
+					+ "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 } | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
-			
+					+ resout + "\r\n PAUSE";
+
 			break;
 		case 5:
 			service1 = list.get(0).trim();
@@ -711,18 +650,14 @@ public class CommonMethods {
 			service3 = list.get(2).trim();
 			service4 = list.get(3).trim();
 			service5 = list.get(4).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
-					+ "$servename3 = '"+ service3 +"' \r\n"
-					+ "$servename4 = '"+ service4 +"' \r\n"
-					+ "$servename5 = '"+ service5 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
+					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 } | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 			break;
 		case 6:
 			service1 = list.get(0).trim();
@@ -731,19 +666,14 @@ public class CommonMethods {
 			service4 = list.get(3).trim();
 			service5 = list.get(4).trim();
 			service6 = list.get(5).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
-					+ "$servename3 = '"+ service3 +"' \r\n"
-					+ "$servename4 = '"+ service4 +"' \r\n"
-					+ "$servename5 = '"+ service5 +"' \r\n"
-					+ "$servename6 = '"+ service6 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
+					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n" + "$servename6 = '" + service6 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6} | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 			break;
 		case 7:
 			service1 = list.get(0).trim();
@@ -753,20 +683,15 @@ public class CommonMethods {
 			service5 = list.get(4).trim();
 			service6 = list.get(5).trim();
 			service7 = list.get(6).trim();
-			pscmds = "$Username = '"+ username +"' \r\n"
-					+ "$Password = ConvertTo-SecureString '"+ password +"' -AsPlainText -Force \r\n"
+			pscmds = "$Username = '" + username + "' \r\n" + "$Password = ConvertTo-SecureString '" + password
+					+ "' -AsPlainText -Force \r\n"
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
-					+ "$computer = '"+ serName +"' \r\n"
-					+ "$servename1 = '"+ service1 +"' \r\n"
-					+ "$servename2 = '"+ service2 +"' \r\n"
-					+ "$servename3 = '"+ service3 +"' \r\n"
-					+ "$servename4 = '"+ service4 +"' \r\n"
-					+ "$servename5 = '"+ service5 +"' \r\n"
-					+ "$servename6 = '"+ service6 +"' \r\n"
-					+ "$servename7 = '"+ service7 +"' \r\n"
+					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
+					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
+					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n" + "$servename6 = '" + service6 + "' \r\n"
+					+ "$servename7 = '" + service7 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6 -or  $_.Name -eq $servename7} | Out-File -FilePath "
-					+ resout
-					+ "\r\n PAUSE";
+					+ resout + "\r\n PAUSE";
 			break;
 		default:
 			System.out.println("As of now this method can be used maximum 7 Services only per Service.");
@@ -781,7 +706,7 @@ public class CommonMethods {
 
 			myWriter.close();
 
-		} catch (IOException e) { 
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 
@@ -790,7 +715,80 @@ public class CommonMethods {
 
 	// fileObj1.delete();
 
+	/*
+	 * Author: DeepakKumarMarkanti Description: To Accept Alert Parameter: No
+	 * Parameter Date: May 2020
+	 * 
+	 */
+
+	public void acceptAlert() {
+		String text = "";
+		try {
+			Alert alert = driver.switchTo().alert();
+			text = alert.getText();
+			System.out.println(text);
+			alert.accept();
+
+		} catch (NoAlertPresentException e) {
+			System.out.println("No Alert present");
+
+		}
+	}
+
+	/*
+	 * Author: DeepakKumarMarkanti Description: To Dismiss Alert Parameter: No
+	 * Parameter Date: May 2020
+	 * 
+	 */
+
+	public void dismissAlert() {
+		String text = "";
+		try {
+			Alert alert = driver.switchTo().alert();
+			text = alert.getText();
+			System.out.println(text);
+			alert.dismiss();
+
+		} catch (NoAlertPresentException e) {
+			System.out.println("No Alert present");
+		}
+
+	}
+
+	/*
+	 * Author: DeepakKumarMarkanti 
+	 * Description: To close current Browser 
+	 * Parameter:
+	 * No 
+	 * Parameter Date: May 2020
+	 * 
+	 */
+
+	public void closeBrowser() {
+		try {
+			driver.close();
+
+		} catch (Exception e) {
+			System.out.println("Unexpected error occured in Browser");
+
+		}
+	}
+	
+	/*
+	 * Author: DeepakKumarMarkanti 
+	 * Description: To close all the opened Browsers
+	 * Parameter: No 
+	 * Parameter Date: May 2020
+	 * 
+	 */
+
+	public void closeAllBrowsers() {
+		try {
+			driver.quit();
+
+		} catch (Exception e) {
+			System.out.println("Unexpected error occured in Browser");
+		}
+	}
 
 }
-
-

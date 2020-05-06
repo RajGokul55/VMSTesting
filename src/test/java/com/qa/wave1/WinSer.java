@@ -51,7 +51,7 @@ public class WinSer extends CommonMethods {
 		String resout = path + "Output.txt";
 		String runbat = path + "Run.bat";
 		
-		createNeededFiles("SJCONAPPPRDN02", "wuauserv");
+		createNeededFiles("CCCONAPPPRDN01", "wuauserv");
 		
 		//String password = RSA_Authentication("nnereddula");
 		String password = "pjBElwPk$7V*"; 

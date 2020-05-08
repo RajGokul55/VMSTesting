@@ -23,6 +23,7 @@ public class GSID extends CommonMethods {
 	final String euUrl= "https://gsid-eu.gilead.com/";
 	final String apUrl= "https://gsid-ap.gilead.com/";
 	final String drUrl= "https://gsid-dr.gilead.com/";
+	final String devUrl= "https://gsiddev.gilead.com ";
 
 
 	/***************************** Test Cases *******************/
@@ -73,10 +74,21 @@ public class GSID extends CommonMethods {
 	public void GSID_S06_Web_Search_Binaries_Process_Search_Validate() {
 		TM_GSID_S06_Web_Search_Binaries_Process_Search_Validate();
 	}
-
+	
 	@Test(priority=6, enabled=true)
 	public void GSID_S07_Web_Investigations_Sensors_Validate() {
 		TM_GSID_S07_Web_Investigations_Sensors_Validate();
+	}
+	
+	
+	@Test(priority=7, enabled=true)
+	public void GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl() {
+		TM_GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl();
+	}
+	
+	@Test(priority=8, enabled=true)
+	public void GSID_S09_Web_Tabs_verification_DevURL() {
+		TM_GSID_S09_Web_Tabs_verification_DevURL();
 	}
 
 	@AfterMethod
@@ -240,6 +252,19 @@ public class GSID extends CommonMethods {
 
 	}
 
+	public void TM_GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl()
+	{
+		loginWithSSO();	
+		Assert.assertEquals(driver.getTitle(), "HUD");
+	}
+	
+	public void TM_GSID_S09_Web_Tabs_verification_DevURL()
+	{
+	
+	
+		
+	}
+	
 	/******************************* Methods ***************************/
 	public void loginWithSSO() {
 		WebElement LoginWithSSo_Btn = createWebElementBy(btn_loginWithSSO);

@@ -33,8 +33,9 @@ public class GPRS extends CommonMethods{
 	String ADM_UserID = null;
 	String ADMpassword = null;
 	
-	String ParterUsername  = "TESTPRT";
-	String ParterPassword = "hPv339RLF@g6";
+	final String ParterUsername  = "TESTPRT";
+	private String DecrptParterPwd;
+	String EncryptPtrPwd = "lcStILCoHe77OQVhpMp+/w==";
 
 	
 	static final String userDirectory = System.getProperty("user.dir");

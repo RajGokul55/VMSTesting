@@ -562,6 +562,7 @@ public class CommonMethods {
 					}
 					line = br.readLine();
 				}
+				
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -570,6 +571,7 @@ public class CommonMethods {
 			e.printStackTrace();
 		}
 		Assert.assertTrue(flag);
+		
 	}
 
 	public void createPS1HostnameServices(String username, String password, String serName, String services) {
@@ -602,7 +604,7 @@ public class CommonMethods {
 					+ "$cred = new-object -typename System.Management.Automation.PSCredential -argumentlist ($Username, $Password)\r\n"
 					+ "$computer = '" + serName + "' \r\n" + "$servename = '" + service1 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename } | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 			break;
 		case 2:
 			service1 = list.get(0).trim();
@@ -613,7 +615,7 @@ public class CommonMethods {
 					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
 					+ service2 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 } | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 			break;
 		case 3:
 
@@ -626,7 +628,7 @@ public class CommonMethods {
 					+ "$computer = '" + serName + "' \r\n" + "$servename1 = '" + service1 + "' \r\n" + "$servename2 = '"
 					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3  } | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 
 			break;
 		case 4:
@@ -641,7 +643,7 @@ public class CommonMethods {
 					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
 					+ "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 } | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 
 			break;
 		case 5:
@@ -657,7 +659,7 @@ public class CommonMethods {
 					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
 					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 } | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 			break;
 		case 6:
 			service1 = list.get(0).trim();
@@ -673,7 +675,7 @@ public class CommonMethods {
 					+ service2 + "' \r\n" + "$servename3 = '" + service3 + "' \r\n" + "$servename4 = '" + service4
 					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n" + "$servename6 = '" + service6 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6} | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 			break;
 		case 7:
 			service1 = list.get(0).trim();
@@ -691,7 +693,7 @@ public class CommonMethods {
 					+ "' \r\n" + "$servename5 = '" + service5 + "' \r\n" + "$servename6 = '" + service6 + "' \r\n"
 					+ "$servename7 = '" + service7 + "' \r\n"
 					+ "Get-WMIObject Win32_Service -computer $computer -credential $cred | Where { $_.Name -eq $servename1 -or  $_.Name -eq $servename2 -or  $_.Name -eq $servename3 -or  $_.Name -eq $servename4 -or  $_.Name -eq $servename5 -or  $_.Name -eq $servename6 -or  $_.Name -eq $servename7} | Out-File -FilePath "
-					+ resout + "\r\n PAUSE";
+					+ resout;
 			break;
 		default:
 			System.out.println("As of now this method can be used maximum 7 Services only per Service.");

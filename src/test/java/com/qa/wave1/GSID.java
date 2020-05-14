@@ -38,54 +38,54 @@ public class GSID extends CommonMethods {
 
 	 * Test method name must be same as test case appended with TM example: 
 	 */
-	String URL = unUrl;
-	
+	String URL = devUrl;
+
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority=0, enabled=true)
+	@Test(priority=0, enabled=false)
 	public void GSID_S01_Web_User_authentication_via_SSO() {
 		TM_GSID_S01_Web_User_authentication_via_SSO();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void GSID_S02_Web_ClusterRegions_verification() {
 		TM_GSID_S02_Web_ClusterRegions_verification();
 	}
 
-	@Test(priority=2, enabled=true)
+	@Test(priority=2, enabled=false)
 	public void GSID_S03_Web_User_authentication_via_SSO() {
 		TM_GSID_S03_Web_User_authentication_via_SSO();
 	}
 
-	@Test(priority=3, enabled=true)
+	@Test(priority=3, enabled=false)
 	public void GSID_S04_Web_Triage_Alerts_Validate() {
 		TM_GSID_S04_Web_Triage_Alerts_Validate();
 	}
 
-	@Test(priority=4, enabled=true)
+	@Test(priority=4, enabled=false)
 	public void GSID_S05_Web_Watchlists_Validate() {
 		TM_GSID_S05_Web_Watchlists_Validate();
 	}
 
-	@Test(priority=5, enabled=true)
+	@Test(priority=5, enabled=false)
 	public void GSID_S06_Web_Search_Binaries_Process_Search_Validate() {
 		TM_GSID_S06_Web_Search_Binaries_Process_Search_Validate();
 	}
-	
-	@Test(priority=6, enabled=true)
+
+	@Test(priority=6, enabled=false)
 	public void GSID_S07_Web_Investigations_Sensors_Validate() {
 		TM_GSID_S07_Web_Investigations_Sensors_Validate();
 	}
-	
-	
-	@Test(priority=7, enabled=true)
+
+
+	@Test(priority=7, enabled=false)
 	public void GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl() {
 		TM_GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl();
 	}
-	
+
 	@Test(priority=8, enabled=true)
 	public void GSID_S09_Web_Tabs_verification_DevURL() {
 		TM_GSID_S09_Web_Tabs_verification_DevURL();
@@ -175,7 +175,7 @@ public class GSID extends CommonMethods {
 		Assert.assertEquals(conditionStatus, expectedConditionStatus);
 
 	}
-	
+
 	public void TM_GSID_S03_Web_User_authentication_via_SSO(){
 
 		loginWithSSO();	
@@ -252,24 +252,70 @@ public class GSID extends CommonMethods {
 
 	}
 
-	public void TM_GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl()
-	{
+	public void TM_GSID_S08_Web_User_authentication_via_SSO_GSIDDevUrl(){
 		loginWithSSO();	
 		Assert.assertEquals(driver.getTitle(), "HUD");
 	}
-	
-	public void TM_GSID_S09_Web_Tabs_verification_DevURL()
-	{
-	
-	
-		
+
+	public void TM_GSID_S09_Web_Tabs_verification_DevURL(){
+		loginWithSSO();
+		devTabs_verify();
 	}
-	
+
 	/******************************* Methods ***************************/
 	public void loginWithSSO() {
 		WebElement LoginWithSSo_Btn = createWebElementBy(btn_loginWithSSO);
 		LoginWithSSo_Btn.click();
 		waitForPageLoaded();
+	}
+
+	public void devTabs_verify() {
+		WebElement Triage_Btn = createWebElementBy(btn_triageAlerts);
+		Triage_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msg = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg.getText(), "Triage Alerts");
+		WebElement SearchStatistics_Tbl = createWebElementBy(tbl_searchStatistics);
+		Assert.assertTrue(SearchStatistics_Tbl.isDisplayed(), "The Search Statistics table was not displayed");
+		WebElement Watchlists_Btn = createWebElementBy(btn_watchlists);
+		Watchlists_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msg3 = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg3.getText(), "Watchlists");
+		scrollToBottomOfHTML();
+		WebElement Result_Tbl = createWebElementBy(tbl_result);
+		Assert.assertTrue(Result_Tbl.isDisplayed(), "The result table was not displayed");
+		takeScreenshotAtEndOfTest();
+		WebElement ProcessSearch_Btn = createWebElementBy(btn_processSearch);
+		ProcessSearch_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msga = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msga.getText(), "Process Search");
+		takeScreenshotAtEndOfTest();
+		WebElement SearchBinaries_Btn = createWebElementBy(btn_searchBinaries);
+		SearchBinaries_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msg1 = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg1.getText(), "Search Binaries");
+		takeScreenshotAtEndOfTest();
+		WebElement SearchBinaries_Tbl = createWebElementBy(tbl_searchbin);
+		Assert.assertTrue(SearchBinaries_Tbl.isDisplayed(), "The search binary table is not displayed");
+		WebElement Investigations_Btn = createWebElementBy(btn_investigations);
+		Investigations_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msgb = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msgb.getText(), "Investigations");
+		takeScreenshotAtEndOfTest();
+		WebElement Graph_Img = createWebElementBy(img_graph);
+		Assert.assertTrue(Graph_Img.isDisplayed(), "The image graph was not displayed");
+		WebElement Sensors_Btn = createWebElementBy(btn_sensors);
+		Sensors_Btn.click();
+		waitForPageLoaded();
+		WebElement Title_Msg2 = createWebElementBy(msg_title);
+		Assert.assertEquals(Title_Msg2.getText(), "Sensors");
+		takeScreenshotAtEndOfTest();
+		WebElement SensorList_Tbl = createWebElementBy(tbl_sensorList);
+		Assert.assertTrue(SensorList_Tbl.isDisplayed(), "The sensor table was not displayed");
 	}
 
 }

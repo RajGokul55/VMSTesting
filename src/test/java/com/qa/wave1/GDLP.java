@@ -34,7 +34,7 @@ public class GDLP extends CommonMethods {
 	/*-----------------------------------------------------------------------------*/
 	
 	/*************Fields for which inputs are required to run Test case 3***********/
-	String editRuleName = "Post Patch Rule";  //use the value of ruleName and suffix it with any integer
+	String editRuleName = "Post Patch Rule edited";  //use the value of ruleName and suffix it with any integer
 	int rule = 2; // Use Rule 1 or 2 
 	String text_Area = "shvbgeuueiubyui";
 	/*-----------------------------------------------------------------------------*/
@@ -338,6 +338,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 		WebElement RuleName_Rdo = createWebElementBy(rdo_ruleTitle);
 		RuleName_Rdo.click();
 		WebElement RuleName_Ipt = createWebElementBy(ipt_ruleName);
+		RuleName_Ipt.clear();
 		RuleName_Ipt.sendKeys(editRuleName);
 
 		WebElement Severity_Drp = createWebElementBy(drp_selectSeverity);
@@ -532,6 +533,7 @@ public void TM_GDLP_S02_Web_create_policy() {
 	}
 	
 	public void TM_GDLP_S06_Web_view_incidents() {
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		WebElement Incidents_Btn = createWebElementBy(btn_incidents);
 		mouseHover(Incidents_Btn);

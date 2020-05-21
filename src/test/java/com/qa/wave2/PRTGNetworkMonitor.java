@@ -16,8 +16,10 @@ public class PRTGNetworkMonitor extends CommonMethods {
 	/***************************** Test Cases  *******************/
 
 	@BeforeMethod(enabled = true)
-	public void beforeTest() throws IOException 
-	{
+	public void BeforeMethod() throws IOException {
+		
+	}
+	
 	@Test(priority = 0, enabled = true)
 	public void PRTGNM_S01_Web_UserLogin() throws IOException {
 		GM_PRTGNM_Web_DevURLLogin();

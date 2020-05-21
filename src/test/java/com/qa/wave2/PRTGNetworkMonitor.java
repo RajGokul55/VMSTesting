@@ -97,30 +97,26 @@ public class PRTGNetworkMonitor extends CommonMethods {
 		final String EncryptPassword = "dLYEuUGwlY262xhKocrIUw==";
 		final String URL = DevURL; // Change URL whichever Environment you want to execute.
 		launchBrowser(Browser, URL);
-		try
-		{
+		try{
 			DecryptPassword = decrypt(EncryptPassword);
-		} catch (Exception e)
-		{
+		} catch (Exception e){
 			e.printStackTrace();
-			
-			WebElement Username_Ipt = createWebElementBy(ipt_Username);
-			Username_Ipt.clear();
-			Username_Ipt.sendKeys(Username);
-			
-			  WebElement Password_Ipt = createWebElementBy(ipt_Password);
-			  Password_Ipt.clear();
-			  Password_Ipt.sendKeys(DecryptPassword);
-			  
-			  WebElement Login_Btn = createWebElementBy(btn_Login); 
-			  Login_Btn.click();
-			 
-
-			waitForPageLoaded();
-			takeScreenshotAtEndOfTest();
-			//Assert.assertEquals(driver.getTitle(), "");
-
 		}
+		WebElement Username_Ipt = createWebElementBy(ipt_Username);
+		Username_Ipt.clear();
+		Username_Ipt.sendKeys(Username);
+		
+		  WebElement Password_Ipt = createWebElementBy(ipt_Password);
+		  Password_Ipt.clear();
+		  Password_Ipt.sendKeys(DecryptPassword);
+		  
+		  WebElement Login_Btn = createWebElementBy(btn_Login); 
+		  Login_Btn.click();
+		 
+
+		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
+		//Assert.assertEquals(driver.getTitle(), "");
 
 		}
 	}

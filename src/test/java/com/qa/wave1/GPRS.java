@@ -405,7 +405,7 @@ public class GPRS extends CommonMethods{
 	}
 
 	void TM_GPRS_S07_WinSrve_Service_Status () {
-		createPS1HostnameServices(ADM_UserID, ADMpassword, "sjgprsappuatn01.na.gilead.com", "PBWinSvc , AIMSServiceManaged");	
+		//createPS1HostnameServices(ADM_UserID, ADMpassword, "sjgprsappuatn01.na.gilead.com", "PBWinSvc , AIMSServiceManaged");	
 		runWindowsServerCheckBat(runbat);
 		verifyServiceStatus(resout, "PBWinSvc", "Running");
 		verifyServiceStatus(resout, "AIMSServiceManaged", "Running");

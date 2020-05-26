@@ -650,5 +650,50 @@ public class CommonMethods {
 			System.out.println("Unexpected error occured in Browser");
 		}
 	}
+	public static void verifyWinSerStatus(String hostname, String servicename, String SerState, String SerMode) {
+		/*
+		 * Author: Balajee Palle Description: To search Service and verify its State and Mode.
+		 * Parameter: Host name, Service name, State and Mode Date: May 2020
+		 * 
+		 */
+		Scanner x;
+		final String filepath = System.getProperty("user.dir") + "\\AutoFiles\\" + "WinSer23May.txt";
+		boolean found = false;
+		String SystemName = "";
+		String DisplayName = "";
+		String State ="";
+		String Mode = "";
+		try {
+			x = new Scanner(new File(filepath));
+			x.useDelimiter("[\t\n]");
+			while(x.hasNext() && !found) {
+				SystemName = x.next();
+				DisplayName = x.next();
+				State = x.next();
+				Mode =x.next();
+				//System.out.println("Result Record with Hostname: "+SystemName + " Service: "+DisplayName+" State: "+ State  );
+				if(DisplayName.trim().equalsIgnoreCase(servicename.trim()) && SystemName.trim().equalsIgnoreCase(hostname.trim())) {						
+					found = true;	
+				}
+			}
+			if(found) {
+				System.out.println("Hostname: "+SystemName + " with  Service: "+servicename+" State: "+ State +" Mode: "+Mode );
+				Reporter.log("Hostname: "+hostname + " with Service: "+servicename+" is displayed");
+				Assert.assertEquals(State.trim(), SerState.trim(), "State of Service is incorrect");
+				Assert.assertEquals(Mode.trim(), SerMode.trim(), "Mode of Service is incorrect");
+				Reporter.log("The above service's State: "+ State +" & Mode: "+Mode+" is displayed");
+			}
+			else {
+				System.out.println("Hostname: "+hostname + "with Service: "+servicename+" is NOT found in file");
+				Reporter.log("Hostname: "+hostname + " with Service: "+servicename+" is NOT found in file");
+				Assert.assertTrue(false, "Hostname: "+hostname + " with Service: "+servicename+" is NOT found in file");
+			}
+		} catch (FileNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("File not found ");
+			Reporter.log("File not found ");
+			Assert.assertTrue(false, "File NOT found");
+		}
+	}
 
 }

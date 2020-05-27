@@ -20,7 +20,7 @@ public class GDSS extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	//Admin Url
+	//Prod Url
 	final String Url = "https://admin.docusign.com";
 	
 	//Dev Url

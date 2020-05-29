@@ -56,6 +56,11 @@ public class InsightAssetMonitoring extends CommonMethods {
 		TM_InsightAssetMonitoring_S03_Web_AssetsTab_Verification();
 	}
 	
+	@Test(priority = 3, enabled = true)
+	public void InsightAssetMonitoring_S04_Web_AnalyticsTab_Verification() {
+		TM_InsightAssetMonitoring_S04_Web_AnalyticsTab_Verification();
+	}
+	
 	@AfterMethod(enabled = true)
 	public void afterTest() {
 		driver.quit();
@@ -84,6 +89,9 @@ public class InsightAssetMonitoring extends CommonMethods {
 	By tab_Alarms = By.linkText("Alarms");
 	By tab_Repairs = By.linkText("Repairs");
 	By tab_Replacements = By.linkText("Replacements");
+	By tab_Trends = By.linkText("Trends");
+	By tab_EnergyUsage = By.linkText("Energy Usage");
+	By tab_StudyGroups = By.linkText("Study Groups");
 	
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
@@ -185,6 +193,34 @@ public class InsightAssetMonitoring extends CommonMethods {
 		Assert.assertTrue(url.contains("replacements"));
 		takeScreenshotAtEndOfTest();
 
+	}
+	
+	public void TM_InsightAssetMonitoring_S04_Web_AnalyticsTab_Verification() {
+
+		WebElement Analytics_Lnk = createWebElementBy(lnk_Analytics);
+		Analytics_Lnk.click();
+		
+		WebElement Trends_Tab = createWebElementBy(tab_Trends);
+		Trends_Tab.click();
+		waitForPageLoaded();
+		url = getURL();
+		Assert.assertTrue(url.contains("trends"));
+		takeScreenshotAtEndOfTest();
+		
+		WebElement EnergyUsage_Tab = createWebElementBy(tab_EnergyUsage);
+		EnergyUsage_Tab.click();
+		waitForPageLoaded();
+		url = getURL();
+		Assert.assertTrue(url.contains("energy"));
+		takeScreenshotAtEndOfTest();
+		
+		WebElement StudyGroups_Tab = createWebElementBy(tab_StudyGroups);
+		StudyGroups_Tab.click();
+		waitForPageLoaded();
+		url = getURL();
+		Assert.assertTrue(url.contains("study_groups"));
+		takeScreenshotAtEndOfTest();
+		
 	}
 
 	/*****************************

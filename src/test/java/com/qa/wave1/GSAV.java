@@ -43,6 +43,7 @@ public class GSAV extends CommonMethods{
 	@BeforeMethod
 	public void beforeTest() {
 		launchBrowser(Browser, Url);
+		wait(5);
 		login_verifyScreen();
 	}
 
@@ -98,12 +99,13 @@ public class GSAV extends CommonMethods{
 
 	void TM_GSAV_01_Web_verifyDashboadScreen() throws InterruptedException {
 
+		wait(3);
 		takeScreenshotAtEndOfTest();
 		navigatingToFrames();
 		
 		WebElement OperationCenter = createWebElementBy(Operation_Center);
 		OperationCenter.click();
-		
+		wait(5);
 		boolean CriticalThreatsText = isElementExit(OperationCenter_CriticalThreatsText);
 		System.out.println("Critical Threats text is displayed = " +CriticalThreatsText);
 		takeScreenshotAtEndOfTest();		
@@ -112,16 +114,18 @@ public class GSAV extends CommonMethods{
 
 	void TM_GSAV_002_verifySummaryScreen()throws Exception {
 
+		wait(5);
 		takeScreenshotAtEndOfTest();
 		navigatingToFrames();
 		WebElement Summary_Btn = createWebElementBy(summary_Btn);
 		Summary_Btn.click();
 		System.out.println("Summary is clicked ");
 		waitForPageLoaded();
-		
+		wait(5);
 		boolean summarycriticalThreatsText = isElementExit(SummaryCriticalThreatsText);
 		System.out.println("Summarry Critical Threats text is displayed = " +summarycriticalThreatsText);
 		wait(3);
+		takeScreenshotAtEndOfTest();
 		scrollToBottomOfHTML();
 		System.out.println("Scroll done ");
 		wait(5);
@@ -130,6 +134,7 @@ public class GSAV extends CommonMethods{
 	
 	void TM_GSAV_003_verifyServerStatus()throws Exception {
 
+		wait(5);
 		takeScreenshotAtEndOfTest();
 		navigatingToFrames();
 		wait(3);
@@ -221,6 +226,7 @@ public class GSAV extends CommonMethods{
 		WebElement Login_Btn = createWebElementBy(login_button);
 		Login_Btn.click();
 		waitForPageLoaded();
+		wait(5);
 	}
 
 	public WebElement navigatingToFrames() throws InterruptedException {

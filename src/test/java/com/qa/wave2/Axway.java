@@ -18,15 +18,27 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class WFA extends CommonMethods {
+public class Axway extends CommonMethods {
 
 	/***************************** Test Data *******************/
-	// To launch app in Chrome browser Flash player is required. So launching in IE Browser
+	//  To launch app in Chrome browser Flash player is required. So launching in IE Browser 
 	// This app is not related to HTML tag, its based upon Flash player so not able to capture elements. Just launching the URL & taking the screenshot.
 	
 	final String Browser = "IE";
-	// Application name WFA - Work Flow Automation Env is Prod
-	final String Url = "https://gwas/wfa/";
+	// Application name Axway  Env is POC
+	final String Url = "https://sjawxappdevg01:8443/trackntraceserver/";
+	
+	// Application name Axway  Env is SQA
+	final String Url1 = "https://fcaxwappsqan01.na.gilead.com:8443/trackntraceserver/";
+	
+	// Application name Axway  Env is UAT
+	final String Url2 = "https://fcaxwappuatn01.na.gilead.com:8443/trackntraceserver/";
+	
+	// Application name Axway  Env is VAL
+	final String Url3 = "https://val.tnt.gilead.com:8443/trackntraceserver";
+	
+	// Application name Axway  Env is PROD
+	final String Url4 = "https://tnt.gilead.com:8443/trackntraceserver";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -43,12 +55,12 @@ public class WFA extends CommonMethods {
 
 	@BeforeMethod(enabled = true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url);
+		launchBrowser(Browser, Url1);
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void WFA_S01_Web_Verify_LogInScreen() {
-		TM_WFA_01_Verify_LogInScreen();
+	public void Axway_S01_Web_Verify_LogInScreen() {
+		TM_Axway_01_Verify_LogInScreen();
 
 	}
 
@@ -58,26 +70,16 @@ public class WFA extends CommonMethods {
 	}
 
 	/***************************** Locators *******************/
-	// Example syntax:Css Selector:
-	// tagname[attribute1:'value1'][attribute2:'value2']
-	/*
-	 * ipt_: input fields btn_: Buttons lnk_: Links rdo_: Radio buttons chk_: Check
-	 * boxes tbl_: Tables msg_: Messages
-	 */
-	By continue_btn = By.xpath("//*[@id='overridelink']");
-	By logo = By.xpath("//h3[contains(text(),'OnCommand Insight')]");
-	By field_Username = By.xpath("//*[@id='username']");
-	By field_Password = By.xpath("//*[@id='password']");
-	By login_button = By.xpath("//*[@id='login-submit']");
-
+	// This app is not related to HTML tag, its based upon Flash player so not able to capture elements. Just launching the URL & taking the screenshot.
+	
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	void TM_WFA_01_Verify_LogInScreen() {
+	void TM_Axway_01_Verify_LogInScreen() {
 
-		WebElement linkContinue = createWebElementBy(continue_btn);
-		linkContinue.click();
-		waitForPageLoaded();
+		//WebElement linkContinue = createWebElementBy(continue_btn);
+		//linkContinue.click();
+		//waitForPageLoaded();
 		wait(2);
 		takeScreenshotAtEndOfTest();
 

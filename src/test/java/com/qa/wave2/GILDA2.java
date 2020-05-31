@@ -18,14 +18,34 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-public class GCC extends CommonMethods {
+public class GILDA2 extends CommonMethods {
 
 	/***************************** Test Data *******************/
+
+	// NO NEED TO ENTER LOGIN DETAILS, BELOW USERS NEED TO LAUNCH THE URL'S, IT WILL
+	// DIRECTLY OPEN THE HOME SCREEN
+	// Arun Raj – araj5, Jayshri Raykar -Jraykar, Balajee Palle - Bpalle
+
 	final String Browser = "Chrome";
+
+	// EPR Test Environment URL
+	final String Url = "http://erptest.gilda.gilead.com/eclinical_enu/";
+
+	// Training Environment URL
+	final String Url1 = "http://train.gilda.gilead.com/eclinical_enu/";
+
+	// UAT Environment URL
+	final String Url2 = "http://uat.gilda.gilead.com/eclinical_enu/";
+
 	// Dev Environment URL
-	final String Url = "https://sjgccwebdevg01/ui/login.action";
+	final String Url3 = "http://dev.gilda.gilead.com/eclinical_enu/";
+
+	// Val Environment URL
+	final String Url4 = "http://val.gilda.gilead.com/eclinical_enu/";
+
 	// Prod Environment URL
-	final String Url1 = "https://sjgccwebprdg01/ui/login.action";
+	final String Url5 = "https://gilda.gilead.com/eclinical_enu/";
+
 	final String username = "arun.raj5";
 	String EncryptPassword = "cHhqigjkE9lagBcklOFbJw==";
 	private String DecrptPassword;
@@ -45,24 +65,21 @@ public class GCC extends CommonMethods {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		launchBrowser(Browser, Url1);
+		launchBrowser(Browser, Url);
 	}
 
-	// DEV Environment
-	@Test(priority = 0, enabled = false)
-	public void GCC_S01_Web_login_verifyscreen_DEV() {
-		TM_GCC_S01_Web_login_verifyGCCScreen_DEV();
+	@Test(priority = 0, enabled = true)
+	public void GILDA2_S01_Web_Verify_LogInScreen() {
+		TM_GILDA2_01_Verify_LogInScreen();
 
 	}
 	
-	// PROD environment
-	@Test(priority = 0, enabled = true)
-	public void GCC_S01_Web_login_verifyscreen_PROD() {
-		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
-
-	}
-
-
+	/*
+	 * @Test(priority = 0, enabled = true) public void GILDA2_S01_Web_Verifyscreen()
+	 * { TM_GILDA2_S01_Web_VerifyGILDAScreen();
+	 * 
+	 * }
+	 */
 	@AfterMethod
 	public void afterMethod() {
 		driver.quit();
@@ -75,88 +92,76 @@ public class GCC extends CommonMethods {
 	 * ipt_: input fields btn_: Buttons lnk_: Links rdo_: Radio buttons chk_: Check
 	 * boxes tbl_: Tables msg_: Messages
 	 */
-	By ipt_userName = By.xpath("//input[@id='userName-inputEl']");
-	By ipt_password = By.xpath("//input[@id='password-inputEl']");
-	By drp_GCCDomain = By.cssSelector("#authSelector-inputEl");
-	By btn_Login = By.cssSelector("#loginBtn-btnEl");
-	By select_Value = By.xpath("//*[@id='ext-37']");
-	By btn_Domain = By.cssSelector("#isc_14");
-	By click_User = By.cssSelector("#isc_K");
-	By btn_Logout = By.xpath("//div[contains(text(),'Log Out')]");
-	By heading_MainPage = By.xpath("//span[contains(text(),'vRealize Operations Manager')]");
-	By btn_Dashboard = By.cssSelector("#objectNavigatorToolbarHomeBtn-btnInnerEl");
-	By txt_inDashboard = By.xpath("//*[contains(text(),'Welcome to Dashboards!')]");
-	By btn_Cluster = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(31)>li>span");
-	// By btn_Cluster = By.xpath("//*[@id='ext-element-216']/span");
-	By txt_inCluster = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
-	By btn_ClusterPROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(28)>li>span");
-	By txt_inClusterPROD = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
+	By logo = By.xpath("//div[@id='loginLogo']");
+	By field_Username = By.xpath("//*[@name='SWEUserName']");
+	By field_Password = By.xpath("//*[@name='SWEPassword']");
+	By login_button = By.xpath("//*[@class='siebui-login-btn']");
+	By server_Name = By.xpath("//*[@class='siebui-login-title']");
 	
-	By btn_vDS = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(32)>li>span");
-	By btn_vDS_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(29)>li>span");
-	By txt_invDS = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
-	By btn_ESXi = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(33)>li>span");
-	By btn_ESXi_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(30)>li>span");
-	By txt_ESXi = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
-	By getSizeFor_IntergrationService = By.xpath("//*[@id='accordionContentPowerCenterIntegrationServicetype']");
-	By getSizeFor_RepositoryService = By.xpath("//*[@id='accordionContentPowerCenterRepositoryServicetype']");
-	By rdo_contentSelect = By.xpath("//input[@name='value(courseFileName)']");
-	By btn_startScan = By.cssSelector("#action-start-scan");
-	By tbl_policyTable = By.xpath("//*[@id=\"policy-table-table\"]/tbody/tr");
-	By tbl_disTable = By.xpath("//*[@id=\"discoverTargetListTable\"]/tbody/tr");
-	By btn_allIncidents = By.xpath("//table[4]/tbody[1]/tr[4]/td[1]/span[1]");
-	By msg_saveSuccess = By.cssSelector("#web-status-message-155.message-content");
+	By heading_Logo = By.xpath("//div[@class='siebui-logo']");
+	By btn_Home = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By txt_Home = By.xpath("//div[contains(@class, 'Welcome')]");
+	By btn_Contacts = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'contacts')]");
+	By txt_Contacts = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_Accounts = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'accounts')]");
+	By txt_Accounts = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_Activities = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'activities')]");
+	By txt_Activities = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_Proposals = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By btn_Proposals1 = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By txt_Proposals = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_Protocols = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By txt_Protocols = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_SiteManagement = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By txt_SiteManagement = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By btn_DrugLots = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By txt_DrugLots = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	//DEV
-	public void TM_GCC_S01_Web_login_verifyGCCScreen_DEV() {
+	public void TM_GILDA2_01_Verify_LogInScreen() {
 
-		login_verifyScreen();
+		wait(2);
+		WebElement Logo = createWebElementBy(logo);
+		IsDisplayed_IsEnabled(Logo);
+
+		WebElement UsernameFld = createWebElementBy(field_Username);
+		IsDisplayed_IsEnabled(UsernameFld);
+
+		WebElement PasswordFld = createWebElementBy(field_Password);
+		IsDisplayed_IsEnabled(PasswordFld);
+
+		WebElement LoginBtn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(LoginBtn);
+		
+		WebElement ServerName = createWebElementBy(server_Name);
+		IsDisplayed_IsEnabled(ServerName);
+		takeScreenshotAtEndOfTest();
+
+	}
+	
+}
+	
+	/*
+	
+	public void TM_GILDA2_S01_Web_VerifyGILDAScreen() {
+
+		verifyHomeScreen();
 		verifyDashboard();
 		verifyCluster();
 		verifyvDS();
 		verifyESXi();
 		// logout();
 	}
-	
-	//PROD
-	public void TM_GCC_S01_Web_login_verifyGCCScreen_PROD() {
 
-		login_verifyScreen();
-		verifyDashboard();
-		verifyCluster_PROD();
-		verifyvDS_PROD();
-		verifyESXi_PROD();
-		// logout();
-	}
-	
-
-	public void login_verifyScreen() {
-		wait(2);
-		WebElement Domain_Drp = createWebElementBy(drp_GCCDomain);
-		wait(2);
-		Domain_Drp.click();
-		driver.findElement(By.xpath("//*[@id='authSelector-picker-listEl']//li[7]")).click();
-		wait(2);
-
-		WebElement userNameipt = createWebElementBy(ipt_userName);
-		userNameipt.sendKeys(username);
-
-		try {
-			DecrptPassword = decrypt(EncryptPassword);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		WebElement passwordipt = createWebElementBy(ipt_password);
-		passwordipt.sendKeys(DecrptPassword);
+	public void verifyHomeScreen() {
+		// Main heading
+		WebElement MainLogo = createWebElementBy(heading_Logo);
+		IsDisplayed_IsEnabled(MainLogo);
 		takeScreenshotAtEndOfTest();
-		WebElement Login_btn = createWebElementBy(btn_Login);
-		Login_btn.click();
-		waitForPageLoaded();
+		WebElement Home = createWebElementBy(btn_Home);
+		Home.click();
 		takeScreenshotAtEndOfTest();
 	}
 
@@ -199,6 +204,7 @@ public class GCC extends CommonMethods {
 		System.out.println("Cluster screen & text is displayed");
 		takeScreenshotAtEndOfTest();
 	}
+
 	public void verifyCluster_PROD() {
 		wait(2);
 		WebElement Cluster = createWebElementBy(btn_ClusterPROD);
@@ -210,6 +216,7 @@ public class GCC extends CommonMethods {
 		System.out.println("PROD Cluster screen & text is displayed");
 		takeScreenshotAtEndOfTest();
 	}
+
 	public void verifyESXi() {
 
 		WebElement ESXi = createWebElementBy(btn_ESXi);
@@ -221,6 +228,7 @@ public class GCC extends CommonMethods {
 		System.out.println("ESXi screen & text is displayed");
 		takeScreenshotAtEndOfTest();
 	}
+
 	public void verifyESXi_PROD() {
 
 		WebElement ESXi = createWebElementBy(btn_ESXi_PROD);
@@ -245,6 +253,7 @@ public class GCC extends CommonMethods {
 
 		takeScreenshotAtEndOfTest();
 	}
+
 	public void verifyvDS_PROD() {
 
 		WebElement vDS = createWebElementBy(btn_vDS_PROD);
@@ -278,3 +287,4 @@ public class GCC extends CommonMethods {
 	}
 
 }
+	*/

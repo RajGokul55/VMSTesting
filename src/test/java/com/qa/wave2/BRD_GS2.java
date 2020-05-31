@@ -18,14 +18,22 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-public class GCC extends CommonMethods {
+public class BRD_GS2 extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
+	// Test Environment URL
+	final String Url = "http://fcbrdapptstn02/labmatrix/jsp/spring/login";
+	
 	// Dev Environment URL
-	final String Url = "https://sjgccwebdevg01/ui/login.action";
+	final String Url1 = "http://fcbrdappdev02/labmatrix/jsp/spring/login";
+
+	// Val Environment URL
+	final String Ur2 = "http://drbrdappval02/labmatrix/jsp/spring/login";
+	
 	// Prod Environment URL
-	final String Url1 = "https://sjgccwebprdg01/ui/login.action";
+	final String Url3 = "http://fcbrdappprd02/labmatrix/jsp/spring/login";
+	
 	final String username = "arun.raj5";
 	String EncryptPassword = "cHhqigjkE9lagBcklOFbJw==";
 	private String DecrptPassword;
@@ -45,18 +53,18 @@ public class GCC extends CommonMethods {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		launchBrowser(Browser, Url1);
+		launchBrowser(Browser, Url);
 	}
 
 	// DEV Environment
-	@Test(priority = 0, enabled = false)
-	public void GCC_S01_Web_login_verifyscreen_DEV() {
-		TM_GCC_S01_Web_login_verifyGCCScreen_DEV();
+	@Test(priority = 0, enabled = true)
+	public void BRD_GS2_S01_Web_login_verifyscreen() {
+		TM_BRD_GS2_S01_Web_login_verifyGCCScreen();
 
 	}
 	
 	// PROD environment
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GCC_S01_Web_login_verifyscreen_PROD() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
 
@@ -110,8 +118,8 @@ public class GCC extends CommonMethods {
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	//DEV
-	public void TM_GCC_S01_Web_login_verifyGCCScreen_DEV() {
+	
+	public void TM_BRD_GS2_S01_Web_login_verifyGCCScreen() {
 
 		login_verifyScreen();
 		verifyDashboard();

@@ -57,12 +57,13 @@ public class GEDCS extends CommonMethods{
 	 */
 	
 
-	By icn_Masters= By.xpath("//tr[5]//td[1]//div[1]//a[1]//img[1]");
-	By icn_Fostercity= By.xpath("//tr[10]//td[1]//div[1]//a[1]//img[1]");
-	By icn_NonIP= By.xpath("//a[contains(@href,'./?Main&amp;vault={3F8B56E9-9FEE-4879-B983-CDBFDCCD4345}&amp;view=Explorer&amp;moment=&amp;\'");
-	By icn_commonsiteareas= By.xpath("//tr[25]//td[1]//div[1]//a[1]//img[1]");
-	By icn_general_nondis= By.xpath("//tr[30]//td[1]//div[1]//a[1]//img[1]");
-	By lnk_drawing= By.xpath("//a[@class='released']");
+	By icn_Masters= By.xpath("//tr[5]/td[1]/div[1]/a[1]/img[1]");
+	By icn_Fostercity= By.xpath("//tr[10]/td[1]/div[1]/a[1]/img[1]");
+	By icn_NonIP= By.xpath("//tr[13]/td[1]/div[1]/a[1]/img[1]");
+	By icn_commonsiteareas= By.xpath("//tr[25]/td[1]/div[1]/a[1]/img[1]");
+	By icn_general_nondis= By.xpath("//tr[30]/td[1]/div[1]/a[1]/img[1]");
+	By lnk_drawing= By.xpath("(//span[@class='wfstateicon none'])[1]");
+	By img_drawing=By.xpath("//i[@class='cmdicon RenditionPane']");
 	By btn_name= By.xpath("//a[contains(text(),'nnereddula (Naga Nereddula)')]");
 	By btn_Logout = By.xpath("//a[contains(text(),'Log Off')]");
 	
@@ -74,23 +75,34 @@ public class GEDCS extends CommonMethods{
 	void TM_GEDCS_S01_PostPatch_Testing() {
 		WebElement Masters_icn = createWebElementBy(icn_Masters);
 		Masters_icn.click();
+		wait(2);
 
 		WebElement Fostercity_icn = createWebElementBy(icn_Fostercity);
 		Fostercity_icn.click();
+		wait(2);
 
 		WebElement  Nonip_icn = createWebElementBy(icn_NonIP);
 		Nonip_icn.click();
+		wait(2);
 		
 		WebElement  Commonsiteareas_icn = createWebElementBy(icn_commonsiteareas);
 		Commonsiteareas_icn.click();
+		wait(2);
 		
 		WebElement  general_nondis_icn = createWebElementBy(icn_general_nondis);
 		takeScreenshotAtEndOfTest();
 		general_nondis_icn.click();
+		wait(2);
 		
 		WebElement  drawing_icn = createWebElementBy(lnk_drawing);
 		takeScreenshotAtEndOfTest();
 		drawing_icn.click();
+		wait(2);
+		
+		WebElement  drawing_img = createWebElementBy(img_drawing);
+		takeScreenshotAtEndOfTest();
+		drawing_img.click();
+		wait(10);
 		
 		WebElement  name_icn = createWebElementBy(btn_name);
 		name_icn.click();
@@ -98,6 +110,7 @@ public class GEDCS extends CommonMethods{
 		WebElement  logout_icn = createWebElementBy(btn_Logout);
 		takeScreenshotAtEndOfTest();
 		logout_icn.click();
+		
 		
 		
 		

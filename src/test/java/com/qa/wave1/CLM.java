@@ -1,208 +1,98 @@
 package com.qa.wave1;
 
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.qa.demo.base.CommonMethods;
 
 public class CLM extends CommonMethods {
 
-	/***************************** Test Data ************************************/
 
-	static final String userDirectory = System.getProperty("user.dir");
-
-	String path = userDirectory + "\\AutoFiles\\";
-	String resout = path + "Output.txt";
-	String runbat = path + "Run.bat";
-	String ADM_UserID = null;
-	String password = null;
-
-	/***************************** Test ************************************/
-	@BeforeMethod(enabled = true)
-	public void BeforeRunningTest() {
-
-		ADM_UserID = "ADM_nnereddula";
-		//password = RSA_Authentication("bpalle"); //
-		password = "hGj!s7knO?hU"; 
-
+	@Test(enabled = true, priority =1, groups = "Prod")
+	public void CLM_CCCONAPPPRDN01() {
+		verifyWinSerStatus("CCCONAPPPRDN01", "Arcsight cceu_ad_wuc_QualGMPCC", "Running", "Auto");
+		verifyWinSerStatus("CCCONAPPPRDN01", "Arcsight cceu_asafwl_syslog", "Running", "Auto");
+	}
+	
+	@Test(enabled = true, priority =2,groups = "Prod")
+	public void CLM_EOCONAPPPRDN02() {
+		verifyWinSerStatus("EOCONAPPPRDN02", "ArcSight Microsoft Windows Event Log - Unified", "Running", "Auto");
+		verifyWinSerStatus("EOCONAPPPRDN02", "ArcSight Microsoft Windows Event Log - Unified2", "Running", "Auto");
+		verifyWinSerStatus("EOCONAPPPRDN02", "ArcSight Microsoft DNS Trace Log Multiple Server File", "Running", "Auto");
+	}
+	
+	@Test(enabled = true, priority =3,groups = "Prod")
+	public void CLM_FCCONAPPPRDN01() {
+		verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight arcsight Flexconnector DC file reader", "Running", "Auto");
+		verifyWinSerStatus("FCCONAPPPRDN01", "arcsight microsoft DHCP file", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight microsoft forefront threat management gateway file", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight microsfot IIS multiple server file-Avaiter", "Running", "Auto");
+		verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight Microsoft DNS trace log multiple server file", "Running", "Auto");
+		verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight Microsoft DNS trace log multiple server file2", "Running", "Auto");verifyWinSerStatus("FCCONAPPPRDN01", "ArcSight Microsoft Windows Event Log - Unified", "Running", "Auto");
+		verifyWinSerStatus("FCCONAPPPRDN01", "ArcSight Microsoft Windows Event Log - Unified2", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight Microsoft Windows event log-unified", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight microsoft windows event log -ADFS", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight microsoft windows event log -ARS", "Running", "Auto");
+		verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight sep_DCS_Prod", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight Symantec endpoint prodution db", "Running", "Auto");
+		//verifyWinSerStatus("FCCONAPPPRDN01", "Arcsight Symantec endpoint prodution 14db", "Running", "Auto");
+	}
+	
+	@Test(enabled = true, priority =4,groups = "Prod")
+	public void CLM_HGCONAPPPRDN02() {
+		//verifyWinSerStatus("HGCONAPPPRDN02", "Arcsight  blue coat proxy SG multiple server file", "Running", "Auto");
+		//verifyWinSerStatus("HGCONAPPPRDN02", "Arcsight  blue coat proxy SG multiple server file to Netskope", "Running", "Auto");
+			}
+	
+	@Test(enabled = true, priority =5,groups = "Prod")
+	public void CLM_LDCONAPPPRDN01() {
+		verifyWinSerStatus("LDCONAPPPRDN01", "Arcsight blue coat proxy SG multiple server file", "Running", "Auto");
+		//verifyWinSerStatus("LDCONAPPPRDN01", "Arcsight Microsft DNS trace log multiple server file", "Running", "Auto");
+		//verifyWinSerStatus("LDCONAPPPRDN01", "Arcsight microsoft windows event log unified", "Running", "Auto");
+		//verifyWinSerStatus("LDCONAPPPRDN01", "Arcsight Microsft DNS trace log multiple server file2", "Running", "Auto");
+		//verifyWinSerStatus("LDCONAPPPRDN01", "Arcsight microsoft windows event log unified2", "Running", "Auto");
+	}
+	
+	@Test(enabled = true, priority =6,groups = "Prod")
+	public void CLM_SJCLMAPPPRDN01() {
+		//verifyWinSerStatus("SJCLMAPPPRDN01", "Arcsight microsoft windows event log-native", "Running", "Auto");
 	}
 
-	@Test(priority = 0, enabled = false) // Access Denied
-	public void CLM_S01_WinSrve_EOCONAPPPRDN02() {
-		TM_CLM_S01_WinSrve_EOCONAPPPRDN02();
+	@Test(enabled = true, priority =7,groups = "Prod")
+	public void CLM_SJCONAPPPRDN01() {
+		verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight fireeye syslog daemon", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight Microsft DNS trace log multiple server file", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight microsoft windows event log unified", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight Microsft DNS trace log multiple server file2", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight microsoft windows event log unified2", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight cisco ASA FW syslog daemon", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN01", "Arcsight bit9+carbon  black syslog daemon", "Running", "Auto");
 	}
-
-	@Test(priority = 1, enabled = true)
-	public void CLM_S02_WinSrve_SJCLMAPPPRDN01() {
-		TM_CLM_S02_WinSrve_SJCLMAPPPRDN01();
+	
+	@Test(enabled = true, priority =8,groups = "Prod")
+	public void CLM_SJCONAPPPRDN02() {
+		//verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight arcsight flexconnector multiple folder file -Druva insync", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight arcsight flexconnector  regex  folder file -CSV_share file", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight Microsft DNS trace log multiple server file", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight sjna2_pulse_secure_syslog 8514", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight microsoft windows event log unified", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN02", "Arcsight syslog daemon", "Running", "Auto");
+		
 	}
-
-	@Test(priority = 2, enabled = false)
-	public void CLM_S03_WinSrve_SJCONAPPPRDN02() {
-		TM_CLM_S03_WinSrve_SJCONAPPPRDN02();
+	
+	@Test(enabled = true, priority =9,groups = "Prod")
+	public void CLM_SJCONAPPPRDN03() {
+		verifyWinSerStatus("SJCONAPPPRDN03", "Arcsight AZURE_Portal_1999_v7_13", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN03", "Arcsight microsoft exchange message tracking log multiple server file2", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN03", "Arcsight microsoft exchange message tracking log multiple server file", "Running", "Auto");
+		
 	}
-
-	@Test(priority = 3, enabled = false)
-	public void CLM_S04_WinSrve_SJCONAPPPRDN03() {
-		TM_CLM_S04_WinSrve_SJCONAPPPRDN03();
+	
+	@Test(enabled = true, priority =10,groups = "Prod")
+	public void CLM_SJCONAPPPRDN13() {
+		//verifyWinSerStatus("SJCONAPPPRDN13", "Arcsight arcsight flexconnector multiple folder file -Ping federatre", "Running", "Auto");
+		//verifyWinSerStatus("SJCONAPPPRDN13", "Arcsight service -now _syslog daemon", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN13", "Arcsight SJ_symantec_DLP_EU_syslog", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN13", "Arcsight SJ_symantec_DLP_NA_syslog", "Running", "Auto");
+		verifyWinSerStatus("SJCONAPPPRDN13", "Arcsight syslog daemon_attivo", "Running", "Auto");
 	}
-
-	@Test(priority = 4, enabled = false)
-	public void CLM_S05_WinSrve_SJCONAPPPRDN13() {
-		TM_CLM_S05_WinSrve_SJCONAPPPRDN13();
-	}
-
-	@Test(priority = 5, enabled = false)
-	public void CLM_S06_WinSrve_CCCONAPPPRDN01() {
-		TM_CLM_S06_WinSrve_CCCONAPPPRDN01();
-	}
-
-	@Test(priority = 6, enabled = false) // Access Denied
-	public void CLM_S07_WinSrve_HGCONAPPPRDN02() {
-		TM_CLM_S07_WinSrve_HGCONAPPPRDN02();
-	}
-
-	@Test(priority = 7, enabled = true)
-	public void CLM_S08_WinSrve_LDCONAPPPRDN01() {
-		TM_CLM_S08_WinSrve_LDCONAPPPRDN01();
-	}
-
-	@Test(priority = 8, enabled = false)
-	public void CLM_S09_WinSrve_FCCONAPPPRDN01() {
-		TM_CLM_S09_WinSrve_FCCONAPPPRDN01();
-		TM_CLM_S09_WinSrve_FCCONAPPPRDN01Extn();
-	}
-
-	@Test(priority = 9, enabled = false)
-	public void CLM_S10_WinSrve_SJCONAPPPRDN01() {
-		TM_CLM_S10_WinSrve_SJCONAPPPRDN01();
-	}
-
-	@Test(priority = 10, enabled = false)
-	public void CLM_S11_WinSrve_SECONAPPPRDN02() {
-		TM_CLM_S11_WinSrve_SECONAPPPRDN02();
-	}
-
-	@Test(priority = 11, enabled = false)
-	public void CLM_S12_WinSrve_LDCONAPPPRDN02() {
-		TM_CLM_S12_WinSrve_LDCONAPPPRDN02();
-	}
-
-
-
-	/***************************** * Test Methods	 ************************************/
-	void TM_CLM_S01_WinSrve_EOCONAPPPRDN02() {
-		createPS1HostnameServices(ADM_UserID, password, "EOCONAPPPRDN02", "arc_sjna2_dns_tracelog , arc_sjna2_wuc, arc_sjna2_wuc2");	
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_sjna2_dns_tracelog", "Stopped");
-		verifyServiceStatus(resout, "arc_sjna2_wuc", "Running");
-		verifyServiceStatus(resout, "arc_sjna2_wuc2", "Running");
-	}
-
-	void TM_CLM_S02_WinSrve_SJCLMAPPPRDN01() {
-		createPS1HostnameServices(ADM_UserID, password, "SJCLMAPPPRDN01", "arc_wef_winc");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_wef_winc", "Running");
-	}
-
-	void TM_CLM_S03_WinSrve_SJCONAPPPRDN02() {
-		createPS1HostnameServices(ADM_UserID, password, "SJCONAPPPRDN02", "arc_druva_insync_flexfolder, arc_sdkfolderreader___CSV_ShareFile, arc_sjna2_dns_tracelog, arc_sjna2_wuc, arc_sjna2_Pulse_Secure_syslog_8514, arc_sjna2_Radiant");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_druva_insync_flexfolder", "Running");
-		verifyServiceStatus(resout, "arc_sdkfolderreader___CSV_ShareFile", "Running");
-		verifyServiceStatus(resout, "arc_sjna2_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_sjna2_wuc", "Running");
-		verifyServiceStatus(resout, "arc_sjna2_Pulse_Secure_syslog_8514", "Running");
-		verifyServiceStatus(resout, "arc_sjna2_Radiant", "Running");
-	}
-
-	void TM_CLM_S04_WinSrve_SJCONAPPPRDN03() {
-		createPS1HostnameServices(ADM_UserID, password, "SJCONAPPPRDN03", "arc_AZURE_Portal_1999_v7_13,arc_exchange_message_tracking_log_multiple_server_file, arc_exchange_message_tracking_log_multiple_server_file2 ");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_AZURE_Portal_1999_v7_13", "Running");
-		verifyServiceStatus(resout, "arc_exchange_message_tracking_log_multiple_server_file", "Running");
-		verifyServiceStatus(resout, "arc_exchange_message_tracking_log_multiple_server_file2", "Running");
-	}
-
-	void TM_CLM_S05_WinSrve_SJCONAPPPRDN13() {
-		createPS1HostnameServices(ADM_UserID, password, "SJCONAPPPRDN13", "arc_sdkmultifolderreader, arc_Service_Now_syslog, arc_SJ_Symantec_DLP_EU_Syslog, arc_SJ_Symantec_DLP_NA_syslog, arc_syslog_Attivo");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_sdkmultifolderreader", "Running");
-		verifyServiceStatus(resout, "arc_Service_Now_syslog", "Running");
-		verifyServiceStatus(resout, "arc_SJ_Symantec_DLP_EU_Syslog", "Running");
-		verifyServiceStatus(resout, "arc_SJ_Symantec_DLP_NA_syslog", "Running");
-		verifyServiceStatus(resout, "arc_syslog_Attivo", "Running");
-	}
-
-	void TM_CLM_S06_WinSrve_CCCONAPPPRDN01() {
-		createPS1HostnameServices(ADM_UserID, password, "CCCONAPPPRDN01", "arc_cceu_ad_wuc_QualGMPCC, arc_cceu_asafwl_syslog ");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_cceu_ad_wuc_QualGMPCC", "Running");
-		verifyServiceStatus(resout, "arc_cceu_asafwl_syslog", "Running");	
-	}
-	void TM_CLM_S07_WinSrve_HGCONAPPPRDN02() {
-		createPS1HostnameServices(ADM_UserID, password, "HGCONAPPPRDN02", "arc_bluecoat_ng_file, arc_hgap_bluecoat_file_to_netskope");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_bluecoat_ng_file", "Running");
-		verifyServiceStatus(resout, "arc_hgap_bluecoat_file_to_netskope", "Running");
-	}
-
-	void TM_CLM_S08_WinSrve_LDCONAPPPRDN01() {
-		createPS1HostnameServices(ADM_UserID, password, "LDCONAPPPRDN01", "arc_bluecoat_ng_file,arc_ldeu_dns_tracelog, arc_ldeu_dns_tracelog2,arc_ldeu_ad_wuc, arc_ldeu_ad_wuc2");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_bluecoat_ng_file", "Running");
-		verifyServiceStatus(resout, "arc_ldeu_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_ldeu_dns_tracelog2", "Running");
-		verifyServiceStatus(resout, "arc_ldeu_ad_wuc", "Running");
-		verifyServiceStatus(resout, "arc_ldeu_ad_wuc2", "Running");	
-	}
-
-	void TM_CLM_S09_WinSrve_FCCONAPPPRDN01() {
-		createPS1HostnameServices(ADM_UserID, password, "FCCONAPPPRDN01", "arc_dc_list_filereader,arc_fcna_dhcp_file,arc_isa_multiserver_file,arc_avatier_iis_multiserver,arc_fcna_dns_tracelog,arc_fcna_dns_tracelog2");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_dc_list_filereader", "Running");
-		verifyServiceStatus(resout, "arc_fcna_dhcp_file", "Running");
-		verifyServiceStatus(resout, "arc_isa_multiserver_file", "Running");
-		verifyServiceStatus(resout, "arc_avatier_iis_multiserver", "Running");
-		verifyServiceStatus(resout, "arc_fcna_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_fcna_dns_tracelog2", "Running");
-	}
-	void TM_CLM_S09_WinSrve_FCCONAPPPRDN01Extn() {
-		createPS1HostnameServices(ADM_UserID, password, "FCCONAPPPRDN01", "arc_fcna_ad_wuc,arc_fcna_ad_wuc2,arc_fcna_adfs_wuc,arc_quest_ars_wuc,arc_Sep_DCS_Prod,arc_symantecendpointprotection_db,arc_symantecendpointprotection14_db");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_fcna_ad_wuc", "Running");
-		verifyServiceStatus(resout, "arc_fcna_ad_wuc2", "Running");
-		verifyServiceStatus(resout, "arc_fcna_adfs_wuc", "Running");
-		verifyServiceStatus(resout, "arc_quest_ars_wuc", "Running");
-		verifyServiceStatus(resout, "arc_Sep_DCS_Prod", "Running");
-		verifyServiceStatus(resout, "arc_symantecendpointprotection_db", "Running");
-		verifyServiceStatus(resout, "arc_symantecendpointprotection14_db", "Running");
-	}
-	void TM_CLM_S10_WinSrve_SJCONAPPPRDN01() {
-		createPS1HostnameServices(ADM_UserID, password, "SJCONAPPPRDN01", "arc_sjna_dns_tracelog,arc_sjna_dns_tracelog2,arc_sjna_ad_wuc,arc_sjna_ad_wuc2,arc_sjna_fireeye_syslog,arc_sjna_ciscoasa_fw_syslog,arc_sjna_bit9_carbonblack_syslog");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_sjna_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_sjna_dns_tracelog2", "Running");
-		verifyServiceStatus(resout, "arc_sjna_ad_wuc", "Running");
-		verifyServiceStatus(resout, "arc_sjna_ad_wuc2", "Running");
-		verifyServiceStatus(resout, "arc_sjna_fireeye_syslog", "Running");
-		verifyServiceStatus(resout, "arc_sjna_ciscoasa_fw_syslog", "Running");
-		verifyServiceStatus(resout, "arc_sjna_bit9_carbonblack_syslog", "Running");
-	}
-
-	void TM_CLM_S11_WinSrve_SECONAPPPRDN02() {
-		createPS1HostnameServices(ADM_UserID, password, "SECONAPPPRDN02", "arc_sena2_dns_tracelog, arc_winc");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_sena2_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_winc", "Running");
-	}
-
-	void TM_CLM_S12_WinSrve_LDCONAPPPRDN02() {
-		createPS1HostnameServices(ADM_UserID, password, "LDCONAPPPRDN02", "arc_ldeu2_dns_tracelog,arc_ldeu2_ad_wuc,arc_ldeu2_ad_wuc2");		
-		runWindowsServerCheckBat(runbat);
-		verifyServiceStatus(resout, "arc_ldeu2_dns_tracelog", "Running");
-		verifyServiceStatus(resout, "arc_ldeu2_ad_wuc", "Running");
-		verifyServiceStatus(resout, "arc_ldeu2_ad_wuc2", "Running");
-	}
-
+	
 }

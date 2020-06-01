@@ -8,6 +8,9 @@ import java.io.IOException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.sikuli.script.FindFailed;
+import org.sikuli.script.Pattern;
+import org.sikuli.script.Screen;
 import org.testng.Assert;
 
 public class SCOM extends CommonMethods {
@@ -19,19 +22,25 @@ public class SCOM extends CommonMethods {
 
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void SCOM_S01_Web_POC_UserValidation() throws IOException {
 		TM_SCOM_S01_Web_POCenv_Validation();
 
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void SCOM_S02_Web_Dev_UserValidation() throws IOException, InterruptedException {
 		TM_SCOM_S02_Web_Devenv_Validation();
 
 	}
+	
+	@Test(priority = 2, enabled = true)
+	public void SCOM_S03_Web_Prod_UserValidation() throws IOException, InterruptedException {
+		TM_SCOM_S03_Web_Prod_UserValidation();
 
-	@AfterMethod
+	}
+
+	@AfterMethod(enabled = false)
 	public void afterEveryTest() {
 		driver.quit();
 	}
@@ -81,6 +90,50 @@ public class SCOM extends CommonMethods {
 				"Operations Manager Web Console not displayed");
 		takeScreenshotAtEndOfTest();
 
+	}
+	
+	public void TM_SCOM_S03_Web_Prod_UserValidation() {
+
+		final String Browser = "IE";
+		final String PRDURL = "http://FCMONAPPPROD06/OperationsManager";
+		launchBrowser(Browser, PRDURL);
+		waitForPageLoaded();
+		
+		final String userDirectory = System.getProperty("user.dir");
+		String path = userDirectory + "\\AutoFiles\\SiKuli\\";
+		final String username = "NA\\bpalle";
+		String DecrptPassword = null;
+		String EncryptPassword = "+9Q+HzaPN/at3O6AnqDdgQ==";
+		
+		try {
+			DecrptPassword = decrypt(EncryptPassword);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		Screen s = new Screen();
+		Pattern SignInButton = new Pattern(path + "SignInButton.PNG");
+		Pattern UserNameInput = new Pattern(path + "UsernameInput.PNG");
+		Pattern PasswordInput = new Pattern(path + "PasswordInput.PNG");
+		Pattern SkipButton = new Pattern(path + "SkipButton.PNG");
+		Pattern RadioButton = new Pattern(path + "RadioButton.PNG");
+
+		try {
+			s.wait(SkipButton, 20);
+			s.click(SkipButton);
+			
+			s.wait(UserNameInput, 20);
+			s.click(RadioButton);
+			s.type(UserNameInput, username);
+			s.type(PasswordInput, DecrptPassword);
+			s.click(SignInButton);
+		} catch (FindFailed e) {
+			e.printStackTrace();
+		}
+		
+		waitForPageLoaded();
+		
 	}
 
 }

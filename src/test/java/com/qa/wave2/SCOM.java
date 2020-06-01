@@ -33,14 +33,14 @@ public class SCOM extends CommonMethods {
 		TM_SCOM_S02_Web_Devenv_Validation();
 
 	}
-	
+
 	@Test(priority = 2, enabled = true)
 	public void SCOM_S03_Web_Prod_UserValidation() throws IOException, InterruptedException {
 		TM_SCOM_S03_Web_Prod_UserValidation();
 
 	}
 
-	@AfterMethod(enabled = false)
+	@AfterMethod(enabled = true)
 	public void afterEveryTest() {
 		driver.quit();
 	}
@@ -91,24 +91,24 @@ public class SCOM extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 
 	}
-	
-	public void TM_SCOM_S03_Web_Prod_UserValidation() {
+
+	public void TM_SCOM_S03_Web_Prod_UserValidation() throws InterruptedException {
 
 		final String Browser = "IE";
 		final String PRDURL = "http://FCMONAPPPROD06/OperationsManager";
 		launchBrowser(Browser, PRDURL);
 		waitForPageLoaded();
-		
+
 		final String userDirectory = System.getProperty("user.dir");
 		String path = userDirectory + "\\AutoFiles\\SiKuli\\";
-		final String username = "NA\\bpalle";
+		final String username = "NA\\dmarkanti";
 		String DecrptPassword = null;
-		String EncryptPassword = "+9Q+HzaPN/at3O6AnqDdgQ==";
-		
+		String EncryptPassword = "gauEQnlth0rzudo2rv35/A==";
+
 		try {
 			DecrptPassword = decrypt(EncryptPassword);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+
 			e.printStackTrace();
 		}
 
@@ -122,7 +122,7 @@ public class SCOM extends CommonMethods {
 		try {
 			s.wait(SkipButton, 20);
 			s.click(SkipButton);
-			
+
 			s.wait(UserNameInput, 20);
 			s.click(RadioButton);
 			s.type(UserNameInput, username);
@@ -131,9 +131,14 @@ public class SCOM extends CommonMethods {
 		} catch (FindFailed e) {
 			e.printStackTrace();
 		}
-		
+
 		waitForPageLoaded();
-		
+		wait(30);
+		Assert.assertEquals(driver.getTitle(), "Operations Manager Web Console",
+				"Operations Manager Web Console not displayed");
+
+		takeScreenshotAtEndOfTest();
+
 	}
 
 }

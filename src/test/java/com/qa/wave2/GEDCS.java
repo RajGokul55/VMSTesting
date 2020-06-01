@@ -100,9 +100,9 @@ public class GEDCS extends CommonMethods{
 		wait(2);
 		
 		WebElement  drawing_img = createWebElementBy(img_drawing);
-		takeScreenshotAtEndOfTest();
 		drawing_img.click();
 		wait(10);
+		takeScreenshotAtEndOfTest();
 		
 		WebElement  name_icn = createWebElementBy(btn_name);
 		name_icn.click();

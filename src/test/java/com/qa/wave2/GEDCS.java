@@ -112,8 +112,6 @@ public class GEDCS extends CommonMethods{
 		logout_icn.click();
 		
 		
-		
-		
 		}
 		
 		

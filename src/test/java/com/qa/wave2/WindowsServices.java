@@ -35,7 +35,7 @@ public class WindowsServices extends CommonMethods {
 		verifyWinSerStatus("SJGSUBAPPDEVN01", "GlobalSubmit Message Listener", "Running", "Auto");
 	}
 	
-	@Test(enabled = false, priority =5, groups = {"InsightForViewingI4V", "Dev"})
+	@Test(enabled = true, priority =5, groups = {"InsightForViewingI4V", "Dev"})
 	public void InsightForViewingI4V_PS01_WinServ_FCSMSDEVAPPN01() {
 		verifyWinSerStatus("FCSMSDEVAPPN01", "Apache Tomcat 9.0 Tomcat9", "Running", "Auto");
 		verifyWinSerStatus("FCSMSDEVAPPN01", "Apache Tomcat 9.0 Tomcat9I4VReview", "Running", "Auto"); 

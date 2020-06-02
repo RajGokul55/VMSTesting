@@ -30,7 +30,7 @@ public class WindowsServices extends CommonMethods {
 		verifyWinSerStatus("EOCONAPPPRDN02", "ArcSight Microsoft DNS Trace Log Multiple Server File", "Running", "Auto");
 	}	
 	
-	@Test(enabled = false, priority =5, groups = {"GlobalSubmit", "Dev"})
+	@Test(enabled = true, priority =5, groups = {"GlobalSubmit", "Dev"})
 	public void GlobalSubmit_PS01_WinServ_SJGSUBAPPDEVN01() {
 		verifyWinSerStatus("SJGSUBAPPDEVN01", "GlobalSubmit Message Listener", "Running", "Auto");
 	}

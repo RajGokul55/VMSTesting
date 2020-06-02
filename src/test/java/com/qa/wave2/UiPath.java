@@ -5,8 +5,18 @@ import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 
 import org.testng.annotations.BeforeMethod;
+
+
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
@@ -42,35 +52,40 @@ public class UiPath extends CommonMethods{
 	  login();
   }
 
-  @Test(priority=1, enabled=true)
+  @Test(priority=1, enabled=false)
   public void UIPATH_S01_Web_Login_Verification() {
 	  TM_S01_Web_Login_Verification();
   }
   
-  @Test(priority=2, enabled=true)
+  @Test(priority=2, enabled=false)
   public void UIPATH_S02_Web_Monitoring_Tab_Validate() {
 	  TM_S02_Web_Monitoring_Tab_Validate();
   }
   
-  @Test(priority=3, enabled=true)
+  @Test(priority=3, enabled=false)
   public void UIPATH_S03_Web_Robots_Tab_Validate() {
 	  TM_S03_Web_Robots_Tab_Validate();
   }
   
-  @Test(priority=4, enabled=true)
+  @Test(priority=4, enabled=false)
   public void UIPATH_S04_Web_Processes_Tab_Validate() {
 	  TM_S04_Web_Processes_Tab_Validate();
   }
   
-  @Test(priority=5, enabled=true)
+  @Test(priority=5, enabled=false)
   public void UIPATH_S05_Web_Jobs_Tab_Validate() {
 	  TM_S05_Web_Jobs_Tab_Validate();
   }
   
+  @Test(priority=6, enabled=true)
+  public void UIPATH_S06_Web_Run_Dummy_Job() {
+	  TM_S06_Web_Run_Dummy_Job();
+  }
+  
   @AfterMethod
   public void afterMethod() {
-	  logout();
-	  driver.quit();
+	  //logout();
+	  //driver.quit();
   }
 
   /***************************** Locators *******************/
@@ -106,7 +121,14 @@ public class UiPath extends CommonMethods{
 	By btn_jobs			=	By.xpath("//span[contains(text(),'Jobs')]");
 	By btn_user			=	By.xpath("//button[@title='User']");
 	By btn_logOut		=	By.xpath("//a[contains(text(),'Log Out')]");
+	By btn_startRun		=	By.xpath("//button[@class='btn btn-primary mat-mini-fab mat-accent ng-star-inserted']");
+	By ipt_process		=	By.xpath("//div[@class='display-container text-ellipsis']");
+	By tbl_robotsTable	=	By.xpath("//ui-process-robots-grid[1]/ui-grid[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr");
+	By ipt_processName	=	By.xpath("//ui-suggest[1]/div[1]/div[2]/mat-form-field[1]/div[1]/div[1]/div[1]/input[1]");
+	By btn_start		=	By.xpath("//span[@class='mat-button-wrapper'][contains(text(),'Start')]");
+	By tbl_jobRows		=	By.xpath("//tbody//tr");
 	
+		
 	
 
 	/***************************** Test Case Methods *******************/
@@ -173,6 +195,35 @@ public class UiPath extends CommonMethods{
 		Assert.assertTrue(GridTable_tbl.isDisplayed());		
 	}
 	
+	public void TM_S06_Web_Run_Dummy_Job() {
+		WebElement Jobs_Btn = createWebElementBy(btn_jobs);
+		Jobs_Btn.click();
+		
+		WebElement STabText_Lnk = createWebElementBy(lnk_stabText);
+		Assert.assertEquals(STabText_Lnk.getText(), "Jobs");
+		
+		startJob();
+		/*driver.findElement(By.xpath("//ui-grid-pager[1]/div[1]/mat-select[1]/div[1]/div[1]/span[1]")).click();
+		driver.findElement(By.xpath("//span[contains(text(),'50')]")).click();
+		
+		
+		List<WebElement> jobRows = createWebElementsBy(tbl_jobRows);
+		int numberOfRows = jobRows.size();
+		
+    	for (int i=1;i<=numberOfRows;i++) {
+			String processName = driver.findElement(By.xpath("//tbody//tr["+i+"]/td[2]")).getText();
+			String processStatus = driver.findElement(By.xpath("//tbody//tr["+i+"]/td[3]")).getText();
+			if(processName.equalsIgnoreCase("UploadToCMWF-Generic") && processStatus.equalsIgnoreCase("Successful")) {
+				System.out.println("The robot successfully ran the job "+processName);
+				break;
+			}else {
+				continue;
+			}
+		} */
+		
+		
+	}
+	
 	/**********************************  Generic Method for this App ****************************/
 	public void login() {
 		waitForPageLoaded();
@@ -201,5 +252,42 @@ public class UiPath extends CommonMethods{
 		waitForPageLoaded();
 		String currentUrl = driver.getCurrentUrl();
 		Assert.assertTrue(currentUrl.contains("login"), "The logout was unsuccessfull");
+	}
+	
+	public void startJob() {
+		WebElement StartRun_Btn = createWebElementBy(btn_startRun);
+		StartRun_Btn.click();
+		
+		WebElement Process_Ipt = createWebElementBy(ipt_process);
+		Process_Ipt.click();
+		
+		WebElement ProcessName_Ipt = createWebElementBy(ipt_processName);
+		ProcessName_Ipt.sendKeys("DummyProcess_Test");
+		wait(2);
+		driver.findElement(By.xpath("//div[@class='text-label text-ellipsis']")).click();
+		
+		
+		List<WebElement> allRows = createWebElementsBy(tbl_robotsTable);
+		int numberOfRows = allRows.size();
+		
+		String serverName = "SJUIPTAPPPRDN02";
+		 
+		for(int i=1;i<=numberOfRows;i++) {
+			WebElement names = driver.findElement(By.xpath("//ui-process-robots-grid[1]/ui-grid[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr["+i+"]/td[3]"));
+			WebElement status = driver.findElement(By.xpath("//ui-process-robots-grid[1]/ui-grid[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr["+i+"]/td[4]"));
+			if(names.getText().equalsIgnoreCase(serverName) && status.getText().equalsIgnoreCase("Available")) {
+				System.out.println("The Machine found is "+names.getText());
+				driver.findElement(By.xpath("//ui-process-robots-grid[1]/ui-grid[1]/div[1]/div[2]/div[1]/table[1]/tbody[1]/tr["+i+"]/td[1]")).click();;
+				WebElement Start_Btn = createWebElementBy(btn_start);
+				Start_Btn.click();
+			}else {
+				continue;
+			}
+		}
+	}
+	
+	public void selectDropdownByText(WebElement locator, String value) {
+		Select select = new Select(locator);
+		select.selectByVisibleText(value);
 	}
 }

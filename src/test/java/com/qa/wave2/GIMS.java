@@ -20,26 +20,28 @@ public class GIMS extends CommonMethods {
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void GIMS_S01_Web_NA_Prod_UserLogin() throws IOException {
-		TM_GIMS_S01_Web_NA_Prod_UserLogin();
+	public void GIMS_S01_Web_NA_Dev_UserLogin() throws IOException {
+		TM_GIMS_S01_Web_NA_Dev_UserLogin();
 
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void GIMS_S02_Web_NA_Prod_ServerNodeValidation() throws IOException {
-		TM_GIMS_S02_Web_NA_Prod_ServerNodeValidation();
+	public void GIMS_S02_Web_NA_Dev_ServerNodeValidation() throws IOException {
+		TM_GIMS_S02_Web_NA_Dev_ServerNodeValidation();
 
 	}
 
 	@Test(priority = 2, enabled = true)
-	public void GIMS_S03_Web_NA_Dev_UserLogin() throws IOException {
-		TM_GIMS_S03_Web_NA_Dev_UserLogin();
+
+	public void GIMS_S03_Web_NA_Prod_UserLogin() throws IOException {
+		TM_GIMS_S03_Web_NA_Prod_UserLogin();
 
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void GIMS_S04_Web_NA_Dev_ServerNodeValidation() throws IOException {
-		TM_GIMS_S04_Web_NA_Dev_ServerNodeValidation();
+
+	public void GIMS_S04_Web_NA_Prod_ServerNodeValidation() throws IOException {
+		TM_GIMS_S04_Web_NA_Prod_ServerNodeValidation();
 
 	}
 
@@ -103,12 +105,39 @@ public class GIMS extends CommonMethods {
 	By ipt_kitelogin = By.xpath("//input[@id='ctl00_BodyContent_Username']");
 	By ipt_kitepwd = By.xpath("//input[@id='ctl00_BodyContent_Password']");
 	By btn_kiteloginbtn = By.xpath("//span[@class='sw-btn-t']");
-	
-	
 
 	/***************************** Test Case Methods *******************/
 
-	public void TM_GIMS_S01_Web_NA_Prod_UserLogin() throws IOException {
+	public void TM_GIMS_S01_Web_NA_Dev_UserLogin() throws IOException {
+
+		TM_GIMS_Web_NA_Dev_GenericMethod();
+
+		Assert.assertEquals(driver.getTitle(), "Network System View - Summary",
+				"Network System View - Summary is not displayed");
+		takeScreenshotAtEndOfTest();
+	}
+
+	public void TM_GIMS_S02_Web_NA_Dev_ServerNodeValidation() throws IOException {
+
+		TM_GIMS_Web_NA_Dev_GenericMethod();
+		WebElement Find_ipt = createWebElementBy(ipt_Find);
+		Find_ipt.sendKeys("sjgimsappdevn01.na.gilead.com");
+
+		WebElement Search_btn = createWebElementBy(btn_Search);
+		Search_btn.click();
+
+		WebElement NADevServerDetails_lnk = createWebElementBy(lnk_NADevServerDetails);
+		NADevServerDetails_lnk.click();
+
+		WebElement NADevSummary_lnk = createWebElementBy(lnk_NADevSummary);
+		String Manage = NADevSummary_lnk.getText();
+		Assert.assertEquals(Manage, "Management");
+
+		takeScreenshotAtEndOfTest();
+
+	}
+
+	public void TM_GIMS_S03_Web_NA_Prod_UserLogin() throws IOException {
 
 		TM_GIMS__Web_NA_Prod_GenericMethod();
 
@@ -117,7 +146,7 @@ public class GIMS extends CommonMethods {
 
 	}
 
-	public void TM_GIMS_S02_Web_NA_Prod_ServerNodeValidation() throws IOException {
+	public void TM_GIMS_S04_Web_NA_Prod_ServerNodeValidation() throws IOException {
 
 		TM_GIMS__Web_NA_Prod_GenericMethod();
 		WebElement Find_ipt = createWebElementBy(ipt_Find);
@@ -132,35 +161,6 @@ public class GIMS extends CommonMethods {
 		WebElement NAProdSummary_lnk = createWebElementBy(lnk_NAProdSummary);
 		String summ = NAProdSummary_lnk.getText();
 		Assert.assertEquals(summ, "Summary");
-		takeScreenshotAtEndOfTest();
-
-	}
-
-	public void TM_GIMS_S03_Web_NA_Dev_UserLogin() throws IOException {
-
-		TM_GIMS_Web_NA_Dev_GenericMethod();
-
-		Assert.assertEquals(driver.getTitle(), "Network System View - Summary",
-				"Network System View - Summary is not displayed");
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void TM_GIMS_S04_Web_NA_Dev_ServerNodeValidation() throws IOException {
-
-		TM_GIMS_Web_NA_Dev_GenericMethod();
-		WebElement Find_ipt = createWebElementBy(ipt_Find);
-		Find_ipt.sendKeys("sjgimsappdevn01.na.gilead.com");
-
-		WebElement Search_btn = createWebElementBy(btn_Search);
-		Search_btn.click();
-
-		WebElement NADevServerDetails_lnk = createWebElementBy(lnk_NADevServerDetails);
-		NADevServerDetails_lnk.click();
-
-		WebElement EUProdSummary_lnk = createWebElementBy(lnk_NADevSummary);
-		String Manage = EUProdSummary_lnk.getText();
-		Assert.assertEquals(Manage, "Management");
-
 		takeScreenshotAtEndOfTest();
 
 	}
@@ -184,8 +184,8 @@ public class GIMS extends CommonMethods {
 		WebElement EUProdServerDetails_lnk = createWebElementBy(lnk_EUProdServerDetails);
 		EUProdServerDetails_lnk.click();
 
-		WebElement NADevSummary_lnk = createWebElementBy(lnk_EUProdSummary);
-		String EUSummary = NADevSummary_lnk.getText();
+		WebElement EUProdSummary_lnk = createWebElementBy(lnk_EUProdSummary);
+		String EUSummary = EUProdSummary_lnk.getText();
 		Assert.assertEquals(EUSummary, "Summary");
 
 		takeScreenshotAtEndOfTest();
@@ -216,7 +216,6 @@ public class GIMS extends CommonMethods {
 		Assert.assertEquals(APSummary, "Summary");
 
 		takeScreenshotAtEndOfTest();
-		
 
 	}
 
@@ -240,7 +239,7 @@ public class GIMS extends CommonMethods {
 
 		WebElement KiteServerDetails_lnk = createWebElementBy(lnk_KiteServerDetails);
 		KiteServerDetails_lnk.click();
-		Thread.sleep(3000);
+		wait(90);
 
 		WebElement KiteSummary_lnk = createWebElementBy(lnk_KiteSummary);
 		String KiteManage = KiteSummary_lnk.getText();
@@ -251,15 +250,7 @@ public class GIMS extends CommonMethods {
 	}
 
 	/***************************** Generic Methods *******************/
-	
-	public void TM_GIMS__Web_NA_Prod_GenericMethod() throws IOException {
 
-		final String Browser = "Chrome";
-		final String NAProdURL = "http://gims-na";
-		launchBrowser(Browser, NAProdURL);
-		waitForPageLoaded();
-	}
-	
 	public void TM_GIMS_Web_NA_Dev_GenericMethod() throws IOException {
 
 		final String Browser = "Chrome";
@@ -267,7 +258,15 @@ public class GIMS extends CommonMethods {
 		launchBrowser(Browser, NADevURL);
 		waitForPageLoaded();
 	}
-	
+
+	public void TM_GIMS__Web_NA_Prod_GenericMethod() throws IOException {
+
+		final String Browser = "Chrome";
+		final String NAProdURL = "http://gims-na";
+		launchBrowser(Browser, NAProdURL);
+		waitForPageLoaded();
+	}
+
 	public void TM_GIMS_Web_EU_Prod_GenericMethod() throws IOException {
 
 		final String Browser = "Chrome";
@@ -275,7 +274,7 @@ public class GIMS extends CommonMethods {
 		launchBrowser(Browser, EUProdURL);
 		waitForPageLoaded();
 	}
-	
+
 	public void TM_GIMS_Web_AP_Prod_GenericMethod() throws IOException {
 
 		final String Browser = "Chrome";

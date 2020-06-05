@@ -1,5 +1,10 @@
 package com.qa.demo.base;
 
+import java.awt.AWTException;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -19,6 +24,7 @@ import java.util.concurrent.TimeUnit;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import javax.imageio.ImageIO;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -562,7 +568,7 @@ public class CommonMethods {
 					}
 					line = br.readLine();
 				}
-				
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
@@ -571,10 +577,10 @@ public class CommonMethods {
 			e.printStackTrace();
 		}
 		Assert.assertTrue(flag);
-		
+
 	}
 
-	
+
 	/*
 	 * Author: DeepakKumarMarkanti Description: To Accept Alert Parameter: No
 	 * Parameter Date: May 2020
@@ -633,7 +639,7 @@ public class CommonMethods {
 
 		}
 	}
-	
+
 	/*
 	 * Author: DeepakKumarMarkanti 
 	 * Description: To close all the opened Browsers
@@ -696,4 +702,70 @@ public class CommonMethods {
 		}
 	}
 
+	public static void takeScreenshotAtSikuli() {
+		/*
+		 * Author: Balajee Palle Description: To Take screenshot of
+		 * page, Screenshot added to Reporter.log, Added steps to save image into
+		 * Reporter. Parameter: Date: April 2020
+		 * 
+		 */
+
+		try { 
+			Thread.sleep(20); 
+			Robot r = new Robot(); 
+			String path = userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png"; 
+			Rectangle capture =  
+					new Rectangle(Toolkit.getDefaultToolkit().getScreenSize()); 
+			BufferedImage Image = r.createScreenCapture(capture); 
+			ImageIO.write(Image, "png",new File(path)); 
+			//System.out.println("Screenshot saved"); 
+			//Reporter.log("<br><img src='" + path + "' height='300' width='500'/><br>");
+
+			BufferedImage bImage = null;
+			File screenShotName = null;
+
+			try {
+				File initialImage = new File(path);
+				bImage = ImageIO.read(initialImage);
+				screenShotName = new File(userDirectory + "/screenshots/" + System.currentTimeMillis() + ".png");
+				try {
+					FileUtils.copyFile(initialImage, screenShotName);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}  
+			} catch (IOException e) {
+				System.out.println("Exception occured :" + e.getMessage());
+			}
+
+
+			FileInputStream fTptStrm = null;
+			String encodedBase64 = null;
+
+			try {
+				fTptStrm = new FileInputStream(screenShotName);
+				byte[] bytes = new byte[(int) screenShotName.length()];
+				fTptStrm.read(bytes);
+				encodedBase64 = new String(Base64.encodeBase64(bytes));
+			} catch (FileNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String result = "data:image/png;base64, " + encodedBase64;
+
+			Reporter.log("<br><img src='" + result + "' height='300' width='500'/><br>");
+
+
+		} 
+		catch (AWTException | IOException | InterruptedException ex) { 
+			System.out.println(ex); 
+		}
+	}
 }
+
+
+
+

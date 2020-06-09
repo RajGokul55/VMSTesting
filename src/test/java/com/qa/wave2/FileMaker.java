@@ -6,24 +6,17 @@ import com.qa.demo.base.CommonMethods;
 
 import org.testng.annotations.BeforeMethod;
 
-import java.io.FileWriter;
-import java.io.IOException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.sikuli.script.FindFailed;
-import org.sikuli.script.Pattern;
-import org.sikuli.script.Screen;
+
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 
 public class FileMaker extends CommonMethods {
 	/***************************** Test Data *******************/
-
-	final String userDirectory = System.getProperty("user.dir");
-	String path = userDirectory + "\\AutoFiles\\FMP.txt";
 	final String Browser = "Chrome";
-	final String DevURL = "http://lvfmkappprdn01.na.gilead.com/fmi/xml/FMPXMLRESULT.xml?-dbnames";
+	final String PrdURL = "http://lvfmkappprdn01.na.gilead.com/fmi/xml/FMPXMLRESULT.xml?-dbnames";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -39,7 +32,7 @@ public class FileMaker extends CommonMethods {
 	 */
 
 
-	String URL = DevURL;
+	String URL = PrdURL;
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);
@@ -49,50 +42,61 @@ public class FileMaker extends CommonMethods {
 	public void FMP_S01_Web_Validate_Error_Code() {
 		TM_S01_Web_Validate_Error_Code();
 	}
+	
+	@Test(priority=2, enabled=true)
+	public void FMP_S02_Web_Validate_Data() {
+		TM_S02_Web_Validate_Data();
+	}
 
 	@AfterMethod
 	public void afterMethod() {
-		//driver.quit();
+		driver.quit();
 	}
 	
+	/***************************** Locators *******************/
+	// Example syntax:Css Selector:
+	// tagname[attribute1:'value1'][attribute2:'value2']
+  	/*
+	 * ipt_: input fields
+	 * btn_: Buttons
+	 * lnk_: Links
+	 * rdo_: Radio buttons
+	 * chk_: Check boxes
+	 * tbl_: Tables
+	 * msg_: Messages
+	 * txt_: Text
+	 * crd_: Card
+	 */
 	
+	By txt_errorcode 		=	By.cssSelector("div.pretty-print>div>div>div.collapsible-content>div>span.text");
+	By txt_data				=	By.cssSelector("div.pretty-print>div>div>div>div.collapsible#collapsible2>div.expanded>div>div>div>div>div.collapsible>div>div.collapsible-content>div>span.text");
 	
-	
-	
-	
-	
-	
+
 	
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 	public void TM_S01_Web_Validate_Error_Code() {
 		waitForPageLoaded();
-		/*try{
-		Screen s = new Screen();
-		Pattern ErrorCode = new Pattern(path + "FMP_ErrorCode.PNG");
-		Pattern Data = new Pattern(path+"FMD_Data.PNG");
-		s.wait(ErrorCode, 10);
-		String errorcode = s.find(ErrorCode).text();
-		String data = s.find(Data).getText();
-		System.out.println(errorcode);
-		System.out.println(data);
-		}catch(FindFailed e) {
-			e.printStackTrace();
+		takeScreenshotAtEndOfTest();
+		WebElement ErrorCode_Txt = createWebElementBy(txt_errorcode);
+		String ErrorCode = ErrorCode_Txt.getText();
+		if (ErrorCode.equalsIgnoreCase("0")) {
+			System.out.println("Success");
+		}else {
+			Assert.fail("The error code is other than 0");
 		}
-	}*/
-		String text = driver.findElement(By.cssSelector("div.pretty-print")).getText();
-		System.out.println(text);
-		try {
-			FileWriter fw=new FileWriter(path);
-	          if(text!=null) {
-	            fw.write(text);
-	            fw.close();
-	          }else {
-	        	  Assert.fail("The text was not copied");
-	          }
-	      } catch(IOException e) {
-	          System.out.println(e);
-	      }
-	    }
+		
+	}
+	public void TM_S02_Web_Validate_Data() {
+		waitForPageLoaded();
+		takeScreenshotAtEndOfTest();
+		WebElement Data_Txt = createWebElementBy(txt_data);
+		String Data = Data_Txt.getText();
+		if(Data.equalsIgnoreCase("Technical_Services_Database")){
+			System.out.println("Success");
+		}else {
+			Assert.fail("The error code is other than 0");
+		}
+	}
 	
 }

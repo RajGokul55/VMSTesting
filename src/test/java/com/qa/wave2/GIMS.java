@@ -14,62 +14,62 @@ public class GIMS extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 
-	@BeforeMethod(enabled = true)
+	@BeforeMethod(enabled = false)
 	public void beforeTest() {
 
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GIMS_S01_Web_NA_Dev_UserLogin() throws IOException {
 		TM_GIMS_S01_Web_NA_Dev_UserLogin();
 
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void GIMS_S02_Web_NA_Dev_ServerNodeValidation() throws IOException {
 		TM_GIMS_S02_Web_NA_Dev_ServerNodeValidation();
 
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 
 	public void GIMS_S03_Web_NA_Prod_UserLogin() throws IOException {
 		TM_GIMS_S03_Web_NA_Prod_UserLogin();
 
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 
 	public void GIMS_S04_Web_NA_Prod_ServerNodeValidation() throws IOException {
 		TM_GIMS_S04_Web_NA_Prod_ServerNodeValidation();
 
 	}
 
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void GIMS_S05_Web_EU_Prod_UserLogin() throws IOException {
 		TM_GIMS_S05_Web_EU_Prod_UserLogin();
 
 	}
 
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 5, enabled = false)
 	public void GIMS_S06_Web_EU_Prod_ServerNodeValidation() throws IOException {
 		TM_GIMS_S06_Web_EU_Prod_ServerNodeValidation();
 
 	}
 
-	@Test(priority = 6, enabled = true)
+	@Test(priority = 6, enabled = false)
 	public void GIMS_S07_Web_AP_Prod_UserLogin() throws IOException {
 		TM_GIMS_S07_Web_AP_Prod_UserLogin();
 
 	}
 
-	@Test(priority = 7, enabled = true)
+	@Test(priority = 7, enabled = false)
 	public void GIMS_S08_Web_AP_Prod_ServerNodeValidation() throws IOException {
 		TM_GIMS_S08_Web_AP_Prod_ServerNodeValidation();
 
 	}
 
-	@Test(priority = 8, enabled = true)
+	@Test(priority = 8, enabled = false)
 	public void GIMS_S09_Web_Kite_Prod_UserLogin() throws IOException {
 		TM_GIMS_S09_Web_Kite_Prod_UserLogin();
 
@@ -101,7 +101,7 @@ public class GIMS extends CommonMethods {
 	By lnk_NADevSummary = By.xpath("//a[@class='sw-widget__title'][contains(text(),'Management')]");
 	By lnk_EUProdSummary = By.xpath("//span[contains(text(),'Summary')]");
 	By lnk_APProdSummary = By.xpath("//span[contains(text(),'Summary')]");
-	By lnk_KiteSummary = By.xpath("//a[@class='sw-widget__title'][contains(text(),'Management')]");
+	By lnk_KiteNodeDetails = By.xpath("//a[contains(text(),'Node Details')]");
 	By ipt_kitelogin = By.xpath("//input[@id='ctl00_BodyContent_Username']");
 	By ipt_kitepwd = By.xpath("//input[@id='ctl00_BodyContent_Password']");
 	By btn_kiteloginbtn = By.xpath("//span[@class='sw-btn-t']");
@@ -239,12 +239,12 @@ public class GIMS extends CommonMethods {
 
 		WebElement KiteServerDetails_lnk = createWebElementBy(lnk_KiteServerDetails);
 		KiteServerDetails_lnk.click();
-		wait(90);
+		Thread.sleep(90000);
+	
 
-		WebElement KiteSummary_lnk = createWebElementBy(lnk_KiteSummary);
-		String KiteManage = KiteSummary_lnk.getText();
-		Assert.assertEquals(KiteManage, "Management");
-
+		WebElement KitNodeDetails_lnk = createWebElementBy(lnk_KiteNodeDetails);
+		String KiteNodeDetails = KitNodeDetails_lnk.getText();
+		Assert.assertEquals(KiteNodeDetails, "Node Details");
 		takeScreenshotAtEndOfTest();
 
 	}

@@ -21,19 +21,19 @@ public class Gview extends CommonMethods{
 	
 	final String Browser= "Chrome";
 	final String Url= "http://savante-test.gilead.com";
-	final String Username ="ajoshi10";
+	final String Username ="graj";
 	private String DecrptPassword;
 	
 
 
 	/***************************** Test Cases *******************/
 	/*
-	 * Test case ‘Test Name’ naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
+	 * Test case â€˜Test Nameâ€™ naming convention: <AppName><TCNumber>_<TestCategory>_<Title>
 	Definitions of terms:     
-•	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
-•	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
-•	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB …]
-•	Title: short title of test case based on context of test case  ie., ValidateCredntails
+â€¢	AppName: short name of Application [String 5 -10 chars] i.e., TstMyApp, 
+â€¢	TCNumber: Test case number [Numeric 2-3 digits] i.e, 01, 02,..
+â€¢	TestCategory: Test case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve, DB â€¦]
+â€¢	Title: short title of test case based on context of test case  ie., ValidateCredntails
   	Test Name Example: Filkart_05_Web_ValidateCredntails.
 
 	 * Test method name must be same as test case appended with TM example: 
@@ -41,8 +41,7 @@ public class Gview extends CommonMethods{
 	
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("s4rUV2q2cpKv62LjNZMdTg==");
-		System.out.println("abcd" +DecrptPassword);
+		DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");
 	}
 
 	@BeforeMethod(enabled=true)
@@ -55,32 +54,32 @@ public class Gview extends CommonMethods{
 		TM_Gview_TC01_Web_Login_Verification();
 	}
 	
-	  @Test(priority=1, enabled=true)
+	  @Test(priority=1, enabled=false)
 	  public void Gview_TC02_Web_Window_Verification() {
 		  TM_Gview_TC02_Web_Window_Verification();
 	}
 	  
 	
-	  @Test(priority=2, enabled=true) 
+	  @Test(priority=2, enabled=false) 
 	  public void Gview_TC03_Web_Export_Verification() { 
 		  TM_Gview_TC03_Web_Export_Verification();
 		  
 	  }
 	  
-	  @Test(priority=3, enabled=true)
+	  @Test(priority=3, enabled=false)
 	  public void Gview_TC04_Web_StringVerification_Verification() {
 		  TM_Gview_TC04_Web_StringVerification_Verification();
 	  
 	  }
 	  
-	  @Test(priority=4, enabled=true)
+	  @Test(priority=4, enabled=false)
 	  public void Gview_TC05_Web_Tab_Verification() {
 		  TM_Gview_TC05_Web_Tab_Verification();
 
 	  }
 
 
-	  @Test(priority=5, enabled=true)
+	  @Test(priority=5, enabled=false)
 	  public void Gview_TC06_Web_Filter_Verification() {
 		  TM_Gview_TC06_Web_Filter_Verification();
 

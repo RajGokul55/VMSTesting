@@ -764,6 +764,16 @@ public class CommonMethods {
 			System.out.println(ex); 
 		}
 	}
+	/*
+	 * Author: Abhishek Bhatt 
+	 * Description: To drap one object from one location to another
+	 *  Parameter: WebElement
+	 *   Date: June 2020
+	 */
+	public void dragAndDrop(WebElement source, WebElement target) {
+		Actions act =new Actions(driver);
+		act.dragAndDrop(source, target).build().perform();
+	}
 }
 
 

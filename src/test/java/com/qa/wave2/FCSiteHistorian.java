@@ -101,10 +101,7 @@ public class FCSiteHistorian extends CommonMethods {
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 	
-	public void dragAndDrop(WebElement source, WebElement target) {
-		Actions act =new Actions(driver);
-		act.dragAndDrop(source, target).build().perform();
-	}
+	
 
 	public void TM_FCSiteHistorian_S01_HistorianDisplay() {
 

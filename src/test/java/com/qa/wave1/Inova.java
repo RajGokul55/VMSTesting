@@ -59,25 +59,19 @@ public class Inova extends CommonMethods{
 	By ipt_Username= By.xpath("//input[@name='j_username']");
 	By ipt_Passwrod= By.xpath("//input[@name='j_password']");
 	By btn_Login = By.xpath("//span[@class='ui-button-text']");
-	
 	By btn_PopupOK = By.xpath("//span[contains(text(),'Ok')]");
-By btn_PopupHome = By.xpath("//table[@class='main_page_layout']//a[1]");
+	By btn_PopupHome = By.xpath("//table[@class='main_page_layout']//a[1]");
 	By btn_Home = By.xpath("//a[contains(text(),'Home')]");
-	
 	By img_Alliances= By.xpath("(//span[@id='groupImage_alliances']");
 	By icn_Alliances= By.xpath("//span[@class='icon main-menu-icon icon-alliance']");
-
 	By icn_Products=By.xpath("//span[@class='icon main-menu-icon icon-product']");
 	By btn_NewProducts=By.xpath("//span[contains(text(),'New Product')]");
 	By btn_Save=By.xpath("(//span[@class='ui-button-text'][contains(text(),'Save')])[1]");
-	
 	By btn_Companies = By.xpath("//span[@class='icon-label'][contains(text(),'Companies')]");
 	By btn_NewCompany=By.xpath("//span[contains(text(),'New Company')]");
-	
 	By btn_parentCompany=By.xpath("//div[@id='inova_qc_0']");
 	By btn_Cancel=By.xpath("(//span[@class='ui-button-text'][contains(text(),'Cancel')])[1]");
-	By btn_Contacts = By.xpath("//span[contains(text(),'Contacts')]");
-	
+	By btn_Contacts = By.xpath("//span[contains(text(),'Contacts')]");	
 	By btn_editContacts = By.xpath("(//span[@class='ui-button-text'][contains(text(),'Edit Page')])[1]");
 	By btn_Logout = By.xpath("//a[contains(text(),'Logout')]");
 

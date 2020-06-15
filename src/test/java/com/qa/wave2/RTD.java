@@ -124,23 +124,24 @@ public class RTD extends CommonMethods {
 		Screen s = new Screen();
 		Pattern Windows = new Pattern(path + "CR_Windows.PNG");
 		Pattern WinSearch = new Pattern(path + "CR_Search.PNG");
-		Pattern IEBrowser = new Pattern(path + "CR_iexplore.PNG");
+		Pattern IEBrowser = new Pattern(path + "CR_IEBrowserIcon.PNG");
 		Pattern EnterURL = new Pattern(path + "CR_EnterURL.PNG"); 
 		Pattern Username = new Pattern(path + "CR_Username.PNG");
 		Pattern Password = new Pattern(path + "CR_Password.PNG");
 		Pattern LogOn = new Pattern(path + "CR_LogOnBtn.PNG"); 
 		
 		try {
-			s.wait(Windows, 20);
-			s.click(Windows);
-			s.type(WinSearch, "iexplore"); 
+			
+			s.type("d", Key.WIN);
 			wait(3);
-			s.click(IEBrowser);
-			wait(10);
-		/*	s.type(Key.SPACE, KeyModifier.ALT);
+			
+			s.wait(IEBrowser, 20);
+			s.doubleClick(IEBrowser);
+			wait(3);
+			s.type(Key.SPACE, KeyModifier.ALT);
 			wait(2);
 			s.type("x");
-		*/	
+			wait(3);
 			s.type(EnterURL, URL);
 			wait(3);
 			s.type(Key.ENTER);

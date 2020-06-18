@@ -55,7 +55,7 @@ public class Axway extends CommonMethods {
 
 	@BeforeMethod(enabled = true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url1);
+		launchBrowser(Browser, Url4);
 	}
 
 	@Test(priority = 0, enabled = true)

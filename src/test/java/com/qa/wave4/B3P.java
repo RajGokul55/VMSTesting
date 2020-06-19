@@ -40,23 +40,23 @@ public class B3P extends CommonMethods {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void B3P_TC01_Web_Checking_Landingpage() {
-		TM_B3P_TC01_Web_Checking_Landingpage();
+	public void B3P_S01_Web_Checking_Landingpage() {
+		TM_B3P_S01_Web_Checking_Landingpage();
 	}
 
 	@Test(priority = 2, enabled = true)
-	public void B3P_TC02_Web_BiomarkerTracker_Checking_Landingpage() {
-		TM_B3P_TC02_Web_BiomarkerTracker_Checking_Landingpage();
+	public void B3P_S02_Web_BiomarkerTracker_Checking_Landingpage() {
+		TM_B3P_S02_Web_BiomarkerTracker_Checking_Landingpage();
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void B3P_TC03_Web_LabTracker_Checking_Landingpage() {
-		TM_B3P_TC03_Web_LabTracker_Checking_Landingpage();
+	public void B3P_S03_Web_LabTracker_Checking_Landingpage() {
+		TM_B3P_S03_Web_LabTracker_Checking_Landingpage();
 	}
 
 	@Test(priority = 4, enabled = true)
-	public void B3P_TC04_Web_FAB_Checking_Landingpage() {
-		TM_B3P_TC04_Web_FAB_Checking_Landingpage();
+	public void B3P_S04_Web_FAB_Checking_Landingpage() {
+		TM_B3P_S04_Web_FAB_Checking_Landingpage();
 	}
 
 	@AfterMethod(enabled = true)
@@ -76,7 +76,7 @@ public class B3P extends CommonMethods {
 
 
 
-	void TM_B3P_TC01_Web_Checking_Landingpage() {
+	void TM_B3P_S01_Web_Checking_Landingpage() {
 		launchBrowser(Browser, Url1);
 
 		WebElement B3P_head = createWebElementBy(head_B3P);
@@ -85,7 +85,7 @@ public class B3P extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_B3P_TC02_Web_BiomarkerTracker_Checking_Landingpage() {
+	void TM_B3P_S02_Web_BiomarkerTracker_Checking_Landingpage() {
 		launchBrowser(Browser, Url2);
 
 		WebElement B3P_head = createWebElementBy(head_B3P);
@@ -94,7 +94,7 @@ public class B3P extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_B3P_TC03_Web_LabTracker_Checking_Landingpage() {
+	void TM_B3P_S03_Web_LabTracker_Checking_Landingpage() {
 		launchBrowser(Browser, Url3);
 
 		WebElement B3P_head = createWebElementBy(head_B3P);
@@ -103,7 +103,7 @@ public class B3P extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_B3P_TC04_Web_FAB_Checking_Landingpage() {
+	void TM_B3P_S04_Web_FAB_Checking_Landingpage() {
 		launchBrowserB3P(Browser, Url4);
 		takeScreenshotAtSikuli();
 	}

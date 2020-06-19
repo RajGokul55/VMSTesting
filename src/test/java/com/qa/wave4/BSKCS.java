@@ -23,12 +23,12 @@ public class BSKCS extends CommonMethods {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void BSKCS_TC01_Web_DVST_Checking_Landingpage() {
-		TM_BSKCS_TC01_Web_DVST_Checking_Landingpage();
+	public void BSKCS_S01_Web_DVST_Checking_Landingpage() {
+		TM_BSKCS_S01_Web_DVST_Checking_Landingpage();
 	}
 	@Test(priority = 2, enabled = true)
-	public void BSKCS_TC02_Web_CAT_Checking_Landingpage() {
-		TM_BSKCS_TC02_Web_CAT_Checking_Landingpage();
+	public void BSKCS_S02_Web_CAT_Checking_Landingpage() {
+		TM_BSKCS_S02_Web_CAT_Checking_Landingpage();
 	}
 
 	@AfterMethod(enabled = true)
@@ -41,7 +41,7 @@ public class BSKCS extends CommonMethods {
 
 	/***************************** Test Methods *******************/
 	
-	void TM_BSKCS_TC01_Web_DVST_Checking_Landingpage() {
+	void TM_BSKCS_S01_Web_DVST_Checking_Landingpage() {
 		launchBrowser(Browser, Url1);
 
 		WebElement DVST_Logo = createWebElementBy(Logo);
@@ -51,7 +51,7 @@ public class BSKCS extends CommonMethods {
 		
 	}
 	
-	void TM_BSKCS_TC02_Web_CAT_Checking_Landingpage() {
+	void TM_BSKCS_S02_Web_CAT_Checking_Landingpage() {
 		launchBrowser(Browser, Url2);
 		
 		WebElement DVST_Logo = createWebElementBy(Logo);

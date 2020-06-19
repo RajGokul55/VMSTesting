@@ -25,8 +25,8 @@ public class CPT extends CommonMethods {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void CPT_TC01_Web_Checking_Landingpage() {
-		TM_CPT_TC01_Web_Checking_Landingpage();
+	public void CPT_S01_Web_Checking_Landingpage() {
+		TM_CPT_S01_Web_Checking_Landingpage();
 	}
 
 	@AfterMethod(enabled = false)
@@ -39,7 +39,7 @@ public class CPT extends CommonMethods {
 
 	/***************************** Test Methods *******************/
 
-	void TM_CPT_TC01_Web_Checking_Landingpage() {
+	void TM_CPT_S01_Web_Checking_Landingpage() {
 		launchBrowserCPT(Browser, Url);
 		takeScreenshotAtSikuli();
 		

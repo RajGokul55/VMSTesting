@@ -30,23 +30,23 @@ public class BAS extends CommonMethods {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void BAS_TC01_Web_SUR_Prod_Checking_Landingpage() {
-		TM_BAS_TC01_Web_SUR_Prod_Checking_Landingpage();
+	public void BAS_S01_Web_SUR_Prod_Checking_Landingpage() {
+		TM_BAS_S01_Web_SUR_Prod_Checking_Landingpage();
 	}
 
 	@Test(priority = 2, enabled = true)
-	public void BAS_TC02_Web_SUR_Val_Checking_Landingpage() {
-		TM_BAS_TC02_Web_SUR_Val_Checking_Landingpage();
+	public void BAS_S02_Web_SUR_Val_Checking_Landingpage() {
+		TM_BAS_S02_Web_SUR_Val_Checking_Landingpage();
 	}
 
 	@Test(priority = 3, enabled = true)
-	public void BAS_TC03_Web_CDAP_PROD_Checking_Landingpage() {
-		TM_BAS_TC03_Web_CDAP_PROD_Checking_Landingpage();
+	public void BAS_S03_Web_CDAP_PROD_Checking_Landingpage() {
+		TM_BAS_S03_Web_CDAP_PROD_Checking_Landingpage();
 	}
 
 	@Test(priority = 4, enabled = true)
-	public void BAS_TC04_Web_CDAP_VAL_Checking_Landingpage() {
-		TM_BAS_TC04_Web_CDAP_VAL_Checking_Landingpage();
+	public void BAS_S04_Web_CDAP_VAL_Checking_Landingpage() {
+		TM_BAS_S04_Web_CDAP_VAL_Checking_Landingpage();
 	}
 
 	@AfterMethod(enabled = true)
@@ -67,7 +67,7 @@ public class BAS extends CommonMethods {
 
 
 
-	void TM_BAS_TC01_Web_SUR_Prod_Checking_Landingpage() {
+	void TM_BAS_S01_Web_SUR_Prod_Checking_Landingpage() {
 		launchBrowser(Browser, ProdUrl1);
 
 		WebElement B3P_head = createWebElementBy(head_B3P);
@@ -76,7 +76,7 @@ public class BAS extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_BAS_TC02_Web_SUR_Val_Checking_Landingpage() {
+	void TM_BAS_S02_Web_SUR_Val_Checking_Landingpage() {
 		launchBrowser(Browser, ValUrl1);
 
 		WebElement B3P_head = createWebElementBy(head_B3P);
@@ -85,7 +85,7 @@ public class BAS extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_BAS_TC03_Web_CDAP_PROD_Checking_Landingpage() {
+	void TM_BAS_S03_Web_CDAP_PROD_Checking_Landingpage() {
 		launchBrowser(Browser, ProdUrl2);
 
 		WebElement lbl_Unauthorized = createWebElementBy(UnAuthorized);
@@ -94,7 +94,7 @@ public class BAS extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	void TM_BAS_TC04_Web_CDAP_VAL_Checking_Landingpage() {
+	void TM_BAS_S04_Web_CDAP_VAL_Checking_Landingpage() {
 		launchBrowser(Browser, ValUrl2);
 
 		WebElement lbl_Unauthorized = createWebElementBy(UnAuthorized);

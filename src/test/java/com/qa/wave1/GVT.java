@@ -2,11 +2,7 @@ package com.qa.wave1;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-
-import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -15,7 +11,7 @@ import org.testng.Assert;
 public class GVT extends CommonMethods{
 
 	/***************************** Test Data*******************/
-	final String Browser= "Chrome";
+	final String Browser= "IE";
 	final String Url_dev1= "http://devgvt.gilead.com";
 	final String Url_dev2= "http://dev.gvtstat.gilead.com/SplusServer/api/v8/administration/ExtendedServerInfo";
 	final String Url_test1= "http://app.spotfire.gilead.com";	
@@ -24,7 +20,7 @@ public class GVT extends CommonMethods{
 	final String Url_val2= "http://val.gvtstat.gilead.com/SplusServer/api/v8/administration/ExtendedServerInfo";
 	final String Url_prd1= "http://gvt.gilead.com";	
 	final String Url_prd2= "http://gvtstat.gilead.com/SplusServer/api/v8/administration/ExtendedServerInfo";
-	final String Url_SMPOC1= "http://fccaappsup01.na.gilead.com/";	
+	final String Url_SMPOC1= "http://fccaappsup01.na.gilead.com";	
 	final String Url_SMPOC2= "http://fccaappsup01:8080/SplusServer/api/v8/administration/ExtendedServerInfo";
 
 	/***************************** Test Cases *******************/
@@ -92,9 +88,10 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_01_Web_ValidateSpotfireServer() {
 
-		launchBrowser(Browser, Url_dev1);
+		launchBrowser(Browser, Url_SMPOC1);
 		wait(2);
 		String pageTitle = driver.getTitle();
+		takeScreenshotAtEndOfTest();
 		Assert.assertEquals(pageTitle, "Library – TIBCO Spotfire", "URL is not correct");
 		/*Test Env:*/ 
 		//Assert.assertEquals(pageTitle, "New analysis – TIBCO Spotfire", "URL is not correct");
@@ -102,16 +99,17 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_02_Web_ValidateReportAccessiblity() {
 
-		launchBrowser(Browser, Url_dev1);
+		launchBrowser(Browser, Url_SMPOC1);
 		wait(2);
 		
 		/*Test Env:*/ 
 		//WebElement Library_menu = createWebElementBy(menu_Library);
 		//Library_menu.click();
 		
-		WebElement View_menu = createWebElementBy(menu_View);
-		View_menu.click();
+		//WebElement View_menu = createWebElementBy(menu_View);
+		//View_menu.click();
 
+		wait(2);
 		WebElement IT_menu = createWebElementBy(menu_It);
 		IT_menu.click();
 		
@@ -121,27 +119,26 @@ public class GVT extends CommonMethods{
 		WebElement VMS_menu = createWebElementBy(menu_VMS);
 		VMS_menu.click();
 		
-		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday);
+		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday_test_POC);
 		DXPUsage_menu.click();
 		
 		wait(3);
 		
 		WebElement Report_Title = createWebElementBy(title_Report);
 		String report = Report_Title.getText();
+		takeScreenshotAtEndOfTest();
 		
 		Assert.assertEquals(report, "DXP Usage", "Test case is failed");
 	}
 
 	void TM_GVT_03_Web_ValidateTERRServer() {
 
-		launchBrowser(Browser, Url_dev2);
+		launchBrowser(Browser, Url_SMPOC2);
 		wait(2);
-		String currentUrl = driver.getCurrentUrl();
-		//Assert.assertEquals(currentUrl, "http://dev.gvtstat.gilead.com/SplusServer/api/v8/administration/ExtendedServerInfo", "URL is not correct");
-		
 		WebElement Details_menu = createWebElementBy(menu_Details);
 		String a = Details_menu.getText();
 		System.out.println(a);
+		takeScreenshotAtEndOfTest();
 		String [] r =  a.split("=");
 		String last = (r[1].split("s"))[0];
 		String actual =r[0]+"="+last;

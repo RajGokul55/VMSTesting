@@ -9,11 +9,6 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane.MoveAction;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,13 +17,15 @@ public class Gvault extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://sb-gilead-qualitydocs.veevavault.com";
+	final String Url= "https://val-gilead.veevavault.com";
 	//final String Url_Dev= "https://sb-gilead-qualitydocs.veevavault.com";
-	//final String Url_Test= "https://sb-gilead-it.veevavault.com"
-	//final String Url_Val= "https://val-gilead.veevavault.com"
-	//final String Url_Val= "https://val-gilead.com"
+	//final String Url_Test= "https://sb-gilead-it.veevavault.com";
+	//final String Url_Val= "https://val-gilead.veevavault.com";
+	//final String Url_pre= "https://login.veevavault.com/auth/login"; 
 	
 	final String Username ="psonawane@sb-gilead.com";
+	final String Username_val ="psonawane@val-gilead.com";
+	final String Username_pre ="psonawane@gvault.gileadpre.com";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -48,12 +45,12 @@ public class Gvault extends CommonMethods{
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority=0, enabled=true, retryAnalyzer = Retry.class)
+	@Test(priority=0, enabled=true)
 	public void Gvault_TC03_Web_Create_Discrepancy(){
 		TM_Gvault_TC03_Web_Create_Discrepancy();
 	}
 
-	@Test(priority=1, enabled=true, retryAnalyzer = Retry.class)
+	@Test(priority=1, enabled=true)
 	public void Gvault_TC04_Web_Edit_Discrepancy(){
 		TM_Gvault_TC04_Web_Edit_Discrepancy();
 	}
@@ -99,10 +96,13 @@ public class Gvault extends CommonMethods{
 	By btn_Save = By.xpath("//*[@type='button' and contains(text(), 'Save')]");
 	By btn_Expand = By.cssSelector(".vv_button_text.icon-plus");
 	By btn_Edit = By.cssSelector("button#edit-button-1");
-	By text_DiscrepancyDetails = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test')]");
+	By text_DiscrepancyDetails_added = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test_Added')]");
+	By text_DiscrepancyDetails_edited = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test_Edited')]");
 	By btn_Delete = By.xpath("//*[@type='button' and contains(text(), 'Delete')]");
 	By btn_DeletePopUp = By.cssSelector("button#delete");
 	By text_MyVault = By.cssSelector(".Seleniumn-View-Title.viewTitle");
+	By menu_Status = By.xpath("//*[@title='Status']");
+	By chk_InFinalApproval = By.xpath("//*[@id='status~en_facet_In Final Approval']");
 	
 	/*****************************Test Case Methods 
 	 * @throws IOException *******************/
@@ -117,7 +117,7 @@ public class Gvault extends CommonMethods{
 		Add_menu.click();
 		
 		WebElement Date_ipt= createWebElementBy(ipt_Date);
-		Date_ipt.sendKeys("04/20/2020");
+		Date_ipt.sendKeys("06/20/2020");
 		
 		WebElement DiscepancyDetails_ipt= createWebElementBy(ipt_DiscepancyDetails);
 		DiscepancyDetails_ipt.sendKeys("Test_Added");
@@ -125,10 +125,11 @@ public class Gvault extends CommonMethods{
 		WebElement Save_btn = createWebElementBy(btn_Save);
 		Save_btn.click();
 		
-		WebElement DiscrepancyDetails_text = createWebElementBy(text_DiscrepancyDetails);
+		WebElement DiscrepancyDetails_text = createWebElementBy(text_DiscrepancyDetails_added);
 		String DDetails = DiscrepancyDetails_text.getText();
 		
 		wait(2);
+		takeScreenshotAtEndOfTest();
 		Assert.assertEquals(DDetails, "Test_Added", "Discrepancy not added successfully");
 		
 	}
@@ -152,10 +153,11 @@ public class Gvault extends CommonMethods{
 		WebElement Save_btn = createWebElementBy(btn_Save);
 		Save_btn.click();
 		
-		WebElement DiscrepancyDetails_text = createWebElementBy(text_DiscrepancyDetails);
+		WebElement DiscrepancyDetails_text = createWebElementBy(text_DiscrepancyDetails_edited);
 		String DDetails = DiscrepancyDetails_text.getText();
 		
 		wait(2);
+		takeScreenshotAtEndOfTest();
 		Assert.assertEquals(DDetails, "Test_Edited", "Discrepancy not added successfully");
 		
 		WebElement Delete_btn = createWebElementBy(btn_Delete);
@@ -181,7 +183,7 @@ public class Gvault extends CommonMethods{
 
 	void Gvault_CommonFlow() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
-		Username_Ipt.sendKeys(Username);
+		Username_Ipt.sendKeys(Username_val);
 
 		WebElement Continue_Btn = createWebElementBy(btn_Continue);
 		Continue_Btn.click();
@@ -199,6 +201,14 @@ public class Gvault extends CommonMethods{
 		WebElement AllDucuments_menu = createWebElementBy(menu_AllDucuments);
 		AllDucuments_menu.click();
 
+		wait(2);
+		WebElement Status_menu = createWebElementBy(menu_Status);
+		Status_menu.click();
+		
+		wait(2);
+		WebElement InFinalApproval_chk = createWebElementBy(chk_InFinalApproval);
+		InFinalApproval_chk.click();
+		
 		wait(2);
 
 		WebElement InFinalApproval_Doc = createWebElementBy(menu_InFinalApproval_Doc);

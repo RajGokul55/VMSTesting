@@ -21,12 +21,12 @@ public class GDSS extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
 	//Prod Url
-	final String Url = "https://admin.docusign.com";
-	
+	//final String Url = "https://admin.docusign.com";
+
 	//Dev Url
-	/*final String Url = "https://account-d.docusign.com";*/
-	final String FirstLevelUsername = "anukriti.mamgain@gilead.com";
-	final String SecondLevelUsername = "amamgain";
+	final String Url = "https://account-d.docusign.com";
+	final String FirstLevelUsername = "sweety.miranda@gilead.com";
+	final String SecondLevelUsername = "smiranda";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************/
@@ -43,7 +43,7 @@ public class GDSS extends CommonMethods {
 
 	@BeforeSuite(enabled = true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("h0aRhETtZxVaRkcB/MpzCQ==");
+		DecrptPassword = decrypt("S6NKlMj2JoUgGxohxLLjfg==");
 	}
 
 	@BeforeTest
@@ -57,12 +57,12 @@ public class GDSS extends CommonMethods {
 		TM_GDSS_S01_Web_Application_Launch_Verfication();
 	}
 
-	
-	 @Test(priority = 1, enabled = true) public void
-	 GDSS_S02_Web_Upload_Sign_Document() throws Exception {
-	 TM_GDSS_S02_Web_Upload_Sign_Document();
-	 }
-	 
+
+	@Test(priority = 1, enabled = true) 
+	public void GDSS_S02_Web_Upload_Sign_Document() throws Exception {
+		TM_GDSS_S02_Web_Upload_Sign_Document();
+	}
+
 
 	@AfterTest
 	public void afterTest() {
@@ -96,14 +96,14 @@ public class GDSS extends CommonMethods {
 	By btn_NoThanks = By.xpath(".//[contains(text(), 'No Thanks']");
 
 	String Status = "Completed";
-	String sPageTitle = "DocuSign";
+	String sPageTitle = "Home | DocuSign";
 
 	/***************************** Test Case Methods *******************/
 
 	void TM_GDSS_S01_Web_Application_Launch_Verfication() {
-		Assert.assertEquals(TM_GDSS_GetPageTitle(), sPageTitle);
 		wait(5);
 		takeScreenshotAtEndOfTest();
+		Assert.assertEquals(TM_GDSS_GetPageTitle(), sPageTitle);
 	}
 
 	void TM_GDSS_S02_Web_Upload_Sign_Document() throws Exception {

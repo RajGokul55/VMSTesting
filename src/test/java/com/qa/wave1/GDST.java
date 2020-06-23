@@ -24,7 +24,7 @@ public class GDST extends CommonMethods {
 	 * Dev url
 	 * final String Url = "https://sjdstappdevn01:8443/login";
 	 */
-	final String Username = "Anukriti.Mamgain";
+	final String Username = "Bhumika.Dineshjain";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************/
@@ -41,7 +41,7 @@ public class GDST extends CommonMethods {
 
 	@BeforeTest(enabled = true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("h0aRhETtZxVaRkcB/MpzCQ==");
+		DecrptPassword = decrypt("bwf9YU4lPwbQsROyCP7V7Q==");
 	}
 
 	@BeforeTest
@@ -116,7 +116,7 @@ public class GDST extends CommonMethods {
 	By opt_Email = By.xpath("//a[contains(text(), 'View')]/../ul[1]/li[2]");
 	By drp_View = By.xpath("//table/tbody/tr[1]/td[2]/div/div/a[2]");
 	By txt_SuccessMsg = By.xpath("//div[contains(text(), 'Email was')]");
-	String sEmail_id = "anukriti.mamgain@gilead.com";
+	String sEmail_id = "pravin.sonawane@gilead.com";
 	String sSuccessMsg = "Email was sent successfully.";
 	String sPageTitle = "Blancco Management Console";
 	String sErasureStatus = "Successful";

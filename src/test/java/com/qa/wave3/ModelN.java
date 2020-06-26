@@ -49,32 +49,32 @@ public class ModelN extends CommonMethods {
 		login();	
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void MN_S01_Web_Validate_Homepage() {
 		TM_S01_Web_Validate_Homepage();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void MN_S02_Web_Validate_Customer_Tab() {
 		TM_S02_Web_Validate_Customer_Tab();
 	}
 
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void MN_S03_Web_Validate_Products_Tab() throws InterruptedException {
 		TM_S03_Web_Validate_Products_Tab();
 	}
 
-	@Test(priority=4, enabled=false)
+	@Test(priority=4, enabled=true)
 	public void MN_S04_Web_Validate_Pricing_Tab() throws InterruptedException{
 		TM_S04_Web_Validate_Pricing_Tab();
 	}
 
-	@Test(priority=5, enabled=false)
+	@Test(priority=5, enabled=true)
 	public void MN_S05_Web_Validate_Contracts_Tab() throws InterruptedException{
 		TM_S05_Web_Validate_Contracts_Tab();
 	}
 
-	@Test(priority=6, enabled=false)
+	@Test(priority=6, enabled=true)
 	public void MN_S06_Web_Validate_Compliance_Tab() throws InterruptedException{
 		TM_S06_Web_Validate_Compliance_Tab();
 	}
@@ -365,7 +365,8 @@ public class ModelN extends CommonMethods {
 
 		WebElement LogOut_Btn = createWebElementBy(btn_logout);
 		LogOut_Btn.click();
-		wait(2);
+		wait(1);
+		driver.close();
 
 	}
 

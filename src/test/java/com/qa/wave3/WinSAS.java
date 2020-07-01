@@ -50,12 +50,40 @@ public class WinSAS extends CommonMethods {
 		TM_WinSAS_S02_Windows_Web_Login_Verfication();
 	}
 
-	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = true) 
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false) 
 	public void WinSAS_S03_Windows_Web_Adobe_Verfication() {
 		TM_WinSAS_S03_Windows_Web_Adobe_Verfication();
 	}
-
-
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = true)
+	public void WinSAS_S04_Windows_Web_MS_Word_Verfication() {
+		TM_WinSAS_S04_Windows_Web_MS_Word_Verfication();
+	}
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false)
+	public void WinSAS_S05_Windows_Web_MS_Excel_Verfication() {
+		TM_WinSAS_S05_Windows_Web_MS_Excel_Verfication();
+	}
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false)
+	public void WinSAS_S06_Windows_Web_MS_PowerPoint_Verfication() {
+		TM_WinSAS_S06_Windows_Web_MS_PowerPoint_Verfication();
+	}
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false)
+	public void WinSAS_S07_Windows_Web_SAS_9v4_Verfication() {
+		TM_WinSAS_S07_Windows_Web_SAS_9v4_Verfication();
+	}
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false)
+	public void WinSAS_S08_Windows_Web_SAS_Viewer_Verfication() {
+		TM_WinSAS_S08_Windows_Web_SAS_Viewer_Verfication();
+	}
+	
+	@Test(dependsOnMethods = {"WinSAS_S02_Windows_Web_Login_Verfication"}, enabled = false)
+	public void WinSAS_S09_Windows_Web_IE_Winsas_Verfication() {
+		TM_WinSAS_S09_Windows_Web_IE_Winsas_Verfication();
+	}
 	/***************************** Locators *******************/
 	// Example syntax:Css Selector:
 	// tagname[attribute1:'value1'][attribute2:'value2']
@@ -71,11 +99,11 @@ public class WinSAS extends CommonMethods {
 	By img_APPS = By.cssSelector("#allAppsBtn");
 	By img_Adobe = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
 	By img_IE_Winsas = By.xpath("//*[@class='storeapp-name' and contains(text(), 'IE-Winsas')]");
-	By img_Word = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
-	By img_Excel = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
-	By img_PowerPoint = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
-	By img_SAS9v4 = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
-	By img_SAS_Viewer = By.xpath("//*[@class='storeapp-name' and contains(text(), 'Adobe Acrobat DC')]");
+	By img_Word = By.xpath("//*[@class='storeapp-name' and contains(text(), 'MS Word')]");
+	By img_Excel = By.xpath("//*[@class='storeapp-name' and contains(text(), 'MS Excel')]");
+	By img_PowerPoint = By.xpath("//*[@class='storeapp-name' and contains(text(), 'MS PowerPoint')]");
+	By img_SAS9v4 = By.xpath("//*[@class='storeapp-name' and contains(text(), 'SAS 9v4')]");
+	By img_SAS_Viewer = By.xpath("//*[@class='storeapp-name' and contains(text(), 'SAS Universal Viewer')]");
 
 
 	String Actual_Title = "GADI2Dev Internal";
@@ -103,6 +131,30 @@ public class WinSAS extends CommonMethods {
 	void TM_WinSAS_S03_Windows_Web_Adobe_Verfication() {
 		createWebElementBy(img_APPS).click();
 		createWebElementBy(img_Adobe).click();
+	}
+	
+	void TM_WinSAS_S04_Windows_Web_MS_Word_Verfication() {
+		createWebElementBy(img_Word).click();
+	}
+	
+	void TM_WinSAS_S05_Windows_Web_MS_Excel_Verfication() {
+		createWebElementBy(img_Excel).click();
+	}
+	
+	void TM_WinSAS_S06_Windows_Web_MS_PowerPoint_Verfication() {
+		createWebElementBy(img_PowerPoint).click();
+	}
+	
+	void TM_WinSAS_S07_Windows_Web_SAS_9v4_Verfication() {
+		createWebElementBy(img_SAS9v4).click();
+	}
+	
+	void TM_WinSAS_S08_Windows_Web_SAS_Viewer_Verfication() {
+		createWebElementBy(img_SAS_Viewer).click();
+	}
+	
+	void TM_WinSAS_S09_Windows_Web_IE_Winsas_Verfication() {
+		createWebElementBy(img_IE_Winsas).click();
 	}
 
 }

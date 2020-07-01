@@ -29,22 +29,22 @@ public class GILDA2 extends CommonMethods {
 	final String Browser = "Chrome";
 
 	// EPR Test Environment URL
-	final String Url = "http://erptest.gilda.gilead.com/eclinical_enu/";
+	final String Url = "http://erptest.gilda.gilead.com/eclinical_sso/";
 
 	// Training Environment URL
-	final String Url1 = "http://train.gilda.gilead.com/eclinical_enu/";
+	final String Url1 = "http://train.gilda.gilead.com/eclinical_sso/";
 
 	// UAT Environment URL
-	final String Url2 = "http://uat.gilda.gilead.com/eclinical_enu/";
+	final String Url2 = "http://uat.gilda.gilead.com/eclinical_sso/";
 
 	// Dev Environment URL
-	final String Url3 = "http://dev.gilda.gilead.com/eclinical_enu/";
+	final String Url3 = "http://dev.gilda.gilead.com/eclinical_sso/";
 
 	// Val Environment URL
-	final String Url4 = "http://val.gilda.gilead.com/eclinical_enu/";
+	final String Url4 = "http://val.gilda.gilead.com/eclinical_sso/";
 
 	// Prod Environment URL
-	final String Url5 = "https://gilda.gilead.com/eclinical_enu/";
+	final String Url5 = "https://gilda.gilead.com/eclinical_sso/";
 
 	final String username = "arun.raj5";
 	String EncryptPassword = "cHhqigjkE9lagBcklOFbJw==";
@@ -65,21 +65,23 @@ public class GILDA2 extends CommonMethods {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		launchBrowser(Browser, Url);
+		launchBrowser(Browser, Url3);
 	}
 
-	@Test(priority = 0, enabled = true)
-	public void GILDA2_S01_Web_Verify_LogInScreen() {
-		TM_GILDA2_01_Verify_LogInScreen();
-
-	}
-	
 	/*
-	 * @Test(priority = 0, enabled = true) public void GILDA2_S01_Web_Verifyscreen()
-	 * { TM_GILDA2_S01_Web_VerifyGILDAScreen();
+	 * @Test(priority = 0, enabled = true) public void
+	 * GILDA2_S01_Web_Verify_LogInScreen() { TM_GILDA2_01_Verify_LogInScreen();
 	 * 
 	 * }
 	 */
+	
+	  @Test(priority = 0, enabled = true)
+	  public void GILDA2_S01_Web_Verifyscreen()
+	  { 
+		  TM_GILDA2_S01_Web_VerifyGILDAScreen();
+	  
+	  }
+	 
 	@AfterMethod
 	public void afterMethod() {
 		driver.quit();
@@ -107,11 +109,11 @@ public class GILDA2 extends CommonMethods {
 	By txt_Accounts = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
 	By btn_Activities = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'activities')]");
 	By txt_Activities = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
-	By btn_Proposals = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
+	By btn_Proposals = By.xpath("//*[@class='ui-tabs-anchor']/span[@class = 'siebui-icon-screentab_icon']");
 	By btn_Proposals1 = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
 	By txt_Proposals = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
 	By btn_Protocols = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
-	By txt_Protocols = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
+	By txt_Protocols = By.xpath("//*[@id='s_sctrl_tabView']");
 	By btn_SiteManagement = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
 	By txt_SiteManagement = By.xpath("//*[@id='s_sctrl_tabView']/ul/li[1]//*[@class='ui-tabs-anchor']");
 	By btn_DrugLots = By.xpath("//*[@class='ui-tabs-anchor']/span[contains(@class, 'home_icon')]");
@@ -119,172 +121,61 @@ public class GILDA2 extends CommonMethods {
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
-
-	public void TM_GILDA2_01_Verify_LogInScreen() {
-
-		wait(2);
-		WebElement Logo = createWebElementBy(logo);
-		IsDisplayed_IsEnabled(Logo);
-
-		WebElement UsernameFld = createWebElementBy(field_Username);
-		IsDisplayed_IsEnabled(UsernameFld);
-
-		WebElement PasswordFld = createWebElementBy(field_Password);
-		IsDisplayed_IsEnabled(PasswordFld);
-
-		WebElement LoginBtn = createWebElementBy(login_button);
-		IsDisplayed_IsEnabled(LoginBtn);
-		
-		WebElement ServerName = createWebElementBy(server_Name);
-		IsDisplayed_IsEnabled(ServerName);
-		takeScreenshotAtEndOfTest();
-
-	}
-	
-}
-	
 	/*
+	 * public void TM_GILDA2_01_Verify_LogInScreen() {
+	 * 
+	 * wait(2); WebElement Logo = createWebElementBy(logo);
+	 * IsDisplayed_IsEnabled(Logo);
+	 * 
+	 * WebElement UsernameFld = createWebElementBy(field_Username);
+	 * IsDisplayed_IsEnabled(UsernameFld);
+	 * 
+	 * WebElement PasswordFld = createWebElementBy(field_Password);
+	 * IsDisplayed_IsEnabled(PasswordFld);
+	 * 
+	 * WebElement LoginBtn = createWebElementBy(login_button);
+	 * IsDisplayed_IsEnabled(LoginBtn);
+	 * 
+	 * WebElement ServerName = createWebElementBy(server_Name);
+	 * IsDisplayed_IsEnabled(ServerName); takeScreenshotAtEndOfTest();
+	 * 
+	 * }
+	 */
+
+	
+	
 	
 	public void TM_GILDA2_S01_Web_VerifyGILDAScreen() {
 
 		verifyHomeScreen();
-		verifyDashboard();
-		verifyCluster();
-		verifyvDS();
-		verifyESXi();
-		// logout();
+		
 	}
 
 	public void verifyHomeScreen() {
 		// Main heading
 		WebElement MainLogo = createWebElementBy(heading_Logo);
 		IsDisplayed_IsEnabled(MainLogo);
-		takeScreenshotAtEndOfTest();
+		
 		WebElement Home = createWebElementBy(btn_Home);
-		Home.click();
+		IsDisplayed_IsEnabled(Home);
+		
+		WebElement Contacts = createWebElementBy(btn_Contacts);
+		IsDisplayed_IsEnabled(Contacts);
+		
+		WebElement Accounts = createWebElementBy(btn_Accounts);
+		IsDisplayed_IsEnabled(Accounts);
+		
+		WebElement Activities = createWebElementBy(btn_Activities);
+		IsDisplayed_IsEnabled(Activities);
+		
+		WebElement Proposals = createWebElementBy(btn_Proposals);
+		IsDisplayed_IsEnabled(Proposals);
+		
+		WebElement TextProtocols = createWebElementBy(txt_Protocols);
+		IsDisplayed_IsEnabled(TextProtocols);
+		
 		takeScreenshotAtEndOfTest();
 	}
+	
 
-	public void verifyDashboard() {
-		// Main heading
-		WebElement MainHeading = createWebElementBy(heading_MainPage);
-		IsDisplayed_IsEnabled(MainHeading);
-		takeScreenshotAtEndOfTest();
-		// Dashboard screen
-		WebElement Dashboard = createWebElementBy(btn_Dashboard);
-		Dashboard.click();
-		wait(2);
-		takeScreenshotAtEndOfTest();
-
-		// Switch to frame
-
-		int size = driver.findElements(By.tagName("iframe")).size();
-		System.out.println("size = " + size);
-		wait(10);
-
-		WebElement iframeSwitch = driver.findElement(By.xpath("//iframe[contains(@id,'textDisplay')]"));
-		driver.switchTo().frame(iframeSwitch);
-		System.out.println("Inside frame");
-
-		WebElement DashboardText = createWebElementBy(txt_inDashboard);
-		IsDisplayed_IsEnabled(DashboardText);
-		driver.switchTo().defaultContent();
-		System.out.println("Outside frame");
-		takeScreenshotAtEndOfTest();
 	}
-
-	public void verifyCluster() {
-		wait(2);
-		WebElement Cluster = createWebElementBy(btn_Cluster);
-		Cluster.click();
-		wait(3);
-
-		WebElement ClusterText = createWebElementBy(txt_inCluster);
-		IsDisplayed_IsEnabled(ClusterText);
-		System.out.println("Cluster screen & text is displayed");
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void verifyCluster_PROD() {
-		wait(2);
-		WebElement Cluster = createWebElementBy(btn_ClusterPROD);
-		Cluster.click();
-		wait(3);
-
-		WebElement ClusterText = createWebElementBy(txt_inCluster);
-		IsDisplayed_IsEnabled(ClusterText);
-		System.out.println("PROD Cluster screen & text is displayed");
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void verifyESXi() {
-
-		WebElement ESXi = createWebElementBy(btn_ESXi);
-		ESXi.click();
-		wait(3);
-
-		WebElement ESXiText = createWebElementBy(txt_ESXi);
-		IsDisplayed_IsEnabled(ESXiText);
-		System.out.println("ESXi screen & text is displayed");
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void verifyESXi_PROD() {
-
-		WebElement ESXi = createWebElementBy(btn_ESXi_PROD);
-		ESXi.click();
-		wait(3);
-
-		WebElement ESXiText = createWebElementBy(txt_ESXi);
-		IsDisplayed_IsEnabled(ESXiText);
-		System.out.println("PROD ESXi screen & text is displayed");
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void verifyvDS() {
-
-		WebElement vDS = createWebElementBy(btn_vDS);
-		vDS.click();
-		wait(2);
-
-		WebElement vDSText = createWebElementBy(txt_invDS);
-		IsDisplayed_IsEnabled(vDSText);
-		System.out.println("vDS screen & text is displayed");
-
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void verifyvDS_PROD() {
-
-		WebElement vDS = createWebElementBy(btn_vDS_PROD);
-		vDS.click();
-		wait(2);
-
-		WebElement vDSText = createWebElementBy(txt_invDS);
-		IsDisplayed_IsEnabled(vDSText);
-		System.out.println("PROD vDS screen & text is displayed");
-
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void logout() {
-
-		WebElement clickUser = createWebElementBy(click_User);
-		clickUser.click();
-		System.out.println("clicked User account");
-		wait(5);
-		WebElement clickLogout = createWebElementBy(btn_Logout);
-		clickLogout.click();
-		// waitForPageLoaded();
-		wait(3);
-		System.out.println("clicked logout");
-		// boolean PopupText = isElementExit(popup_Text);
-		// System.out.println("Popup text is displayed = " +PopupText);
-
-		// WebElement clickOk = createWebElementBy(btn_Ok);
-		takeScreenshotAtEndOfTest();
-		// clickOk.click();
-	}
-
-}
-	*/

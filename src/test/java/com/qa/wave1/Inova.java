@@ -20,6 +20,7 @@ public class Inova extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://sjinvappdevn01/inova-partner/ctx/auth/home";
+	//final String Url= "https://verticali.gilead.com/inova-partner/ctx/auth/home.do";
 	final String Username ="nnereddula";
 	private String DecrptPassword;
 

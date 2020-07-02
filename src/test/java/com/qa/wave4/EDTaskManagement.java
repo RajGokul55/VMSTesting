@@ -1,13 +1,9 @@
 package com.qa.wave4;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.qa.demo.base.CommonMethods;
@@ -16,13 +12,12 @@ public class EDTaskManagement extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	final String Url2 = "http://taskedmonton/"; //PROD (Change variable name to Url2 when testing for DEV env)
+	final String Url1 = "http://taskedmonton/"; //PROD (Change variable name to Url2 when testing for DEV env)
 	final String URL1 = "http://sjedtmappsupn01/plantsite/"; //PROD (Do not change variable name)
 	final String Url = "http://ededtmsqldevn01/jira/"; //DEV (Change variable name to Url when testinh for DEV env)
 	final String Username = "sgupta27";
 	private String DecrptPassword;
 	String EncryptPassword = "7bkbl6+1a3eQscQR5BmjQA==";
-	private String title;
 	private String text;
 	
 	/***************************** Test Cases *******************/
@@ -53,7 +48,7 @@ public class EDTaskManagement extends CommonMethods {
 	}
 
 	/* PROD (enabled=false when testing for Dev env)*/
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded() {
 		TM_EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded();
 	}
@@ -122,7 +117,41 @@ public class EDTaskManagement extends CommonMethods {
 	}
 		
 		
-
+/*PROD*/
+	/*
+	 * public void TM_EDTaskManagement_S02_Web_Check_Page_Loaded_After_Login() {
+	 * 
+	 * launchBrowser(Browser, Url); loginEDTaskManagement();
+	 * 
+	 * waitForPageLoaded();
+	 * 
+	 * WebElement Dashboards_Txt = createWebElementBy(txt_Dashboards); text =
+	 * Dashboards_Txt.getText(); Assert.assertTrue(text.contains("Dashboards"));
+	 * 
+	 * WebElement Projects_Txt = createWebElementBy(txt_Projects); text =
+	 * Projects_Txt.getText(); Assert.assertTrue(text.contains("Projects"));
+	 * 
+	 * WebElement Issues_Txt = createWebElementBy(txt_Issues); text =
+	 * Issues_Txt.getText(); Assert.assertTrue(text.contains("Issues"));
+	 * 
+	 * WebElement Boards_Txt = createWebElementBy(txt_Boards); text =
+	 * Boards_Txt.getText(); Assert.assertTrue(text.contains("Boards"));
+	 * 
+	 * WebElement Structure_Txt = createWebElementBy(txt_Structure); text =
+	 * Structure_Txt.getText(); Assert.assertTrue(text.contains("Structure"));
+	 * 
+	 * WebElement Charts_Txt = createWebElementBy(txt_Charts); text =
+	 * Charts_Txt.getText(); Assert.assertTrue(text.contains("Charts"));
+	 * 
+	 * WebElement Create_Txt = createWebElementBy(txt_Create); text =
+	 * Create_Txt.getText(); Assert.assertTrue(text.contains("Create"));
+	 * 
+	 * takeScreenshotAtEndOfTest();
+	 * 
+	 * }
+	 */
+	
+	/*DEV*/
 	public void TM_EDTaskManagement_S02_Web_Check_Page_Loaded_After_Login() {
 
 		launchBrowser(Browser, Url);
@@ -145,11 +174,7 @@ public class EDTaskManagement extends CommonMethods {
 		WebElement Boards_Txt = createWebElementBy(txt_Boards);
 		text = Boards_Txt.getText();
 		Assert.assertTrue(text.contains("Boards"));
-		
-		WebElement Structure_Txt = createWebElementBy(txt_Structure);
-		text = Structure_Txt.getText();
-		Assert.assertTrue(text.contains("Structure"));
-		
+
 		WebElement Charts_Txt = createWebElementBy(txt_Charts);
 		text = Charts_Txt.getText();
 		Assert.assertTrue(text.contains("Charts"));
@@ -161,7 +186,6 @@ public class EDTaskManagement extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	
 	}
-
 	public void TM_EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded() {
 
 		launchBrowser(Browser, URL1);

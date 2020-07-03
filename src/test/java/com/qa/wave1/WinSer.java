@@ -354,7 +354,7 @@ public class WinSer extends CommonMethods {
 		String pscmds = null;
 		String resout = path + "Output.txt";
 		String[] values = services.split(",");
-		ArrayList<String> list = new ArrayList<>(Arrays.asList(values));
+		ArrayList<String> list = null; // = new ArrayList<>(Arrays.asList(values));
 		int count = list.size();
 		String service1 = null;
 		String service2 = null;

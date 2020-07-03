@@ -5,7 +5,13 @@
 	</listeners>
 	<test name="Automation Test">
 		<classes>
-			<class name="com.qa.wave1.GMFA"></class>
+			<class name="com.qa.wave4.CPT"></class>
+			<class name="com.qa.wave4.B3P"></class>
+			<class name="com.qa.wave4.BAS"></class>
+			<class name="com.qa.wave4.BSKCS"></class>
+			<class name="com.qa.wave4.BDRP"></class>
+			<class name="com.qa.wave4.DART"></class>
+			<class name="com.qa.wave4.Prolo"></class>
 		</classes>
 	</test>
 </suite>

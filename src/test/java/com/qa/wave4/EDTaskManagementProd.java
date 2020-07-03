@@ -14,9 +14,9 @@ public class EDTaskManagementProd extends CommonMethods {
 	final String Browser = "Chrome";
 	final String Url = "http://taskedmonton/"; //PROD 
 	final String URL1 = "http://sjedtmappsupn01/plantsite/"; //PROD 
-	final String Username = "sgupta27";
+	final String Username = "VMS_AUTOMATION";
 	private String DecrptPassword;
-	String EncryptPassword = "7bkbl6+1a3eQscQR5BmjQA==";
+	String EncryptPassword = "P+5G7eEgf41Aei1xxBoi4QO+HS35SFKWnQLTASkufNE=";
 	private String text;
 	
 	/***************************** Test Cases *******************/

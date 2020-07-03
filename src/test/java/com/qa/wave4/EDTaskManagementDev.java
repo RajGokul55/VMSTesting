@@ -13,10 +13,10 @@ public class EDTaskManagementDev extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
 
-	final String Url = "http://ededtmsqldevn01/jira/"; //DEV (Change variable name to Url when testinh for DEV env)
-	final String Username = "sgupta27";
+	final String Url = "http://ededtmsqldevn01/jira/"; //DEV 
+	final String Username = "VMS_AUTOMATION";
 	private String DecrptPassword;
-	String EncryptPassword = "7bkbl6+1a3eQscQR5BmjQA==";
+	String EncryptPassword = "P+5G7eEgf41Aei1xxBoi4QO+HS35SFKWnQLTASkufNE=";
 	private String text;
 	
 	/***************************** Test Cases *******************/

@@ -81,7 +81,7 @@ public class Fusion extends CommonMethods {
 		Pattern GADILV = new Pattern(path + "FU_GADILighterVersion.PNG");
 		try {
 			s.click(GADILV);
-			wait(20);
+			wait(10);
 
 			
 		} catch (FindFailed e) {
@@ -89,7 +89,7 @@ public class Fusion extends CommonMethods {
 			e.printStackTrace();
 		}
 
-		wait(20);
+		wait(10);
 		WebElement AllApps_lnk = createWebElementBy(lnk_AllApps);
 		AllApps_lnk.click();
 

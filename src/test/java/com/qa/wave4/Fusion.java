@@ -13,6 +13,7 @@ import org.sikuli.script.KeyModifier;
 import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Assert;
+import org.testng.Reporter;
 
 public class Fusion extends CommonMethods {
 
@@ -25,7 +26,7 @@ public class Fusion extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 
-	@BeforeMethod(enabled = false)
+	@BeforeMethod(enabled = true)
 	public void BeforeMethod() throws IOException {
 
 	}
@@ -104,6 +105,9 @@ public class Fusion extends CommonMethods {
 		Pattern SelectProject = new Pattern(path + "FU_SelectProject.PNG");
 		Pattern zzAdmin = new Pattern(path + "FU_zzAdmin.PNG");
 		Pattern TestFile = new Pattern(path + "FU_TestFile.PNG");
+		Pattern SMatrix = new Pattern(path + "FU_SMatrix.PNG");
+		Pattern Close = new Pattern(path + "FU_Close.PNG");
+		Pattern RBNo = new Pattern(path + "FU_RBNo.PNG");
 		try {
 			wait(20);
 
@@ -128,12 +132,19 @@ public class Fusion extends CommonMethods {
 			wait(10);
 			S.click(DesignReport);
 			wait(10);
+			s.exists(SMatrix);
+			Reporter.log("SMatrix is displayed successfully");
+			takeScreenshotAtSikuli();
+			S.click(Close);
+			wait(10);
+			S.click(RBNo);
+			wait(10);
 
 		} catch (FindFailed e) {
 			e.printStackTrace();
 		}
 		
-		takeScreenshotAtEndOfTest();
+		
 
 	}
 

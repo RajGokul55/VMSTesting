@@ -119,7 +119,7 @@ public class Fusion extends CommonMethods {
 			S.type(FusionPW, FusionPassword);
 			wait(10);
 			S.click(FusionOK);
-			wait(20);
+			wait(10);
 			S.click(License);
 			wait(20);
 

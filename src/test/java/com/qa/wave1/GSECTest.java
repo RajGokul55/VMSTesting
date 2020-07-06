@@ -128,14 +128,14 @@ public class GSECTest extends CommonMethods{
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);
 
-		wait(2);
+		waitForPageLoaded();
 
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
 		title = getTitle();
 		Assert.assertEquals(title, "Cb Protection - Dashboard");
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 
 	}
@@ -147,7 +147,7 @@ public class GSECTest extends CommonMethods{
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);
 
-		wait(2);
+		waitForPageLoaded();
 
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
@@ -158,7 +158,7 @@ public class GSECTest extends CommonMethods{
 		WebElement OER_Tab = createWebElementBy(tab_OER);
 		OER_Tab.click();
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		
 		WebElement OERSum_Tab = createWebElementBy(tab_OERSum);
@@ -180,7 +180,7 @@ public class GSECTest extends CommonMethods{
 		text = OERSumStatus4_Tbl.getText();
 		Assert.assertTrue(text.contains("OK"));
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 	
 		WebElement ResourcesOnSql_Tab = createWebElementBy(tab_ResourcesOnSql);
@@ -191,7 +191,7 @@ public class GSECTest extends CommonMethods{
 		IsDisplayed_IsEnabled(Icons.get(0));
 		IsDisplayed_IsEnabled(Icons.get(1));
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 
 		WebElement RAMForSql_Tab = createWebElementBy(tab_RAMForSql);
@@ -200,7 +200,7 @@ public class GSECTest extends CommonMethods{
 		
 		IsDisplayed_IsEnabled(Icon.get(2));
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		
 		WebElement RAMForSqlStatus1_Tbl = createWebElementBy(tbl_RAMForSqlStatus1);
@@ -213,7 +213,7 @@ public class GSECTest extends CommonMethods{
 		
 		scrollToBottomOfHTML();
 		
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 
 	}
@@ -225,7 +225,7 @@ public class GSECTest extends CommonMethods{
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(DecrptPassword);
 
-		wait(2);
+		waitForPageLoaded();
 
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
@@ -257,24 +257,25 @@ public class GSECTest extends CommonMethods{
 		num = Integer.parseInt(text);
 		Assert.assertTrue(num >= 1);
 
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 
 	}
 
 	public void TM_GSEC_S04_user_Login_using_wrong_credentials() throws IOException {
+		waitForPageLoaded();
+		
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 
 		WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 		Password_Ipt.sendKeys(PasswordNegative);
 
-		wait(2);
-
 		WebElement Login_Btn = createWebElementBy(btn_Login);
 		Login_Btn.click();
 		
-		wait(5);
+		waitForPageLoaded();
+		
 		takeScreenshotAtEndOfTest();
 		title = getTitle();
 		Assert.assertEquals(title, "Cb Protection - Login");

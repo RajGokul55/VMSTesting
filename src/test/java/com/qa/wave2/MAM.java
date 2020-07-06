@@ -83,6 +83,7 @@ public class MAM extends CommonMethods {
 	By btn_RejectSelectedRequests = By.xpath("//div[@class='L_row']//input[2]");
 	By lnk_StipendApproval = By.linkText("Stipend Approval");
 	By lnk_StipendSummary = By.linkText("Stipend Summary");
+	By slt_StipendSummary = By.xpath("//select[@id='ContentPlaceHolder1_dpd']");
 		
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
@@ -152,6 +153,10 @@ public class MAM extends CommonMethods {
 		waitForPageLoaded();
 		url = getURL();
 		Assert.assertTrue(url.contains("StipendSummary.aspx"));
+		
+		WebElement StipendSummary_Slt = createWebElementBy(slt_StipendSummary);
+	    IsDisplayed_IsEnabled(StipendSummary_Slt);
+		
 		takeScreenshotAtEndOfTest();
 		
 	}

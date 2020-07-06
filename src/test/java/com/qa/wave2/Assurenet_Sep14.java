@@ -79,31 +79,31 @@ import com.qa.demo.base.CommonMethods;
 			
 			WebElement Password_Ipt = createWebElementBy(ipt_Passwrod);
 			Password_Ipt.sendKeys(DecrptPassword);
-			wait(2);
+			waitForPageLoaded();
 
 			WebElement Login_Btn = createWebElementBy(btn_Login);
 			takeScreenshotAtEndOfTest();
 			Login_Btn.click();
-			wait(2);
+			waitForPageLoaded();
 		}
 			
 		 void verifyAdministratortab() {
 			WebElement Administratortab_Btn = createWebElementBy(btn_Administratortab);
 			takeScreenshotAtEndOfTest();
 			Administratortab_Btn.click();	
-			wait(2);
+			waitForPageLoaded();
 		}		
 		
 		 void verifyXMLIntefacecluster() {
 			WebElement interfacescheduler_Btn = createWebElementBy(btn_Interfacescheduler);
 			takeScreenshotAtEndOfTest();
 			interfacescheduler_Btn.click();
-			wait(2);
+			waitForPageLoaded();
 			
 			WebElement Logout_Btn = createWebElementBy(btn_Logout);
 			Logout_Btn.click();
 			takeScreenshotAtEndOfTest();
-			wait(2);
+			waitForPageLoaded();
 			
 			
 			

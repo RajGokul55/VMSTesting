@@ -82,7 +82,7 @@ import com.qa.demo.base.CommonMethods;
 
 				WebElement Login_Btn = createWebElementBy(btn_Login);
 				Login_Btn.click();
-				wait(2);
+				waitForPageLoaded();
 			takeScreenshotAtEndOfTest();
 			
 			WebElement home_img = createWebElementBy(img_home);

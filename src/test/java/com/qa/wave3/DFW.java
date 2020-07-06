@@ -18,7 +18,7 @@ import org.testng.Assert;
 public class DFW extends CommonMethods{
 
 	/***************************** Test Data*******************/
-	final String Browser= "IE";
+	final String Browser= "Chrome";
 	final String Url= "http://gsn:8080/start.html";
 	
 

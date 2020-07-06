@@ -52,9 +52,7 @@ public class DFW extends CommonMethods{
 			final String URL = "http://gsn:8080/start.html";
 			launchBrowser(Browser, URL);
 			waitForPageLoaded();
-			Thread.sleep(90000);
-			//Assert.assertEquals(driver.getTitle(), "Operations Manager Web Console",
-					//"Operations Manager Web Console not displayed");
+			Thread.sleep(50000);
 			takeScreenshotAtEndOfTest();
 
 		}

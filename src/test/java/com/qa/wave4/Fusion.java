@@ -141,7 +141,7 @@ public class Fusion extends CommonMethods {
 			Reporter.log("SMatrix is displayed successfully");
 			takeScreenshotAtSikuli();
 			S.click(Close);
-			wait(10);
+			wait(15);
 			S.click(RBNo);
 			wait(10);
 			WebElement dropdownicon_lnk = createWebElementBy(lnk_dropdownicon);

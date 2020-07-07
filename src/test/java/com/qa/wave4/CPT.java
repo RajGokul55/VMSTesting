@@ -29,7 +29,7 @@ public class CPT extends CommonMethods {
 		TM_CPT_S01_Web_Checking_Landingpage();
 	}
 
-	@AfterMethod(enabled = false)
+	@AfterMethod(enabled = true)
 	public void afterMethod() {
 		driver.quit();
 	}

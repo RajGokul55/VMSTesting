@@ -48,6 +48,8 @@ public class Fusion extends CommonMethods {
 	By btn_Login = By.xpath("//a[@id='nsg-x1-logon-button']");
 	By lnk_AllApps = By.xpath("//a[@id='allAppsBtn']//div[@class='view-sprite']");
 	By lnk_Fusion = By.xpath("//li[@class='storeapp available']//img[contains(@class,'storeapp-icon')]");
+	By lnk_dropdownicon = By.xpath("//div[@class='settings-button-arrow view-sprite']");
+	By lnk_Logout = By.xpath("//a[@id='menuLogOffBtn']");
 
 	/***************************** Test Case Methods *******************/
 
@@ -79,7 +81,7 @@ public class Fusion extends CommonMethods {
 		Pattern GADILV = new Pattern(path + "FU_GADILighterVersion.PNG");
 		try {
 			s.click(GADILV);
-			wait(20);
+			wait(10);
 
 			
 		} catch (FindFailed e) {
@@ -87,7 +89,7 @@ public class Fusion extends CommonMethods {
 			e.printStackTrace();
 		}
 
-		wait(20);
+		wait(10);
 		WebElement AllApps_lnk = createWebElementBy(lnk_AllApps);
 		AllApps_lnk.click();
 
@@ -108,6 +110,7 @@ public class Fusion extends CommonMethods {
 		Pattern SMatrix = new Pattern(path + "FU_SMatrix.PNG");
 		Pattern Close = new Pattern(path + "FU_Close.PNG");
 		Pattern RBNo = new Pattern(path + "FU_RBNo.PNG");
+		Pattern License = new Pattern(path + "FU_LicNo.PNG");
 		try {
 			wait(20);
 
@@ -116,7 +119,9 @@ public class Fusion extends CommonMethods {
 			S.type(FusionPW, FusionPassword);
 			wait(10);
 			S.click(FusionOK);
-			wait(30);
+			wait(10);
+			S.click(License);
+			wait(20);
 
 			S.click(ExistingFile);
 			wait(10);
@@ -136,9 +141,13 @@ public class Fusion extends CommonMethods {
 			Reporter.log("SMatrix is displayed successfully");
 			takeScreenshotAtSikuli();
 			S.click(Close);
-			wait(10);
+			wait(15);
 			S.click(RBNo);
 			wait(10);
+			WebElement dropdownicon_lnk = createWebElementBy(lnk_dropdownicon);
+			dropdownicon_lnk.click();
+			WebElement Logout_lnk = createWebElementBy(lnk_Logout);
+			Logout_lnk.click();
 
 		} catch (FindFailed e) {
 			e.printStackTrace();

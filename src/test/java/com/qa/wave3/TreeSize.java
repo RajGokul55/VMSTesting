@@ -1,4 +1,4 @@
-package com.qa.wave1;
+package com.qa.wave3;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
@@ -16,12 +16,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
-public class OCI extends CommonMethods {
+public class TreeSize extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	final String Url = "https://fcocinappprdn01/";
-
+	final String Url = "http://fconcapp02/";
+	//Automated by Arun
+	
 	/***************************** Test Cases *******************/
 	/*
 	 * Test case ‘Test Name’ naming convention:
@@ -41,11 +42,11 @@ public class OCI extends CommonMethods {
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void OCI_S01_Web_Verify_LogInScreen() {
-		TM_OCI_01_Verify_LogInScreen();
+	public void TreeSize_S01_Web_Verify_LogInScreen() {
+		TM_TreeSize_01_Verify_LogInScreen();
 
 	}
-
+		
 	@AfterMethod(enabled = true)
 	public void afterTest() {
 		driver.quit();
@@ -59,32 +60,24 @@ public class OCI extends CommonMethods {
 	 * boxes tbl_: Tables msg_: Messages
 	 */
 
-	By logo = By.xpath("//h3[contains(text(),'OnCommand Insight')]");
-	By field_Username = By.xpath("//*[@id='username']");
-	By field_Password = By.xpath("//*[@id='password']");
-	By login_button = By.xpath("//*[@id='login-submit']");
-
+	// PROD
+	By text = By.xpath("//h1[contains(text(),'fconcapp02')]");
+	
+	
+	
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	void TM_OCI_01_Verify_LogInScreen() {
+	void TM_TreeSize_01_Verify_LogInScreen() {
 
 		wait(2);
-		WebElement Logo = createWebElementBy(logo);
-		IsDisplayed_IsEnabled(Logo);
+		WebElement Text_Logo = createWebElementBy(text);
+		IsDisplayed_IsEnabled(Text_Logo);
 
-		WebElement UsernameFld = createWebElementBy(field_Username);
-		IsDisplayed_IsEnabled(UsernameFld);
-
-		WebElement PasswordFld = createWebElementBy(field_Password);
-		IsDisplayed_IsEnabled(PasswordFld);
-
-		WebElement LoginBtn = createWebElementBy(login_button);
-		IsDisplayed_IsEnabled(LoginBtn);
 		takeScreenshotAtEndOfTest();
 
 	}
-
+	
 	/*****************************
 	 * Application Interaction Methods
 	 *******************/

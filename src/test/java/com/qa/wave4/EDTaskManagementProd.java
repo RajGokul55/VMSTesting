@@ -40,16 +40,9 @@ public class EDTaskManagementProd extends CommonMethods {
 		TM_EDTaskManagement_S01_Web_Check_Login();
 	}
 
-	/* PROD & DEV */
-	@Test(priority = 1, enabled = true)
-	public void EDTaskManagement_S02_Web_Check_Page_Loaded_After_Login() {
-		TM_EDTaskManagement_S02_Web_Check_Page_Loaded_After_Login();
-	}
-
-	
 	@Test(priority = 2, enabled = true)
-	public void EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded() {
-		TM_EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded();
+	public void EDTaskManagement_S02_Web_Check_Prod_Link_Page_Loaded() {
+		TM_EDTaskManagement_S02_Web_Check_Prod_Link_Page_Loaded();
 	}
 	
 	@AfterMethod(enabled = true)
@@ -115,41 +108,8 @@ public class EDTaskManagementProd extends CommonMethods {
 			
 	}
 		
-		
-//PROD
-	
-	  public void TM_EDTaskManagement_S02_Web_Check_Page_Loaded_After_Login() {
-	  
-	  launchBrowser(Browser, Url); loginEDTaskManagement();
-	  
-	  waitForPageLoaded();
-	  
-	  WebElement Dashboards_Txt = createWebElementBy(txt_Dashboards); text =
-	  Dashboards_Txt.getText(); Assert.assertTrue(text.contains("Dashboards"));
-	  
-	  WebElement Projects_Txt = createWebElementBy(txt_Projects); text =
-	  Projects_Txt.getText(); Assert.assertTrue(text.contains("Projects"));
-	  
-	  WebElement Issues_Txt = createWebElementBy(txt_Issues); text =
-	  Issues_Txt.getText(); Assert.assertTrue(text.contains("Issues"));
-	  
-	  WebElement Boards_Txt = createWebElementBy(txt_Boards); text =
-	  Boards_Txt.getText(); Assert.assertTrue(text.contains("Boards"));
-	  
-	  WebElement Structure_Txt = createWebElementBy(txt_Structure); text =
-	  Structure_Txt.getText(); Assert.assertTrue(text.contains("Structure"));
-	  
-	  WebElement Charts_Txt = createWebElementBy(txt_Charts); text =
-	  Charts_Txt.getText(); Assert.assertTrue(text.contains("Charts"));
-	  
-	  WebElement Create_Txt = createWebElementBy(txt_Create); text =
-	  Create_Txt.getText(); Assert.assertTrue(text.contains("Create"));
-	  
-	  takeScreenshotAtEndOfTest();
-	  
-	  }
-	 
-	public void TM_EDTaskManagement_S03_Web_Check_Prod_Link_Page_Loaded() {
+			 
+	public void TM_EDTaskManagement_S02_Web_Check_Prod_Link_Page_Loaded() {
 
 		launchBrowser(Browser, URL1);
 		waitForPageLoaded();

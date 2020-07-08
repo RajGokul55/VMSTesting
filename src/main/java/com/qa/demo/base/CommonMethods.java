@@ -778,6 +778,17 @@ public class CommonMethods {
 		Actions act =new Actions(driver);
 		act.dragAndDrop(source, target).build().perform();
 	}
+	/*
+	 * Author: Abhishek Bhatt 
+	 * Description: To double click on element
+	 *  Parameter: WebElement
+	 *   Date: June 2020
+	 */
+	public void doubleClick(WebElement ele) {
+		Actions act =new Actions(driver);
+		act.doubleClick(ele).build().perform();
+	}
+
 
 	public static void TM_connectToDB_RunQuery(String Url, String User, String Pass, String Query){
 		/*

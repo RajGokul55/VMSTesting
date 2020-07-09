@@ -42,7 +42,7 @@ public class GSAV extends CommonMethods{
 
 	@BeforeMethod
 	public void beforeTest() {
-		launchBrowser(Browser, Url);
+		launchBrowser(Browser, Url1);
 		wait(5);
 		login_verifyScreen();
 	}

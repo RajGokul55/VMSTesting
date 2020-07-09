@@ -65,7 +65,7 @@ public class GILDA2 extends CommonMethods {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		launchBrowser(Browser, Url3);
+		launchBrowser(Browser, Url1);
 	}
 
 	/*

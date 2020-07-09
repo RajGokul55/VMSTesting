@@ -14,6 +14,10 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -773,6 +777,58 @@ public class CommonMethods {
 	public void dragAndDrop(WebElement source, WebElement target) {
 		Actions act =new Actions(driver);
 		act.dragAndDrop(source, target).build().perform();
+	}
+	/*
+	 * Author: Abhishek Bhatt 
+	 * Description: To double click on element
+	 *  Parameter: WebElement
+	 *   Date: June 2020
+	 */
+	public void doubleClick(WebElement ele) {
+		Actions act =new Actions(driver);
+		act.doubleClick(ele).build().perform();
+	}
+
+
+	public static void TM_connectToDB_RunQuery(String Url, String User, String Pass, String Query){
+		/*
+		 * Author: Balajee Palle 
+		 * Description: To establish DB connection and to run query
+		 *  Parameter: 
+		 *   Date: July 2020
+		 */
+		// Connection object
+		Connection con = null;
+		// Statement object
+		Statement stmt;
+		try{
+			// Get connection to DB
+			con = DriverManager.getConnection(Url, User, Pass);
+			// Statement object to send the SQL statement to the Database
+			stmt = con.createStatement();
+			// Get the contents of userinfo table from DB
+			ResultSet res = stmt.executeQuery(Query);
+			// Print the result untill all the records are printed
+			// res.next() returns true if there is any next record else returns false
+			while (res.next()) {
+				System.out.println("Count of records found : "+ res.getInt(1)+ " for Query:"+Query+ '\n' + "on this Database: " + Url + '\n');
+				Reporter.log("Count of records found : "+ res.getInt(1)+ " for Query:"+Query+ '\n' + "on this Database: " + Url + '\n');
+				Assert.assertTrue(res.getInt(1)>=0);
+
+				/*
+              System.out.print(res.getString(1));
+              System.out.print("\t" + res.getString(2));
+              System.out.print("\t" + res.getString(3));
+              System.out.println("\t" + res.getString(4));
+				 */
+			}
+
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		} 
+
 	}
 }
 

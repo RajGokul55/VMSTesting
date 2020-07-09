@@ -31,7 +31,7 @@ public class LES extends CommonMethods {
 	 */
 
 
-	String URL = DevURL;
+	String URL = TstURL;
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);

@@ -59,12 +59,12 @@ import com.qa.demo.base.CommonMethods;
 		 void TM_PipelinePilot_S01_Test_Postpatchtesting(String ProdUrl) {
 
 			 launchBrowser(Browser,ProdUrl);
-			 wait(2);
+			 waitForPageLoaded();
 			 takeScreenshotAtEndOfTest();
 			 WebElement home_img = createWebElementBy(img_home);
 				home_img.click();
 			takeScreenshotAtEndOfTest();
-			wait(2);
+			waitForPageLoaded();
 		
 			 
 			

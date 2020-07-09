@@ -21,10 +21,7 @@ public class DFW extends CommonMethods{
 
 	
 	/***************************** Test Cases *******************/
-	
-	
-
-	@BeforeMethod(enabled=true)
+		@BeforeMethod(enabled=true)
 	public void beforeTest() {
 
 	}

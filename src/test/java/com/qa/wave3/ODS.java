@@ -70,7 +70,7 @@ public class ODS extends CommonMethods {
 		TM_connectToDB_RunQuery(ODS_DEV_URL, ODS_User, ODS_DEV_Pwd, Q_DISTINCT);
 	}
 
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void ODS_S02_DB_UAT_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_GALIGN_Inactive );
@@ -81,7 +81,7 @@ public class ODS extends CommonMethods {
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_DISTINCT );
 	} 
 
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void ODS_S03_DB_SUPP_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_GALIGN_Inactive );
@@ -91,7 +91,7 @@ public class ODS extends CommonMethods {
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_ETL_Deciles );
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_DISTINCT );
 	}
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void ODS_S04_DB_SIT_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_GALIGN_Inactive );

@@ -67,16 +67,16 @@ void TM_ILMH_S02_Web_Postpatching_verification() {
 	WebElement myprofile_btn = createWebElementBy(btn_myprofile);
 	myprofile_btn.click();
 	takeScreenshotAtEndOfTest();
-	wait(2);
+	waitForPageLoaded();
 	
 	WebElement closeprofile_btn = createWebElementBy(btn_closeprofile);
 	closeprofile_btn.click();
-	wait(2);
+	waitForPageLoaded();
 	
 	WebElement authentication_btn = createWebElementBy(btn_authentication);
 	authentication_btn.click();
 	takeScreenshotAtEndOfTest();
-	wait(2);
+	waitForPageLoaded();
 	
 	WebElement home_btn = createWebElementBy(btn_Home);
 	home_btn.click();

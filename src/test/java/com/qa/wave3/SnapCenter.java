@@ -62,7 +62,7 @@ public class SnapCenter extends CommonMethods{
 		WebElement Snapcenter_icn = createWebElementBy(icn_Snapcenter);
 		Snapcenter_icn.click();
 		takeScreenshotAtEndOfTest();
-		wait(5);
+		waitForPageLoaded();
 
 		
 		

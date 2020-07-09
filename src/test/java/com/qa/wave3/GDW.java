@@ -19,12 +19,12 @@ public class GDW extends CommonMethods {
 	Connection con = null;
 	
 	String GDW_User = "GDWRO";
-	String GDW_DEV_URL = "jdbc:oracle:thin:@fcbaamdbdev01.na.gilead.com:1521/GDWDEV";  
+	String GDW_DEV_URL = "jdbc:oracle:thin:@fccadbdev01.na.gilead.com:1521/GDWDEV";  
 	String GDW_UAT_URL = "jdbc:oracle:thin:@fcracodbtstge-scan.na.gilead.com:1521/GDWUAT";
-	String GDW_SIT_URL = "jdbc:oracle:thin:@fccadbtch01.na.gilead.com:1521/GDWTCH";
+	String GDW_SIT_URL = "jdbc:oracle:thin:@gdwtch.cfuwy0fe8303.us-west-1.rds.amazonaws.com:1521/GDWTCH";
 	String GDW_DEV_UAT_SIT_Pwd = "gdwro";
 
-	String GDW_SUPP_URL = "jdbc:oracle:thin:@sjcadbsupn01.na.gilead.com:1521/GDWSUP";
+	String GDW_SUPP_URL = "jdbc:oracle:thin:@gdwsup.cfuwy0fe8303.us-west-1.rds.amazonaws.com:1521/GDWSUP";
 	String GDW_SUPP_Pwd = "g9wr04u";
 
 	String Q_GDWSTG ="SELECT COUNT(*) FROM GDWSTG.STG_CALL2_DETAIL_VOD__C";
@@ -45,7 +45,7 @@ public class GDW extends CommonMethods {
 	}
 
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void GDW_S01_DB_DEV_GDW() {
 		TM_connectToDB_RunQuery(GDW_DEV_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSTG);
 		TM_connectToDB_RunQuery(GDW_DEV_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
@@ -58,13 +58,13 @@ public class GDW extends CommonMethods {
 		TM_connectToDB_RunQuery(GDW_UAT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
 		TM_connectToDB_RunQuery(GDW_UAT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_SECURITY);
 	}
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void GDW_S03_DB_SIT_GDW() {
 		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSTG);
 		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
 		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_SECURITY);
 	}
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void GDW_S04_DB_SUPP_GDW() {
 		TM_connectToDB_RunQuery(GDW_SUPP_URL, GDW_User, GDW_SUPP_Pwd,Q_GDWSTG);
 		TM_connectToDB_RunQuery(GDW_SUPP_URL, GDW_User, GDW_SUPP_Pwd,Q_GDWSMA_AGG);

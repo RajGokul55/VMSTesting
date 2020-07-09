@@ -68,11 +68,11 @@ public class GTP extends CommonMethods{
 		WebElement Memoryusage_icn = createWebElementBy(icn_memoryusage);
 		Memoryusage_icn.click();
 		takeScreenshotAtEndOfTest();
-		wait(5);
+		waitForPageLoaded();
 
 		WebElement Diskusage_icn = createWebElementBy(icn_DiskUsage);
 		Diskusage_icn.click();
-		wait(5);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		
 		

@@ -24,13 +24,14 @@ import com.qa.demo.base.CommonMethods;
 	
 		
 		@Test(priority=0, enabled=true)
-		public void ASP_S02_PROD_Postpatchtesting() {
-			TM_ASP_S02_Prod_Postpatchtesting(ProdUrl);
+		public void ASP_S02_PROD_GalleryCheck() {
+			TM_ASP_S02_Prod_GalleryCheck(ProdUrl);
 		}
 
+
 		@Test(priority=1, enabled=true)
-		public void ASP_S03_UAT_Postpatchtesting() {
-			TM_ASP_S03_UAT_Postpatchtesting(UATUrl);
+		public void ASP_S03_UAT_GalleryCheck() {
+			TM_ASP_S03_UAT_GalleryCheck(UATUrl);
 		}
 		
 		@Test(enabled = true, priority =2, groups = "Prod")
@@ -80,34 +81,34 @@ import com.qa.demo.base.CommonMethods;
 		
 		
 		
-		 void TM_ASP_S02_Prod_Postpatchtesting(String ProdUrl) {
+		 void TM_ASP_S02_Prod_GalleryCheck(String ProdUrl) {
 
 			 launchBrowser(Browser,ProdUrl);
 			WebElement Home_btn = createWebElementBy(btn_Home);
 			Home_btn.click();
 			takeScreenshotAtEndOfTest();
-			wait(2);
+			waitForPageLoaded();
 			
 			WebElement Privatestudio_btn = createWebElementBy(btn_Privatestudio);
 			Privatestudio_btn.click();
 			takeScreenshotAtEndOfTest();
-			wait(2);
+			waitForPageLoaded();
 
 			
 		}
 			
-		 void TM_ASP_S03_UAT_Postpatchtesting(String UATUrl) {
+		 void TM_ASP_S03_UAT_GalleryCheck(String UATUrl) {
 		
 			 launchBrowser(Browser,UATUrl);
 			 WebElement Home_btn = createWebElementBy(btn_Home);
 				Home_btn.click();
 				takeScreenshotAtEndOfTest();
-				wait(2);
+				waitForPageLoaded();
 				
 				WebElement Privatestudio_btn = createWebElementBy(btn_Privatestudio);
 				Privatestudio_btn.click();
 				takeScreenshotAtEndOfTest();
-				wait(2);
+				waitForPageLoaded();
 			
 			
 			

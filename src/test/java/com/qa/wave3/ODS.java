@@ -1,23 +1,18 @@
 package com.qa.wave3;
 
 
-import org.testng.Assert;
-import org.testng.Reporter;
+import java.sql.Connection;
+
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.qa.demo.base.CommonMethods;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.Statement;
+public class ODS extends CommonMethods {
+	//Connection object
+	Connection con = null;
 
-public class ODS {
-	// Connection object
-	static Connection con = null;
-	// Statement object
-	private static Statement stmt;
 	String ODS_User = "INTGRO";
 	String ODS_DEV_URL = "jdbc:oracle:thin:@fcbaamdbdev01.na.gilead.com:1521/INTGDEV";  
 	String ODS_DEV_Pwd = "5!A1RbNxE!63H#gV";
@@ -31,14 +26,6 @@ public class ODS {
 	String ODS_SIT_URL = "jdbc:oracle:thin:@fcbadbtest01.na.gilead.com:1521/INTGTEST";  
 	String ODS_SIT_Pwd = "Temp4intg";
 
-	String GDW_User = "GDWRO";
-	String GDW_DEV_URL = "jdbc:oracle:thin:@fcbaamdbdev01.na.gilead.com:1521/GDWDEV";  
-	String GDW_UAT_URL = "jdbc:oracle:thin:@fcracodbtstge-scan.na.gilead.com:1521/GDWUAT";
-	String GDW_SIT_URL = "jdbc:oracle:thin:@fccadbtch01.na.gilead.com:1521/GDWTCH";
-	String GDW_DEV_UAT_SIT_Pwd = "gdwro";
-
-	String GDW_SUPP_URL = "jdbc:oracle:thin:@sjcadbsupn01.na.gilead.com:1521/GDWSUP";
-	String GDW_SUPP_Pwd = "g9wr04u";
 
 	String Q_GDHODS_Account = "SELECT COUNT(*) FROM GDHODS.ACCOUNT";// WHERE rownum <= 100";
 	String Q_GALIGN_Inactive= "SELECT COUNT(*) FROM GALIGN.ALIGNMENT_MASTER_AUTO  WHERE SFDCID IN ( SELECT  ID \r\n" + 
@@ -60,10 +47,6 @@ public class ODS {
 			"	                            AND     G.PRIMARY_VOD__C = 1\r\n" + 
 			"	                            AND     G.COUNTRY_VOD__C NOT IN ('ca', 'CA'))";
 
-String Q_GDWSTG ="SELECT COUNT(*) FROM GDWSTG.STG_CALL2_DETAIL_VOD__C";
-String Q_GDWSMA_AGG ="SELECT COUNT(*) FROM GDWMA.FACT_INTERACTION_AGG";
-String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
-
 	@BeforeTest
 	public void setUp() throws Exception {
 		try{
@@ -77,7 +60,7 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		}
 	}
 	@Test(priority = 1, enabled = true)
-	public void ODS_S01_DB_DEV_GDHODS_Account() {
+	public void ODS_S01_DB_DEV_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_DEV_URL, ODS_User, ODS_DEV_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_DEV_URL, ODS_User, ODS_DEV_Pwd,Q_GALIGN_Inactive );
 		TM_connectToDB_RunQuery(ODS_DEV_URL, ODS_User, ODS_DEV_Pwd,Q_GALIGN_Auto );
@@ -87,8 +70,8 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		TM_connectToDB_RunQuery(ODS_DEV_URL, ODS_User, ODS_DEV_Pwd, Q_DISTINCT);
 	}
 
-	@Test(priority = 2, enabled = false)
-	public void ODS_S02_DB_UAT_GDHODS_Account() {
+	@Test(priority = 2, enabled = true)
+	public void ODS_S02_DB_UAT_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_GALIGN_Inactive );
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_GALIGN_Auto );
@@ -98,8 +81,8 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		TM_connectToDB_RunQuery(ODS_UAT_URL, ODS_User, ODS_UAT_Pwd,Q_DISTINCT );
 	} 
 
-	@Test(priority = 3, enabled = false)
-	public void ODS_S03_DB_SUPP_GDHODS_Account() {
+	@Test(priority = 3, enabled = true)
+	public void ODS_S03_DB_SUPP_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_GALIGN_Inactive );
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_GALIGN_Auto );
@@ -108,8 +91,8 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_ETL_Deciles );
 		TM_connectToDB_RunQuery(ODS_SUPP_URL, ODS_User, ODS_SUPP_Pwd,Q_DISTINCT );
 	}
-	@Test(priority = 4, enabled = false)
-	public void ODS_S04_DB_SIT_GDHODS_Account() {
+	@Test(priority = 4, enabled = true)
+	public void ODS_S04_DB_SIT_RunQuries() {
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_GDHODS_Account );
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_GALIGN_Inactive );
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_GALIGN_Auto);
@@ -118,32 +101,7 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_ETL_Deciles );
 		TM_connectToDB_RunQuery(ODS_SIT_URL, ODS_User, ODS_SIT_Pwd,Q_DISTINCT );
 	}
-	
-	@Test(priority = 5, enabled = false)
-	public void GDW_S05_DB_DEV_GDW() {
-		TM_connectToDB_RunQuery(GDW_DEV_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSTG);
-		TM_connectToDB_RunQuery(GDW_DEV_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
-		TM_connectToDB_RunQuery(GDW_DEV_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_SECURITY);
-	}
 
-	@Test(priority = 6, enabled = false)
-	public void GDW_S06_DB_UAT_GDW() {
-		TM_connectToDB_RunQuery(GDW_UAT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSTG);
-		TM_connectToDB_RunQuery(GDW_UAT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
-		TM_connectToDB_RunQuery(GDW_UAT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_SECURITY);
-	}
-	@Test(priority = 7, enabled = false)
-	public void GDW_S07_DB_SIT_GDW() {
-		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSTG);
-		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_AGG);
-		TM_connectToDB_RunQuery(GDW_SIT_URL, GDW_User, GDW_DEV_UAT_SIT_Pwd,Q_GDWSMA_SECURITY);
-	}
-	@Test(priority = 8, enabled = false)
-	public void GDW_S08_DB_SUPP_GDW() {
-		TM_connectToDB_RunQuery(GDW_SUPP_URL, GDW_User, GDW_SUPP_Pwd,Q_GDWSTG);
-		TM_connectToDB_RunQuery(GDW_SUPP_URL, GDW_User, GDW_SUPP_Pwd,Q_GDWSMA_AGG);
-		TM_connectToDB_RunQuery(GDW_SUPP_URL, GDW_User, GDW_SUPP_Pwd,Q_GDWSMA_SECURITY);
-	}
 	@AfterTest
 	public void tearDown() throws Exception {
 		// Close DB connection
@@ -152,40 +110,10 @@ String Q_GDWSMA_SECURITY ="SELECT COUNT(*) FROM GDWMA.MA_USER_SECURITY";
 		}
 	}
 
+}
 
-	void TM_connectToDB_RunQuery(String Url, String User, String Pass, String Query){
-		try{
-			// Get connection to DB
-			Connection con = DriverManager.getConnection(Url, User, Pass);
-			// Statement object to send the SQL statement to the Database
-			stmt = con.createStatement();
-			// Get the contents of userinfo table from DB
-			ResultSet res = stmt.executeQuery(Query);
-			// Print the result untill all the records are printed
-			// res.next() returns true if there is any next record else returns false
-			while (res.next()) {
-				System.out.println("Count of records found : "+ res.getInt(1)+ " for Query:"+Query+ '\n' + "on this Database: " + Url + '\n');
-				Reporter.log("Count of records found : "+ res.getInt(1)+ " for Query:"+Query+ '\n' + "on this Database: " + Url + '\n');
-				Assert.assertTrue(res.getInt(1)>=0);
 
-				/*
-              System.out.print(res.getString(1));
-              System.out.print("\t" + res.getString(2));
-              System.out.print("\t" + res.getString(3));
-              System.out.println("\t" + res.getString(4));
-				 */
-			}
-			
-		}
-		catch(Exception e)
-		{
-			e.printStackTrace();
-		} 
-
-	}
-	
-	
-	/*
+/*
 ODS DEV	INTGRO	5!A1RbNxE!63H#gV	INTGDEV		fcbaamdbdev01.na.gilead.com
 	UAT	INTGRO	Gilead123			INTGUAT		fcracodbtstge-scan.na.gilead.com
 	SUPPINTGRO	t7KnR5DH80aR		INTGSUP		fcintgdbsup01.na.gilead.com
@@ -220,13 +148,9 @@ GDW	DEV	GDWRO	gdwro	GDWDEV	fcbaamdbdev01.na.gilead.com
 	                            AND     F.ID = G.ACCOUNT_VOD__C
 	                            AND     G.PRIMARY_VOD__C = 1
 	                            AND     G.COUNTRY_VOD__C NOT IN ('ca', 'CA') ; 
-	SELECT * FROM GDWSTG.STG_CALL2_DETAIL_VOD__C;--please query in gdw instance
-	SELECT * FROM GDWMA.FACT_INTERACTION_AGG;-- please query in gdw instance
-	SELECT * FROM GDWMA.MA_USER_SECURITY;-- please query in gdw instance
 
-	 */
+ */
 
 
 
 
-}

@@ -25,8 +25,12 @@ public class WFA extends CommonMethods {
 	// This app is not related to HTML tag, its based upon Flash player so not able to capture elements. Just launching the URL & taking the screenshot.
 	
 	final String Browser = "IE";
+	final String Browser1 = "Chrome";
 	// Application name WFA - Work Flow Automation Env is Prod
 	final String Url = "https://gwas/wfa/";
+	
+	// Application name WFA - Work Flow Automation Env is Dev
+		final String Url1 = "https://sjgcsnwfaprdn04/#/login";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -43,14 +47,24 @@ public class WFA extends CommonMethods {
 
 	@BeforeMethod(enabled = true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url);
+		//launchBrowser(Browser, Url1);
 	}
 
-	@Test(priority = 0, enabled = true)
+	//Only for Prod URL Run with Prod URL = Url
+	@Test(priority = 0, enabled = false)
 	public void WFA_S01_Web_Verify_LogInScreen() {
+		launchBrowser(Browser, Url);
 		TM_WFA_01_Verify_LogInScreen();
 
 	}
+	
+	//Only for Dev URL Run with Dev URL = Url1
+	@Test(priority = 0, enabled = true)
+	public void WFA_S02_Web_Verify_LogInScreen() {
+		launchBrowser(Browser1, Url1);
+		TM_WFA_02_Verify_LogInScreen();
+
+	}	
 
 	@AfterMethod(enabled = true)
 	public void afterTest() {
@@ -65,20 +79,42 @@ public class WFA extends CommonMethods {
 	 * boxes tbl_: Tables msg_: Messages
 	 */
 	By continue_btn = By.xpath("//*[@id='overridelink']");
-	By logo = By.xpath("//h3[contains(text(),'OnCommand Insight')]");
-	By field_Username = By.xpath("//*[@id='username']");
-	By field_Password = By.xpath("//*[@id='password']");
-	By login_button = By.xpath("//*[@id='login-submit']");
+	By logo = By.xpath("//h2[@class='nwf-login-dialog-title-primary']");
+	By field_Username = By.xpath("//input[@placeholder='Username']");
+	By field_Password = By.xpath("//input[@placeholder='Password']");
+	By login_button = By.xpath("//div[contains(text(),'Sign In')]");
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
+	//For Prod URL
 	void TM_WFA_01_Verify_LogInScreen() {
 
 		WebElement linkContinue = createWebElementBy(continue_btn);
 		linkContinue.click();
 		waitForPageLoaded();
 		wait(2);
+		takeScreenshotAtEndOfTest();
+
+	}
+	// For Dev URL
+	void TM_WFA_02_Verify_LogInScreen() {
+
+		//WebElement linkContinue1 = createWebElementBy(continue_btn);
+		//linkContinue1.click();
+		waitForPageLoaded();
+		wait(10);
+		WebElement Logo = createWebElementBy(logo);
+		IsDisplayed_IsEnabled(Logo);
+
+		WebElement UsernameFld = createWebElementBy(field_Username);
+		IsDisplayed_IsEnabled(UsernameFld);
+
+		WebElement PasswordFld = createWebElementBy(field_Password);
+		IsDisplayed_IsEnabled(PasswordFld);
+
+		WebElement LoginBtn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(LoginBtn);
 		takeScreenshotAtEndOfTest();
 
 	}

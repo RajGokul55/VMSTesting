@@ -45,18 +45,18 @@ public class GCC extends CommonMethods {
 
 	@BeforeMethod
 	public void beforeMethod() {
-		launchBrowser(Browser, Url1);
+		launchBrowser(Browser, Url);
 	}
 
 	// DEV Environment
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void GCC_S01_Web_login_verifyscreen_DEV() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_DEV();
 
 	}
 	
 	// PROD environment
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GCC_S01_Web_login_verifyscreen_PROD() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
 
@@ -89,14 +89,14 @@ public class GCC extends CommonMethods {
 	By btn_Cluster = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(31)>li>span");
 	// By btn_Cluster = By.xpath("//*[@id='ext-element-216']/span");
 	By txt_inCluster = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
-	By btn_ClusterPROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(28)>li>span");
+	By btn_ClusterPROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(29)>li>span");
 	By txt_inClusterPROD = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
 	
 	By btn_vDS = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(32)>li>span");
-	By btn_vDS_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(29)>li>span");
+	By btn_vDS_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(30)>li>span");
 	By txt_invDS = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
 	By btn_ESXi = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(33)>li>span");
-	By btn_ESXi_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(30)>li>span");
+	By btn_ESXi_PROD = By.cssSelector("div:nth-child(2)>Section[class='sidenav-content'] div:nth-child(31)>li>span");
 	By txt_ESXi = By.cssSelector("div[id^='objectcontent'][data-ref='bodyWrap']>div");
 	By getSizeFor_IntergrationService = By.xpath("//*[@id='accordionContentPowerCenterIntegrationServicetype']");
 	By getSizeFor_RepositoryService = By.xpath("//*[@id='accordionContentPowerCenterRepositoryServicetype']");
@@ -156,6 +156,7 @@ public class GCC extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 		WebElement Login_btn = createWebElementBy(btn_Login);
 		Login_btn.click();
+		wait(25);
 		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 	}

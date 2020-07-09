@@ -75,33 +75,33 @@ public class GEDCS extends CommonMethods{
 	void TM_GEDCS_S01_PostPatch_Testing() {
 		WebElement Masters_icn = createWebElementBy(icn_Masters);
 		Masters_icn.click();
-		wait(2);
+		waitForPageLoaded();
 
 		WebElement Fostercity_icn = createWebElementBy(icn_Fostercity);
 		Fostercity_icn.click();
-		wait(2);
+		waitForPageLoaded();
 
 		WebElement  Nonip_icn = createWebElementBy(icn_NonIP);
 		Nonip_icn.click();
-		wait(2);
+		waitForPageLoaded();
 		
 		WebElement  Commonsiteareas_icn = createWebElementBy(icn_commonsiteareas);
 		Commonsiteareas_icn.click();
-		wait(2);
+		waitForPageLoaded();
 		
 		WebElement  general_nondis_icn = createWebElementBy(icn_general_nondis);
 		takeScreenshotAtEndOfTest();
 		general_nondis_icn.click();
-		wait(2);
+		waitForPageLoaded();
 		
 		WebElement  drawing_icn = createWebElementBy(lnk_drawing);
 		takeScreenshotAtEndOfTest();
 		drawing_icn.click();
-		wait(2);
+		waitForPageLoaded();
 		
 		WebElement  drawing_img = createWebElementBy(img_drawing);
 		drawing_img.click();
-		wait(10);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		
 		WebElement  name_icn = createWebElementBy(btn_name);

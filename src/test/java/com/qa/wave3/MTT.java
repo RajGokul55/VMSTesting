@@ -1,29 +1,28 @@
-package com.qa.wave1;
+package com.qa.wave3;
+
+import org.testng.annotations.Test;
+import com.qa.demo.base.CommonMethods;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
 
-import com.qa.demo.base.CommonMethods;
-
-public class OCUM extends CommonMethods {
+public class MTT extends CommonMethods {
 
 	/***************************** Test Data *******************/
-
 	final String Browser = "Chrome";
-	// URL for OCUM GxP1 :
-	final String Url = "https://sjgcsnappprdg01/";
-	// URL1 for OCUM GxP2 :
-	final String Url1 = "https://sjgcsnappprdg02/#/";
-	// URL for OCUM Non-GxP :
-	final String Url2 = "https://sjgcsnappprdn01/";
-
+	final String Url = "https://sjsrvapptstn01:8443/transition/";
+	//Automated by Arun
+	
 	/***************************** Test Cases *******************/
 	/*
 	 * Test case ‘Test Name’ naming convention:
@@ -43,21 +42,11 @@ public class OCUM extends CommonMethods {
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void OCUM_S01_Verify_GxP1_LogIn() {
-		TM_OCUM_S01_Verify_GxP1_LogIn();
-	}
-
-	@Test(priority = 1, enabled = true)
-	public void OCUM_S02_Verify_GxP2_LogIn() {
-		TM_OCUM_S02_Verify_GxP2_LogIn();
-	}
-
-	@Test(priority = 2, enabled = true)
-	public void OCUM_S02_Verify_NonGxP_LogIn() {
-		TM_OCUM_S03_Verify_NonGxP_LogIn();
+	public void MTT_S01_Web_Verify_LogInScreen() {
+		TM_MTT_01_Verify_LogInScreen();
 
 	}
-
+		
 	@AfterMethod(enabled = true)
 	public void afterTest() {
 		driver.quit();
@@ -71,54 +60,17 @@ public class OCUM extends CommonMethods {
 	 * boxes tbl_: Tables msg_: Messages
 	 */
 
-	// GXP 1:
-	By logo = By.xpath("//*[@class='nwf-login-banner-logo']");
-	By field_Username = By.xpath("//input[@placeholder='Username']");
-	By field_Password = By.xpath("//input[@placeholder='Password']");
-	By login_button = By.xpath("//*[@id='nwf-login-form']/button");
-
+	// PROD
+	By logo = By.xpath("//div[@id='gwt-debug--DEBUG-ID-NOT-SET-title']");
+	By field_Username = By.xpath("//*[@id='gwt-debug-username-input']");
+	By field_Password = By.xpath("//*[@id='gwt-debug-password-input']");
+	By login_button = By.xpath("//*[@id='gwt-debug-login']");
+	
+	
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	public void TM_OCUM_S01_Verify_GxP1_LogIn() {
-
-		wait(2);
-		WebElement Logo = createWebElementBy(logo);
-		IsDisplayed_IsEnabled(Logo);
-
-		WebElement UsernameFld = createWebElementBy(field_Username);
-		IsDisplayed_IsEnabled(UsernameFld);
-
-		WebElement PasswordFld = createWebElementBy(field_Password);
-		IsDisplayed_IsEnabled(PasswordFld);
-
-		WebElement LoginBtn = createWebElementBy(login_button);
-		IsDisplayed_IsEnabled(LoginBtn);
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void TM_OCUM_S02_Verify_GxP2_LogIn() {
-
-		launchBrowser(Browser, Url1);
-
-		wait(2);
-		WebElement Logo = createWebElementBy(logo);
-		IsDisplayed_IsEnabled(Logo);
-
-		WebElement UsernameFld = createWebElementBy(field_Username);
-		IsDisplayed_IsEnabled(UsernameFld);
-
-		WebElement PasswordFld = createWebElementBy(field_Password);
-		IsDisplayed_IsEnabled(PasswordFld);
-
-		WebElement LoginBtn = createWebElementBy(login_button);
-		IsDisplayed_IsEnabled(LoginBtn);
-		takeScreenshotAtEndOfTest();
-	}
-
-	public void TM_OCUM_S03_Verify_NonGxP_LogIn() {
-
-		launchBrowser(Browser, Url2);
+	void TM_MTT_01_Verify_LogInScreen() {
 
 		wait(2);
 		WebElement Logo = createWebElementBy(logo);
@@ -135,7 +87,7 @@ public class OCUM extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 
 	}
-
+	
 	/*****************************
 	 * Application Interaction Methods
 	 *******************/

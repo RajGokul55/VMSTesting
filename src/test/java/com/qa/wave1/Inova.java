@@ -117,12 +117,12 @@ public class Inova extends CommonMethods{
 		
 		WebElement alliances_btn = createWebElementBy(icn_Alliances);
 		alliances_btn.click();
-		wait(3);
+		waitForPageLoaded();
 
 		takeScreenshotAtEndOfTest();
 		WebElement Home_btn = createWebElementBy(btn_Home);
 		Home_btn.click();
-		wait(3);
+		waitForPageLoaded();
 
 		
 		WebElement products_icn = createWebElementBy(icn_Products);
@@ -132,12 +132,12 @@ public class Inova extends CommonMethods{
 		
 		WebElement NewProducts_btn = createWebElementBy(btn_NewProducts);
 		NewProducts_btn.click();
-		wait(3);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		
 		WebElement cancel_btn = createWebElementBy(btn_Cancel);
 		cancel_btn.click();
-		wait(2);
+		waitForPageLoaded();
 		
 	
 		
@@ -146,22 +146,22 @@ public class Inova extends CommonMethods{
 		takeScreenshotAtEndOfTest();
 		WebElement NewCompany_btn = createWebElementBy(btn_NewCompany);
 		NewCompany_btn.click();
-		wait(3);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		WebElement cancel_btn1 = createWebElementBy(btn_Cancel);
 		cancel_btn1.click();
-		wait(3);
+		waitForPageLoaded();
 		
 		WebElement contacts_btn = createWebElementBy(btn_Contacts);
 		contacts_btn.click();
 		takeScreenshotAtEndOfTest();
 		WebElement editcontacts_btn = createWebElementBy(btn_editContacts);
 		editcontacts_btn.click();
-		wait(3);
+		waitForPageLoaded();
 		takeScreenshotAtEndOfTest();
 		WebElement cancel_btn2 = createWebElementBy(btn_Cancel);
 		cancel_btn2.click();
-		wait(3);
+		waitForPageLoaded();
 		
 		
 			

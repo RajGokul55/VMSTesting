@@ -21,6 +21,9 @@ public class OCI extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
 	final String Url = "https://fcocinappprdn01/";
+	
+	//DW Prod URL
+	final String Url1 = "https://fcocindwprdn01.na.gilead.com:9300/";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -37,15 +40,21 @@ public class OCI extends CommonMethods {
 
 	@BeforeMethod(enabled = true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url);
+		launchBrowser(Browser, Url1);
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void OCI_S01_Web_Verify_LogInScreen() {
 		TM_OCI_01_Verify_LogInScreen();
 
 	}
+	
+	@Test(priority = 0, enabled = true)
+	public void OCI_S02_Web_Verify_DW_LogInScreen() {
+		TM_OCI_02_Verify_DW_LogInScreen();
 
+	}
+	
 	@AfterMethod(enabled = true)
 	public void afterTest() {
 		driver.quit();
@@ -59,10 +68,17 @@ public class OCI extends CommonMethods {
 	 * boxes tbl_: Tables msg_: Messages
 	 */
 
+	// PROD
 	By logo = By.xpath("//h3[contains(text(),'OnCommand Insight')]");
 	By field_Username = By.xpath("//*[@id='username']");
 	By field_Password = By.xpath("//*[@id='password']");
 	By login_button = By.xpath("//*[@id='login-submit']");
+	
+	// DW PROD
+	By DWlogo = By.xpath("//div[@class='brandingText']");
+	By DWfield_Username = By.xpath("//input[@placeholder='User ID']");
+	By DWfield_Password = By.xpath("//input[@placeholder='Password']");
+	By DWlogin_button = By.xpath("//button[@class='signInBtn']");
 
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
@@ -80,6 +96,24 @@ public class OCI extends CommonMethods {
 		IsDisplayed_IsEnabled(PasswordFld);
 
 		WebElement LoginBtn = createWebElementBy(login_button);
+		IsDisplayed_IsEnabled(LoginBtn);
+		takeScreenshotAtEndOfTest();
+
+	}
+	
+	void TM_OCI_02_Verify_DW_LogInScreen() {
+
+		wait(2);
+		WebElement Logo = createWebElementBy(DWlogo);
+		IsDisplayed_IsEnabled(Logo);
+
+		WebElement UsernameFld = createWebElementBy(DWfield_Username);
+		IsDisplayed_IsEnabled(UsernameFld);
+
+		WebElement PasswordFld = createWebElementBy(DWfield_Password);
+		IsDisplayed_IsEnabled(PasswordFld);
+
+		WebElement LoginBtn = createWebElementBy(DWlogin_button);
 		IsDisplayed_IsEnabled(LoginBtn);
 		takeScreenshotAtEndOfTest();
 

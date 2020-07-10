@@ -26,6 +26,7 @@ import java.util.Scanner;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
@@ -125,7 +126,7 @@ public class CommonMethods {
 		js.executeScript("arguments[0].setAttribute('style','border: solid 2px white')", element);
 	}
 
-	public void wait(int sec) {
+	public static void wait(int sec) {
 		/*
 		 * Author: Balajee Palle Description: Hard wait Parameter: Time in seconds but
 		 * never use >5 Date: April 2020
@@ -850,6 +851,8 @@ public class CommonMethods {
 		s.click();
 		s.wait(RDPConnection, 2000);
 		s.click();
+		wait(5);
+		s.type(org.sikuli.script.Key.BACKSPACE);
 		s.wait(serverName, 2000);
 		s.type(servername);
 		s.wait(connectRDPServer, 2000);

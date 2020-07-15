@@ -56,11 +56,13 @@ public class RTD extends CommonMethods {
 	void TM_RTD_S01_URLAccesibility() {
 		Screen s = new Screen();
 		Pattern RTDSPSDev = new Pattern(path + "CR_RTD_SPS_Dev.PNG");
+		Pattern Open = new Pattern(path + "CR_OpenBtn.PNG");
+
 		s.exists(RTDSPSDev);
-		Reporter.log("Home page got displyed successfully");
-		takeScreenshotAtSikuli();
-		
+		Reporter.log("Home page got displayed successfully");
+		takeScreenshotAtSikuli();	
 	}
+	
 	void TM_RTD_S02_VerifydesktopShortcutIcons() {
 		Screen s = new Screen();
 		Pattern Open = new Pattern(path + "CR_OpenBtn.PNG");
@@ -122,8 +124,8 @@ public class RTD extends CommonMethods {
 
 	void TM_LaunchCitrixReceiver() {		
 		Screen s = new Screen();
-		Pattern Windows = new Pattern(path + "CR_Windows.PNG");
-		Pattern WinSearch = new Pattern(path + "CR_Search.PNG");
+		//Pattern Windows = new Pattern(path + "CR_Windows.PNG");
+		//Pattern WinSearch = new Pattern(path + "CR_Search.PNG");
 		Pattern IEBrowser = new Pattern(path + "CR_IEBrowserIcon.PNG");
 		Pattern EnterURL = new Pattern(path + "CR_EnterURL.PNG"); 
 		Pattern Username = new Pattern(path + "CR_Username.PNG");

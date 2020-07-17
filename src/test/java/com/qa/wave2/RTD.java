@@ -56,8 +56,7 @@ public class RTD extends CommonMethods {
 	void TM_RTD_S01_URLAccesibility() {
 		Screen s = new Screen();
 		Pattern RTDSPSDev = new Pattern(path + "CR_RTD_SPS_Dev.PNG");
-		Pattern Open = new Pattern(path + "CR_OpenBtn.PNG");
-
+		
 		s.exists(RTDSPSDev);
 		Reporter.log("Home page got displayed successfully");
 		takeScreenshotAtSikuli();	

@@ -29,12 +29,12 @@ public class PRTGNetworkMonitor extends CommonMethods {
 		TM_PRTGNM_S02_Web_Devurl_ViewAllSensorsData();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void PRTGNM_S03_Web_Produrl_UserLogin() throws IOException {
 		GM_PRTGNM_Web_ProdURLLogin();
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void PRTGNM_S04_Web_Produrl_ViewAllSensorsData() throws IOException {
 		TM_PRTGNM_S04_Web_Produrl_ViewAllSensorsData();
 	}

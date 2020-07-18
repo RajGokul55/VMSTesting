@@ -7,6 +7,7 @@ import org.sikuli.script.Pattern;
 import org.sikuli.script.Screen;
 import org.testng.Reporter;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.qa.demo.base.CommonMethods;
@@ -20,9 +21,10 @@ public class CKM extends CommonMethods {
 	final String password = "gilead01";
 
 	/***************************** Test Cases *******************/
-	@BeforeMethod(enabled = true)
+	@BeforeTest(enabled = true)
 	public void  RDP_Connection () {
-		String Password = RSA_Authentication("ADM_nnereddula");
+		//String Password = RSA_Authentication("nnereddula");
+		String Password = "*6kIpDoEJon$";
 		RDP_Connection("SJCKMAPPPRDN04","ADM_nnereddula",Password);
 	}
 	
@@ -36,29 +38,22 @@ public class CKM extends CommonMethods {
 	}
 	
 	
-	void TM_RTD_S01_URLAccesibility() {
-		Screen s = new Screen();
-		Pattern RTDSPSDev = new Pattern(path + "CR_RTD_SPS_Dev.PNG");
-		s.exists(RTDSPSDev);
-		Reporter.log("Home page got displyed successfully");
-		takeScreenshotAtSikuli();
-		
-	}
+	
 	void TM_CKM_S01_StatusOfServices() {
 		Screen s = new Screen();
-		Pattern homepage = new Pattern(path + "CKM_home.PNG");
-		Pattern startbutton = new Pattern(path + "CKM_home2.PNG"); 
+		
+		//Pattern startbutton = new Pattern(path + "CKM_home.PNG"); 
 		Pattern tools = new Pattern(path + "CKM_tools.PNG"); 
 		Pattern taskscheduler = new Pattern(path + "CKM_taskscheduler.PNG"); 
 		Pattern taskscheduler2 = new Pattern(path + "CKM_taskscheduler2.PNG"); 
 		
 		
 		try {
-			s.click(startbutton);
+			//s.click(startbutton);
 			wait(2);
 			s.doubleClick(tools);
 			wait(30);
-			s.click(taskscheduler);
+			s.doubleClick(taskscheduler);
 			wait(30);
 			s.click(taskscheduler2);
 			s.exists(taskscheduler2);
@@ -75,21 +70,24 @@ public class CKM extends CommonMethods {
 				Screen s = new Screen();
 				Pattern hiddenicons = new Pattern(path + "CKM_hiddenicon.PNG"); 
 				Pattern view = new Pattern(path + "CKM_view.PNG");
+				Pattern view2 = new Pattern(path + "CKM_view2.PNG");
 				Pattern filesystem = new Pattern(path + "CKM_filesystem.PNG");
 				Pattern guardpoints = new Pattern(path + "CKM_guardpoints.PNG");
-				Pattern logout = new Pattern(path + "CKM_disconnect.PNG");
+				Pattern guardpoints2 = new Pattern(path + "CKM_guardpoints2.PNG");
 				
 				try {
 					s.click(hiddenicons);
-					//Reporter.log("LorenDocBridge Icon displayed on desktop successfully");
+					wait(30);
 				
-			s.click(view);
+			s.rightClick(view);
+			wait(30);
+			s.click(view2);
 			wait(30);
 			s.click(filesystem);
 			wait(30);
 			s.click(guardpoints);
 			wait(30);
-			s.click(logout);
+			s.click(guardpoints2);
 			takeScreenshotAtSikuli();
 			
 		} catch (FindFailed e) {

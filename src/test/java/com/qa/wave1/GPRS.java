@@ -23,9 +23,9 @@ public class GPRS extends CommonMethods{
 	//private static final String WebElementDrop = null;
 	///***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://sjgprsappuatn01.na.gilead.com/aims/ps/Default.aspx";
-	final String CorporateUrl= "https://reset.gilead.com/aims/ps/Main.aspx";
-	final String ParterUrl = "https://partnersreset.gilead.com/aims/ps";
+	final String Url= "https://sjgprsappuatn01.na.gilead.com/aims/ps/Default.aspx"; //test
+	final String CorporateUrl= "https://reset.gilead.com/aims/ps/Main.aspx"; //prod
+	final String PartnerUrl = "https://partnersreset.gilead.com/aims/ps"; //prod
 
 	final String Username ="nnereddula";
 	private String DecrptPassword;
@@ -34,7 +34,7 @@ public class GPRS extends CommonMethods{
 	String ADMpassword = null;
 	
 	final String ParterUsername  = "TESTPRT";
-	private String DecrptParterPwd;
+	private String DecrptPartnerPwd;
 	String EncryptPtrPwd = "lcStILCoHe77OQVhpMp+/w==";
 
 	
@@ -50,8 +50,8 @@ public class GPRS extends CommonMethods{
 	}
 
 	@Test(priority=2, enabled=true)
-	public void GPRS_S18_Web_EnrollmentFunctionality() {
-		TM_GPRS_S18_Web_EnrollmentFunctionality(Url);
+	public void GPRS_S10_Web_EnrollmentFunctionality() {
+		TM_GPRS_S10_Web_EnrollmentFunctionality(Url);
 	}
 
 	@Test(priority=3, enabled=true)
@@ -61,37 +61,37 @@ public class GPRS extends CommonMethods{
 	
 	@Test(priority=4, enabled=true)
 	public void GPRS_S02_Web_PartnerUrlaccessible() {
-		TM_GPRS_S02_Web_PartnerUrlaccessible(ParterUrl);
+		TM_GPRS_S02_Web_PartnerUrlaccessible(PartnerUrl);
 	}
 	
 	@Test(priority=5, enabled=true)
-	public void GPRS_S10_Web_Password_Chng_Func() {
-		TM_GPRS_S10_Web_Password_Chng_Func(CorporateUrl);
+	public void GPRS_S04_Web_Password_Chng_Func() {
+		TM_GPRS_S04_Web_Password_Chng_Func(CorporateUrl);
 	}
 	
 	@Test(priority=6, enabled=true)
-	public void GPRS_S11_Web_Password_reset_Func() {
-		TM_GPRS_S11_Web_Password_reset_Func(CorporateUrl);
+	public void GPRS_S05_Web_Password_reset_Func() {
+		TM_GPRS_S05_Web_Password_reset_Func(CorporateUrl);
 	}
 	
 	@Test(priority=7, enabled=true)
-	public void GPRS_S13_Web_Password_Chng_Func() {
-		TM_GPRS_S13_Web_Password_Chng_Func(ParterUrl);
+	public void GPRS_S06_Web_Password_Chng_Func() {
+		TM_GPRS_S06_Web_Password_Chng_Func(PartnerUrl);
 	}
 	
 	@Test(priority=8, enabled=true)
-	public void GPRS_S14_Web_Password_reset_Func() {
-		TM_GPRS_S14_Web_Password_reset_Func(ParterUrl);
+	public void GPRS_S07_Web_Password_reset_Func() {
+		TM_GPRS_S07_Web_Password_reset_Func(PartnerUrl);
 	}
 	
 	@Test(priority=9, enabled=true) 
-	public void GPRS_S15_Web_Password_Chng_Func() {
-		TM_GPRS_S15_Web_Password_Chng_Func(Url);
+	public void GPRS_S08_Web_Password_Chng_Func() {
+		TM_GPRS_S08_Web_Password_Chng_Func(Url);
 	}
 	
 	@Test(priority=10, enabled=true) 
-	public void GPRS_S16_Web_Password_reset_Func() {
-		TM_GPRS_S16_Web_Password_reset_Func(Url);
+	public void GPRS_S09_Web_Password_reset_Func() {
+		TM_GPRS_S09_Web_Password_reset_Func(Url);
 	}
 	
 	
@@ -204,7 +204,7 @@ public class GPRS extends CommonMethods{
 
 	/*********************ENROLLMENT FUNCTIONALITY**************************/
 
-	void TM_GPRS_S18_Web_EnrollmentFunctionality(String Url) {
+	void TM_GPRS_S10_Web_EnrollmentFunctionality(String Url) {
 		launchBrowser(Browser,Url);
 		
 		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
@@ -278,9 +278,9 @@ public class GPRS extends CommonMethods{
 
 	}
 	
-	void TM_GPRS_S10_Web_Password_Chng_Func(String Url) {
+	void TM_GPRS_S04_Web_Password_Chng_Func(String CroUrl) {
 
-		launchBrowser(Browser,Url );  
+		launchBrowser(Browser,CroUrl );  
 
 		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
 		dropdown.selectByVisibleText("NA");  
@@ -302,7 +302,7 @@ public class GPRS extends CommonMethods{
 
 	}
 	
-	void TM_GPRS_S11_Web_Password_reset_Func(String CroUrl) {
+	void TM_GPRS_S05_Web_Password_reset_Func(String CroUrl) {
 
 		launchBrowser(Browser,CroUrl );  
 
@@ -323,7 +323,7 @@ public class GPRS extends CommonMethods{
 		
 	}
 	
-	void TM_GPRS_S13_Web_Password_Chng_Func(String PartnerUrl) {
+	void TM_GPRS_S06_Web_Password_Chng_Func(String PartnerUrl) {
 		
 		launchBrowser(Browser,PartnerUrl);
 		
@@ -343,7 +343,7 @@ public class GPRS extends CommonMethods{
 	}
 
 	
-	void TM_GPRS_S14_Web_Password_reset_Func(String PartnerUrl) {
+	void TM_GPRS_S07_Web_Password_reset_Func(String PartnerUrl) {
 		
 		launchBrowser(Browser,PartnerUrl);
 		
@@ -360,13 +360,12 @@ public class GPRS extends CommonMethods{
 		signout_Btn.click();
 	}
 	
-	void TM_GPRS_S15_Web_Password_Chng_Func(String Url) {
+	void TM_GPRS_S08_Web_Password_Chng_Func(String Url) {
 
 		launchBrowser(Browser,Url );  
 
 		Select dropdown = new Select(driver.findElement(By.id("listDomains")));  
-		dropdown.selectByVisibleText("QUALNA"); 
-
+		dropdown.selectByVisibleText("QUALNA");
 
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
@@ -382,7 +381,7 @@ public class GPRS extends CommonMethods{
 		
 	}
 	
-	void TM_GPRS_S16_Web_Password_reset_Func(String Url) {
+	void TM_GPRS_S09_Web_Password_reset_Func(String Url) {
 
 		launchBrowser(Browser,Url );  
 

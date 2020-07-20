@@ -5,6 +5,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -38,15 +39,16 @@ public class GShare extends CommonMethods {
 	String URL3= "https://sbxcollaborate.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";
 	String URL4= "https://dvicollaborate.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";
 	String URL5 = "https://drtestgnethome.gilead.com";
-	//String URL5 = "https://drtestgnethome.gilead.com/home/_layouts/closeConnection.aspx?loginasanotheruser=true";
-	String URL= URL5;
+	//String URL5 = "https://drtestgnethome.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";
+	//String URL2 = "https://testcollaborate.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";	
+	String URL= URL2;
 	
 	/***************************** Test Cases *******************/
 
 	@BeforeMethod(enabled = true)
-	public void Beforetest() {
+	public void BeforeMethod() {
 		System.out.println("Before running Test we should manually run and save credentails..!");
-		
+		launchBrowser(Browser, URL);
 	}
 
 	@Test(priority = 0, enabled = true)
@@ -55,12 +57,22 @@ public class GShare extends CommonMethods {
 	}
 
 	@Test(priority = 1, enabled = true)
-	public void GShare_S01_Web_FolderCreation(){
+	public void GShare_S02_Web_FolderCreation(){
 		TM_GShare_S01_Web_FolderCreation();
 	}
 	
-		
-	@AfterTest(enabled = true)
+	@Test(priority = 2, enabled = true)
+	public void GShare_S03_Web_WordCreation(){
+		TM_GShare_S03_Web_WordCreation();
+	}
+	
+	@Test(priority = 4, enabled = true)
+	public void GShare_S05_Web_ExcelCreation(){
+		TM_GShare_S05_Web_ExcelCreation();
+	}
+	
+
+	@AfterMethod(enabled = false)
 	public void afterEveryTest() {
 		driver.quit();
 	}
@@ -70,35 +82,98 @@ public class GShare extends CommonMethods {
 	By icon_Setting = By.cssSelector("span[class='ms-siteactions-imgspan']");
 	By menu_List = By.cssSelector("ul[class='ms-core-menu-list'] li"); 
 	By icon_Docs = By.cssSelector("div a[title='Documents']");
+	By new_Excel = By.cssSelector("h3[id='js-newdocWOPI-divExcel-txt-WPQ2']");  
+	By new_Word = By.cssSelector("h3[id='js-newdocWOPI-divWord-txt-WPQ2']");
+	By new_PPT = By.cssSelector("h3[id='js-newdocWOPI-divPowerPoint-txt-WPQ2");
+	By new_OneNote = By.cssSelector("h3[id='js-newdocWOPI-divOneNote-txt-WPQ2']");
+	By new_Folder = By.cssSelector("h3[id='js-newdocWOPI-divFolder-txt-WPQ2']");
+	By upload_File = By.cssSelector("span a[class= 'ms-calloutLink ms-calloutLinkEnabled'");
+	By add_NewDoc = By.cssSelector("a[title='Add a new item to this list or library.']");
+	By ipt_DocName = By.cssSelector("input[title='Document Name'");
+	By ipt_FolderName = By.cssSelector("input[title='Name Required Field'");
+	By btn_Ok = By.cssSelector("input[type='button'][value='OK']");
+	By btn_Save = By.cssSelector("input[type='submit'][value='Save']");
 	
-
+	By form_New = By.cssSelector("iframe[class='ms-dlgFrame']");
+	
 	/***************************** Test Case Methods *******************/
 	
 	public void TM_GShare_S01_Web_URL_Accessibility() {
-		//EnterCredentails();
-		launchBrowser(Browser, URL);
-		takeScreenshotAtEndOfTest();
-	/*	driver.quit();
+		WebElement setting_Icon = createWebElementBy(icon_Setting);
+		IsDisplayed_IsEnabled(setting_Icon);
 		
-		launchBrowser(Browser, URL2);
 		takeScreenshotAtEndOfTest();
-		driver.quit();
-		
-		launchBrowser(Browser, URL3);
-		takeScreenshotAtEndOfTest();
-		driver.quit();
-		
-		launchBrowser(Browser, URL4);
-		takeScreenshotAtEndOfTest();
-		driver.quit();
-		
-		launchBrowser(Browser, URL5);
-		takeScreenshotAtEndOfTest();
-		driver.quit();
-		*/
+
 	}
 		
 	void TM_GShare_S01_Web_FolderCreation() {
+		NavigatetoAddNewOptions();
+		
+		WebElement NewFolder_Create = createWebElementBy(new_Folder);
+		NewFolder_Create.click();
+		
+		WebElement iframe = createWebElementBy(form_New);
+		switchToFrameByLocator(iframe);
+		
+		WebElement EnterFolderName = createWebElementBy(ipt_FolderName);
+		EnterFolderName.sendKeys("AutoNew");
+		
+		WebElement Save_Btn = createWebElementBy(btn_Save);
+		
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", Save_Btn);
+
+		takeScreenshotAtEndOfTest();
+		
+	}
+	
+	void TM_GShare_S03_Web_WordCreation() {
+		NavigatetoAddNewOptions();
+		
+		WebElement NewWord_Create = createWebElementBy(new_Word);
+		NewWord_Create.click();
+		
+		WebElement iframe = createWebElementBy(form_New);
+		switchToFrameByLocator(iframe);
+		
+		WebElement EnterWordName = createWebElementBy(ipt_DocName);
+		EnterWordName.sendKeys("AutoNewWord");
+		
+		WebElement Ok_Btn = createWebElementBy(btn_Ok);
+		
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", Ok_Btn);
+
+		wait(5);
+		takeScreenshotAtEndOfTest();
+		
+	}
+	
+	void TM_GShare_S05_Web_ExcelCreation() {
+		NavigatetoAddNewOptions();
+		WebElement NewExcel_Create = createWebElementBy(new_Excel);
+		NewExcel_Create.click();
+		
+		WebElement iframe = createWebElementBy(form_New);
+		switchToFrameByLocator(iframe);
+		
+		WebElement EnterWordName = createWebElementBy(ipt_DocName);
+		EnterWordName.sendKeys("AutoNewExcel");
+		
+		WebElement Ok_Btn = createWebElementBy(btn_Ok);
+		
+		JavascriptExecutor executor = (JavascriptExecutor)driver;
+		executor.executeScript("arguments[0].click();", Ok_Btn);
+
+		wait(5);
+		takeScreenshotAtEndOfTest();
+		
+		
+	}
+
+
+	void NavigatetoAddNewOptions() {
+		
 		WebElement setting_Icon = createWebElementBy(icon_Setting);
 		setting_Icon.click();
 		
@@ -115,93 +190,7 @@ public class GShare extends CommonMethods {
 		Docs_icon.click();
 		waitForPageLoaded();
 		
-		takeScreenshotAtEndOfTest();
-		
+		WebElement NewDoc_Add = createWebElementBy(add_NewDoc);
+		NewDoc_Add.click();
 	}
-
-	public void launchBrowserInCognito(String browser, String url) {
-		final String userDirectory = System.getProperty("user.dir");
-
-		if (browser.equalsIgnoreCase("Chrome")) {
-			System.setProperty("webdriver.chrome.driver",
-					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\chromedriver_v78.exe");
-			ChromeOptions options = new ChromeOptions();
-			options.addArguments("--incognito");
-			DesiredCapabilities capabilities = DesiredCapabilities.chrome();
-			capabilities.setCapability(ChromeOptions.CAPABILITY, options);
-			driver = new ChromeDriver(options);
-			
-		} else if (browser.equalsIgnoreCase("IE")) {
-			System.setProperty("webdriver.ie.driver",
-					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\IEDriverServer.exe");
-			driver = new InternetExplorerDriver();
-		} else {
-			System.setProperty("webdriver.gecko.driver",
-					userDirectory + "\\src\\main\\java\\com\\qa\\demo\\config\\GeckoDriver.exe");
-			driver = new FirefoxDriver();
-		}
-
-		driver.get(url);
-		driver.manage().window().maximize();
-		driver.manage().timeouts().pageLoadTimeout(20, TimeUnit.SECONDS);
-		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-		driver.switchTo().alert();
-
-		//Selenium-WebDriver Java Code for entering Username & Password as below:
-		driver.switchTo().alert();
-		driver.findElement(By.id("username")).sendKeys("userName");
-		driver.findElement(By.id("password")).sendKeys("myPassword");
-		driver.switchTo().alert().accept();
-		driver.switchTo().defaultContent();
-	}
-	
-	
-void EnterCredentails() {
-	Screen s = new Screen();
-	Pattern IEBrowser = new Pattern(path + "CR_IEBrowserIcon.PNG");
-	Pattern EnterURL = new Pattern(path + "CR_EnterURL.PNG"); 
-	Pattern FileUsername = new Pattern(path + "GS_Username.PNG");
-	Pattern FiledPassword = new Pattern(path + "GS_Password.PNG"); 
-	Pattern OkButton = new Pattern(path + "GS_OkBtn.PNG");
-	
-	try {
-		s.type("d", Key.WIN);
-		wait(3);
-		
-		s.wait(IEBrowser, 20);
-		
-		s.doubleClick(IEBrowser);
-		wait(3);
-		s.type(Key.SPACE, KeyModifier.ALT);
-		wait(2);
-		s.type("x");
-		wait(3);
-		s.type(EnterURL, URL2);
-		wait(3);
-		s.type(Key.ENTER);
-		wait(15);
-				
-		s.wait(FileUsername, 20);
-		s.type(FileUsername, username);
-		wait(3);
-		s.type(FiledPassword, password);
-		wait(3);
-		s.type(Key.ENTER);
-		
-		s.click(OkButton);
-		wait(3);
-		 
-	} catch (FindFailed e) {
-		e.printStackTrace();
-	}
-
-}
-protected boolean isAlertPresent() {
-    try {
-      driver.switchTo().alert();
-      return true;
-    } catch (NoAlertPresentException e) {
-      return false;
-    }
-  }
 }

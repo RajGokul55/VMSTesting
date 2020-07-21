@@ -56,17 +56,17 @@ public class GShare extends CommonMethods {
 		TM_GShare_S01_Web_URL_Accessibility();
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void GShare_S02_Web_FolderCreation(){
 		TM_GShare_S01_Web_FolderCreation();
 	}
 	
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void GShare_S03_Web_WordCreation(){
 		TM_GShare_S03_Web_WordCreation();
 	}
 	
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void GShare_S05_Web_ExcelCreation(){
 		TM_GShare_S05_Web_ExcelCreation();
 	}

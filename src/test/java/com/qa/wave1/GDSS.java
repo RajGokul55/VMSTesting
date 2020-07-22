@@ -25,8 +25,8 @@ public class GDSS extends CommonMethods {
 
 	//Dev Url
 	final String Url = "https://account-d.docusign.com";
-	final String FirstLevelUsername = "sweety.miranda@gilead.com";
-	final String SecondLevelUsername = "smiranda";
+	final String FirstLevelUsername = "pravin.sonawane@gilead.com";
+	final String SecondLevelUsername = "psonawane";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************/
@@ -43,7 +43,7 @@ public class GDSS extends CommonMethods {
 
 	@BeforeSuite(enabled = true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("S6NKlMj2JoUgGxohxLLjfg==");
+		DecrptPassword = decrypt("e19ncVNSmW6OrHZf9mDsAg==");
 	}
 
 	@BeforeTest

@@ -21,7 +21,7 @@ public class IntellectualProperty extends CommonMethods {
 
 	final String Browser = "Chrome";
 	String pageTitle;
-	private static String downloadPath = "C:\\Users\\abhatt2\\Downloads";
+	private static String downloadPath = "C:\\Users\\psonawane\\Downloads";
 	public String file_orgchar= "IP_ORG_CHART.doc";
 	public String file_attorneyAssignment="attorney assignment.pdf";
 	// URL for Fc vision:

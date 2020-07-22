@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Pilot Execution">
+	<listeners>
+		<listener class-name="com.qa.demo.reports.ExtentReporterNG" />
+	</listeners>
+	<test name="Pilot 1">
+
+		<!--Test Env--> <parameter name="GVT_URL1" value="http://app.spotfire.gilead.com"></parameter>
+		<!--Test Env--> <parameter name="GVT_URL2" value="http://fcbarnapptstn01:8080/SplusServer/api/v8/administration/ExtendedServerInfo"></parameter>
+		
+		<classes>
+			<!-- Having One Environment run in pilot -->
+	
+			<class name="com.qa.wave1.GVT" />
+			<!-- <class name="com.qa.wave3.Luminata" />				 	
+			<class name="com.qa.wave1.GDST" />
+			<class name="com.qa.wave2.DLManager" />
+			<class name="com.qa.wave2.CustomApp_LiteratureResources" />
+			<class name="com.qa.wave2.IntellectualProperty" /> -->
+			
+		</classes>
+	</test>
+</suite>

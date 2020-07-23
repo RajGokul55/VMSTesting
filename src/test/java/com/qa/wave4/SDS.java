@@ -68,8 +68,6 @@ import com.qa.demo.base.CommonMethods;
 			 launchBrowser(Browser,ProdUrl);
 			takeScreenshotAtEndOfTest();
 			wait(2);
-			 
-			
 			
 			
 			}

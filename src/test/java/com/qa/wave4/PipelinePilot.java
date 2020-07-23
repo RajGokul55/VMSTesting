@@ -64,7 +64,6 @@ import com.qa.demo.base.CommonMethods;
 			takeScreenshotAtEndOfTest();
 			waitForPageLoaded();
 		
-			 
 			
 			
 			

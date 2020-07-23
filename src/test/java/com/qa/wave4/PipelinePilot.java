@@ -26,8 +26,6 @@ import com.qa.demo.base.CommonMethods;
 			TM_PipelinePilot_S01_Test_Postpatchtesting(ProdUrl);
 		}
 		
-		
-
 		@AfterMethod(enabled=true)
 		public void afterTest() {
 			driver.quit();

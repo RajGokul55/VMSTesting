@@ -20,7 +20,7 @@ public class Inova extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://sjinvappdevn01/inova-partner/ctx/auth/home";
-	//final String Url= "https://verticali.gilead.com/inova-partner/ctx/auth/home.do";
+	//final String prod_Url= "https://verticali.gilead.com/inova-partner/ctx/auth/home.do";
 	final String Username ="nnereddula";
 	private String DecrptPassword;
 
@@ -89,7 +89,7 @@ public class Inova extends CommonMethods{
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		try {
-			DecrptPassword = decrypt("Am9YI5J0dBK0RW1AK2utqw==");
+			DecrptPassword = decrypt("7Hg/RG3b/gW7f5MtwvnN+g==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -28,11 +28,6 @@ import com.qa.demo.base.CommonMethods;
 		public void CisProGs2_S01_Test_Postpatchtesting() {
 			TM_CisProGs2_S01_Test_Postpatchtesting(TestUrl);
 		}
-		
-		@Test(priority=2, enabled=true)
-		public void CisProGs2_S02_PROD_Postpatchtesting() {
-			TM_CisProGs2_S02_PROD_Postpatchtesting(ProdUrl);
-		}
 
 		@AfterMethod(enabled=true)
 		public void afterTest() {
@@ -98,17 +93,7 @@ import com.qa.demo.base.CommonMethods;
 			
 			
 
-		}
-			
-		 void TM_CisProGs2_S02_PROD_Postpatchtesting(String ProdUrl) {
-		
-			 
-			
-			
-			
-			}
-			
-			 
+		}			 
 		}
 
 

@@ -40,10 +40,10 @@ public class OCI extends CommonMethods {
 
 	@BeforeMethod(enabled = true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url1);
+		System.out.println("Test execution begins..!");
 	}
 
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void OCI_S01_Web_Verify_LogInScreen() {
 		TM_OCI_01_Verify_LogInScreen();
 
@@ -84,7 +84,7 @@ public class OCI extends CommonMethods {
 	// For all WebElements may append type Example: Submit_Btn
 
 	void TM_OCI_01_Verify_LogInScreen() {
-
+		launchBrowser(Browser, Url);
 		wait(2);
 		WebElement Logo = createWebElementBy(logo);
 		IsDisplayed_IsEnabled(Logo);
@@ -102,7 +102,7 @@ public class OCI extends CommonMethods {
 	}
 	
 	void TM_OCI_02_Verify_DW_LogInScreen() {
-
+		launchBrowser(Browser, Url1);
 		wait(2);
 		WebElement Logo = createWebElementBy(DWlogo);
 		IsDisplayed_IsEnabled(Logo);

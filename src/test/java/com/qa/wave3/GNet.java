@@ -52,47 +52,47 @@ public class GNet extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	@BeforeMethod
+	@BeforeMethod(enabled = true)
 	public void beforeMethod() {
-		launchBrowser(Browser, Url5);
+		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void GNet_S01_Web_GNet_verifyHomeScreen() {
 		TM_GNet_S01_Web_GNet_verifyHomeScreen();
 
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void GNet_S02_Web_Gnet_Menu_Accesiblity() {
 		TM_GCC_S02_Web_GNet_MenuAccesiblity();
 
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void GNet_S03_Web_Gnet_Menu_Resources() {
 		TM_GCC_S03_Web_GNet_Resources();
 
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void GNet_S04_Web_Gnet_PredictiveSearch() {
 		TM_GCC_S04_Web_GNet_PredictiveSearch();
 
 	}
 	
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void GNet_S05_Web_Gnet_CompanyDashboard() {
 		TM_GCC_S05_Web_GNet_CompanyDashboard();
 
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 5, enabled = true)
 	public void GNet_S06_Web_Gnet_PressRelease() {
 		TM_GCC_S06_Web_GNet_PressRelease();
 
 	}
-	@AfterMethod
+	@AfterMethod(enabled = true)
 	public void afterMethod() {
 		driver.quit();
 	}
@@ -116,7 +116,7 @@ public class GNet extends CommonMethods {
 	By txt_CompanyTimeline = By.xpath("//div[@class='content-box-in']//div//h2[contains(text(),'Company Timeline')]");
 	
 	By lnk_CoreValueMission = By.xpath("//div[@class='About']//div//a[contains(text(),'Core Values & Mission')]");
-	By txt_CoreValueMission = By.xpath("//div[@class='medical-title']//h1[contains(text(),'Core Values')]");
+	By txt_CoreValueMission = By.cssSelector("div[class$='Content-title'] h1");
 	
 	By lnk_Departments = By.xpath("//div[@class='About']//div//a[contains(text(),'Departments')]");
 	By txt_Departments = By.xpath("//h1[contains(text(),'Departments')]");
@@ -198,8 +198,8 @@ public class GNet extends CommonMethods {
 		verifyGileadEvents();
 		verifyGileadOfficeDirectory();
 		verifyGileadVPDirectory();
-		//verifyKiteNet();
-		verifyPipeline();
+		//verifyKiteNet(); 
+		verifyPipeline(); 
 		verifyPolicies();
 		verifyProducts();
 	}

@@ -14,18 +14,18 @@ public class GIMS extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 
-	@BeforeMethod(enabled = false)
+	@BeforeMethod(enabled = true)
 	public void beforeTest() {
 
 	}
 
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void GIMS_S01_Web_NA_Dev_UserLogin() throws IOException {
 		TM_GIMS_S01_Web_NA_Dev_UserLogin();
 
 	}
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void GIMS_S02_Web_NA_Dev_ServerNodeValidation() throws IOException {
 		TM_GIMS_S02_Web_NA_Dev_ServerNodeValidation();
 
@@ -75,7 +75,7 @@ public class GIMS extends CommonMethods {
 
 	}
 
-	@Test(priority = 9, enabled = true)
+	@Test(priority = 9, enabled = false)
 	public void GIMS_S10_Web_Kite_Prod_ServerNodeValidation() throws IOException, InterruptedException {
 		TM_GIMS_S10_Web_Kite_Prod_ServerNodeValidation();
 
@@ -93,7 +93,7 @@ public class GIMS extends CommonMethods {
 	By btn_Search = By.xpath("//span[contains(text(),'Search')]");
 	By lnk_ActiveAlerts = By.xpath("//span[contains(text(),'Active Alerts')]");
 	By lnk_NAProdServerDetails = By.xpath("//a[contains(text(),'sjmonappprdg01.na.gilead.com')]");
-	By lnk_NADevServerDetails = By.xpath("//a[contains(text(),'sjgimsappdevn01.na.gilead.com')]");
+	By lnk_NADevServerDetails = By.xpath("//a[contains(text(),'sjgimssqldevn01.na.gilead.com')]");
 	By lnk_EUProdServerDetails = By.xpath("//a[contains(text(),'eumonappprdg01.eu.gilead.com')]");
 	By lnk_APProdServerDetails = By.xpath("//a[contains(text(),'tymonappprdg01.ap.gilead.com')]");
 	By lnk_KiteServerDetails = By.xpath("//a[contains(text(),'drgimsappprdn89')]");
@@ -121,7 +121,7 @@ public class GIMS extends CommonMethods {
 
 		TM_GIMS_Web_NA_Dev_GenericMethod();
 		WebElement Find_ipt = createWebElementBy(ipt_Find);
-		Find_ipt.sendKeys("sjgimsappdevn01.na.gilead.com");
+		Find_ipt.sendKeys("sjgimssqldevn01.na.gilead.com");
 
 		WebElement Search_btn = createWebElementBy(btn_Search);
 		Search_btn.click();

@@ -12,6 +12,7 @@ public class VAP extends CommonMethods {
 	
 	final String Browser = "IE";
 	final String Url = "https://sjvapsqlprdn01/assetexplorer/";
+	final String Url_App = "https://sjvapappprdn01/assetexplorer/";
 	
 	final String Username = "Admin";
 	private String DecrptPassword;

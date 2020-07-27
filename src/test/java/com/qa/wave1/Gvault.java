@@ -7,6 +7,7 @@ import com.qa.demo.util.Retry;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 
 import java.io.IOException;
 
@@ -54,11 +55,6 @@ public class Gvault extends CommonMethods{
 	public void Gvault_TC04_Web_Edit_Discrepancy(){
 		TM_Gvault_TC04_Web_Edit_Discrepancy();
 	}
-	
-	@Test(priority=1, enabled=false, retryAnalyzer = Retry.class)
-	public void Gvault_TC05_Web_verifyValUrl(){
-		TM_Gvault_TC05_Web_verifyValUrl();
-	}
 
 	@AfterMethod
 	public void afterMethod() {
@@ -95,10 +91,10 @@ public class Gvault extends CommonMethods{
 	By ipt_DiscepancyDetails = By.cssSelector("textarea.form-control");
 	By btn_Save = By.xpath("//*[@type='button' and contains(text(), 'Save')]");
 	By btn_Expand = By.cssSelector(".vv_button_text.icon-plus");
-	By btn_Edit = By.cssSelector("button#edit-button-1");
+	By btn_Edit = By.xpath("//*[contains(text(), 'Test_Added')]//parent::div//following::button[contains(text(),'Edit')]");
 	By text_DiscrepancyDetails_added = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test_Added')]");
 	By text_DiscrepancyDetails_edited = By.xpath("//*[@class='control-label-read-only' and contains(text(),'Test_Edited')]");
-	By btn_Delete = By.xpath("//*[@type='button' and contains(text(), 'Delete')]");
+	By btn_Delete = By.xpath("//*[contains(text(), 'Test_Edited')]//parent::div//following::button[contains(text(),'Delete')]");
 	By btn_DeletePopUp = By.cssSelector("button#delete");
 	By text_MyVault = By.cssSelector(".Seleniumn-View-Title.viewTitle");
 	By menu_Status = By.xpath("//*[@title='Status']");
@@ -117,7 +113,7 @@ public class Gvault extends CommonMethods{
 		Add_menu.click();
 		
 		WebElement Date_ipt= createWebElementBy(ipt_Date);
-		Date_ipt.sendKeys("06/20/2020");
+		Date_ipt.sendKeys("07/25/2020");
 		
 		WebElement DiscepancyDetails_ipt= createWebElementBy(ipt_DiscepancyDetails);
 		DiscepancyDetails_ipt.sendKeys("Test_Added");
@@ -166,14 +162,6 @@ public class Gvault extends CommonMethods{
 		WebElement Delete_PopUp = createWebElementBy(btn_DeletePopUp);
 		Delete_PopUp.click();
 		wait(3);
-	}
-	
-	public void TM_Gvault_TC05_Web_verifyValUrl() {
-		
-		WebElement MyVault_text = createWebElementBy(text_MyVault);
-		String MyVaultText = MyVault_text.getText();
-		
-		Assert.assertEquals(MyVaultText, "My Vaults", "Test case failed");
 	}
 
 

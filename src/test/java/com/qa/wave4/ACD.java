@@ -43,36 +43,37 @@ public class ACD extends CommonMethods {
 	@BeforeMethod
 	void Setup() {
 		try {
-			DecrptPassword = decrypt("FkOllRi0iO/rIlftff/AwA==");
+			DecrptPassword = decrypt("nUwyGJG2cT7AgFQqaNE29g==");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		launchBrowser(Browser, Url);
 	}
 
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void ACD_S01_Windows_Web_LCSimulatorVerification() throws FindFailed {
 		TM_ACD_S01_Windows_Web_LCSimulatorVerification();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 4, enabled = true)
 	public void ACD_S02_Windows_Web_PerceptaVerification() throws FindFailed {
 		TM_ACD_S02_Windows_Web_PerceptaVerification();
 	}
+	
 
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void ACD_S04_Windows_Web_NameAppVerification() throws FindFailed {
 		TM_ACD_S04_Windows_Web_NameAppVerification();
 	}
 
-	@Test(priority = 5, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void ACD_S05_Windows_Web_GCSimulatorVerification() throws FindFailed {
 		TM_ACD_S05_Windows_Web_GCSimulatorVerification();
 	}
 
-	@AfterMethod(enabled = false)
+	@AfterMethod(enabled = true)
 	void Teardouwn() {
-		driver.close();
+		driver.quit();
 	}
 
 	/***************************** Locators *******************/
@@ -135,6 +136,7 @@ public class ACD extends CommonMethods {
 
 					}
 					Assert.assertTrue(IsExists);
+					takeScreenshotAtSikuli();
 				}
 
 				catch (Exception e) {
@@ -146,6 +148,7 @@ public class ACD extends CommonMethods {
 					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
+					wait(5);
 
 				}
 
@@ -193,6 +196,7 @@ public class ACD extends CommonMethods {
 
 					}
 					Assert.assertTrue(IsExists);
+					takeScreenshotAtSikuli();
 
 				}
 
@@ -202,9 +206,10 @@ public class ACD extends CommonMethods {
 				} finally {
 					wait(5);
 
-					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
-					s1.wait(crossBtn, 5000);				
-					s1.click();
+					/*
+					 * Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG"); s1.wait(crossBtn,
+					 * 5000); s1.click();
+					 */
 
 				}
 
@@ -255,6 +260,7 @@ public class ACD extends CommonMethods {
 
 					}
 					Assert.assertTrue(IsExists);
+					takeScreenshotAtSikuli();
 				}
 
 				catch (Exception e) {
@@ -266,6 +272,7 @@ public class ACD extends CommonMethods {
 					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
+					wait(5);
 
 				}
 
@@ -312,6 +319,7 @@ public class ACD extends CommonMethods {
 
 					}
 					Assert.assertTrue(IsExists);
+					takeScreenshotAtSikuli();
 				}
 
 				catch (Exception e) {
@@ -323,6 +331,7 @@ public class ACD extends CommonMethods {
 					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
+					wait(5);
 
 				}
 

@@ -17,8 +17,8 @@ public class GEAR_Test extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
-	final String Url_GileadInterface = "https://fcmegapptstn01.na.gilead.com/published";
-	final String Url_HopexInterface = "https://fcmegapptstn01.na.gilead.com/hopex/";
+	final String Url_GileadInterface = "https://gear.gilead.com/published";
+	final String Url_HopexInterface = "https://gear.gilead.com/hopex/";
 	
 	//use below url for Prod testing
 	final String Url_Gilead_prod= "https://gear.gilead.com/published";
@@ -26,9 +26,9 @@ public class GEAR_Test extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 	/*
-	 * Url_GileadInterface = "https://fcmegapptstn01.na.gilead.com/published";
-	 * Url_HopexInterface = "https://fcmegapptstn01.na.gilead.com/hopex/";
-	 * Url_Gilead_prod= "https://gear.gilead.com/published";
+	 * Url_GileadInterface = "https://fcmegapptstn01.na.gilead.com/published";SSO-Need access
+	 * Url_HopexInterface = "https://fcmegapptstn01.na.gilead.com/hopex/";- SSO- need access
+	 * Url_Gilead_prod= "https://gear.gilead.com/published";- No need
 	 * Url_Hopex_prod = "https://gear.gilead.com/hopex/";
 	 * Test case ‘Test Name’ naming convention:
 	 * <AppName><TCNumber>_<TestCategory>_<Title> Definitions of terms: • AppName:
@@ -54,14 +54,14 @@ public class GEAR_Test extends CommonMethods {
 		TM_Gear_S02_Web_HopexInterface_LinksUnderHomeTab_Verification();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void Gear_S03_Web_GileadInterface_Tab_Availability() {
 		launchBrowser(Browser, Url_GileadInterface);
 		TM_Gear_TC03_Web_GileadInterface_Tab_Availability();
 
 	}
 
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void Gear_S04_Web_GileadInterface_Navigation_Verification() {
 		launchBrowser(Browser, Url_GileadInterface);
 		TM_Gear_TC04_Web_GileadInterface_Navigation_Verification();
@@ -100,9 +100,11 @@ public class GEAR_Test extends CommonMethods {
 		
 		if (Url_HopexInterface != Url_Hopex_prod) {
 			waitForPageLoaded();
-			WebElement submitButton = createWebElementBy(id_submitButton);
-			submitButton.click();
-			wait(10);
+			/*
+			 * wait(5); WebElement submitButton = createWebElementBy(id_submitButton);
+			 * submitButton.click();
+			 */
+			wait(15);
 			waitForPageLoaded();
 		}
 
@@ -119,9 +121,11 @@ public class GEAR_Test extends CommonMethods {
 	void TM_Gear_S02_Web_HopexInterface_LinksUnderHomeTab_Verification() {
 		if (Url_HopexInterface != Url_Hopex_prod) {
 			waitForPageLoaded();
-			WebElement submitButton = createWebElementBy(id_submitButton);
-			submitButton.click();
-			wait(10);
+			/*
+			 * WebElement submitButton = createWebElementBy(id_submitButton);
+			 * submitButton.click();
+			 */
+			wait(15);
 			waitForPageLoaded();
 		}
 		List<WebElement> Home_tabs = createWebElementsBy(lnk_hometabs);

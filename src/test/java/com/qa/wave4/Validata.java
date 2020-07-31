@@ -24,7 +24,7 @@ public class Validata extends CommonMethods {
 		TM_launchandLogin();
 	}
 
-	@AfterMethod(enabled = true)
+	@AfterMethod(enabled = false)
 	public void afterTest() {
 		driver.quit();
 	}
@@ -33,35 +33,35 @@ public class Validata extends CommonMethods {
 	public void Validata_S01_Web_URL_Accessibility() {
 		TM_Validata_S01_Web_URL_Accessibility();
 	}
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void Validata_S02_Web_Validata_URL_Accessibility() {
 		TM_Validata_S02_Web_Validata_URL_Accessibility();
 	}
-	@Test(priority = 3, enabled = true)
+	@Test(priority = 3, enabled = false)
 	public void Validata_S03_Web_TransDetails() {
 		TM_Validata_S03_Web_TransDetails();
 	}
-	@Test(priority = 4, enabled = true)
+	@Test(priority = 4, enabled = false)
 	public void Validata_S04_Web_MonitorTabVerification() {
 		TM_Validata_S04_Web_Monitor_Tab_Verification();
 	}
-	@Test(priority = 5, enabled = true)
+	@Test(priority = 5, enabled = false)
 	public void Validata_S05_Web_MappingSetTabVerification() {
 		TM_Validata_S05_Web_MappingSetTabVerification();
 	}
-	@Test(priority = 6, enabled = true)
+	@Test(priority = 6, enabled = false)
 	public void Validata_S06_Web_ValidationTabVerification() {
 		TM_Validata_S06_Web_ValidationTabVerification();
 	}
-	@Test(priority = 8, enabled = true)
+	@Test(priority = 8, enabled = false)
 	public void Validata_S08_Web_SeveritySetTabVerification() {
 		TM_Validata_S08_Web_SeveritySetTabVerification();
 	}
-	@Test(priority = 9, enabled = true)
+	@Test(priority = 9, enabled = false)
 	public void Validata_S09_Web_DataMangementTabVerification() {
 		TM_Validata_S09_Web_DataMangementTabVerification();
 	}
-	@Test(priority = 11, enabled = true)
+	@Test(priority = 11, enabled = false)
 	public void Validata_S11_Web_ReportsTabVerification() {
 		TM_Validata_S11_Web_ReportsTabVerification();
 	}

@@ -52,32 +52,32 @@ public class UiPath extends CommonMethods{
 	  login();
   }
 
-  @Test(priority=1, enabled=false)
+  @Test(priority=1, enabled=true)
   public void UIPATH_S01_Web_Login_Verification() {
 	  TM_S01_Web_Login_Verification();
   }
   
-  @Test(priority=2, enabled=false)
+  @Test(priority=2, enabled=true)
   public void UIPATH_S02_Web_Monitoring_Tab_Validate() {
 	  TM_S02_Web_Monitoring_Tab_Validate();
   }
   
-  @Test(priority=3, enabled=false)
+  @Test(priority=3, enabled=true)
   public void UIPATH_S03_Web_Robots_Tab_Validate() {
 	  TM_S03_Web_Robots_Tab_Validate();
   }
   
-  @Test(priority=4, enabled=false)
+  @Test(priority=4, enabled=true)
   public void UIPATH_S04_Web_Processes_Tab_Validate() {
 	  TM_S04_Web_Processes_Tab_Validate();
   }
   
-  @Test(priority=5, enabled=false)
+  @Test(priority=5, enabled=true)
   public void UIPATH_S05_Web_Jobs_Tab_Validate() {
 	  TM_S05_Web_Jobs_Tab_Validate();
   }
   
-  @Test(priority=6, enabled=true)
+  @Test(priority=6, enabled=false)
   public void UIPATH_S06_Web_Run_Dummy_Job() {
 	  TM_S06_Web_Run_Dummy_Job();
   }

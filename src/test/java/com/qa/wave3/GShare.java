@@ -43,6 +43,8 @@ public class GShare extends CommonMethods {
 	//String URL5 = "https://drtestgnethome.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";
 	//String URL2 = "https://testcollaborate.gilead.com/sites/QA/_layouts/closeConnection.aspx?loginasanotheruser=true";	
 	String URL= URL2;
+	
+	String Random = getAlphaNumericString(4);
 
 	/***************************** Test Cases *******************/
 
@@ -52,17 +54,17 @@ public class GShare extends CommonMethods {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 1, enabled = true)
 	public void GShare_S01_Web_URL_Accessibility(){
 		TM_GShare_S01_Web_URL_Accessibility();
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 2, enabled = true)
 	public void GShare_S02_Web_FolderCreation(){
 		TM_GShare_S01_Web_FolderCreation();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void GShare_S03_Web_WordCreation(){
 		TM_GShare_S03_Web_WordCreation();
 	}
@@ -151,7 +153,7 @@ public class GShare extends CommonMethods {
 		switchToFrameByLocator(iframe);
 
 		WebElement EnterFolderName = createWebElementBy(ipt_FolderName);
-		EnterFolderName.sendKeys("AutoNew");
+		EnterFolderName.sendKeys("AutoNewFolder_"+Random);
 
 		WebElement Save_Btn = createWebElementBy(btn_Save);
 
@@ -172,7 +174,7 @@ public class GShare extends CommonMethods {
 		switchToFrameByLocator(iframe);
 
 		WebElement EnterWordName = createWebElementBy(ipt_DocName);
-		EnterWordName.sendKeys("AutoNewWord");
+		EnterWordName.sendKeys("AutoNewWord_"+Random);
 
 		WebElement Ok_Btn = createWebElementBy(btn_Ok);
 
@@ -193,7 +195,7 @@ public class GShare extends CommonMethods {
 		switchToFrameByLocator(iframe);
 
 		WebElement EnterWordName = createWebElementBy(ipt_DocName);
-		EnterWordName.sendKeys("AutoNewExcel");
+		EnterWordName.sendKeys("AutoNewExcel_"+Random);
 
 		WebElement Ok_Btn = createWebElementBy(btn_Ok);
 
@@ -281,6 +283,8 @@ public class GShare extends CommonMethods {
 
 		WebElement setting_Icon = createWebElementBy(icon_Setting);
 		setting_Icon.click();
+		
+		wait(2);
 
 		List<WebElement> MenuList = createWebElementsBy(menu_List);
 		for(WebElement menu:MenuList) {

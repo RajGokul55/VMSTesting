@@ -154,8 +154,10 @@ public class MAM extends CommonMethods {
 		url = getURL();
 		Assert.assertTrue(url.contains("StipendSummary.aspx"));
 		
-		WebElement StipendSummary_Slt = createWebElementBy(slt_StipendSummary);
-	    IsDisplayed_IsEnabled(StipendSummary_Slt);
+		/*
+		 * WebElement StipendSummary_Slt = createWebElementBy(slt_StipendSummary);
+		 * IsDisplayed_IsEnabled(StipendSummary_Slt);
+		 */
 		
 		takeScreenshotAtEndOfTest();
 		

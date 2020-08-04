@@ -41,7 +41,7 @@ public class Gview extends CommonMethods{
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	String URL = TstUrl;
+	String URL = PrdUrl;
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
 		DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");

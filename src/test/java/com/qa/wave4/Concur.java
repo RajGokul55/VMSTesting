@@ -45,8 +45,8 @@ public class Concur extends CommonMethods {
 			e.printStackTrace();
 		}
 		
-		WebElement SignIn_Txt = createWebElementBy(txt_signIn);
-		Assert.assertTrue(SignIn_Txt.getText().contains("Sign In"), "The homepage is not loaded");
+		//WebElement SignIn_Txt = createWebElementBy(txt_signIn);
+		//Assert.assertTrue(SignIn_Txt.getText().contains("Sign In"), "The homepage is not loaded");
 	}
 	
 	@Test(priority=1, enabled=true)
@@ -99,13 +99,13 @@ public class Concur extends CommonMethods {
 	By btn_submit		=	By.id("btnSubmit");
 	By ipt_password		=	By.id("password");
 	By img_gilead		=	By.cssSelector("#brandinglogo");
-	By btn_profile		=	By.xpath("//span[contains(text(),'Profile')]");
-	By btn_signout		=	By.xpath("//a[@class='btn btn-link btn-lg cnqr-condensed cnqr-logout']");
-	By btn_expense		=	By.className("cnqr-nav-expense");
+	By btn_profile		=	By.xpath("/html/body/div[3]/div/div/nav[2]/div/button/div[1]");
+	By btn_signout		=	By.xpath("//div[1]/div[1]/div[1]/div[2]/div[1]/button[1]");
+	By btn_expense		=	By.cssSelector("a[data-test^='menu__anchor-expense']");
 	By txt_mngexpnse	=	By.xpath("//div[1]/div[1]/div[1]/div[6]/div[1]/span[1]/div[1]");
 	By lnk_createrep	=	By.xpath("//a[@class='cnqr-outer']");
-	By ipt_repname		=	By.id("Report_2411_TRAVELER_ISNEW_Name");
-	By ipt_businessp	=	By.id("Report_2411_TRAVELER_ISNEW_Purpose");
+	By ipt_repname		=	By.cssSelector("#Report_2411_TRAVELER_ISNEW_Name");
+	By ipt_businessp	=	By.cssSelector("#Report_2411_TRAVELER_ISNEW_Purpose");
 	By btn_next			=	By.cssSelector("#ext-gen200");
 	By txt_repname		=	By.cssSelector("#ReportInfoDivActiveReport");
 	By lnk_repname		=	By.xpath("//h3[@class='cnqr-force-wrap']");
@@ -208,11 +208,14 @@ public class Concur extends CommonMethods {
 		WebElement Next_Btn = createWebElementBy(btn_submit);
 		Next_Btn.click();
 		
+		waitForPageLoaded();
+		
 		WebElement Password_Ipt = createWebElementBy(ipt_password);
 		Password_Ipt.sendKeys(DecrptPassword);
 		
 		WebElement Submit_Btn = createWebElementBy(btn_submit);
 		Submit_Btn.click();
+		waitForPageLoaded();
 	}
 	
 	public void logout() {

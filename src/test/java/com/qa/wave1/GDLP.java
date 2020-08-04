@@ -20,15 +20,15 @@ public class GDLP extends CommonMethods {
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String devUrl= "https://gdlp-dev.gilead.com";
-	final String naUrl = "https://gdlp-na.gilead.com";
-	final String euUrl = "https://gdlp-eu.gilead.com";
+	//final String naUrl = "https://gdlp-na.gilead.com"; no more can be tested directly from browser
+	//final String euUrl = "https://gdlp-eu.gilead.com"; Have to launch Chrome from Gadi with ADM account
 	final String username = "NA\\graj";
 	private String DecrptPassword;
 	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
 	
 	/************Fields for which inputs are required to run Test case 2************/
-	String name = "Post Patching Test Policy"; //give new name every time for creating a new policy
-	String ruleName = "Post Patch Rule";
+	String name = "Post Patching Test"; //give new name every time for creating a new policy
+	String ruleName = "Post Patch";
 	String descriptionText = "Testing for creating new policy";
 	String policyGroup = "VMS Testing Group";
 	/*-----------------------------------------------------------------------------*/

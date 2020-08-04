@@ -19,12 +19,12 @@ public class GFED extends CommonMethods {
 	/***************************** Test Cases *******************/
 
 	/*
-	 * Test case ‘Test Name’ naming convention:
-	 * <AppName><TCNumber>_<TestCategory>_<Title> Definitions of terms: • AppName:
-	 * short name of Application [String 5 -10 chars] i.e., TstMyApp, • TCNumber:
-	 * Test case number [Numeric 2-3 digits] i.e, 01, 02,.. • TestCategory: Test
+	 * Test case â€˜Test Nameâ€™ naming convention:
+	 * <AppName><TCNumber>_<TestCategory>_<Title> Definitions of terms: â€¢ AppName:
+	 * short name of Application [String 5 -10 chars] i.e., TstMyApp, â€¢ TCNumber:
+	 * Test case number [Numeric 2-3 digits] i.e, 01, 02,.. â€¢ TestCategory: Test
 	 * case category [Predefined as per prior analysis] i.e, [Web, WinSrve, LnxSrve,
-	 * DB …] • Title: short title of test case based on context of test case ie.,
+	 * DB â€¦] â€¢ Title: short title of test case based on context of test case ie.,
 	 * ValidateCredntails Test Name Example: Filkart_05_Web_ValidateCredntails.
 	 * 
 	 * Test method name must be same as test case appended with TM example:

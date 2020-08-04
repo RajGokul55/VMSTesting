@@ -18,9 +18,9 @@ public class Kronos extends CommonMethods {
 	final String DevUrl = "https://fckronwebdev01.na.gilead.com/wfc/applications/suitenav/navigation.do";
 	String usrname = "graj";
 	private String DecrptPassword;
-	String name = "Testing3";
+	String name = "Testing4";
 	String entermessage = "Testing Kronos";
-	String Open = "Testing3";
+	String Open = "Testing4";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -42,7 +42,7 @@ public class Kronos extends CommonMethods {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void KRN_S01_Web_Validate_Homepage() {
 		TM_S01_Web_Validate_Homepage();
 	}
@@ -102,7 +102,7 @@ public class Kronos extends CommonMethods {
 		login();
 		WebElement KronosLog_Img = createWebElementBy(img_kronoslogo);
 		Assert.assertTrue(KronosLog_Img.isDisplayed(), "The login was unsuccessfull");
-
+		takeScreenshotAtEndOfTest();
 		String loggedin = driver.getCurrentUrl();
 		Assert.assertTrue(loggedin.contains("applications"), "The login was unsuccessfull");
 
@@ -136,7 +136,7 @@ public class Kronos extends CommonMethods {
 
 		WebElement MessageArea_Txt = createWebElementBy(txt_messagearea);
 		MessageArea_Txt.sendKeys(entermessage);
-
+		takeScreenshotAtEndOfTest();
 		WebElement Send_Btn = createWebElementBy(btn_send);
 		Send_Btn.click();
 
@@ -169,6 +169,7 @@ public class Kronos extends CommonMethods {
 
 		WebElement Message_Txt = createWebElementBy(txt_message);
 		Assert.assertTrue(Message_Txt.getText().equalsIgnoreCase(entermessage), "The message opened is different");
+		takeScreenshotAtEndOfTest();
 		System.out.println(Message_Txt.getText());
 
 		WebElement Close_Btn = createWebElementBy(btn_close);
@@ -190,7 +191,7 @@ public class Kronos extends CommonMethods {
 		String loggedin = driver.getCurrentUrl();
 		Assert.assertTrue(loggedin.contains("applications"), "The login was unsuccessfull");
 		logoff();
-		
+		takeScreenshotAtEndOfTest();
 		String webUrl = driver.getCurrentUrl();
 		Assert.assertTrue(webUrl.contains("logon"), "The log off was unsuccessfull");
 		

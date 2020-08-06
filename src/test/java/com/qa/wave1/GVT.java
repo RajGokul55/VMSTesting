@@ -37,21 +37,18 @@ public class GVT extends CommonMethods{
 	 */
 
 	@Test(priority=0, enabled=true)
-	@Parameters("GVT_URL1")
-	public void GVT_01_Web_ValidateSpotfireServer(String url1) {
-		TM_GVT_01_Web_ValidateSpotfireServer(url1);
+	public void GVT_01_Web_ValidateSpotfireServer() {
+		TM_GVT_01_Web_ValidateSpotfireServer();
 	}
 
 	@Test(priority=1, enabled=true)
-	@Parameters("GVT_URL1")
-	public void GVT_02_Web_ValidateReportAccessiblity(String url1) {
-		TM_GVT_02_Web_ValidateReportAccessiblity(url1);
+	public void GVT_02_Web_ValidateReportAccessiblity() {
+		TM_GVT_02_Web_ValidateReportAccessiblity();
 	}
 
 	@Test(priority=2, enabled=true)
-	@Parameters("GVT_URL2")
-	public void GVT_03_Web_ValidateTERRServer(String url2) {
-		TM_GVT_03_Web_ValidateTERRServer(url2);
+	public void GVT_03_Web_ValidateTERRServer() {
+		TM_GVT_03_Web_ValidateTERRServer();
 	}
 
 	@AfterMethod
@@ -89,9 +86,9 @@ public class GVT extends CommonMethods{
 	/*****************************Test Case Methods *******************/
 	//For all WebElements may append type Example: Submit_Btn
 
-	void TM_GVT_01_Web_ValidateSpotfireServer(String url1) {
+	void TM_GVT_01_Web_ValidateSpotfireServer() {
 
-		launchBrowser(Browser, url1);
+		launchBrowser(Browser, Url_dev1);
 		wait(2);
 		String pageTitle = driver.getTitle();
 		takeScreenshotAtEndOfTest();
@@ -100,9 +97,9 @@ public class GVT extends CommonMethods{
 		//Assert.assertEquals(pageTitle, "New analysis – TIBCO Spotfire", "URL is not correct");
 	}
 
-	void TM_GVT_02_Web_ValidateReportAccessiblity(String url1) {
+	void TM_GVT_02_Web_ValidateReportAccessiblity() {
 
-		launchBrowser(Browser, url1);
+		launchBrowser(Browser, Url_dev1);
 		wait(2);
 		
 		/*Test Env:*/ 
@@ -134,9 +131,9 @@ public class GVT extends CommonMethods{
 		Assert.assertEquals(report, "DXP Usage", "Test case is failed");
 	}
 
-	void TM_GVT_03_Web_ValidateTERRServer(String url2) {
+	void TM_GVT_03_Web_ValidateTERRServer() {
 
-		launchBrowser(Browser, url2);
+		launchBrowser(Browser, Url_dev2);
 		wait(2);
 		WebElement Details_menu = createWebElementBy(menu_Details);
 		String a = Details_menu.getText();

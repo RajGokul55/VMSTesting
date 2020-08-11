@@ -26,8 +26,8 @@ public class GCC extends CommonMethods {
 	final String Url = "https://sjgccwebdevg01/ui/login.action";
 	// Prod Environment URL
 	final String Url1 = "https://sjgccwebprdg01/ui/login.action";
-	final String username = "arun.raj5";
-	String EncryptPassword = "cHhqigjkE9lagBcklOFbJw==";
+	final String username = "pravin.sonawane";
+	String EncryptPassword = "e19ncVNSmW6OrHZf9mDsAg==";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************/
@@ -43,11 +43,6 @@ public class GCC extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	@BeforeMethod
-	public void beforeMethod() {
-		launchBrowser(Browser, Url);
-	}
-
 	// DEV Environment
 	@Test(priority = 0, enabled = true)
 	public void GCC_S01_Web_login_verifyscreen_DEV() {
@@ -56,7 +51,7 @@ public class GCC extends CommonMethods {
 	}
 	
 	// PROD environment
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void GCC_S01_Web_login_verifyscreen_PROD() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
 
@@ -113,6 +108,7 @@ public class GCC extends CommonMethods {
 	//DEV
 	public void TM_GCC_S01_Web_login_verifyGCCScreen_DEV() {
 
+		launchBrowser(Browser, Url);
 		login_verifyScreen();
 		verifyDashboard();
 		verifyCluster();
@@ -124,6 +120,7 @@ public class GCC extends CommonMethods {
 	//PROD
 	public void TM_GCC_S01_Web_login_verifyGCCScreen_PROD() {
 
+		launchBrowser(Browser, Url1);
 		login_verifyScreen();
 		verifyDashboard();
 		verifyCluster_PROD();

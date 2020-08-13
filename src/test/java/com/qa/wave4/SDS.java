@@ -28,7 +28,7 @@ import com.qa.demo.base.CommonMethods;
 			TM_SDS_S01_Test_Postpatchtesting(ValUrl);
 		}
 		
-		@Test(priority=2, enabled=true)
+		@Test(priority=2, enabled=false)
 		public void SDS_S02_PROD_Postpatchtesting() {
 			TM_SDS_S02_PROD_Postpatchtesting(ProdUrl);
 		}

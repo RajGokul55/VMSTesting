@@ -3,7 +3,7 @@ package com.qa.wave1;
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
 import org.testng.annotations.AfterMethod;
-
+import org.testng.annotations.Parameters;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -88,7 +88,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_01_Web_ValidateSpotfireServer() {
 
-		launchBrowser(Browser, Url_SMPOC1);
+		launchBrowser(Browser, Url_dev1);
 		wait(2);
 		String pageTitle = driver.getTitle();
 		takeScreenshotAtEndOfTest();
@@ -99,7 +99,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_02_Web_ValidateReportAccessiblity() {
 
-		launchBrowser(Browser, Url_SMPOC1);
+		launchBrowser(Browser, Url_dev1);
 		wait(2);
 		
 		/*Test Env:*/ 
@@ -119,7 +119,7 @@ public class GVT extends CommonMethods{
 		WebElement VMS_menu = createWebElementBy(menu_VMS);
 		VMS_menu.click();
 		
-		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday_test_POC);
+		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday);
 		DXPUsage_menu.click();
 		
 		wait(3);
@@ -133,7 +133,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_03_Web_ValidateTERRServer() {
 
-		launchBrowser(Browser, Url_SMPOC2);
+		launchBrowser(Browser, Url_dev2);
 		wait(2);
 		WebElement Details_menu = createWebElementBy(menu_Details);
 		String a = Details_menu.getText();

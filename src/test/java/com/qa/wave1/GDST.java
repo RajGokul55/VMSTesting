@@ -18,7 +18,7 @@ public class GDST extends CommonMethods {
 	final String Browser = "Chrome";
 	/*
 	 * Prod url*/
-	   final String Url = "https://gdst/mc#dashboard";
+	   final String Url = "https://gdst.gilead.com:8443/mc#dashboard";
 		
 	/*
 	 * Dev url

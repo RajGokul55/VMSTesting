@@ -9,6 +9,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
@@ -27,7 +28,7 @@ public class GDSS extends CommonMethods {
 	final String Url = "https://account-d.docusign.com";
 	final String FirstLevelUsername = "pravin.sonawane@gilead.com";
 	final String SecondLevelUsername = "psonawane";
-	private String DecrptPassword;
+	private String DecrptPassword = "e19ncVNSmW6OrHZf9mDsAg==";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -40,31 +41,20 @@ public class GDSS extends CommonMethods {
 	 * ValidateCredntails Test Name Example: Filkart_05_Web_ValidateCredntails. Test
 	 * method name must be same as test case appended with TM example:
 	 */
-
-	@BeforeSuite(enabled = true)
-	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("e19ncVNSmW6OrHZf9mDsAg==");
-	}
-
-	@BeforeTest
-	public void beforeTest() {
-		launchBrowser(Browser, Url);
-		TM_GDSS_login();
-	}
-
+	
 	@Test(priority = 0, enabled = true)
 	public void GDSS_S01_Web_Application_Launch_Verfication() {
 		TM_GDSS_S01_Web_Application_Launch_Verfication();
 	}
 
 
-	@Test(priority = 1, enabled = true) 
+	@Test(priority = 1, enabled = false) 
 	public void GDSS_S02_Web_Upload_Sign_Document() throws Exception {
 		TM_GDSS_S02_Web_Upload_Sign_Document();
 	}
 
 
-	@AfterTest
+	@AfterMethod
 	public void afterTest() {
 		driver.quit();
 	}
@@ -101,6 +91,7 @@ public class GDSS extends CommonMethods {
 	/***************************** Test Case Methods *******************/
 
 	void TM_GDSS_S01_Web_Application_Launch_Verfication() {
+		TM_GDSS_login();
 		wait(5);
 		takeScreenshotAtEndOfTest();
 		Assert.assertEquals(TM_GDSS_GetPageTitle(), sPageTitle);
@@ -119,7 +110,7 @@ public class GDSS extends CommonMethods {
 		robot.setAutoDelay(2000);
 
 		StringSelection stringSelection = new StringSelection(
-				"C:\\Users\\amamgain\\Desktop\\Upload Sign Validation\\GDSS Test");
+				"C:\\Users\\psonawane\\Desktop\\Wave\\Wave 1\\GDSS\\GDSS Test");
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(stringSelection, null);
 
 		robot.setAutoDelay(1000);
@@ -141,10 +132,10 @@ public class GDSS extends CommonMethods {
 		/**
 		 * Code for signing the document
 		 */
-		/*
-		 * createWebElementBy(btn_Sign).click(); waitForPageLoaded();
-		 * createWebElementBy(btn_ContinuePage).click();
-		 */
+
+		//createWebElementBy(btn_Sign).click(); waitForPageLoaded();
+		//createWebElementBy(btn_ContinuePage).click();
+
 		/*
 		 * Drag and Drop the sign icon
 		 */
@@ -170,6 +161,12 @@ public class GDSS extends CommonMethods {
 	 * Method to login to the application.
 	 */
 	void TM_GDSS_login() {
+		try {
+			DecrptPassword = decrypt("e19ncVNSmW6OrHZf9mDsAg==");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		launchBrowser(Browser, Url);
 		createWebElementBy(ipt_FirstLevelUsername).sendKeys(FirstLevelUsername);
 		createWebElementBy(btn_Continue).click();
 		waitForPageLoaded();
@@ -179,14 +176,14 @@ public class GDSS extends CommonMethods {
 		createWebElementBy(ipt_Password).sendKeys(DecrptPassword);
 		createWebElementBy(btn_SignOn).click();
 		waitForPageLoaded();
-		createWebElementBy(ipt_FirstLevelUsername).sendKeys(FirstLevelUsername);
-		createWebElementBy(btn_Continue).click();
-		waitForPageLoaded();
-		createWebElementBy(btn_UseCompanyLogin).click();
-		waitForPageLoaded();
-		createWebElementBy(ipt_SecondLevelUsername).sendKeys(SecondLevelUsername);
-		createWebElementBy(ipt_Password).sendKeys(DecrptPassword);
-		createWebElementBy(btn_SignOn).click();
+//		createWebElementBy(ipt_FirstLevelUsername).sendKeys(FirstLevelUsername);
+//		createWebElementBy(btn_Continue).click();
+//		waitForPageLoaded();
+//		createWebElementBy(btn_UseCompanyLogin).click();
+//		waitForPageLoaded();
+//		createWebElementBy(ipt_SecondLevelUsername).sendKeys(SecondLevelUsername);
+//		createWebElementBy(ipt_Password).sendKeys(DecrptPassword);
+//		createWebElementBy(btn_SignOn).click();
 	}
 
 	/**

@@ -668,7 +668,7 @@ public class CommonMethods {
 		 * 
 		 */
 		Scanner x;
-		final String filepath = System.getProperty("user.dir") + "\\AutoFiles\\" + "WinSer23May.txt";
+		final String filepath = System.getProperty("user.dir") + "\\AutoFiles\\" + "August-std.txt";
 		boolean found = false;
 		String SystemName = "";
 		String DisplayName = "";

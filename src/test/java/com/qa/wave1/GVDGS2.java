@@ -22,7 +22,7 @@ public class GVDGS2 extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 	
-	String URL = UAT_Url; // Change URl whichever Env you want to execute.
+	String URL = ProdURL; // Change URl whichever Env you want to execute.
 	
 
 	@Test(priority = 0, enabled = true)

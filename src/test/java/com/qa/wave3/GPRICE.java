@@ -12,7 +12,7 @@ public class GPRICE extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 
-	@BeforeMethod(enabled = false)
+	@BeforeMethod(enabled = true)
 	public void BeforeMethod() throws IOException {
 
 	}
@@ -32,7 +32,7 @@ public class GPRICE extends CommonMethods {
 		TM_GPRICE_S03_Web_Produrl_UserLogin_dasboard();
 	}
 	
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 3, enabled = true)
 	public void GPRICE_S04_Web_Produrl_Simulation_Report() throws IOException {
 		TM_GPRICE_S04_Web_Produrl_Simulation_Report();
 	}

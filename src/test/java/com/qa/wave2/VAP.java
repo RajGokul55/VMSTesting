@@ -73,6 +73,7 @@ public class VAP extends CommonMethods {
 
 		try {
 			DecrptPassword = decrypt("jkZ6wa4Z2KM4dVjKyZh9VQ==");
+			System.out.println(DecrptPassword);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

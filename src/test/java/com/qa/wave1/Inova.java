@@ -19,19 +19,17 @@ public class Inova extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://sjinvappdevn01/inova-partner/ctx/auth/home";
-	//final String prod_Url= "https://verticali.gilead.com/inova-partner/ctx/auth/home.do";
-	final String Username ="nnereddula";
+	//final String Url= "https://sjinvappdevn01/inova-partner/ctx/auth/home";
+	final String prod_Url= "https://verticali.gilead.com/inova-partner/ctx/auth/home.do";
+	final String Username ="psonawane";
 	private String DecrptPassword;
 
 
 	/***************************** Test Cases *******************/
-	
-	
 
 	@BeforeMethod(enabled=true)
 	public void beforeTest() {
-		launchBrowser(Browser, Url);
+		launchBrowser(Browser, prod_Url);
 	}
 
 	@Test(priority=0, enabled=true)
@@ -89,7 +87,7 @@ public class Inova extends CommonMethods{
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		try {
-			DecrptPassword = decrypt("7Hg/RG3b/gW7f5MtwvnN+g==");
+			DecrptPassword = decrypt("MfpoFri2dPP8Y/JUm6i2jw==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

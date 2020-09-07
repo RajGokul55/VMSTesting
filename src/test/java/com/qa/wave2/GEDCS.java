@@ -20,9 +20,7 @@ public class GEDCS extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "http://sjmerapptstg01/Meridian/Main";
-	final String Username ="nnereddula";
-	private String DecrptPassword;
-
+	final String Username ="psonawane";
 
 	/***************************** Test Cases *******************/
 	

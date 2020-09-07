@@ -37,7 +37,7 @@ public class COGs extends CommonMethods {
 
 	@BeforeMethod
 	void setup() {
-		launchBrowser(Browser, Url_Dev);
+		launchBrowser(Browser, Url_Prod);
 		userLogin();
 	}
 
@@ -51,12 +51,12 @@ public class COGs extends CommonMethods {
 		TM_COGs_S02_Windows_Web_Tab_Verfication();
 	}
 
-	@Test(priority = 2, enabled = true, groups = {"Dev"}) 
+	@Test(priority = 2, enabled = false, groups = {"Dev"}) 
 	public void COGs_S03_Windows_Web_Project_Creation() {
 		TM_COGs_S03_Windows_Web_Project_Creation();
 	}
 	
-	@Test(priority = 3, enabled = true, groups = {"Dev"}) 
+	@Test(priority = 3, enabled = false, groups = {"Dev"}) 
 	public void COGs_S04_Windows_Web_Project_Modification() {
 		TM_COGs_S04_Windows_Web_Project_Modification();
 	}
@@ -164,7 +164,7 @@ public class COGs extends CommonMethods {
 
 	void userLogin() {
 		try {
-			DecrptPassword = decrypt("e19ncVNSmW6OrHZf9mDsAg==");
+			DecrptPassword = decrypt("MfpoFri2dPP8Y/JUm6i2jw==");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

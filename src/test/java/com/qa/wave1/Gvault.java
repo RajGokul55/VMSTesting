@@ -18,7 +18,7 @@ public class Gvault extends CommonMethods{
 
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
-	final String Url= "https://sb-gilead-it.veevavault.com";
+	final String Url= "https://val-gilead.veevavault.com";
 	//final String Url_Dev= "https://sb-gilead-qualitydocs.veevavault.com";
 	//final String Url_Test= "https://sb-gilead-it.veevavault.com";
 	//final String Url_Val= "https://val-gilead.veevavault.com";
@@ -113,7 +113,7 @@ public class Gvault extends CommonMethods{
 		Add_menu.click();
 		
 		WebElement Date_ipt= createWebElementBy(ipt_Date);
-		Date_ipt.sendKeys("07/30/2020");
+		Date_ipt.sendKeys("08/22/2020");
 		
 		WebElement DiscepancyDetails_ipt= createWebElementBy(ipt_DiscepancyDetails);
 		DiscepancyDetails_ipt.sendKeys("Test_Added");
@@ -171,7 +171,7 @@ public class Gvault extends CommonMethods{
 
 	void Gvault_CommonFlow() {
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
-		Username_Ipt.sendKeys(Username);
+		Username_Ipt.sendKeys(Username_val);
 
 		WebElement Continue_Btn = createWebElementBy(btn_Continue);
 		Continue_Btn.click();

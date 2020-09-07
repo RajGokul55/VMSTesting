@@ -125,7 +125,7 @@ public class GShare extends CommonMethods {
 	By inputSearch = By.cssSelector("input[value='Search All GShare']");
 	By iConSearch = By.cssSelector("a[title='Search']");
 	By searchResult = By.cssSelector("span[class='document-title'] strong");
-	By siteTime = By.cssSelector("div[class='site-time-info']:nth-child(1) div[class='top-section']");
+	By siteTime = By.cssSelector("div[class='site-time-info']:nth-child(1) div[class='top-section'] div");
 	By Location5 = By.cssSelector("ul[class='collapse collapseLocation locations-ul']>li:nth-child(5)>a>span");
 	By Location1 = By.cssSelector("ul[class='collapse collapseLocation locations-ul']>li:nth-child(1)>a>span");
 	By drop_Location = By.cssSelector("div[id='currentCity']");
@@ -277,7 +277,7 @@ public class GShare extends CommonMethods {
 		
 		Assert.assertNotEquals(DefaultHour, Updated_Hour.getText());
 				
-		takeScreenshotAtEndOfTest();
+		takeScreenshotAtEndOfTest();   
 	}
 	void NavigatetoAddNewOptions() {
 

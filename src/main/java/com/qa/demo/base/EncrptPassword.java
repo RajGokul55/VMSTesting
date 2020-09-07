@@ -8,7 +8,7 @@ public class EncrptPassword extends CommonMethods{
 		 * Delete entered password before leaving this class * 
 		 * 
 		 */
-		String password = "";
+		String password = "Z32@Rc1!23";
 		String EncrptedPassword = encrypt(password);
 		System.out.println("Encripted Password: "+EncrptedPassword);
 

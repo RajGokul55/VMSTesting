@@ -22,16 +22,17 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
-public class IQS extends CommonMethods {
+public class GCQS extends CommonMethods {
 
 	/***************************** Test Data *******************/
 	final String Browser = "IE";
 	// Dev Environment URL
-	final String Url = "http://sjiqsapppocn01/iqs310r4";
-	// Val Environment URL
-	final String Url1 = "http://fciqsappval02/iqs";
+	//final String Url = "http://sjiqsapppocn01/iqs310r4";
+	final String Url = "http://hkgcqsappprdg01/gcqs";
+	// Test Environment URL
+	final String Url1 = "http://fciqsappdev02/GCQSTest";
 	// Prod Environment URL
-	final String Url2 = "http://iqs";
+	final String Url2 = "http://hkgcqsappprdg01/gcqs";
 
 	/***************************** Test Cases *******************/
 	/*
@@ -52,32 +53,32 @@ public class IQS extends CommonMethods {
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void IQS_S01_Web_verifyIQSscreen() {
-		TM_IQS_S01_Web_verifyIQSScreen();
+	public void GCQS_S01_Web_verifyIQSscreen() {
+		TM_GCQS_S01_Web_verifyIQSScreen();
 
 	}
 
 	@Test(priority = 0, enabled = true)
-	public void IQS_S02_Web_VerifyPreviewReport() {
-		TM_IQS_S02_Web_verifyPreviewReport();
+	public void GCQS_S02_Web_VerifyPreviewReport() {
+		TM_GCQS_S02_Web_verifyPreviewReport();
 
 	}
 	
 	@Test(priority = 0, enabled = true)
-	public void IQS_S03_Web_VerifyQualityRecordBrowserSearch() {
-		TM_IQS_S03_Web_verifyQualityRecordBrowserSearch();
+	public void GCQS_S03_Web_VerifyQualityRecordBrowserSearch() {
+		TM_GCQS_S03_Web_verifyQualityRecordBrowserSearch();
 
 	}
 	// Manually we are performing this Test case, since need to download the attachment & verify 
 	//@Test(priority = 0, enabled = false)
-	//public void IQS_S04_VerifyRecord_And_Attachment() {
-		//TM_IQS_S04_Web_verifyAttachment_Record();
+	//public void GCQS_S04_VerifyRecord_And_Attachment() {
+		//TM_GCQS_S04_Web_verifyAttachment_Record();
 
 	//}
 	
 	@Test(priority = 0, enabled = true)
-	public void IQS_S05_Web_VerifyIQSReportPortal() {
-		TM_IQS_S05_Web_verifyIQSReportPortal();
+	public void GCQS_S05_Web_VerifyIQSReportPortal() {
+		TM_GCQS_S05_Web_verifyIQSReportPortal();
 
 	}
 
@@ -108,39 +109,39 @@ public class IQS extends CommonMethods {
 	/***************************** Test Case Methods *******************/
 	// For all WebElements may append type Example: Submit_Btn
 
-	public void TM_IQS_S01_Web_verifyIQSScreen() {
+	public void TM_GCQS_S01_Web_verifyIQSScreen() {
 
-		VerifyIQSScreen();
+		VerifyGCQSScreen();
 
 	}
 
-	public void TM_IQS_S02_Web_verifyPreviewReport() {
+	public void TM_GCQS_S02_Web_verifyPreviewReport() {
 
 		VerifyQualityRecordBrowserSearch();
 		verifyPreviewReport();
 
 	}
 
-	public void TM_IQS_S03_Web_verifyQualityRecordBrowserSearch() {
+	public void TM_GCQS_S03_Web_verifyQualityRecordBrowserSearch() {
 
 		VerifyQualityRecordBrowserSearch();
 
 	}
 
-	public void TM_IQS_S04_Web_verifyAttachment_Record() {
+	public void TM_GCQS_S04_Web_verifyAttachment_Record() {
 
 		VerifyQualityRecordBrowserSearch();
 		//verifyIQSAttachmentRecord();
 
 	}
 
-	public void TM_IQS_S05_Web_verifyIQSReportPortal() {
+	public void TM_GCQS_S05_Web_verifyIQSReportPortal() {
 
-		verifyIQSReportPortal();
+		verifyGCQSReportPortal();
 
 	}
 
-	public void VerifyIQSScreen() {
+	public void VerifyGCQSScreen() {
 
 		waitForPageLoaded();
 		wait(2);
@@ -193,11 +194,11 @@ public class IQS extends CommonMethods {
 		wait(2);
 		WebElement QualityRecords = createWebElementBy(btn_qualityRecords);
 		QualityRecords.click();
-		WebElement RecordStatus = createWebElementBy(btn_RecordStatus);
-		RecordStatus.click();
+		//WebElement RecordStatus = createWebElementBy(btn_RecordStatus);
+		//RecordStatus.click();
 		wait(1);
-		WebElement Draft = createWebElementBy(drp_Draft);
-		Draft.click();
+		//WebElement Draft = createWebElementBy(drp_Draft);
+		//Draft.click();
 		wait(2);
 		WebElement Search = createWebElementBy(btn_search);
 		Search.click();
@@ -205,7 +206,7 @@ public class IQS extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	public void verifyIQSAttachmentRecord() {
+	public void verifyGCQSAttachmentRecord() {
 		wait(2);
 		Actions actions = new Actions(driver);
 		WebElement Draft = createWebElementBy(btn_doubleClick);
@@ -214,7 +215,7 @@ public class IQS extends CommonMethods {
 		takeScreenshotAtEndOfTest();
 	}
 
-	public void verifyIQSReportPortal() {
+	public void verifyGCQSReportPortal() {
 		wait(2);
 		Set<String> MainTab = driver.getWindowHandles();
 		

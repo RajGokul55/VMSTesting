@@ -25,7 +25,7 @@ public class ACD extends CommonMethods {
 	private static final String userDirectory = System.getProperty("user.dir");
 	private static String imagePath = userDirectory + "\\AutoFiles\\SiKuli\\ACD\\";
 
-	final String Username = "abhatt2";
+	final String Username = "bdineshjain";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************************/
@@ -43,7 +43,7 @@ public class ACD extends CommonMethods {
 	@BeforeMethod
 	void Setup() {
 		try {
-			DecrptPassword = decrypt("nUwyGJG2cT7AgFQqaNE29g==");
+			DecrptPassword = decrypt("7lM7N88DUf+EUFRy3BwGFw==");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -124,11 +124,12 @@ public class ACD extends CommonMethods {
 				Screen s1 = new Screen();
 				try {
 
-					Pattern notNow = new Pattern(imagePath + "notNow.PNG");
-					s1.wait(notNow, 2000);
-					s1.click();
+					
+					  Pattern notNow = new Pattern(imagePath + "notNow_btn01.PNG"); 
+					  s1.wait(notNow,2000); s1.click();
+					 
 					wait(5);
-					Pattern fileImg = new Pattern(imagePath + "GC_File");
+					Pattern fileImg = new Pattern(imagePath + "file_link");
 					Boolean IsExists = false;
 
 					if (s1.exists(fileImg) != null) {
@@ -145,7 +146,7 @@ public class ACD extends CommonMethods {
 				} finally {
 					wait(5);
 
-					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
+					Pattern crossBtn = new Pattern(imagePath + "cross_button01.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
 					wait(5);
@@ -183,12 +184,12 @@ public class ACD extends CommonMethods {
 				Screen s1 = new Screen();
 				try {
 
-					Pattern notNow = new Pattern(imagePath + "notNow.PNG");
+					Pattern notNow = new Pattern(imagePath + "notNow_btn01.PNG");
 					s1.wait(notNow, 5000);
 					s1.click();
 					wait(7);
 
-					Pattern fileImg = new Pattern(imagePath + "historyTab.PNG");
+					Pattern fileImg = new Pattern(imagePath + "historyTab01.PNG");
 					Boolean IsExists = false;
 
 					if (s1.exists(fileImg) != null) {
@@ -244,15 +245,15 @@ public class ACD extends CommonMethods {
 				Screen s1 = new Screen();
 				try {
 
-					Pattern notNow = new Pattern(imagePath + "notNow.PNG");
+					Pattern notNow = new Pattern(imagePath + "notNow_btn01.PNG");
 					s1.wait(notNow, 2000);
 					s1.click();
 					wait(5);
-					Pattern cancelbtn = new Pattern(imagePath + "cancelBtn");
+					Pattern cancelbtn = new Pattern(imagePath + "cancelBtn01");
 					s1.wait(cancelbtn, 2000);
 					s1.click();
 
-					Pattern fileImg = new Pattern(imagePath + "GC_File");
+					Pattern fileImg = new Pattern(imagePath + "file_link");
 					Boolean IsExists = false;
 
 					if (s1.exists(fileImg) != null) {
@@ -269,7 +270,7 @@ public class ACD extends CommonMethods {
 				} finally {
 					wait(5);
 
-					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
+					Pattern crossBtn = new Pattern(imagePath + "cross_button01.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
 					wait(5);
@@ -307,11 +308,11 @@ public class ACD extends CommonMethods {
 				Screen s1 = new Screen();
 				try {
 
-					Pattern notNow = new Pattern(imagePath + "notNow.PNG");
+					Pattern notNow = new Pattern(imagePath + "notNow_btn01.PNG");
 					s1.wait(notNow, 2000);
 					s1.click();
 					wait(5);
-					Pattern fileImg = new Pattern(imagePath + "GC_File");
+					Pattern fileImg = new Pattern(imagePath + "file_link");
 					Boolean IsExists = false;
 
 					if (s1.exists(fileImg) != null) {
@@ -328,7 +329,7 @@ public class ACD extends CommonMethods {
 				} finally {
 					wait(5);
 
-					Pattern crossBtn = new Pattern(imagePath + "crossBtn.PNG");
+					Pattern crossBtn = new Pattern(imagePath + "cross_button01.PNG");
 					s1.wait(crossBtn, 5000);
 					s1.click();
 					wait(5);

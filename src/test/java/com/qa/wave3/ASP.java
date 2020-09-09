@@ -17,8 +17,6 @@ import com.qa.demo.base.CommonMethods;
 		final String UATUrl= "https://uat.asp.gilead.com/gallery";
 		final String ProdUrl ="https://asp.gilead.com/gallery";
 		
-		
-
 		/***************************** Test Cases *******************/
 		
 	

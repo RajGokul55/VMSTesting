@@ -44,37 +44,37 @@ public class CBR extends CommonMethods {
 		TM_CBR_S02_Windows_Web_All_open_Lot_Verfication();
 	}
 	
-	@Test(priority = 3, enabled = true) 
+	@Test(priority = 3, enabled = false) 
 	public void CBR_S03_Windows_Web_Edit_AutomatedRecord_SupplyChain() {
 		TM_CBR_S03_Windows_Web_Edit_AutomatedRecord_SupplyChain();
 	}
 	
-	@Test(priority = 4, enabled = true) 
+	@Test(priority = 4, enabled = false) 
 	public void CBR_S04_Windows_Web_Edit_AutomatedRecord_Production() {
 		TM_CBR_S04_Windows_Web_Edit_AutomatedRecord_Production();
 	}
 	
-	@Test(priority = 5, enabled = true) 
+	@Test(priority = 5, enabled = false) 
 	public void CBR_S05_Windows_Web_Edit_AutomatedRecord_QADisp() {
 		TM_CBR_S05_Windows_Web_Edit_AutomatedRecord_QADisp();
 	}
 	
-	@Test(priority = 6, enabled = true) 
+	@Test(priority = 6, enabled = false) 
 	public void CBR_S06_Windows_Web_Edit_ManualRecord_SupplyChain() {
 		TM_CBR_S06_Windows_Web_Edit_ManualRecord_SupplyChain();
 	}
 	
-	@Test(priority = 7, enabled = true) 
+	@Test(priority = 7, enabled = false) 
 	public void CBR_S07_Windows_Web_Edit_ManualRecord_Production() {
 		TM_CBR_S07_Windows_Web_Edit_ManualRecord_Production();
 	}
 	
-	@Test(priority = 8, enabled = true) 
+	@Test(priority = 8, enabled = false) 
 	public void CBR_S08_Windows_Web_Edit_ManualRecord_QADisp() {
 		TM_CBR_S08_Windows_Web_Edit_ManualRecord_QADisp();
 	}
 	
-	@Test(priority = 9, enabled = true) 
+	@Test(priority = 9, enabled = false) 
 	public void CBR_S09_Windows_Web_Settings_All_tab_Verification() {
 		TM_CBR_S09_Windows_Web_Settings_All_tab_Verification();
 	}
@@ -139,7 +139,7 @@ public class CBR extends CommonMethods {
 
 	public void TM_CBR_S01_Windows_Web_All_Lot_Tab_Verfication(){
 
-		launchBrowser(Browser, Url_Dev);
+		launchBrowser(Browser, Url_UAT);
 		before_Tab_Verification(lnk_All_lots);
 		createWebElementBy(lnk_Header_MTR).click();
 		waitForPageLoaded();

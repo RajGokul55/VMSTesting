@@ -34,7 +34,7 @@ public class GVMS extends CommonMethods {
 
 	@BeforeMethod
 	void setUp() {
-		launchBrowser(Browser, Url_Dev);
+		launchBrowser(Browser, Url_Prod);
 	}
 
 	@Test(priority = 0, enabled = true, groups = {"Prod", "UAT", "Dev"})
@@ -47,12 +47,12 @@ public class GVMS extends CommonMethods {
 		TM_GVMS_S02_Windows_Web_All_Lot_Tab_Verfication();
 	}
 
-	@Test(priority = 2, enabled = true, groups = {"Dev"}) 
+	@Test(priority = 2, enabled = false, groups = {"Dev"}) 
 	public void GVMS_S03_Windows_Web_Setting_Tabs_Verification() {
 		TM_GVMS_S03_Windows_Web_Setting_Tabs_Verification();
 	}
 	
-	@Test(priority = 3, enabled = true, groups = {"Dev"}) 
+	@Test(priority = 3, enabled = false, groups = {"Dev"}) 
 	public void GVMS_S04_Windows_Web_Entry_Search_Verification() {
 		TM_GVMS_S04_Windows_Web_Entry_Search_Verification();
 	}

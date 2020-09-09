@@ -88,23 +88,23 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_01_Web_ValidateSpotfireServer() {
 
-		launchBrowser(Browser, Url_dev1);
+		launchBrowser(Browser, Url_prd1);
 		wait(2);
 		String pageTitle = driver.getTitle();
 		takeScreenshotAtEndOfTest();
-		Assert.assertEquals(pageTitle, "Library – TIBCO Spotfire", "URL is not correct");
+		//Assert.assertEquals(pageTitle, "Library – TIBCO Spotfire", "URL is not correct");
 		/*Test Env:*/ 
-		//Assert.assertEquals(pageTitle, "New analysis – TIBCO Spotfire", "URL is not correct");
+		Assert.assertEquals(pageTitle, "New analysis – TIBCO Spotfire", "URL is not correct");
 	}
 
 	void TM_GVT_02_Web_ValidateReportAccessiblity() {
 
-		launchBrowser(Browser, Url_dev1);
+		launchBrowser(Browser, Url_prd1);
 		wait(2);
 		
 		/*Test Env:*/ 
-		//WebElement Library_menu = createWebElementBy(menu_Library);
-		//Library_menu.click();
+		WebElement Library_menu = createWebElementBy(menu_Library);
+		Library_menu.click();
 		
 		//WebElement View_menu = createWebElementBy(menu_View);
 		//View_menu.click();
@@ -119,7 +119,7 @@ public class GVT extends CommonMethods{
 		WebElement VMS_menu = createWebElementBy(menu_VMS);
 		VMS_menu.click();
 		
-		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday);
+		WebElement DXPUsage_menu = createWebElementBy(menu_DXPUsageToday_test_POC);
 		DXPUsage_menu.click();
 		
 		wait(3);
@@ -133,7 +133,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_03_Web_ValidateTERRServer() {
 
-		launchBrowser(Browser, Url_dev2);
+		launchBrowser(Browser, Url_test2);
 		wait(2);
 		WebElement Details_menu = createWebElementBy(menu_Details);
 		String a = Details_menu.getText();

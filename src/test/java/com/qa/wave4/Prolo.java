@@ -25,6 +25,10 @@ public class Prolo extends CommonMethods {
 
 	// Test Environment URL
 	final String Url = "https://myworkspace.gilead.com";
+	
+	final String Url1= "https://myworkspace.gilead.com/AnalysisManagement/myanalysis";
+	//My Training
+	final String Url2= "http://myworkspace.gilead.com:8080/";
 
 
 	/***************************** Test Cases *******************/

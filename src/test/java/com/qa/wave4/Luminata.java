@@ -33,7 +33,7 @@ public class Luminata extends CommonMethods {
 	@BeforeMethod
 	void Setup() {
 		try {
-			DecrptPassword = decrypt("e19ncVNSmW6OrHZf9mDsAg==");
+			DecrptPassword = decrypt("MfpoFri2dPP8Y/JUm6i2jw==");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

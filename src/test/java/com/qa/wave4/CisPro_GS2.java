@@ -15,7 +15,6 @@ public class CisPro_GS2 extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String TestUrl= "http://sjcpr2apptstn01.na.gilead.com/cispro";
-	final String ProdUrl ="http://sjcpr2appprdn01.na.gilead.com/cispro";
 	final String CustomerId ="gilead2";
 	final String Username ="psonawane";
 	private String DecrptPassword;

@@ -24,7 +24,7 @@ public class DBAM extends CommonMethods{
 	/***************************** Test Data*******************/
 	final String Browser= "Chrome";
 	final String Url= "https://sjdbamappdevg03.na.gilead.com:8443/#";
-	final String Username ="nnereddula";
+	final String Username ="psonawane";
 	private String DecrptPassword;
 
 
@@ -94,7 +94,7 @@ public class DBAM extends CommonMethods{
 		WebElement Username_Ipt = createWebElementBy(ipt_Username);
 		Username_Ipt.sendKeys(Username);
 		try {
-			DecrptPassword = decrypt("p6o8M/jbfQAzoXbl7WJv2g==");
+			DecrptPassword = decrypt("FHAUyqqPlNXn1JBMOnOw9g==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

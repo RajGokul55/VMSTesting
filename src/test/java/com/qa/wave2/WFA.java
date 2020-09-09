@@ -51,7 +51,7 @@ public class WFA extends CommonMethods {
 	}
 
 	//Only for Prod URL Run with Prod URL = Url
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void WFA_S01_Web_Verify_LogInScreen() {
 		launchBrowser(Browser, Url);
 		TM_WFA_01_Verify_LogInScreen();

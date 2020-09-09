@@ -117,7 +117,7 @@ public class CBT extends CommonMethods {
 
 	public void TM_CBT_S01_Windows_Web_All_Lot_Tab_Verfication(){
 
-		launchBrowser(Browser, Url_Dev);
+		launchBrowser(Browser, Url_UAT);
 		waitForPageLoaded();
 		//Prod
 		//		createWebElementBy(Img_CBT).click();

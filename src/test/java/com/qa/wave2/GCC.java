@@ -27,7 +27,7 @@ public class GCC extends CommonMethods {
 	// Prod Environment URL
 	final String Url1 = "https://sjgccwebprdg01/ui/login.action";
 	final String username = "pravin.sonawane";
-	String EncryptPassword = "e19ncVNSmW6OrHZf9mDsAg==";
+	String EncryptPassword = "MfpoFri2dPP8Y/JUm6i2jw==";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************/
@@ -51,7 +51,7 @@ public class GCC extends CommonMethods {
 	}
 	
 	// PROD environment
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GCC_S01_Web_login_verifyscreen_PROD() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
 

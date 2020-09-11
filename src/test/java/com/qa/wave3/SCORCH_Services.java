@@ -23,7 +23,7 @@ public class SCORCH_Services extends CommonMethods {
 		
 	}
 	
-	@Test(enabled = true, priority =3, groups = "Prod")
+	@Test(enabled = false, priority =3, groups = "Prod")
 	public void SCORCH_Prod_ManagementServer_sjscrhappprdn01() {
 		verifyWinSerStatus("sjscrhappprdn01", "Orchestrator Management Service", "Running","Auto");
 		verifyWinSerStatus("sjscrhappprdn01", "Orchestrator Remoting Service", "Running", "Auto");
@@ -39,14 +39,14 @@ public class SCORCH_Services extends CommonMethods {
 		
 	}
 	
-	@Test(enabled = true, priority =5, groups = "Prod")
+	@Test(enabled = false, priority =5, groups = "Prod")
 	public void SCORCH_Prod_RunbookServer_sjscrhappprdn03() {
 		verifyWinSerStatus("sjscrhappprdn03", "Orchestrator Remoting Service", "Running", "Auto");
 		verifyWinSerStatus("sjscrhappprdn03", "Orchestrator Runbook Service", "Running", "Auto");
 		
 	}
 	
-	@Test(enabled = true, priority =6, groups = "Prod")
+	@Test(enabled = false, priority =6, groups = "Prod")
 	public void SCORCH_Prod_RunbookDesignerServer_sjscrhappprdn04() {
 		verifyWinSerStatus("sjscrhappprdn04", "Orchestrator Remoting Service", "Running", "Auto");
 		verifyWinSerStatus("sjscrhappprdn04", "Orchestrator Runbook Service", "Running", "Auto");

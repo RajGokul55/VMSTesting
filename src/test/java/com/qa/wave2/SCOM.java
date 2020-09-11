@@ -22,7 +22,7 @@ public class SCOM extends CommonMethods {
 
 	}
 
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void SCOM_S01_Web_POC_UserValidation() throws IOException {
 		TM_SCOM_S01_Web_POCenv_Validation();
 
@@ -34,7 +34,7 @@ public class SCOM extends CommonMethods {
 
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void SCOM_S03_Web_Prod_UserValidation() throws IOException, InterruptedException {
 		TM_SCOM_S03_Web_Prod_UserValidation();
 

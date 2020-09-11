@@ -42,7 +42,7 @@ public class FlexDeploy extends CommonMethods {
 		TM_FlexDeploy_S02_Web_Dev_Pipelines();
 	}
 
-	@Test(priority = 2, enabled = true)
+	@Test(priority = 2, enabled = false)
 	public void FlexDeploy_S03_Web_VAL_UserLogin() throws IOException {
 		TM_FlexDeploy_S03_Web_VALUserLogin_ReleasesTab();
 	}
@@ -52,7 +52,7 @@ public class FlexDeploy extends CommonMethods {
 		TM_FlexDeploy_S04_Web_VAL_Pipelines();
 	}
 
-	@Test(priority = 4, enabled = false)
+	@Test(priority = 4, enabled = true)
 	public void FlexDeploy_S05_Web_Prod_UserLogin() throws IOException {
 		TM_FlexDeploy_S05_Web_ProdUserLogin_ReleasesTab();
 	}
@@ -340,11 +340,11 @@ public class FlexDeploy extends CommonMethods {
 
 	public void TM_FlexDeploy_S06_Web_Prod_Pipelines() throws IOException {
 		final String Browser= "Chrome";
-		final String DevUrl= "http://sjfxdpappprdn01.na.gilead.com:8000/flexdeploy";
+		final String ProdUrl= "http://sjfxdpappprdn01.na.gilead.com:8000/flexdeploy";
 		final String Username = "dmarkanti";
 		String DecryptPassword = null;
 		final String EncryptPassword = "gauEQnlth0rzudo2rv35/A==";
-		launchBrowser(Browser, DevUrl);
+		launchBrowser(Browser, ProdUrl);
 		try {
 			DecryptPassword = decrypt(EncryptPassword);
 		} catch (Exception e) {

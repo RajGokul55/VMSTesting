@@ -19,13 +19,13 @@ public class GIMS extends CommonMethods {
 
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GIMS_S01_Web_NA_Dev_UserLogin() throws IOException {
 		TM_GIMS_S01_Web_NA_Dev_UserLogin();
 
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void GIMS_S02_Web_NA_Dev_ServerNodeValidation() throws IOException {
 		TM_GIMS_S02_Web_NA_Dev_ServerNodeValidation();
 
@@ -69,13 +69,13 @@ public class GIMS extends CommonMethods {
 
 	}
 
-	@Test(priority = 8, enabled = false)
+	@Test(priority = 8, enabled = true)
 	public void GIMS_S09_Web_Kite_Prod_UserLogin() throws IOException {
 		TM_GIMS_S09_Web_Kite_Prod_UserLogin();
 
 	}
 
-	@Test(priority = 9, enabled = false)
+	@Test(priority = 9, enabled = true)
 	public void GIMS_S10_Web_Kite_Prod_ServerNodeValidation() throws IOException, InterruptedException {
 		TM_GIMS_S10_Web_Kite_Prod_ServerNodeValidation();
 
@@ -288,7 +288,7 @@ public class GIMS extends CommonMethods {
 		final String Browser = "Chrome";
 		final String KiteURL = "http://kite-solar";
 		String DecryptPassword = null;
-		final String EncryptPassword = "gauEQnlth0rzudo2rv35/A==";
+		final String EncryptPassword = "k7zK/nqaaa80bH7tAi7jZw==";
 		final String URL = KiteURL;
 		launchBrowser(Browser, URL);
 		try {

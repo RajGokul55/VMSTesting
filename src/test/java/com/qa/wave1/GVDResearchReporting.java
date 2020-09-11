@@ -19,7 +19,7 @@ public class GVDResearchReporting extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 
-	String URL = UAT_Url; // Change URl whichever Environment you want to execute.
+	String URL = ProdURL; // Change URl whichever Environment you want to execute.
 
 	@Test(priority = 0, enabled = true)
 	public void GVDGS2_S01_Web_UAT_UserLogin() {

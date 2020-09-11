@@ -5,13 +5,10 @@
 	</listeners>
 	<test name="Automation Test">
 		<classes>
-			<class name="com.qa.wave4.CPT"></class>
-			<class name="com.qa.wave4.B3P"></class>
-			<class name="com.qa.wave4.BAS"></class>
-			<class name="com.qa.wave4.BSKCS"></class>
-			<class name="com.qa.wave4.BDRP"></class>
-			<class name="com.qa.wave4.DART"></class>
-			<class name="com.qa.wave4.Prolo"></class>
+			<class name="com.qa.wave1.GVDGS2"></class>
+			<class name="com.qa.wave2.GIMS"></class>
+			<class name="com.qa.wave3.GPRICE"></class>
+			<class name="com.qa.wave3.SCORCH_UI"/>
 		</classes>
 	</test>
 </suite>

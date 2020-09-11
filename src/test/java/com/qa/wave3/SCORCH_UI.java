@@ -29,7 +29,7 @@ public class SCORCH_UI extends CommonMethods {
 
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void SCORCH_Web_Dev_Webportal() throws IOException {
 		TM_SCORCH_S01_Web_Dev_Webportal();
 	}

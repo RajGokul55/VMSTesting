@@ -27,11 +27,13 @@ public class IQS extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "IE";
 	// Dev Environment URL
-	final String Url = "http://sjiqsapppocn01/iqs310r4";
+	final String Url = "";
 	// Val Environment URL
 	final String Url1 = "http://fciqsappval02/iqs";
 	// Prod Environment URL
 	final String Url2 = "http://iqs";
+	// Test(POC) Environment URL
+	final String Url3 = "http://sjiqsapppocn01/iqs310r4";
 
 	/***************************** Test Cases *******************/
 	/*

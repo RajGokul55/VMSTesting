@@ -27,7 +27,7 @@ public class WFA extends CommonMethods {
 	final String Browser = "IE";
 	final String Browser1 = "Chrome";
 	// Application name WFA - Work Flow Automation Env is Prod
-	final String Url = "https://gwas/";
+	final String Url = "https://gwas";
 	
 	// Application name WFA - Work Flow Automation Env is Dev
 		final String Url1 = "https://sjgcsnwfaprdn04/#/login";

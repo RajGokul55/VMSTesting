@@ -63,7 +63,7 @@ public class GNet extends CommonMethods {
 
 	}
 	
-	@Test(priority = 1, enabled = false)
+	@Test(priority = 1, enabled = true)
 	public void GNet_S02_Web_Gnet_Menu_Accesiblity() {
 		TM_GCC_S02_Web_GNet_MenuAccesiblity();
 

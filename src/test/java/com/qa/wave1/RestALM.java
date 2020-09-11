@@ -32,7 +32,11 @@ public class RestALM {
 	@Test(enabled = true)
 	public void test2() {
 		//int code = RestAssured.given().auth().preemptive().basic("bpalle", "MyPasswor").when().get("http://sjalmappprdn03:8080/qcbin/start_a.jsp").getStatusCode();
-		int code = RestAssured.given().auth().preemptive().basic("Pimadminabc", "hs402mSw.|=rHv+Y3eF|").when().get("https://sjgpvapptstg01.na.gilead.com/PasswordVault/WebServices/auth/Cyberark/CyberArkAuthenticationService.svc/Logon").getStatusCode();
+
+		int code = RestAssured.given().auth().preemptive().basic("pimadmin", "RDlG{\\#j$+65@UpGxjMl")
+	    .when()
+	    .get("https://sjgpvapptstg01.na.gilead.com/PasswordVault/WebServices/auth/Cyberark/CyberArkAuthenticationService.svc/Logon")
+	    .getStatusCode();
 		System.out.println("Result: "+ code) ;
 		
 		//https://10.22.4.108/PasswordVault/WebServices/auth/Cyberark/CyberArkAuthenticationService.svc/Logon

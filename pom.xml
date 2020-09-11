@@ -80,6 +80,11 @@
 			<version>2.2</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.github.scribejava</groupId>
+			<artifactId>scribejava-apis</artifactId>
+			<version>7.1.1</version>
+		</dependency>
 		
 		
 		<dependency>

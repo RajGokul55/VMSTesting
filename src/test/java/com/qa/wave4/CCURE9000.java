@@ -20,13 +20,11 @@ public class CCURE9000 extends CommonMethods {
 	/***************************** Test Data *******************/
 
 	final String Browser = "Chrome";
-	final String Url = "http://gadi2dev.gilead.com/";
-	String pageTitle;
 	private static final String userDirectory = System.getProperty("user.dir");
 	private static String imagePath = userDirectory + "\\AutoFiles\\SiKuli\\CCURE\\";
 	final String servername = "edccurappprdn01";
-	final String Username = "ADM_abhatt2";
-	final String password = "Az@isha4Oc_!";
+	final String Username = "ADM_bdineshjain";
+	final String password = "EI!vHwlO0#%l";
 	private String DecrptPassword;
 
 	/***************************** Test Cases *******************************/
@@ -78,10 +76,10 @@ public class CCURE9000 extends CommonMethods {
 	 *******************/
 	void TM_CCURE_S01_Windows_serverLogin() throws FindFailed {
 
-		RDP_Connection(servername, Username, password);
+		RDP_Connection01(servername, Username, password);
 		Screen s = new Screen();
 		Pattern close = new Pattern(imagePath + "crossBtn1.PNG");
-		s.wait(close, 8000);
+		s.wait(close, 10000);
 		s.click();
 		
 		
@@ -102,22 +100,22 @@ public class CCURE9000 extends CommonMethods {
 		s.click();
 		
 		Pattern userAccount= new Pattern(imagePath + "user_account");
-		s.wait(userAccount, 5000);
+		s.wait(userAccount, 8000);
 		s.click();
 		
 		Pattern signout= new Pattern(imagePath + "ccure_signout");
-		s.wait(signout, 5000);
+		s.wait(signout, 8000);
 		s.click();
 		
 			}
 
 	void TM_CCURE_S02_Windows_applicationLoginVerification() throws FindFailed {
 
-		RDP_Connection(servername, Username, password);
+		RDP_Connection01(servername, Username, password);
 
 		Screen s = new Screen();
 		Pattern close = new Pattern(imagePath + "crossBtn1.PNG");
-		s.wait(close, 2000);
+		s.wait(close, 8000);
 		s.click();
 		takeScreenshotAtSikuli();
 		Pattern ccureapp = new Pattern(imagePath + "Ccure_app.PNG");
@@ -126,6 +124,7 @@ public class CCURE9000 extends CommonMethods {
 		Pattern administrator = new Pattern(imagePath + "ccure_administrator.PNG");
 		s.wait(administrator, 5000);
 		s.click();
+		wait(5);
 		Pattern personnel = new Pattern(imagePath + "ccure_personnel.PNG");
 		s.wait(personnel, 5000);
 		s.click();
@@ -154,6 +153,45 @@ public class CCURE9000 extends CommonMethods {
 	/*********************************
 	 * Common Methods
 	 *************************************/
+
+	public static void RDP_Connection01(String servername, String username, String password) {
+		final String userDirectory = System.getProperty("user.dir");
+		String path = userDirectory + "\\AutoFiles\\SiKuli\\RDP\\";
+		Screen s = new Screen();
+		Pattern startBtn = new Pattern(path + "StartButton01.PNG");
+		Pattern RDPConnection = new Pattern(path + "RDPtaskbarIcon.PNG");
+		Pattern serverName = new Pattern(path + "rdpServerName01.PNG");
+		Pattern connectRDPServer = new Pattern(path + "connectBtn01.PNG");
+		Pattern useanotherAccount = new Pattern(path + "useAnotherAccount01.PNG");
+		Pattern userNameRDP = new Pattern(path + "usernameRDP01.PNG");
+		Pattern passwordRDP = new Pattern(path + "userpasswordRDP01.PNG");
+		Pattern okButton = new Pattern(path + "oKButtonRDP01.PNG");
+
+		try {
+
+			s.wait(RDPConnection, 2);
+			s.click();
+			wait(5);
+
+			s.type(org.sikuli.script.Key.BACKSPACE);
+			s.wait(serverName, 5);
+			s.type(servername);
+			s.wait(connectRDPServer, 5);
+			s.click();
+			s.wait(useanotherAccount, 5);
+			s.click();
+			s.wait(userNameRDP, 5);
+			s.type(userNameRDP, username);
+			s.wait(passwordRDP, 5);
+			s.type(passwordRDP, password);
+			s.wait(okButton, 5);
+			s.click();
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+	}
+	
 
 	
 }

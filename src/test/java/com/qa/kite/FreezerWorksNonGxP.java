@@ -26,7 +26,7 @@ public class FreezerWorksNonGxP extends CommonMethods {
 	private static final String userDirectory = System.getProperty("user.dir");
 	private static String imagePath = userDirectory + "\\AutoFiles\\SiKuli\\FreezerWorks\\";
 	final String servername = "freezerwks-de.kite.local";
-	final String jumpServer = "kdc01-gaks.kite.local";
+	
 
 	final String Username = "ADM_bdineshjain";
 	final String password = "%oNpXsWa$90W";
@@ -34,6 +34,13 @@ public class FreezerWorksNonGxP extends CommonMethods {
 
 	/***************************** Test Cases *******************************/
 	/*
+	 * Servers:
+	 * kdc01-frzr-demo.kite.local 
+		f07-frzr-test.kite.local 
+		f07-frzr-ngxp.kite.local 
+		kite-freezerwks.kite.local 
+		freezerwks-dev.kite.local 
+
 	 * Test case ˜Test Name™ naming convention:
 	 * <AppName><TCNumber>_<TestCategory>_<Title> Definitions of terms: AppName:
 	 * short name of Application [String 5 -10 chars] i.e., TstMyApp, TCNumber: Test

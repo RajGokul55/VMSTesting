@@ -11,6 +11,7 @@ import com.qa.demo.base.CommonMethods;
 public class DFM extends CommonMethods{
 
 	/***************************** Test Data *******************/
+	//IE browser
 	final String Browser = "IE";
 	final String Url = "http://gsn:8080/start.html";
 	

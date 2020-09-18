@@ -14,6 +14,7 @@ import com.qa.demo.base.CommonMethods;
 		/***************************** Test Data*******************/
 		final String Browser= "Chrome";
 		final String Url= "http://fcderpapp01.na.gilead.com:8030/OA_HTML/AppsLocalLogin.jsp";
+		//Dev URL = https://devebs.gilead.com 
 		final String Username ="nnereddula";
 		private String DecrptPassword;
 		

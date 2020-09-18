@@ -38,9 +38,10 @@ public class Luminata extends CommonMethods {
 			e.printStackTrace();
 		}
 		launchBrowser(Browser, Url);
+		Luminata_User_Login();
 	}
 	
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void Luminata_S01_Windows_Web_Login_Verfication() {
 		TM_Luminata_S01_Windows_Web_Login_Verfication();
 	}
@@ -76,7 +77,6 @@ public class Luminata extends CommonMethods {
 
 	void TM_Luminata_S01_Windows_Web_Login_Verfication() {
 		
-		Luminata_User_Login();
 		String Actual_Text = createWebElementBy(text_Summary_View).getText();
 		takeScreenshotAtEndOfTest();
 		Assert.assertEquals(Actual_Text, "Summary View");
@@ -84,7 +84,6 @@ public class Luminata extends CommonMethods {
 
 	void TM_Luminata_S02_Windows_Web_Tab_Verfication(){
 
-		Luminata_User_Login();
 		String Actual_Summary_Text = createWebElementBy(text_Summary_View).getText();
 		Assert.assertEquals(Actual_Summary_Text, "Summary View");
 		

@@ -44,14 +44,14 @@ public class GCC extends CommonMethods {
 	 */
 
 	// DEV Environment
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void GCC_S01_Web_login_verifyscreen_DEV() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_DEV();
 
 	}
 	
 	// PROD environment
-	@Test(priority = 0, enabled = false)
+	@Test(priority = 0, enabled = true)
 	public void GCC_S01_Web_login_verifyscreen_PROD() {
 		TM_GCC_S01_Web_login_verifyGCCScreen_PROD();
 

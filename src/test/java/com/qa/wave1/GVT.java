@@ -36,12 +36,12 @@ public class GVT extends CommonMethods{
 	 * Test method name must be same as test case appended with TM example: 
 	 */
 
-	@Test(priority=0, enabled=true)
+	@Test(priority=0, enabled=false)
 	public void GVT_01_Web_ValidateSpotfireServer() {
 		TM_GVT_01_Web_ValidateSpotfireServer();
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void GVT_02_Web_ValidateReportAccessiblity() {
 		TM_GVT_02_Web_ValidateReportAccessiblity();
 	}
@@ -88,7 +88,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_01_Web_ValidateSpotfireServer() {
 
-		launchBrowser(Browser, Url_prd1);
+		launchBrowser(Browser, Url_test1);
 		wait(2);
 		String pageTitle = driver.getTitle();
 		takeScreenshotAtEndOfTest();
@@ -99,7 +99,7 @@ public class GVT extends CommonMethods{
 
 	void TM_GVT_02_Web_ValidateReportAccessiblity() {
 
-		launchBrowser(Browser, Url_prd1);
+		launchBrowser(Browser, Url_test1);
 		wait(2);
 		
 		/*Test Env:*/ 

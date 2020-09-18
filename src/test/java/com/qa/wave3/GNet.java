@@ -22,7 +22,7 @@ import org.testng.annotations.BeforeSuite;
 public class GNet extends CommonMethods {
 
 	/***************************** Test Data *******************/
-	
+	//Browser
 	final String Browser = "Chrome";
 	// Prod Environment URL
 	final String Url = "https://gnethome.gilead.com";

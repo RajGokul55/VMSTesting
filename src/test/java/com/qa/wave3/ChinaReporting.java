@@ -34,7 +34,7 @@ public class ChinaReporting extends CommonMethods {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority=1, enabled=true)
+	@Test(priority=1, enabled=false)
 	public void CR_S01_Web_Validate_Homepage() {
 		TM_S01_Web_Validate_Homepage();
 	}
@@ -68,6 +68,10 @@ public class ChinaReporting extends CommonMethods {
 	By lnk_myboard		=	By.cssSelector("#myBoard");
 	By img_gilead		=	By.xpath("//div[2]/div[1]/div/div[2]/div[14]/div/div/div/div/img");
 	By img_graph		=	By.xpath("//div/div[2]/div[37]/div/div/div/div[1]/div[11]/div[1]/div[2]/img");
+	By btn_arrow1		=	By.xpath("//div/div[2]/div[29]/div/div/div/div/div/div/div[3]/span/div[2]");
+	By txt_HBV			=	By.xpath("//div[7]/div[2]/div/div/div[1]/div[2]/a");
+	By btn_arrow2		=	By.xpath("//div/div[2]/div[28]/div/div/div/div/div/div/div[3]/span/div[2]");
+	By txt_vzhong		=	By.xpath("/html/body/div[7]/div[2]/div/div/div[26]/div[2]/a");
 
 
 	/***************************** Test Case Methods *******************/
@@ -95,9 +99,26 @@ public class ChinaReporting extends CommonMethods {
 			driver.switchTo().window(winHandle);
 		}
 		
-		/*
+			
 		WebElement frame1 = driver.findElement(By.xpath("//iframe[@class='tableauViz']"));
 		driver.switchTo().frame(frame1);
+		
+		WebElement Arrow1_btn = createWebElementBy(btn_arrow1);
+		Arrow1_btn.click();
+		
+		WebElement HBV_txt = createWebElementBy(txt_HBV);
+		HBV_txt.click();
+		
+		wait(6);
+		
+		WebElement Arrow2_btn = createWebElementBy(btn_arrow2);
+		Arrow2_btn.click();
+		
+		WebElement Vzhong_txt = createWebElementBy(txt_vzhong);
+		Vzhong_txt.click();
+		
+		wait(8);
+		
 		
 		WebElement Gilead_Img = createWebElementBy(img_gilead);
 		Assert.assertTrue(Gilead_Img.isDisplayed(), "The page is not loaded successfully");
@@ -105,7 +126,7 @@ public class ChinaReporting extends CommonMethods {
 		WebElement Graph_Img = createWebElementBy(img_graph);
 		Assert.assertTrue(Graph_Img.isDisplayed(), "The graphs are not displayed as expected");
 		takeScreenshotAtEndOfTest();
-		*/
+		
 
 		// Close the new window, if that window no more required
 		driver.close();

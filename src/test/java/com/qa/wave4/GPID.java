@@ -16,6 +16,7 @@ public class GPID extends CommonMethods {
 	final String Browser = "Chrome";
 	final String DevURL = "https://dev.gpid.gilead.com/insight/web/login.do";
 	final String ProdURL = "https://gpid.na.gilead.com/insight/web/login.do";
+	final String TstURL = "https://tst.gpid.gilead.com/insight/web/login.do";
 	String usrnme = "graj";
 	private String DecrptPassword;
 
@@ -32,7 +33,7 @@ public class GPID extends CommonMethods {
 	 * Test method name must be same as test case appended with TM example:
 	 */
 
-	String URL = DevURL;
+	String URL = TstURL;
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);
@@ -260,7 +261,7 @@ public class GPID extends CommonMethods {
 		UserName_Ipt.sendKeys(usrnme);
 
 		try {
-			DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");
+			DecrptPassword = decrypt("uyK8jwlrhC6ELFzIelj5Bw==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

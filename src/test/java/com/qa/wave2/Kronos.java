@@ -206,7 +206,7 @@ public class Kronos extends CommonMethods {
 		WebElement UserName_Ipt = createWebElementBy(ipt_username);
 		UserName_Ipt.sendKeys(usrname);
 		try {
-			DecrptPassword = decrypt("FtLW0yalDtJoAYohAIMxZw==");
+			DecrptPassword = decrypt("Bw83VOKoQb5S46sF+hxm8w==");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -24,7 +24,7 @@ public class GDLP extends CommonMethods {
 	//final String euUrl = "https://gdlp-eu.gilead.com"; Have to launch Chrome from Gadi with ADM account
 	final String username = "NA\\graj";
 	private String DecrptPassword;
-	String EncryptPassword = "2rZ5V/Mvbk3BcaoyxcwLRg==";
+	String EncryptPassword = "uyK8jwlrhC6ELFzIelj5Bw==";
 	
 	/************Fields for which inputs are required to run Test case 2************/
 	String name = "Post Patching Test"; //give new name every time for creating a new policy

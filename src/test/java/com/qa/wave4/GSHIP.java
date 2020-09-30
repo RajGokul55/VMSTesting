@@ -16,6 +16,7 @@ public class GSHIP extends CommonMethods {
 	/***************************** Test Data *******************/
 	final String Browser = "IE";
 	final String PrdURL = "http://sjaglwebdevn01/agileelite/projects/console.aspx?groupid=1";
+	final String TstURL = "http://sjaglwebtstn01/agileelite/projects/console.aspx?groupid=1";
 	final String userDirectory = System.getProperty("user.dir");
 	String path = userDirectory + "\\AutoFiles\\SiKuli\\GSHIP\\";
 	String ID ="5579985";
@@ -34,23 +35,23 @@ public class GSHIP extends CommonMethods {
 	 */
 
 
-	String URL = PrdURL;
+	String URL = TstURL;
 	@BeforeMethod
 	public void beforeMethod() {
 		launchBrowser(Browser, URL);
 	}
 
-	@Test(priority=1, enabled=false)
+	@Test(priority=1, enabled=true)
 	public void GSHIP_S01_Web_Validate_URL_Check() {
 		TM_S01_Web_Validate_URL_Check();
 	}
 
-	@Test(priority=2, enabled=false)
+	@Test(priority=2, enabled=true)
 	public void GSHIP_S02_Web_Validate_All_Tabs() throws FindFailed {
 		TM_S02_Web_Validate_All_Tabs();
 	}
 
-	@Test(priority=3, enabled=false)
+	@Test(priority=3, enabled=true)
 	public void GSHIP_S03_Web_Validate_Search_Shipment() throws FindFailed {
 		TM_S03_Web_Validate_Search_Shipment();
 	}
@@ -96,6 +97,8 @@ public class GSHIP extends CommonMethods {
 
 			e.printStackTrace();
 		}
+		waitForPageLoaded();
+		wait(5);
 		System.out.println(driver.getTitle());
 		Assert.assertEquals("AgileShip", driver.getTitle());
 	}
@@ -121,6 +124,8 @@ public class GSHIP extends CommonMethods {
 
 			e.printStackTrace();
 		}
+		waitForPageLoaded();
+		wait(5);
 		Assert.assertEquals("AgileShip", driver.getTitle());
 		takeScreenshotAtSikuli();
 		wait(2);
@@ -179,6 +184,8 @@ public class GSHIP extends CommonMethods {
 
 			e.printStackTrace();
 		}
+		waitForPageLoaded();
+		wait(5);
 
 		Pattern AgileView = new Pattern(path + "agileview.PNG");
 		Pattern SearchShipments = new Pattern(path + "searchship.PNG");
@@ -222,6 +229,8 @@ public class GSHIP extends CommonMethods {
 
 			e.printStackTrace();
 		}
+		waitForPageLoaded();
+		wait(5);
 		
 		Pattern AgileView = new Pattern(path + "agileview.PNG");
 		Pattern DeliveryID = new Pattern(path + "deliveryid.PNG");

@@ -49,6 +49,13 @@ public class UiPath extends CommonMethods{
   @BeforeMethod
   public void beforeMethod() {
 	  launchBrowser("Chrome", URL);
+	  try {
+			DecrptPassword = decrypt(EncryptPassword);
+			System.out.println(DecrptPassword);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  login();
   }
 
@@ -230,12 +237,7 @@ public class UiPath extends CommonMethods{
 		WebElement Login_Txt = createWebElementBy(txt_login);
 		Assert.assertEquals(Login_Txt.getText(), "Login");
 		
-		try {
-			DecrptPassword = decrypt(EncryptPassword);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		WebElement UserName_Ipt = createWebElementBy(ipt_usrname);
 		UserName_Ipt.sendKeys(UserName);
 		WebElement Password_Ipt = createWebElementBy(ipt_password);

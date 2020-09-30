@@ -129,6 +129,7 @@ public class CAR extends CommonMethods {
 			for(String winHandle : driver.getWindowHandles()){
 				driver.switchTo().window(winHandle);
 			}
+			waitForPageLoaded();
 			takeScreenshotAtEndOfTest();
 			WebElement Create_Txt = createWebElementBy(txt_search);
 			Assert.assertEquals(Create_Txt.getText(), "Create");

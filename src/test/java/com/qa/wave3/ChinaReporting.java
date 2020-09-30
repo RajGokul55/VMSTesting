@@ -95,6 +95,7 @@ public class ChinaReporting extends CommonMethods {
 			driver.switchTo().window(winHandle);
 		}
 		
+		/*
 		WebElement frame1 = driver.findElement(By.xpath("//iframe[@class='tableauViz']"));
 		driver.switchTo().frame(frame1);
 		
@@ -104,7 +105,7 @@ public class ChinaReporting extends CommonMethods {
 		WebElement Graph_Img = createWebElementBy(img_graph);
 		Assert.assertTrue(Graph_Img.isDisplayed(), "The graphs are not displayed as expected");
 		takeScreenshotAtEndOfTest();
-		
+		*/
 
 		// Close the new window, if that window no more required
 		driver.close();

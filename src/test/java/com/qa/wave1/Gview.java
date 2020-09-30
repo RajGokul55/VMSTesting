@@ -44,7 +44,7 @@ public class Gview extends CommonMethods{
 	String URL = PrdUrl;
 	@BeforeSuite(enabled=true)
 	void EncriptPassword() throws Exception {
-		DecrptPassword = decrypt("2rZ5V/Mvbk3BcaoyxcwLRg==");
+		DecrptPassword = decrypt("uyK8jwlrhC6ELFzIelj5Bw==");
 	}
 
 	@BeforeMethod(enabled=true)

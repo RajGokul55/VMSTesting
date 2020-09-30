@@ -24,7 +24,7 @@ public class GSECTest extends CommonMethods{
 	final String Username ="sgupta27";
 	final String PasswordNegative = "hdgd@54";
 	private String DecrptPassword;
-	String EncryptPassword = "7bkbl6+1a3eQscQR5BmjQA==";
+	String EncryptPassword = "2g7RycYE4kCemV6wLCHnIA==";
 	private String title;
 	private String text;
 	private int num;

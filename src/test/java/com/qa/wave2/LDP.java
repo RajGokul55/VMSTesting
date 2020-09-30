@@ -93,7 +93,7 @@ public class LDP extends CommonMethods {
 		
 		WebElement CurrentParticipants_Lnk = createWebElementBy(lnk_currpartpants);
 		CurrentParticipants_Lnk.click();
-		waitForPageLoaded();
+		
 		takeScreenshotAtEndOfTest();
 		String CurrentParticipants_Txt = verify();
 		Assert.assertEquals(CurrentParticipants_Txt, "Current Participants");

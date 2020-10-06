@@ -5,7 +5,7 @@
 	</listeners>
 	<test name="Automation Test">
 		<classes>
-			<class name="com.qa.wave4.AuditUtopia"></class>
+			<class name="com.qa.wave4.AuditUt"></class>
 	
 		</classes>
 	</test>

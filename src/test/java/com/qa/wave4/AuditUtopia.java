@@ -1,7 +1,6 @@
 package com.qa.wave4;
 
 import org.testng.annotations.Test;
-import com.qa.demo.base.CommonMethods;
 import com.qa.demo.base.CommonMethods2;
 
 import org.testng.annotations.AfterMethod;

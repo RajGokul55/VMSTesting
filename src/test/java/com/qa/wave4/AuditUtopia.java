@@ -2,6 +2,8 @@ package com.qa.wave4;
 
 import org.testng.annotations.Test;
 import com.qa.demo.base.CommonMethods;
+import com.qa.demo.base.CommonMethods2;
+
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import java.io.IOException;
@@ -9,7 +11,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-public class AuditUtopia extends CommonMethods {
+public class AuditUtopia extends CommonMethods2 {
+
+	public AuditUtopia() throws Exception {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/***************************** Test Cases *******************/
 

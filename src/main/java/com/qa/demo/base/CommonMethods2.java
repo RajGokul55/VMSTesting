@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.security.Key;
+import java.security.spec.KeySpec;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -28,6 +29,9 @@ import java.util.concurrent.TimeUnit;
 
 
 import javax.crypto.Cipher;
+import javax.crypto.SecretKey;
+import javax.crypto.SecretKeyFactory;
+import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.SecretKeySpec;
 import javax.imageio.ImageIO;
 
@@ -60,12 +64,20 @@ import org.testng.IClass;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
 
-public class CommonMethods {
+public class CommonMethods2 {
 	private static final String userDirectory = System.getProperty("user.dir");
 	public static WebDriver driver;
+	
+	public CommonMethods2() throws Exception {
+        myEncryptionKey = "$GileadPasswordProtection$";
+        myEncryptionScheme = DESEDE_ENCRYPTION_SCHEME;
+        arrayBytes = myEncryptionKey.getBytes(UNICODE_FORMAT);
+        ks = new DESedeKeySpec(arrayBytes);
+        skf = SecretKeyFactory.getInstance(myEncryptionScheme);
+        cipher = Cipher.getInstance(myEncryptionScheme);
+        key = skf.generateSecret(ks);
+    }
 
 	public void launchBrowser(String browser, String url) {
 
@@ -198,33 +210,44 @@ public class CommonMethods {
 	/*
 	 * Author: Balajee Palle Description: To Encrypt passwords to be used in Project
 	 * Parameter: Date: April 2020
+	 * 
 	 */
-	  
-	 
-	private static final byte[] keyValue = new byte[] { 'w', 'F', 'h', 'D', 'u', 'e', 'T', 'o', 'c', 'O', 'v', 'i', 'D',
-			'1', '9', '*' };
-	private static final String Golf = "AES";
+	private static final String UNICODE_FORMAT = "UTF8";
+    public static final String DESEDE_ENCRYPTION_SCHEME = "DESede";
+    private KeySpec ks;
+    private SecretKeyFactory skf;
+    private Cipher cipher;
+    byte[] arrayBytes;
+    private String myEncryptionKey;
+    private String myEncryptionScheme;
+    SecretKey key;
 
-	
-	  public static String decrypt(String encryptedData) throws Exception { Key key
-	  = generateKey(); Cipher c = Cipher.getInstance(Golf);
-	  c.init(Cipher.DECRYPT_MODE, key);
-	  
-	  @SuppressWarnings("restriction") byte[] decordedValue = new
-	  BASE64Decoder().decodeBuffer(encryptedData); byte[] decValue =
-	  c.doFinal(decordedValue); String decryptedValue = new String(decValue);
-	  return decryptedValue; }
-	  
-	  private static Key generateKey() throws Exception { Key key = new
-	  SecretKeySpec(keyValue, Golf); return key; }
-	  
-	  public static String encrypt(String Data) throws Exception { Key key =
-	  generateKey(); Cipher c = Cipher.getInstance(Golf);
-	  c.init(Cipher.ENCRYPT_MODE, key); byte[] encVal = c.doFinal(Data.getBytes());
-	  
-	  @SuppressWarnings("restriction") String encryptedValue = new
-	  BASE64Encoder().encode(encVal); return encryptedValue; }
-	 
+    public String decrypt(String encryptedString) {
+        String decryptedText=null;
+        try {
+            cipher.init(Cipher.DECRYPT_MODE, key);
+            byte[] encryptedText = Base64.decodeBase64(encryptedString);
+            byte[] plainText = cipher.doFinal(encryptedText);
+            decryptedText= new String(plainText);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return decryptedText;
+    }
+
+	public String encrypt(String unencryptedString) {
+        String encryptedString = null;
+        try {
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            byte[] plainText = unencryptedString.getBytes(UNICODE_FORMAT);
+            byte[] encryptedText = cipher.doFinal(plainText);
+            encryptedString = new String(Base64.encodeBase64(encryptedText));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return encryptedString;
+    }
+
 
 	/*******************************************************************************************/
 

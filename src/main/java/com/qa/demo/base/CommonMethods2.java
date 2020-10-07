@@ -64,8 +64,7 @@ import org.testng.IClass;
 import org.testng.ITestResult;
 import org.testng.Reporter;
 
-import sun.misc.BASE64Decoder;
-import sun.misc.BASE64Encoder;
+
 
 public class CommonMethods2 {
 	private static final String userDirectory = System.getProperty("user.dir");

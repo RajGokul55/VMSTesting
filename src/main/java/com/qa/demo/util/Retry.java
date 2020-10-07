@@ -5,7 +5,7 @@ import java.io.IOException;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
-import com.qa.demo.base.CommonMethods;
+import com.qa.demo.base.CommonMethods2;
 
 public class Retry implements IRetryAnalyzer{
 
@@ -16,7 +16,7 @@ public class Retry implements IRetryAnalyzer{
         if (!iTestResult.isSuccess()) {                      //Check if test not succeed
         	
         	
-        	CommonMethods.takeScreenshotAtEndOfTest(); 		// Take ScreenShot
+        CommonMethods2.takeScreenshotAtEndOfTest(); 		// Take ScreenShot
         	
             if (count < maxTry) {                            //Check if maxtry count is reached
                 count++;                                     //Increase the maxTry count by 1

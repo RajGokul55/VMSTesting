@@ -66,7 +66,8 @@ import org.testng.Reporter;
 
 
 
-public class CommonMethods2 {
+public class CommonMethods2 
+{
 	private static final String userDirectory = System.getProperty("user.dir");
 	public static WebDriver driver;
 	

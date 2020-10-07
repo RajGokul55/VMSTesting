@@ -5,7 +5,10 @@
 	</listeners>
 	<test name="Automation Test">
 		<classes>
-			<class name="com.qa.wave4.AuditUt"></class>
+		<class name="com.qa.wave1.GVDGS2"></class>
+		<class name="com.qa.wave3.GPRICE"></class>
+		
+			<class name="com.qa.wave4.AuditUtopia"></class>
 	
 		</classes>
 	</test>

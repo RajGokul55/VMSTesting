@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+  <reporter-output>
+    <line>
+      <![CDATA[Mouse Control is on By.xpath: //form[@name='form']//a[contains(text(),'AuditUtopia')] on Web App URL: http://fcaudappprd01.na.gilead.com/AuditUtopia/login.php?reload=true]]>
+    </line>
+  </reporter-output>
+  <suite name="Default suite" duration-ms="10302" started-at="2020-10-07T14:46:22 IST" finished-at="2020-10-07T14:46:32 IST">
+    <groups>
+    </groups>
+    <test name="Default test" duration-ms="10302" started-at="2020-10-07T14:46:22 IST" finished-at="2020-10-07T14:46:32 IST">
+      <class name="com.qa.wave4.AuditUt">
+        <test-method status="PASS" signature="AuditUtopia_S01_Web_Produrl_LandingPage()[pri:0, instance:com.qa.wave4.AuditUt@6b9651f3]" name="AuditUtopia_S01_Web_Produrl_LandingPage" duration-ms="9400" started-at="2020-10-07T14:46:22 IST" finished-at="2020-10-07T14:46:31 IST">
+          <reporter-output>
+            <line>
+              <![CDATA[Mouse Control is on By.xpath: //form[@name='form']//a[contains(text(),'AuditUtopia')] on Web App URL: http://fcaudappprd01.na.gilead.com/AuditUtopia/login.php?reload=true]]>
+            </line>
+          </reporter-output>
+        </test-method> <!-- AuditUtopia_S01_Web_Produrl_LandingPage -->
+        <test-method status="PASS" signature="afterEveryTest()[pri:0, instance:com.qa.wave4.AuditUt@6b9651f3]" name="afterEveryTest" is-config="true" duration-ms="823" started-at="2020-10-07T14:46:31 IST" finished-at="2020-10-07T14:46:32 IST">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- afterEveryTest -->
+      </class> <!-- com.qa.wave4.AuditUt -->
+    </test> <!-- Default test -->
+  </suite> <!-- Default suite -->
+</testng-results>

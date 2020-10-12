@@ -1,7 +1,9 @@
 package com.qa.wave1;
 
 import org.testng.annotations.Test;
-import com.qa.demo.base.CommonMethods;
+
+import com.qa.demo.base.CommonMethods2;
+
 import org.testng.annotations.AfterMethod;
 
 import java.io.IOException;
@@ -10,7 +12,12 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
-public class GVDGS2 extends CommonMethods {
+public class GVDGS2 extends CommonMethods2 {
+
+	public GVDGS2() throws Exception {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/***************************** Test Data *******************/
 	final String Browser = "Chrome";
@@ -22,7 +29,7 @@ public class GVDGS2 extends CommonMethods {
 
 	/***************************** Test Cases *******************/
 	
-	String URL = ProdURL; // Change URl whichever Env you want to execute.
+	String URL = DevURL; // Change URl whichever Env you want to execute.
 	
 
 	@Test(priority = 0, enabled = true)

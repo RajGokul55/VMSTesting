@@ -26,22 +26,22 @@ public class PRTGNetworkMonitor extends CommonMethods2 {
 
 	}
 
-	@Test(priority = 0, enabled = true)
+	@Test(priority = 0, enabled = false)
 	public void PRTGNM_S01_Web_Devurl_UserLogin() throws IOException {
 		GM_PRTGNM_Web_DevURLLogin();
 	}
 
-	@Test(priority = 1, enabled = true)
+	@Test(priority = 1, enabled = false)
 	public void PRTGNM_S02_Web_DevurlViewAllSensorsData() throws IOException {
 		TM_PRTGNM_S02_Web_Devurl_ViewAllSensorsData();
 	}
 
-	@Test(priority = 2, enabled = false)
+	@Test(priority = 2, enabled = true)
 	public void PRTGNM_S03_Web_Produrl_UserLogin() throws IOException {
 		GM_PRTGNM_Web_ProdURLLogin();
 	}
 
-	@Test(priority = 3, enabled = false)
+	@Test(priority = 3, enabled = true)
 	public void PRTGNM_S04_Web_Produrl_ViewAllSensorsData() throws IOException {
 		TM_PRTGNM_S04_Web_Produrl_ViewAllSensorsData();
 	}
@@ -115,7 +115,7 @@ public class PRTGNetworkMonitor extends CommonMethods2 {
 		final String ProdURL = "http://sjprtgappprdn01/";
 		final String Username = "dmarkanti";
 		String DecryptPassword = null;
-		final String EncryptPassword = "k7zK/nqaaa80bH7tAi7jZw==";
+		final String EncryptPassword = "VzDCe2EN7hqyJ8BpFa82nQ==";
 		final String URL = ProdURL;
 		launchBrowser(Browser, URL);
 		try {
